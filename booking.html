@@ -1,0 +1,941 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Finaliser votre Inscription — 7Sens Premium Social Club</title>
+    <meta name="description" content="Inscrivez-vous de manière sécurisée à nos expériences haut de gamme.">
+    <meta name="robots" content="noindex, nofollow">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="style-v2.css">
+    <link rel="stylesheet" href="events-page.css">
+</head>
+
+<body class="booking-page-body">
+
+    <!-- Canvas Noise Overlay -->
+    <div class="noise-overlay"></div>
+
+    <!-- Header Navigation -->
+    <header class="v2-header scrolled" id="main-header">
+        <div class="header-container">
+            <a href="index.html" class="logo-link" id="header-logo">
+                <img src="assets/7sens.webp" alt="7Sens Logo" class="logo-img">
+            </a>
+
+            <nav class="nav-menu" id="nav-menu">
+                <ul>
+                    <li><a href="index.html#accueil" class="nav-link">ACCUEIL</a></li>
+                    <li><a href="index.html#about" class="nav-link">À PROPOS</a></li>
+                    <li><a href="events.html" class="nav-link active">ÉVÉNEMENTS</a></li>
+                    <li><a href="index.html#how-it-works" class="nav-link">COMMENT ÇA MARCHE</a></li>
+                    <li><a href="index.html#faq" class="nav-link">FAQ</a></li>
+                    <li><a href="index.html#testimonials" class="nav-link">TÉMOIGNAGES</a></li>
+                    <li><a href="index.html#contact" class="nav-link">CONTACT</a></li>
+                </ul>
+            </nav>
+
+            <div class="header-cta">
+                <a href="login.html" class="btn btn-navy btn-magnetic" id="btn-header-login">
+                    <span>CONNEXION</span>
+                </a>
+            </div>
+
+            <!-- Mobile Menu Toggle -->
+            <button class="mobile-nav-toggle" aria-label="Toggle menu" id="mobile-menu-toggle">
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </button>
+        </div>
+    </header>
+
+    <main class="booking-main">
+        <!-- Main Form Section -->
+        <section class="booking-section">
+            <div class="booking-container">
+                <!-- Breadcrumbs -->
+                <div class="breadcrumb">
+                    <a href="events.html" class="breadcrumb-link">Calendrier</a>
+                    <svg class="breadcrumb-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                        <path d="M9 5l7 7-7 7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                    <span id="breadcrumb-current-action">Réservation</span>
+                </div>
+
+                <div class="booking-layout-grid">
+                    <!-- Left Column: Registration Details & Payment -->
+                    <div class="booking-form-area">
+                        <h1 class="booking-main-title">Finaliser votre Réservation</h1>
+                        <p class="booking-main-desc">
+                            Veuillez remplir vos informations personnelles et procéder au règlement de votre place pour garantir votre participation.
+                        </p>
+
+                        <form id="checkout-form" class="checkout-form-container">
+                            <!-- Fieldset 1: Profil -->
+                            <div class="form-step-section">
+                                <h3 class="step-title">1. Informations Personnelles</h3>
+                                
+                                <div class="form-row grid-2">
+                                    <div class="form-group">
+                                        <label for="booking-lastname" class="input-label">NOM *</label>
+                                        <input type="text" id="booking-lastname" required class="form-input">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="booking-firstname" class="input-label">PRÉNOM *</label>
+                                        <input type="text" id="booking-firstname" required class="form-input">
+                                    </div>
+                                </div>
+
+                                <div class="form-row grid-2">
+                                    <div class="form-group">
+                                        <label for="booking-gender" class="input-label">GENRE / CIVILITÉ *</label>
+                                        <select id="booking-gender" required class="form-input">
+                                            <option value="" disabled selected>Sélectionnez...</option>
+                                            <option value="homme">Homme</option>
+                                            <option value="femme">Femme</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="booking-dob" class="input-label">DATE DE NAISSANCE *</label>
+                                        <input type="date" id="booking-dob" required class="form-input">
+                                        <span id="dob-error-msg" style="color: #c92a2a; font-size: 0.75rem; display: none; margin-top: 6px; font-weight: 500; line-height: 1.3;"></span>
+                                    </div>
+                                </div>
+
+                                <div class="form-row grid-2">
+                                    <div class="form-group">
+                                        <label for="booking-email" class="input-label" style="display: flex; justify-content: space-between; align-items: center; width: 100%;">
+                                            <span>ADRESSE EMAIL *</span>
+                                            <span id="email-verify-badge" style="font-size: 0.6rem; letter-spacing: 0.05em; font-weight: 700; color: #c92a2a;">NON VÉRIFIÉ</span>
+                                        </label>
+                                        <input type="email" id="booking-email" required class="form-input">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="booking-phone" class="input-label" style="display: flex; justify-content: space-between; align-items: center; width: 100%;">
+                                            <span>TÉLÉPHONE MOBILE *</span>
+                                            <span id="phone-verify-badge" style="font-size: 0.6rem; letter-spacing: 0.05em; font-weight: 700; color: #c92a2a;">NON VÉRIFIÉ</span>
+                                        </label>
+                                        <input type="tel" id="booking-phone" required class="form-input" placeholder="+41 79 000 00 00">
+                                    </div>
+                                </div>
+
+                                <div class="form-row" style="margin-bottom: 15px;">
+                                    <div class="form-group" style="flex-direction: row; align-items: center; gap: 8px;">
+                                        <input type="checkbox" id="whatsapp-sms-notifications" checked style="width: auto; margin: 0; accent-color: var(--primary-navy); cursor: pointer;">
+                                        <label for="whatsapp-sms-notifications" style="font-size: 0.65rem; font-weight: 600; letter-spacing: 0.15em; color: var(--primary-navy); text-transform: uppercase; cursor: pointer; margin-top: 1px;">Je souhaite recevoir mes invitations par WhatsApp & SMS (mobile vérifié requis)</label>
+                                    </div>
+                                </div>
+
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label for="booking-message" class="input-label">VOTRE MOTIVATION & ATTENTES (OPTIONNEL)</label>
+                                        <textarea id="booking-message" rows="3" class="form-input" placeholder="Parlez-nous de vos motivations pour cette expérience..."></textarea>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Fieldset 2: Payment Details -->
+                            <div class="form-step-section" id="payment-fields-wrapper">
+                                <h3 class="step-title">2. Règlement Sécurisé</h3>
+                                
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label for="card-name" class="input-label">NOM SUR LA CARTE *</label>
+                                        <input type="text" id="card-name" required class="form-input" placeholder="M. Jean Dupont">
+                                    </div>
+                                </div>
+
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label for="card-number" class="input-label">NUMÉRO DE CARTE DE CRÉDIT *</label>
+                                        <div class="card-input-wrapper">
+                                            <input type="text" id="card-number" required class="form-input" placeholder="0000 0000 0000 0000" maxlength="19">
+                                            <svg class="card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                                <rect x="1" y="4" width="22" height="16" rx="2" ry="2"></rect>
+                                                <line x1="1" y1="10" x2="23" y2="10"></line>
+                                            </svg>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="form-row grid-2">
+                                    <div class="form-group">
+                                        <label for="card-expiry" class="input-label">DATE D'EXPIRATION *</label>
+                                        <input type="text" id="card-expiry" required class="form-input" placeholder="MM / AA" maxlength="7">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="card-cvc" class="input-label">CODE CVC *</label>
+                                        <input type="text" id="card-cvc" required class="form-input" placeholder="123" maxlength="4">
+                                    </div>
+                                </div>
+
+                                <div style="display: flex; align-items: center; gap: 8px; margin-top: 15px;">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="var(--luxury-gold)" stroke-width="2" style="width: 14px; height: 14px; flex-shrink: 0;">
+                                        <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+                                        <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+                                    </svg>
+                                    <span style="font-size: 0.65rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.05em;">Chiffrement SSL 256 bits — Connexion sécurisée</span>
+                                </div>
+                            </div>
+
+                            <button type="submit" class="booking-action-btn" id="pay-submit-btn" style="margin-top: 20px;">
+                                <span>PAYER & CONFIRMER MA PLACE (<span id="btn-price-display">CHF 0.00</span>)</span>
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M5 12H19M19 12L13 6M19 12L13 18" stroke-linecap="round" stroke-linejoin="round" />
+                                </svg>
+                            </button>
+
+                            <p class="booking-note-text" style="margin-top: 15px;">
+                                * En confirmant, vous acceptez nos conditions d'adhésion. Si votre profil n'est pas retenu pour préserver la parité de l'expérience, vous serez remboursé intégralement sous 24 heures.
+                            </p>
+                        </form>
+                    </div>
+
+                    <!-- Right Column: Sidebar billing and event selector -->
+                    <div class="booking-summary-sidebar">
+                        <div class="summary-card">
+                            <h3 class="summary-card-title">Résumé de l'Expérience</h3>
+
+                            <!-- Dynamic Select Event Dropdown (in case no event is in query param) -->
+                            <div class="form-group selector-group" id="event-selector-container">
+                                <label for="event-select" class="input-label">SÉLECTIONNEZ UNE EXPÉRIENCE</label>
+                                <select id="event-select" class="form-input" style="color: var(--primary-navy);">
+                                    <!-- Dynamic options -->
+                                </select>
+                            </div>
+
+                            <!-- Image Preview Frame -->
+                            <div class="summary-image-frame">
+                                <img src="" alt="Aperçu" id="summary-img" class="summary-img">
+                            </div>
+
+                            <!-- Title and Info -->
+                            <div class="summary-info-block">
+                                <span class="summary-city" id="summary-city">VILLAGE</span>
+                                <h4 class="summary-event-title" id="summary-title">Titre de l'expérience</h4>
+                                <div class="summary-meta" style="font-size: 0.75rem; color: var(--text-muted); margin-top: 5px;">
+                                    <span id="summary-date">DATE</span>
+                                    <span>&nbsp;•&nbsp;</span>
+                                    <span id="summary-age">ÂGE</span>
+                                </div>
+                            </div>
+
+                            <!-- Coupon Promo Input -->
+                            <div class="coupon-section">
+                                <label class="input-label">CODE PROMO / PARRAINAGE</label>
+                                <div class="coupon-wrapper">
+                                    <input type="text" id="coupon-input" placeholder="WELCOME10" autocomplete="off">
+                                    <button type="button" id="coupon-apply-btn">APPLIQUER</button>
+                                </div>
+                                <div id="coupon-status-msg"></div>
+                            </div>
+
+                            <!-- Pricing Lines -->
+                            <div class="summary-pricing-table">
+                                <div class="pricing-row">
+                                    <span>Tarif Expérience</span>
+                                    <span id="price-original">CHF 0.00</span>
+                                </div>
+                                <div class="pricing-row discount-row" id="discount-row" style="display: none;">
+                                    <span id="discount-label">Code Promo</span>
+                                    <span id="price-discount">-CHF 0.00</span>
+                                </div>
+                                <div class="pricing-row total-row">
+                                    <span>Total à régler</span>
+                                    <span id="price-total">CHF 0.00</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="v2-footer">
+        <div class="footer-container">
+            <!-- Footer Upper -->
+            <div class="footer-upper">
+                
+                <!-- Col 1: Brand Info -->
+                <div class="footer-col brand-col">
+                    <a href="index.html#accueil" class="logo-link">
+                        <img src="assets/7sens.webp" alt="7Sens Logo" class="logo-img">
+                    </a>
+                    <p class="footer-tagline">Redefining offline human connections through exclusive curated experiences in Switzerland.</p>
+                    
+                    <div class="v2-footer-socials">
+                        <a href="https://instagram.com" aria-label="Instagram" target="_blank" class="v2-social-link btn-magnetic">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                <rect x="2" y="2" width="20" height="20" rx="5" ry="5" />
+                                <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
+                                <line x1="17.5" y1="6.5" x2="17.51" y2="6.5" />
+                            </svg>
+                        </a>
+                        <a href="https://facebook.com" aria-label="Facebook" target="_blank" class="v2-social-link btn-magnetic">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z" />
+                            </svg>
+                        </a>
+                        <a href="https://linkedin.com" aria-label="LinkedIn" target="_blank" class="v2-social-link btn-magnetic">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" />
+                                <rect x="2" y="9" width="4" height="12" />
+                                <circle cx="4" cy="4" r="2" />
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Col 2: Navigation -->
+                <div class="footer-col">
+                    <h5 class="v2-footer-heading">NAVIGATION</h5>
+                    <ul class="v2-footer-links">
+                        <li><a href="index.html#accueil">Accueil</a></li>
+                        <li><a href="index.html#about">À propos</a></li>
+                        <li><a href="events.html">Événements</a></li>
+                        <li><a href="index.html#how-it-works">Comment ça marche</a></li>
+                        <li><a href="index.html#testimonials">Témoignages</a></li>
+                        <li><a href="index.html#contact">Contact</a></li>
+                    </ul>
+                </div>
+
+                <!-- Col 3: Information -->
+                <div class="footer-col">
+                    <h5 class="v2-footer-heading">INFORMATIONS</h5>
+                    <ul class="v2-footer-links">
+                        <li><a href="index.html#faq">FAQ Accordion</a></li>
+                        <li><a href="index.html#accueil">Terms of Service</a></li>
+                        <li><a href="index.html#accueil">Privacy Policy</a></li>
+                        <li><a href="index.html#accueil">Legal Mentions</a></li>
+                    </ul>
+                </div>
+
+                <!-- Col 4: Newsletter -->
+                <div class="footer-col newsletter-col">
+                    <h5 class="v2-footer-heading">NEWSLETTER</h5>
+                    <p class="v2-newsletter-desc">Receive exclusive invitations and updates on upcoming Swiss events.</p>
+                    <form id="newsletter-form" class="v2-newsletter-form">
+                        <div class="v2-newsletter-input-wrap">
+                            <input type="email" placeholder="Your email address" required id="newsletter-email">
+                            <button type="submit" aria-label="Subscribe" class="v2-newsletter-btn">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M5 12H19M19 12L13 6M19 12L13 18" />
+                                </svg>
+                            </button>
+                        </div>
+                        <label class="v2-checkbox-label">
+                            <input type="checkbox" required id="newsletter-agree">
+                            <span class="v2-checkbox-box"></span>
+                            <span class="v2-checkbox-text">I agree to receive private circle invitations.</span>
+                        </label>
+                        <div class="form-status-msg" id="newsletter-form-status"></div>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Footer Middle: City Badges Running Line -->
+            <div class="v2-footer-cities-line">
+                <span>GENÈVE &nbsp;•&nbsp; LAUSANNE &nbsp;•&nbsp; ZURICH &nbsp;•&nbsp; MONTREUX &nbsp;•&nbsp; NEUCHÂTEL</span>
+            </div>
+
+            <!-- Footer Lower -->
+            <div class="footer-lower">
+                <p class="copyright">&copy; 2026 7Sens. All rights reserved.</p>
+                <p class="footer-crafted-by">Conçu en Suisse. <a href="index-v1.html" class="v2-version-link">← RETOUR VERSION I</a></p>
+                <a href="#accueil" class="v2-back-to-top btn-magnetic" id="back-to-top-btn">
+                    <span>BACK TO TOP</span>
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                        <path d="M12 19V5M12 5L5 12M12 5L19 12" stroke-linecap="round" stroke-linejoin="round" />
+                    </svg>
+                </a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Fullscreen Luxury Loading & Success Overlay -->
+    <div class="checkout-overlay" id="checkout-overlay">
+        <div class="checkout-overlay-content">
+            <!-- Loading Stage -->
+            <div class="overlay-stage" id="stage-loading" style="display: none;">
+                <div class="luxury-spinner"></div>
+                <h3 class="overlay-title">Traitement de votre règlement...</h3>
+                <p class="overlay-desc">Veuillez patienter pendant la validation sécurisée de vos coordonnées bancaires et de votre place.</p>
+            </div>
+
+            <!-- Email Verification Stage -->
+            <div class="overlay-stage" id="stage-email-verify" style="display: none; max-width: 440px; margin: 0 auto; text-align: center; padding: 20px;">
+                <h3 class="overlay-title" style="font-family: 'Cormorant Garamond', serif; font-size: 1.8rem; font-weight: 300;">Vérification de l'e-mail</h3>
+                <p class="overlay-desc" style="font-size: 0.82rem; line-height: 1.5; color: rgba(251, 248, 243, 0.85); margin-bottom: 20px;">
+                    Pour finaliser votre réservation ou rejoindre la liste d'attente, vous devez valider votre adresse e-mail. Un code OTP a été envoyé à <strong id="verify-email-text" style="color: var(--luxury-gold);">votre e-mail</strong>.
+                </p>
+                
+                <div class="otp-wrapper" id="booking-email-otp-wrapper" style="display: flex; gap: 10px; justify-content: center; margin: 15px 0;">
+                    <input type="text" class="otp-digit" maxlength="1" data-index="1" required autocomplete="off" inputmode="numeric" pattern="[0-9]*" style="width: 44px; height: 46px; text-align: center; font-size: 1.3rem; border: 1px solid rgba(255,255,255,0.3); background: rgba(255,255,255,0.1); color: #fff;">
+                    <input type="text" class="otp-digit" maxlength="1" data-index="2" required autocomplete="off" inputmode="numeric" pattern="[0-9]*" style="width: 44px; height: 46px; text-align: center; font-size: 1.3rem; border: 1px solid rgba(255,255,255,0.3); background: rgba(255,255,255,0.1); color: #fff;">
+                    <input type="text" class="otp-digit" maxlength="1" data-index="3" required autocomplete="off" inputmode="numeric" pattern="[0-9]*" style="width: 44px; height: 46px; text-align: center; font-size: 1.3rem; border: 1px solid rgba(255,255,255,0.3); background: rgba(255,255,255,0.1); color: #fff;">
+                    <input type="text" class="otp-digit" maxlength="1" data-index="4" required autocomplete="off" inputmode="numeric" pattern="[0-9]*" style="width: 44px; height: 46px; text-align: center; font-size: 1.3rem; border: 1px solid rgba(255,255,255,0.3); background: rgba(255,255,255,0.1); color: #fff;">
+                </div>
+
+                <div id="booking-email-error" style="color: var(--luxury-gold); font-size: 0.75rem; margin-bottom: 15px; display: none; font-weight: 500;">Code incorrect. Veuillez réessayer.</div>
+
+                <button type="button" class="btn btn-navy btn-magnetic" id="btn-confirm-email-otp" style="width: 100%; max-width: 250px; justify-content: center; margin: 0 auto 15px; border: 1px solid var(--luxury-gold); background: transparent; color: var(--warm-ivory);">
+                    <span>VÉRIFIER & REPRENDRE</span>
+                </button>
+                <div style="font-size: 0.7rem; color: rgba(251, 248, 243, 0.6); margin-top: 10px;">[ Saisissez 1234 pour valider la simulation ]</div>
+            </div>
+
+            <!-- Phone Verification Stage -->
+            <div class="overlay-stage" id="stage-phone-verify" style="display: none; max-width: 440px; margin: 0 auto; text-align: center; padding: 20px;">
+                <h3 class="overlay-title" style="font-family: 'Cormorant Garamond', serif; font-size: 1.8rem; font-weight: 300;">Vérification du mobile</h3>
+                <p class="overlay-desc" style="font-size: 0.82rem; line-height: 1.5; color: rgba(251, 248, 243, 0.85); margin-bottom: 20px;">
+                    Vous avez activé les notifications par WhatsApp & SMS. Veuillez vérifier votre mobile <strong id="verify-phone-text" style="color: var(--luxury-gold);">votre mobile</strong> pour valider l'option.
+                </p>
+                
+                <div class="otp-wrapper" id="booking-phone-otp-wrapper" style="display: flex; gap: 10px; justify-content: center; margin: 15px 0;">
+                    <input type="text" class="otp-digit" maxlength="1" data-index="1" required autocomplete="off" inputmode="numeric" pattern="[0-9]*" style="width: 44px; height: 46px; text-align: center; font-size: 1.3rem; border: 1px solid rgba(255,255,255,0.3); background: rgba(255,255,255,0.1); color: #fff;">
+                    <input type="text" class="otp-digit" maxlength="1" data-index="2" required autocomplete="off" inputmode="numeric" pattern="[0-9]*" style="width: 44px; height: 46px; text-align: center; font-size: 1.3rem; border: 1px solid rgba(255,255,255,0.3); background: rgba(255,255,255,0.1); color: #fff;">
+                    <input type="text" class="otp-digit" maxlength="1" data-index="3" required autocomplete="off" inputmode="numeric" pattern="[0-9]*" style="width: 44px; height: 46px; text-align: center; font-size: 1.3rem; border: 1px solid rgba(255,255,255,0.3); background: rgba(255,255,255,0.1); color: #fff;">
+                    <input type="text" class="otp-digit" maxlength="1" data-index="4" required autocomplete="off" inputmode="numeric" pattern="[0-9]*" style="width: 44px; height: 46px; text-align: center; font-size: 1.3rem; border: 1px solid rgba(255,255,255,0.3); background: rgba(255,255,255,0.1); color: #fff;">
+                </div>
+
+                <div id="booking-phone-error" style="color: var(--luxury-gold); font-size: 0.75rem; margin-bottom: 15px; display: none; font-weight: 500;">Code incorrect. Veuillez réessayer.</div>
+
+                <button type="button" class="btn btn-navy btn-magnetic" id="btn-confirm-phone-otp" style="width: 100%; max-width: 250px; justify-content: center; margin: 0 auto 15px; border: 1px solid var(--luxury-gold); background: transparent; color: var(--warm-ivory);">
+                    <span>VÉRIFIER & REPRENDRE</span>
+                </button>
+                <div style="font-size: 0.7rem; color: rgba(251, 248, 243, 0.6); margin-top: 10px;">[ Saisissez 1234 pour valider la simulation ]</div>
+            </div>
+            
+            <!-- Success Stage -->
+            <div class="overlay-stage" id="stage-success" style="display: none;">
+                <div class="success-checkmark-circle animate">
+                    <svg viewBox="0 0 52 52" class="checkmark">
+                        <circle class="checkmark__circle" cx="26" cy="26" r="25" fill="none"/>
+                        <path class="checkmark__check" fill="none" d="M14.1 27.2l7.1 7.2 16.7-16.8"/>
+                    </svg>
+                </div>
+                <h2 class="overlay-title success-headline">Paiement Validé</h2>
+                <h3 class="overlay-subtitle-event" id="success-event-title">Soirée Dégustation & Échanges</h3>
+                <p class="overlay-desc" style="max-width: 500px; margin: 0 auto 30px;">
+                    Votre candidature et votre transaction ont été validées avec succès. L'équipe 7Sens étudie votre demande de parité. Un e-mail de confirmation ainsi que vos billets ont été envoyés à votre adresse.
+                </p>
+                <a href="events.html" class="btn btn-navy btn-magnetic">
+                    <span>RETOURNER AUX ÉVÉNEMENTS</span>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- JS Libraries (GSAP, Unified Events Database) -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="events-data.js"></script>
+    
+    <!-- Script Logic for Booking -->
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            // Find inputs
+            const eventSelect = document.getElementById("event-select");
+            const summaryImg = document.getElementById("summary-img");
+            const summaryCity = document.getElementById("summary-city");
+            const summaryTitle = document.getElementById("summary-title");
+            const summaryDate = document.getElementById("summary-date");
+            const summaryAge = document.getElementById("summary-age");
+
+            const priceOriginal = document.getElementById("price-original");
+            const discountRow = document.getElementById("discount-row");
+            const priceDiscount = document.getElementById("price-discount");
+            const priceTotal = document.getElementById("price-total");
+            const btnPriceDisplay = document.getElementById("btn-price-display");
+
+            const couponInput = document.getElementById("coupon-input");
+            const couponApplyBtn = document.getElementById("coupon-apply-btn");
+            const couponStatusMsg = document.getElementById("coupon-status-msg");
+
+            const checkoutForm = document.getElementById("checkout-form");
+            const checkoutOverlay = document.getElementById("checkout-overlay");
+            const stageLoading = document.getElementById("stage-loading");
+            const stageSuccess = document.getElementById("stage-success");
+            const successEventTitle = document.getElementById("success-event-title");
+
+            // Card details formatting
+            const cardNumber = document.getElementById("card-number");
+            const cardExpiry = document.getElementById("card-expiry");
+            const cardCvc = document.getElementById("card-cvc");
+
+            // Date of birth validation fields
+            const bookingDob = document.getElementById("booking-dob");
+            const dobErrorMsg = document.getElementById("dob-error-msg");
+            const paySubmitBtn = document.getElementById("pay-submit-btn");
+
+            // Verification Elements
+            const emailVerifyBadge = document.getElementById("email-verify-badge");
+            const phoneVerifyBadge = document.getElementById("phone-verify-badge");
+            const notificationsCheckbox = document.getElementById("whatsapp-sms-notifications");
+            const bookingEmail = document.getElementById("booking-email");
+            const bookingPhone = document.getElementById("booking-phone");
+            
+            const stageEmailVerify = document.getElementById("stage-email-verify");
+            const stagePhoneVerify = document.getElementById("stage-phone-verify");
+            
+            const verifyEmailText = document.getElementById("verify-email-text");
+            const verifyPhoneText = document.getElementById("verify-phone-text");
+            
+            const bookingEmailError = document.getElementById("booking-email-error");
+            const bookingPhoneError = document.getElementById("booking-phone-error");
+            
+            const btnConfirmEmailOtp = document.getElementById("btn-confirm-email-otp");
+            const btnConfirmPhoneOtp = document.getElementById("btn-confirm-phone-otp");
+
+            let activeEvent = null;
+            let activeDiscount = 0;
+            let appliedCoupon = null;
+
+            // Load simulated session user
+            let currentUser = JSON.parse(localStorage.getItem("currentUser") || "{}");
+
+            // Prefill form inputs if user session matches
+            if (currentUser.email) {
+                document.getElementById("booking-firstname").value = currentUser.firstname || "";
+                document.getElementById("booking-lastname").value = currentUser.lastname || "";
+                bookingEmail.value = currentUser.email || "";
+                bookingPhone.value = currentUser.phone || "";
+            }
+
+            function updateVerificationBadges() {
+                const emailVal = bookingEmail.value.trim().toLowerCase();
+                const phoneVal = bookingPhone.value.trim();
+
+                // Check email verified status
+                if (currentUser.email && emailVal === currentUser.email.toLowerCase() && currentUser.isEmailVerified) {
+                    emailVerifyBadge.textContent = "VÉRIFIÉ ✓";
+                    emailVerifyBadge.style.color = "#2b8a3e";
+                } else {
+                    emailVerifyBadge.textContent = "NON VÉRIFIÉ";
+                    emailVerifyBadge.style.color = "#c92a2a";
+                }
+
+                // Check phone verified status
+                if (currentUser.phone && phoneVal === currentUser.phone && currentUser.isPhoneVerified) {
+                    phoneVerifyBadge.textContent = "VÉRIFIÉ ✓";
+                    phoneVerifyBadge.style.color = "#2b8a3e";
+                } else {
+                    phoneVerifyBadge.textContent = "NON VÉRIFIÉ";
+                    phoneVerifyBadge.style.color = "#c92a2a";
+                }
+            }
+
+            bookingEmail.addEventListener("input", updateVerificationBadges);
+            bookingPhone.addEventListener("input", updateVerificationBadges);
+            updateVerificationBadges();
+
+            // OTP Input focus helpers
+            const setupBookingOtpFocus = (wrapperId) => {
+                const inputs = document.querySelectorAll(`#${wrapperId} .otp-digit`);
+                inputs.forEach((input, index) => {
+                    input.addEventListener("input", (e) => {
+                        const val = e.target.value;
+                        if (val && index < inputs.length - 1) {
+                            inputs[index + 1].focus();
+                        }
+                    });
+                    input.addEventListener("keydown", (e) => {
+                        if (e.key === "Backspace" && !e.target.value && index > 0) {
+                            inputs[index - 1].focus();
+                        }
+                    });
+                });
+            };
+            setupBookingOtpFocus("booking-email-otp-wrapper");
+            setupBookingOtpFocus("booking-phone-otp-wrapper");
+
+            // Verification and submit chain
+            function checkAndProcessBooking() {
+                const emailVal = bookingEmail.value.trim().toLowerCase();
+                const phoneVal = bookingPhone.value.trim();
+
+                // 1. Validate Email verification
+                const isEmailVerified = currentUser.email && emailVal === currentUser.email.toLowerCase() && currentUser.isEmailVerified;
+                if (!isEmailVerified) {
+                    // Trigger email OTP modal
+                    verifyEmailText.textContent = emailVal;
+                    bookingEmailError.style.display = "none";
+                    document.querySelectorAll("#booking-email-otp-wrapper input").forEach(inp => inp.value = "");
+
+                    checkoutOverlay.style.display = "flex";
+                    stageLoading.style.display = "none";
+                    stageSuccess.style.display = "none";
+                    stagePhoneVerify.style.display = "none";
+                    stageEmailVerify.style.display = "block";
+                    gsap.to(checkoutOverlay, { opacity: 1, duration: 0.4 });
+                    
+                    document.querySelector("#booking-email-otp-wrapper input[data-index='1']").focus();
+                    return;
+                }
+
+                // 2. Validate Phone verification (only if notifications checked)
+                const wantsNotifications = notificationsCheckbox.checked;
+                const isPhoneVerified = currentUser.phone && phoneVal === currentUser.phone && currentUser.isPhoneVerified;
+                if (wantsNotifications && !isPhoneVerified) {
+                    // Trigger phone OTP modal
+                    verifyPhoneText.textContent = phoneVal;
+                    bookingPhoneError.style.display = "none";
+                    document.querySelectorAll("#booking-phone-otp-wrapper input").forEach(inp => inp.value = "");
+
+                    checkoutOverlay.style.display = "flex";
+                    stageLoading.style.display = "none";
+                    stageSuccess.style.display = "none";
+                    stageEmailVerify.style.display = "none";
+                    stagePhoneVerify.style.display = "block";
+                    gsap.to(checkoutOverlay, { opacity: 1, duration: 0.4 });
+
+                    document.querySelector("#booking-phone-otp-wrapper input[data-index='1']").focus();
+                    return;
+                }
+
+                // 3. Complete booking logic (loading -> success)
+                checkoutOverlay.style.display = "flex";
+                stageLoading.style.display = "flex";
+                stageSuccess.style.display = "none";
+                stageEmailVerify.style.display = "none";
+                stagePhoneVerify.style.display = "none";
+                
+                // Customize title depending on whether it's a booking or waitlist
+                const isWaitlist = activeEvent && activeEvent.status === "waiting-list";
+                const headlineElement = document.querySelector("#stage-success .success-headline");
+                const descElement = document.querySelector("#stage-success .overlay-desc");
+
+                if (isWaitlist) {
+                    headlineElement.textContent = "Inscription Enregistrée";
+                    descElement.innerHTML = `Votre inscription à l'événement <strong>${activeEvent ? activeEvent.title : "choisi"}</strong> a bien été enregistrée sur la liste d'attente.<br>Aucun montant n'a été prélevé. L'équipe 7Sens étudie votre demande pour préserver la parité de l'expérience. Vous recevrez un e-mail de confirmation.`;
+                } else {
+                    headlineElement.textContent = "Paiement Validé";
+                    descElement.innerHTML = `Votre candidature et votre transaction ont été validées avec succès. L'équipe 7Sens étudie votre demande de parité. Un e-mail de confirmation ainsi que vos billets ont été envoyés à votre adresse.`;
+                }
+
+                gsap.to(checkoutOverlay, { opacity: 1, duration: 0.4 });
+
+                setTimeout(() => {
+                    successEventTitle.textContent = activeEvent ? activeEvent.title : "Votre expérience 7Sens";
+                    stageLoading.style.display = "none";
+                    stageSuccess.style.display = "block";
+
+                    // Animate success stage
+                    gsap.from("#stage-success .success-checkmark-circle", {
+                        scale: 0.5,
+                        opacity: 0,
+                        duration: 0.5,
+                        ease: "back.out(1.7)"
+                    });
+                    gsap.from("#stage-success .success-headline, #stage-success .overlay-desc, #stage-success .btn", {
+                        y: 20,
+                        opacity: 0,
+                        duration: 0.6,
+                        stagger: 0.15,
+                        delay: 0.2
+                    });
+                }, 2000);
+            }
+
+            // Confirm buttons click handlers
+            btnConfirmEmailOtp.addEventListener("click", () => {
+                const otpInputs = document.querySelectorAll("#booking-email-otp-wrapper input");
+                let code = "";
+                otpInputs.forEach(inp => code += inp.value.trim());
+
+                if (code === "1234") {
+                    bookingEmailError.style.display = "none";
+                    // Save email verified in currentUser session
+                    currentUser.email = bookingEmail.value.trim();
+                    currentUser.isEmailVerified = true;
+                    localStorage.setItem("currentUser", JSON.stringify(currentUser));
+
+                    // Save email verified in registeredUsers
+                    const registeredUsers = JSON.parse(localStorage.getItem("registeredUsers") || "[]");
+                    const index = registeredUsers.findIndex(u => u.email.toLowerCase() === currentUser.email.toLowerCase());
+                    if (index !== -1) {
+                        registeredUsers[index].isEmailVerified = true;
+                        localStorage.setItem("registeredUsers", JSON.stringify(registeredUsers));
+                    } else {
+                        registeredUsers.push({
+                            email: currentUser.email,
+                            firstname: document.getElementById("booking-firstname").value,
+                            lastname: document.getElementById("booking-lastname").value,
+                            phone: bookingPhone.value,
+                            isEmailVerified: true,
+                            isPhoneVerified: false
+                        });
+                        localStorage.setItem("registeredUsers", JSON.stringify(registeredUsers));
+                    }
+
+                    updateVerificationBadges();
+                    stageEmailVerify.style.display = "none";
+                    checkAndProcessBooking();
+                } else {
+                    bookingEmailError.style.display = "block";
+                }
+            });
+
+            btnConfirmPhoneOtp.addEventListener("click", () => {
+                const otpInputs = document.querySelectorAll("#booking-phone-otp-wrapper input");
+                let code = "";
+                otpInputs.forEach(inp => code += inp.value.trim());
+
+                if (code === "1234") {
+                    bookingPhoneError.style.display = "none";
+                    // Save phone verified in currentUser session
+                    currentUser.phone = bookingPhone.value.trim();
+                    currentUser.isPhoneVerified = true;
+                    localStorage.setItem("currentUser", JSON.stringify(currentUser));
+
+                    // Save phone verified in registeredUsers
+                    const registeredUsers = JSON.parse(localStorage.getItem("registeredUsers") || "[]");
+                    const index = registeredUsers.findIndex(u => u.email.toLowerCase() === currentUser.email.toLowerCase());
+                    if (index !== -1) {
+                        registeredUsers[index].phone = currentUser.phone;
+                        registeredUsers[index].isPhoneVerified = true;
+                        localStorage.setItem("registeredUsers", JSON.stringify(registeredUsers));
+                    }
+
+                    updateVerificationBadges();
+                    stagePhoneVerify.style.display = "none";
+                    checkAndProcessBooking();
+                } else {
+                    bookingPhoneError.style.display = "block";
+                }
+            });
+
+            function parseAgeGroup(ageGroupStr) {
+                const matches = ageGroupStr.match(/(\d+)\s*-\s*(\d+)/);
+                if (matches) {
+                    return {
+                        min: parseInt(matches[1]),
+                        max: parseInt(matches[2])
+                    };
+                }
+                return { min: 18, max: 99 };
+            }
+
+            function calculateAge(dobString) {
+                const today = new Date();
+                const birthDate = new Date(dobString);
+                let age = today.getFullYear() - birthDate.getFullYear();
+                const m = today.getMonth() - birthDate.getMonth();
+                if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
+                    age--;
+                }
+                return age;
+            }
+
+            function validateAgeEligibility() {
+                if (!activeEvent || !bookingDob.value) return true;
+
+                const age = calculateAge(bookingDob.value);
+                const limits = parseAgeGroup(activeEvent.ageGroup);
+
+                if (age < limits.min || age > limits.max) {
+                    dobErrorMsg.textContent = `Désolé, votre âge (${age} ans) ne correspond pas à la tranche d'âge de l'événement (${limits.min} - ${limits.max} ans).`;
+                    dobErrorMsg.style.display = "block";
+                    paySubmitBtn.disabled = true;
+                    paySubmitBtn.style.opacity = "0.5";
+                    paySubmitBtn.style.pointerEvents = "none";
+                    return false;
+                } else {
+                    dobErrorMsg.style.display = "none";
+                    paySubmitBtn.disabled = false;
+                    paySubmitBtn.style.opacity = "";
+                    paySubmitBtn.style.pointerEvents = "";
+                    return true;
+                }
+            }
+
+            bookingDob.addEventListener("input", validateAgeEligibility);
+            bookingDob.addEventListener("change", validateAgeEligibility);
+
+            // Load query param
+            const params = new URLSearchParams(window.location.search);
+            const eventId = params.get("id");
+
+            // Populate events select options
+            window.eventsData.forEach(event => {
+                const opt = document.createElement("option");
+                opt.value = event.id;
+                opt.textContent = `${event.title} (${event.city} - ${event.price})`;
+                eventSelect.appendChild(opt);
+            });
+
+            // Initial load
+            if (eventId && window.eventsData.find(e => e.id === eventId)) {
+                eventSelect.value = eventId;
+                selectEvent(eventId);
+            } else {
+                // Select first event as default
+                if (window.eventsData.length > 0) {
+                    eventSelect.value = window.eventsData[0].id;
+                    selectEvent(window.eventsData[0].id);
+                }
+            }
+
+            // Dropdown listener
+            eventSelect.addEventListener("change", (e) => {
+                selectEvent(e.target.value);
+            });
+
+            function selectEvent(id) {
+                const event = window.eventsData.find(e => e.id === id);
+                if (!event) return;
+
+                activeEvent = event;
+                summaryImg.src = event.image;
+                summaryImg.alt = event.title;
+                summaryCity.textContent = event.city;
+                summaryTitle.textContent = event.title;
+                summaryDate.textContent = event.date;
+                summaryAge.textContent = event.ageGroup;
+
+                // Set prices
+                const rawPriceText = event.price.replace("CHF ", "");
+                const originalPriceVal = parseFloat(rawPriceText);
+
+                calculatePrices(originalPriceVal);
+                validateAgeEligibility();
+
+                // Toggle waitlist UI elements
+                const isWaitlist = event.status === "waiting-list";
+                const breadcrumbCurrent = document.getElementById("breadcrumb-current-action");
+                const mainTitle = document.querySelector(".booking-main-title");
+                const mainDesc = document.querySelector(".booking-main-desc");
+                const paymentWrapper = document.getElementById("payment-fields-wrapper");
+                const payBtnSpan = document.querySelector("#pay-submit-btn span");
+
+                if (isWaitlist) {
+                    if (breadcrumbCurrent) breadcrumbCurrent.textContent = "Liste d'attente";
+                    if (mainTitle) mainTitle.textContent = "Rejoindre la Liste d'Attente";
+                    if (mainDesc) mainDesc.textContent = "Saisissez vos coordonnées pour rejoindre la liste d'attente de cette expérience privée. Aucun règlement ne vous sera demandé pour l'instant.";
+                    if (paymentWrapper) paymentWrapper.style.display = "none";
+                    if (payBtnSpan) payBtnSpan.textContent = "REJOINDRE LA LISTE D'ATTENTE";
+                    
+                    // Disable payment inputs required fields
+                    document.querySelectorAll("#payment-fields-wrapper input").forEach(inp => {
+                        inp.removeAttribute("required");
+                    });
+                } else {
+                    if (breadcrumbCurrent) breadcrumbCurrent.textContent = "Réservation";
+                    if (mainTitle) mainTitle.textContent = "Finaliser votre Réservation";
+                    if (mainDesc) mainDesc.textContent = "Veuillez remplir vos informations personnelles et procéder au règlement de votre place pour garantir votre participation.";
+                    if (paymentWrapper) paymentWrapper.style.display = "block";
+                    if (payBtnSpan) payBtnSpan.textContent = `PAYER & CONFIRMER MA PLACE (CHF ${(originalPriceVal - activeDiscount).toFixed(2)})`;
+                    
+                    // Enable payment inputs required fields
+                    document.querySelectorAll("#payment-fields-wrapper input").forEach(inp => {
+                        inp.setAttribute("required", "");
+                    });
+                }
+            }
+
+            function calculatePrices(originalPriceVal) {
+                let total = originalPriceVal - activeDiscount;
+                if (total < 0) total = 0;
+
+                priceOriginal.textContent = `CHF ${originalPriceVal.toFixed(2)}`;
+                priceDiscount.textContent = `-CHF ${activeDiscount.toFixed(2)}`;
+                priceTotal.textContent = `CHF ${total.toFixed(2)}`;
+                
+                // Only update button price text if NOT on waitlist
+                if (activeEvent && activeEvent.status !== "waiting-list") {
+                    btnPriceDisplay.textContent = `CHF ${total.toFixed(2)}`;
+                    const payBtnSpan = document.querySelector("#pay-submit-btn span");
+                    if (payBtnSpan) {
+                        payBtnSpan.innerHTML = `PAYER & CONFIRMER MA PLACE (<span id="btn-price-display">CHF ${total.toFixed(2)}</span>)`;
+                    }
+                }
+            }
+
+            // Coupon Code handler
+            couponApplyBtn.addEventListener("click", () => {
+                const code = couponInput.value.trim().toUpperCase();
+                if (!code) {
+                    showCouponMessage("Veuillez saisir un code.", "error");
+                    return;
+                }
+
+                if (code === "WELCOME10") {
+                    activeDiscount = 10.0;
+                    appliedCoupon = code;
+                    discountRow.style.display = "flex";
+                    showCouponMessage("Code promo 'WELCOME10' appliqué (-CHF 10.00)", "success");
+                } else if (code === "VIP20") {
+                    activeDiscount = 20.0;
+                    appliedCoupon = code;
+                    discountRow.style.display = "flex";
+                    showCouponMessage("Code promo 'VIP20' appliqué (-CHF 20.00)", "success");
+                } else {
+                    activeDiscount = 0;
+                    appliedCoupon = null;
+                    discountRow.style.display = "none";
+                    showCouponMessage("Code invalide ou expiré.", "error");
+                }
+
+                if (activeEvent) {
+                    const rawPriceText = activeEvent.price.replace("CHF ", "");
+                    calculatePrices(parseFloat(rawPriceText));
+                }
+            });
+
+            function showCouponMessage(msg, type) {
+                couponStatusMsg.textContent = msg;
+                couponStatusMsg.className = type === "success" ? "success" : "error";
+                couponStatusMsg.style.display = "block";
+            }
+
+            // Credit Card auto-format
+            cardNumber.addEventListener("input", (e) => {
+                let value = e.target.value.replace(/\s+/g, '').replace(/[^0-9]/gi, '');
+                let formatted = "";
+                for (let i = 0; i < value.length; i++) {
+                    if (i > 0 && i % 4 === 0) {
+                        formatted += " ";
+                    }
+                    formatted += value[i];
+                }
+                e.target.value = formatted;
+            });
+
+            cardExpiry.addEventListener("input", (e) => {
+                let value = e.target.value.replace(/\s+/g, '').replace(/[^0-9]/gi, '');
+                if (value.length > 2) {
+                    e.target.value = value.substring(0, 2) + " / " + value.substring(2, 4);
+                } else {
+                    e.target.value = value;
+                }
+            });
+
+            cardCvc.addEventListener("input", (e) => {
+                e.target.value = e.target.value.replace(/[^0-9]/gi, '');
+            });
+
+            // Form Submit Simulation
+            checkoutForm.addEventListener("submit", (e) => {
+                e.preventDefault();
+
+                // Validate age eligibility on submission
+                if (!validateAgeEligibility()) {
+                    return;
+                }
+
+                // Execute the verification and booking process
+                checkAndProcessBooking();
+            });
+        });
+    </script>
+</body>
+
+</html>

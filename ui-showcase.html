@@ -1,0 +1,614 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>S7 UI Showcase</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --s7-navy: #0d1b2a;
+            --s7-navy-card: #142539;
+            --s7-gold: #d4af37;
+            --s7-gold-light: #eadd99;
+            --s7-gold-gradient: linear-gradient(135deg, #f5d76e, #d4af37, #b28a25);
+            --s7-cream: #fbf9f4;
+            --s7-cream-dark: #f0ece1;
+            --s7-text-dark: #1a1a1a;
+            --s7-text-light: #e0e0e0;
+        }
+        body {
+            background-color: #222;
+            margin: 0; padding: 40px;
+            font-family: 'Outfit', sans-serif;
+            display: flex; flex-wrap: wrap; gap: 40px; justify-content: center;
+        }
+
+        .screen-container { display: flex; flex-direction: column; align-items: center; gap: 15px; }
+        .screen-label { color: #fff; font-size: 1rem; font-weight: 600; letter-spacing: 0.05em; }
+
+        .frame {
+            width: 375px; height: 812px;
+            background: var(--s7-cream);
+            border-radius: 40px;
+            overflow: hidden; position: relative;
+            box-shadow: 0 30px 60px rgba(0,0,0,0.4);
+            display: flex; flex-direction: column;
+            color: var(--s7-text-dark);
+        }
+        .frame.dark { background: var(--s7-navy); color: #fff; }
+        
+        /* Noise overlay for dark frames */
+        .frame.dark::before {
+            content: ''; position: absolute; top:0; left:0; width:100%; height:100%;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+            pointer-events: none; z-index: 0;
+        }
+        .frame > * { z-index: 1; position: relative; }
+
+        /* Typography */
+        h1, h2, h3 { font-family: 'Cormorant Garamond', serif; font-weight: 500; margin: 0; }
+        .logo { font-family: 'Cormorant Garamond', serif; font-size: 1.6rem; color: var(--s7-gold); text-align: center; font-style: italic; font-weight: 600; }
+        
+        /* Headers */
+        .header { display: flex; justify-content: space-between; align-items: center; padding: 25px 20px 10px; }
+        .header svg { stroke: var(--s7-gold); width: 24px; height: 24px; cursor: pointer; }
+        
+        /* Buttons */
+        .btn {
+            border: none; border-radius: 30px; padding: 16px 20px; font-family: 'Outfit', sans-serif;
+            font-size: 1rem; font-weight: 500; display: flex; justify-content: space-between; align-items: center;
+            cursor: pointer; width: 100%; box-sizing: border-box; text-decoration: none;
+        }
+        .btn-dark { background: var(--s7-navy); color: var(--s7-gold); }
+        .btn-dark svg { stroke: var(--s7-gold); }
+        .btn-gold { background: var(--s7-gold-gradient); color: var(--s7-navy); font-weight: 600; }
+        .btn-gold svg { stroke: var(--s7-navy); }
+        
+        .footer-action { margin-top: auto; padding: 20px; }
+
+        /* SCREEN 1: Questionnaire Complete */
+        .s1-icon { width: 80px; height: 80px; border: 1px solid var(--s7-gold); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 20px auto 15px; }
+        .s1-icon svg { stroke: var(--s7-gold); stroke-width: 1.5; width: 40px; height: 40px; }
+        .s1-title { text-align: center; font-size: 2.2rem; line-height: 1.1; margin-bottom: 10px; }
+        .s1-sub { text-align: center; font-size: 0.85rem; color: #666; max-width: 250px; margin: 0 auto 30px; line-height: 1.4; }
+        .s1-list { padding: 0 30px; }
+        .s1-item { display: flex; justify-content: space-between; align-items: center; padding: 12px 0; border-bottom: 1px solid rgba(0,0,0,0.05); font-size: 0.85rem; }
+        .s1-item-left { display: flex; align-items: center; gap: 10px; color: #444; }
+        .s1-item-left svg { width: 16px; height: 16px; stroke: var(--s7-gold); }
+        .s1-item-right { color: var(--s7-gold); font-weight: 600; }
+        .s1-total { text-align: center; margin-top: 20px; font-size: 0.85rem; color: #666; }
+        .s1-total span { display: block; font-size: 1.5rem; color: var(--s7-gold); font-family: 'Cormorant Garamond'; margin-top: 5px; }
+
+        /* SCREEN 2: AI Processing */
+        .s2-ring-container { position: relative; width: 200px; height: 200px; margin: 60px auto 40px; display: flex; align-items: center; justify-content: center; }
+        .s2-ring { position: absolute; width: 100%; height: 100%; border-radius: 50%; border: 2px dashed var(--s7-gold); opacity: 0.5; animation: spin 8s linear infinite; }
+        .s2-ring-inner { position: absolute; width: 160px; height: 160px; border-radius: 50%; border: 4px solid transparent; border-top-color: var(--s7-gold); border-bottom-color: var(--s7-gold); animation: spin-reverse 4s linear infinite; filter: drop-shadow(0 0 10px var(--s7-gold)); }
+        .s2-ring-core { width: 140px; height: 140px; border-radius: 50%; background: radial-gradient(circle, rgba(212,175,55,0.2) 0%, transparent 70%); }
+        .s2-title { text-align: center; font-size: 2rem; line-height: 1.2; margin: 0 40px 10px; }
+        .s2-sub { text-align: center; font-size: 0.85rem; color: #aaa; margin-bottom: 40px; }
+        .s2-list { padding: 0 40px; }
+        .s2-item { display: flex; justify-content: space-between; align-items: center; padding: 15px 0; border-bottom: 1px solid rgba(255,255,255,0.1); font-size: 0.9rem; color: #ddd; }
+        .s2-item svg { width: 18px; height: 18px; stroke: var(--s7-gold); }
+        .s2-item.loading svg { stroke: #666; animation: spin 2s linear infinite; }
+
+        /* SCREEN 3: DNA */
+        .s3-title { text-align: center; font-size: 2.2rem; line-height: 1.1; margin-top: 10px; }
+        .s3-sub { text-align: center; font-size: 0.85rem; color: #666; margin-top: 5px; margin-bottom: 30px; }
+        .s3-chart { position: relative; width: 280px; height: 280px; margin: 0 auto 30px; display: flex; align-items: center; justify-content: center; }
+        .s3-chart-ring { position: absolute; width: 160px; height: 160px; border-radius: 50%; background: var(--s7-navy); display: flex; align-items: center; justify-content: center; }
+        .s3-chart-7 { font-family: 'Cormorant Garamond'; font-size: 5rem; color: var(--s7-gold); font-style: italic; }
+        .s3-trait { position: absolute; font-size: 0.75rem; text-align: center; line-height: 1.2; color: #333; font-weight: 500; }
+        .s3-trait-1 { top: 30px; left: 10px; }
+        .s3-trait-2 { top: 30px; right: 10px; }
+        .s3-trait-3 { bottom: 20px; left: 10px; }
+        .s3-trait-4 { bottom: 40px; right: 0px; }
+        .s3-trait-5 { bottom: -10px; left: 50%; transform: translateX(-50%); }
+        .s3-trait-val { color: var(--s7-gold); font-family: 'Cormorant Garamond'; font-size: 1.1rem; display: block; }
+        .s3-box { background: var(--s7-cream-dark); border-radius: 12px; padding: 20px; margin: 0 20px; display: flex; gap: 15px; align-items: center; }
+        .s3-box p { font-size: 0.85rem; line-height: 1.5; color: #444; margin: 0; }
+
+        /* SCREEN 4: Lobby */
+        .s4-greet { text-align: center; font-size: 2rem; margin-top: 20px; }
+        .s4-name { text-align: center; font-size: 2.5rem; color: var(--s7-gold); margin-bottom: 30px; }
+        .s4-card { margin: 0 20px; background: var(--s7-cream); border-radius: 16px; overflow: hidden; color: var(--s7-text-dark); position: relative; }
+        .s4-img { width: 100%; height: 160px; background: #ccc; object-fit: cover; }
+        .s4-card-content { padding: 20px; }
+        .s4-card-title { font-size: 1.4rem; font-family: 'Cormorant Garamond'; margin-bottom: 10px; color: var(--s7-navy); }
+        .s4-card-info { display: flex; gap: 15px; font-size: 0.75rem; color: #666; margin-bottom: 5px; align-items: center; }
+        .s4-card-info svg { width: 14px; height: 14px; stroke: var(--s7-gold); }
+        .s4-pill { position: absolute; top: 15px; right: 15px; background: var(--s7-gold-gradient); color: var(--s7-navy); padding: 4px 12px; border-radius: 20px; font-size: 0.7rem; font-weight: 600; }
+        .s4-timer-box { margin-top: auto; text-align: center; }
+        .s4-timer-title { font-size: 0.9rem; color: var(--s7-gold); margin-bottom: 15px; }
+        .s4-timer { font-family: 'Cormorant Garamond'; font-size: 3rem; color: #fff; letter-spacing: 2px; }
+        .s4-timer-labels { display: flex; justify-content: center; gap: 35px; font-size: 0.6rem; color: #888; text-transform: uppercase; margin-top: -5px; margin-bottom: 20px; }
+
+        /* SCREEN 5: Match Intro */
+        .s5-avatar-box { position: relative; width: 180px; height: 180px; margin: 20px auto; }
+        .s5-avatar-ring { position: absolute; width: 100%; height: 100%; border: 1px dashed var(--s7-gold); border-radius: 50%; animation: spin 10s linear infinite; }
+        .s5-avatar { width: 140px; height: 140px; border-radius: 50%; position: absolute; top: 20px; left: 20px; object-fit: cover; border: 4px solid #fff; box-shadow: 0 10px 20px rgba(0,0,0,0.1); }
+        .s5-name { text-align: center; font-size: 2.5rem; margin-top: 10px; }
+        .s5-table { background: var(--s7-navy); color: #fff; padding: 5px 20px; border-radius: 20px; font-size: 0.85rem; margin: 10px auto; width: max-content; }
+        .s5-score { text-align: center; font-size: 2.5rem; color: var(--s7-gold); font-family: 'Cormorant Garamond'; margin-top: 20px; }
+        .s5-score-sub { text-align: center; font-size: 0.9rem; color: #666; }
+        .s5-traits-title { text-align: center; font-size: 0.8rem; color: #888; text-transform: uppercase; margin-top: 30px; letter-spacing: 0.1em; }
+        .s5-traits { display: flex; justify-content: center; gap: 30px; margin-top: 15px; }
+        .s5-trait { display: flex; flex-direction: column; align-items: center; gap: 8px; font-size: 0.8rem; color: #444; }
+        .s5-trait svg { width: 30px; height: 30px; stroke: #888; stroke-width: 1; }
+
+        /* SCREEN 6: Live Date */
+        .s6-round { text-align: center; font-size: 0.8rem; color: var(--s7-gold); letter-spacing: 0.1em; text-transform: uppercase; }
+        .s6-name { text-align: center; font-size: 2.5rem; margin-top: 10px; }
+        .s6-score { text-align: center; font-size: 1.5rem; color: var(--s7-gold); font-family: 'Cormorant Garamond'; margin-bottom: 5px; }
+        .s6-score-sub { text-align: center; font-size: 0.8rem; color: #888; margin-bottom: 30px; }
+        .s6-ring-container { position: relative; width: 220px; height: 220px; margin: 0 auto; display: flex; align-items: center; justify-content: center; }
+        .s6-ring-bg { position: absolute; width: 100%; height: 100%; border-radius: 50%; border: 4px solid rgba(255,255,255,0.05); }
+        .s6-ring-progress { position: absolute; width: 100%; height: 100%; border-radius: 50%; border: 4px solid var(--s7-gold); border-left-color: transparent; border-bottom-color: transparent; transform: rotate(45deg); filter: drop-shadow(0 0 10px rgba(212,175,55,0.5)); }
+        .s6-timer { font-size: 3.5rem; font-family: 'Cormorant Garamond'; color: #fff; }
+        .s6-timer-sub { position: absolute; bottom: 60px; font-size: 0.7rem; color: #888; text-transform: uppercase; letter-spacing: 0.1em; }
+        .s6-traits-title { text-align: center; font-size: 0.8rem; color: #888; text-transform: uppercase; margin-top: auto; margin-bottom: 15px; letter-spacing: 0.1em; }
+        .s6-traits { display: flex; justify-content: center; gap: 30px; margin-bottom: 30px; }
+        .s6-trait { display: flex; flex-direction: column; align-items: center; gap: 8px; font-size: 0.75rem; color: #aaa; }
+        .s6-trait-icon { width: 40px; height: 40px; border: 1px solid rgba(255,255,255,0.1); border-radius: 50%; display: flex; align-items: center; justify-content: center; }
+        .s6-trait-icon svg { width: 20px; height: 20px; stroke: var(--s7-gold); stroke-width: 1; }
+
+        /* SCREEN 7: Decision */
+        .s7-icon-box { margin: 20px auto; width: 60px; height: 60px; background: rgba(0,0,0,0.05); border-radius: 50%; display: flex; align-items: center; justify-content: center; }
+        .s7-title { text-align: center; font-size: 2.2rem; line-height: 1.1; margin: 0 40px 10px; }
+        .s7-sub { text-align: center; font-size: 0.85rem; color: #666; margin: 0 40px 30px; }
+        .s7-btn-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; padding: 0 20px; }
+        .s7-btn { border-radius: 16px; padding: 25px 15px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 10px; border: none; cursor: pointer; }
+        .s7-btn-gold { grid-row: span 2; background: var(--s7-gold-gradient); color: #fff; box-shadow: 0 10px 20px rgba(212,175,55,0.3); }
+        .s7-btn-white { background: #fff; border: 1px solid rgba(0,0,0,0.05); color: #333; box-shadow: 0 5px 15px rgba(0,0,0,0.02); }
+        .s7-btn-title { font-family: 'Outfit'; font-weight: 600; font-size: 1.1rem; letter-spacing: 0.1em; }
+        .s7-btn-sub { font-size: 0.75rem; opacity: 0.8; }
+        .s7-footer { text-align: center; font-size: 0.75rem; color: #888; margin-top: auto; padding: 20px; }
+
+        /* SCREEN 8: Compat Report */
+        .s8-title { text-align: center; font-size: 1rem; color: #fff; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 5px; }
+        .s8-score { text-align: center; font-size: 4rem; color: var(--s7-gold); font-family: 'Cormorant Garamond'; line-height: 1; }
+        .s8-score-sub { text-align: center; font-size: 0.9rem; color: #ddd; margin-bottom: 25px; }
+        .s8-stats-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; padding: 0 20px; margin-bottom: 20px; }
+        .s8-stat-box { border: 1px solid rgba(255,255,255,0.1); border-radius: 12px; padding: 20px 15px; text-align: center; }
+        .s8-stat-title { font-size: 0.7rem; color: #888; text-transform: uppercase; margin-bottom: 10px; }
+        .s8-stat-val { font-size: 1.8rem; font-family: 'Cormorant Garamond'; color: #fff; margin-bottom: 5px; }
+        .s8-stat-sub { font-size: 0.65rem; color: #aaa; }
+        .s8-list { padding: 0 20px; }
+        .s8-list-item { padding: 15px 0; border-bottom: 1px solid rgba(255,255,255,0.1); display: flex; justify-content: space-between; font-size: 0.85rem; color: #ddd; }
+
+        /* SCREEN 9: Mutual Match */
+        .s9-rings { display: flex; justify-content: center; margin: 30px 0 20px; }
+        .s9-ring-1 { width: 80px; height: 80px; border: 8px solid var(--s7-gold); border-radius: 50%; box-shadow: inset 0 0 10px rgba(0,0,0,0.5), 0 0 10px rgba(0,0,0,0.5); position: relative; z-index: 2; margin-right: -20px; }
+        .s9-ring-2 { width: 80px; height: 80px; border: 8px solid #f5d76e; border-radius: 50%; box-shadow: inset 0 0 10px rgba(0,0,0,0.5), 0 0 10px rgba(0,0,0,0.5); position: relative; z-index: 1; }
+        .s9-title { text-align: center; font-size: 2.2rem; color: #fff; margin-bottom: 10px; }
+        .s9-sub { text-align: center; font-size: 0.9rem; color: #ddd; margin-bottom: 5px; }
+        .s9-card { margin: 30px 20px; border: 1px solid rgba(214,164,55,0.3); border-radius: 16px; padding: 20px; display: flex; align-items: center; gap: 15px; background: rgba(255,255,255,0.02); }
+        .s9-card img { width: 60px; height: 60px; border-radius: 50%; object-fit: cover; }
+        .s9-card-info { flex: 1; }
+        .s9-card-name { font-size: 1.2rem; font-family: 'Cormorant Garamond'; color: #fff; margin-bottom: 5px; }
+        .s9-card-sub { font-size: 0.7rem; color: #888; }
+        .s9-card-phone { font-size: 0.9rem; color: #fff; margin-top: 5px; }
+        .s9-btn-group { padding: 0 20px; display: flex; gap: 15px; margin-top: 15px; }
+        .s9-btn-outline { flex: 1; border: 1px solid rgba(255,255,255,0.2); background: transparent; color: #fff; border-radius: 30px; padding: 12px; font-size: 0.8rem; display: flex; justify-content: center; gap: 5px; }
+
+        /* SCREEN 10: Event Complete */
+        .s10-fireworks { height: 120px; width: 100%; background: radial-gradient(circle at top, rgba(212,175,55,0.2) 0%, transparent 60%); margin-bottom: 20px; }
+        .s10-title { text-align: center; font-size: 2.5rem; color: #fff; margin-bottom: 10px; }
+        .s10-sub { text-align: center; font-size: 0.85rem; color: #aaa; margin: 0 40px 30px; line-height: 1.5; }
+        .s10-grid { display: flex; justify-content: space-between; padding: 20px; border-top: 1px solid rgba(255,255,255,0.1); border-bottom: 1px solid rgba(255,255,255,0.1); margin: 0 20px 20px; }
+        .s10-stat { text-align: center; }
+        .s10-stat-val { font-family: 'Cormorant Garamond'; font-size: 1.8rem; color: #fff; margin-bottom: 5px; }
+        .s10-stat-lbl { font-size: 0.6rem; color: #888; text-transform: uppercase; }
+        .s10-list-title { padding: 0 20px; font-size: 0.85rem; color: #fff; margin-bottom: 15px; }
+        .s10-list-item { display: flex; justify-content: space-between; align-items: center; padding: 10px 20px; }
+        .s10-match-left { display: flex; flex-direction: column; }
+        .s10-match-rnd { font-size: 0.6rem; color: #888; text-transform: uppercase; }
+        .s10-match-name { font-size: 1rem; color: #fff; }
+        .s10-match-right { display: flex; align-items: center; gap: 15px; }
+        .s10-match-score { font-size: 0.9rem; color: #fff; }
+        .s10-pill { padding: 4px 10px; border-radius: 15px; font-size: 0.6rem; font-weight: 600; text-transform: uppercase; width: 50px; text-align: center; }
+        .s10-pill.yes { background: var(--s7-gold); color: var(--s7-navy); }
+        .s10-pill.maybe { background: transparent; border: 1px solid var(--s7-gold); color: var(--s7-gold); }
+        .s10-pill.no { background: transparent; border: 1px solid #666; color: #666; }
+        .s10-more { text-align: center; font-size: 0.7rem; color: #666; margin-top: 10px; }
+
+        /* Animations */
+        @keyframes spin { 100% { transform: rotate(360deg); } }
+        @keyframes spin-reverse { 100% { transform: rotate(-360deg); } }
+    </style>
+</head>
+<body>
+
+<!-- 1. Questionnaire Complete -->
+<div class="screen-container">
+    <div class="screen-label">1. Questionnaire Complete</div>
+    <div class="frame">
+        <div class="header">
+            <div></div><div class="logo">7sens</div><div></div>
+        </div>
+        <div class="s1-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+        </div>
+        <h2 class="s1-title">Your<br>Relationship Profile<br>is Complete</h2>
+        <p class="s1-sub">Thank you for sharing what truly matters to you. Your profile is now ready.</p>
+        
+        <div class="s1-list">
+            <div class="s1-item">
+                <div class="s1-item-left"><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" fill="var(--s7-gold)" stroke="none"/><path d="M8 12l3 3 5-5" stroke="#fff" stroke-width="2" stroke-linecap="round"/></svg> My Core Values</div>
+                <div class="s1-item-right">5/5</div>
+            </div>
+            <div class="s1-item">
+                <div class="s1-item-left"><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" fill="var(--s7-gold)" stroke="none"/><path d="M8 12l3 3 5-5" stroke="#fff" stroke-width="2" stroke-linecap="round"/></svg> What Makes Me Fall for Someone</div>
+                <div class="s1-item-right">5/5</div>
+            </div>
+            <div class="s1-item">
+                <div class="s1-item-left"><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" fill="var(--s7-gold)" stroke="none"/><path d="M8 12l3 3 5-5" stroke="#fff" stroke-width="2" stroke-linecap="round"/></svg> My Biggest Deal Breakers</div>
+                <div class="s1-item-right">5/5</div>
+            </div>
+            <div class="s1-item">
+                <div class="s1-item-left"><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" fill="transparent" stroke="var(--s7-gold)" stroke-width="1.5"/><path d="M8 12l3 3 5-5" stroke="var(--s7-gold)" stroke-width="1.5" stroke-linecap="round"/></svg> My Flaws</div>
+                <div class="s1-item-right">3/3</div>
+            </div>
+            <div class="s1-item">
+                <div class="s1-item-left"><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" fill="transparent" stroke="var(--s7-gold)" stroke-width="1.5"/><path d="M8 12l3 3 5-5" stroke="var(--s7-gold)" stroke-width="1.5" stroke-linecap="round"/></svg> My Dreams</div>
+                <div class="s1-item-right">3/3</div>
+            </div>
+            <div class="s1-item">
+                <div class="s1-item-left"><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" fill="transparent" stroke="var(--s7-gold)" stroke-width="1.5"/><path d="M8 12l3 3 5-5" stroke="var(--s7-gold)" stroke-width="1.5" stroke-linecap="round"/></svg> My Love Language</div>
+                <div class="s1-item-right">3/3</div>
+            </div>
+            <div class="s1-item" style="border:none;">
+                <div class="s1-item-left"><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" fill="transparent" stroke="var(--s7-gold)" stroke-width="1.5"/><path d="M8 12l3 3 5-5" stroke="var(--s7-gold)" stroke-width="1.5" stroke-linecap="round"/></svg> Relationship Vision</div>
+                <div class="s1-item-right">3/3</div>
+            </div>
+        </div>
+
+        <div class="s1-total">
+            Total Selections
+            <span>30 / 30</span>
+        </div>
+
+        <div class="footer-action">
+            <button class="btn btn-dark">Continue <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:18px;height:18px;"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></button>
+        </div>
+    </div>
+</div>
+
+<!-- 2. AI Processing -->
+<div class="screen-container">
+    <div class="screen-label">2. AI Processing</div>
+    <div class="frame dark">
+        <div class="header">
+            <div></div><div class="logo">7sens</div><div></div>
+        </div>
+        
+        <div class="s2-ring-container">
+            <div class="s2-ring"></div>
+            <div class="s2-ring-inner"></div>
+            <div class="s2-ring-core"></div>
+        </div>
+
+        <h2 class="s2-title">Building Your Compatibility Profile</h2>
+        <p class="s2-sub">We're carefully analyzing your answers<br>to understand you better.</p>
+
+        <div class="s2-list">
+            <div class="s2-item">
+                <span><span style="color:var(--s7-gold);margin-right:10px;">•</span> Analyzing Core Values</span>
+                <svg viewBox="0 0 24 24" fill="var(--s7-gold)" stroke="none"><circle cx="12" cy="12" r="12"/><path d="M8 12l3 3 5-5" stroke="#142539" stroke-width="2" stroke-linecap="round"/></svg>
+            </div>
+            <div class="s2-item">
+                <span><span style="color:var(--s7-gold);margin-right:10px;">•</span> Understanding Your Dreams</span>
+                <svg viewBox="0 0 24 24" fill="var(--s7-gold)" stroke="none"><circle cx="12" cy="12" r="12"/><path d="M8 12l3 3 5-5" stroke="#142539" stroke-width="2" stroke-linecap="round"/></svg>
+            </div>
+            <div class="s2-item">
+                <span><span style="color:var(--s7-gold);margin-right:10px;">•</span> Matching Relationship Vision</span>
+                <svg viewBox="0 0 24 24" fill="var(--s7-gold)" stroke="none"><circle cx="12" cy="12" r="12"/><path d="M8 12l3 3 5-5" stroke="#142539" stroke-width="2" stroke-linecap="round"/></svg>
+            </div>
+            <div class="s2-item loading" style="border:none;">
+                <span style="color:#888;"><span style="color:#666;margin-right:10px;">•</span> Calculating Compatibility</span>
+                <svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" stroke-width="2" stroke-dasharray="20 40"/></svg>
+            </div>
+        </div>
+
+        <div class="s2-sub" style="margin-top:auto; margin-bottom:30px; font-size:0.75rem;">This will only take a few moments...</div>
+    </div>
+</div>
+
+<!-- 3. Relationship DNA -->
+<div class="screen-container">
+    <div class="screen-label">3. Relationship Profile Summary</div>
+    <div class="frame">
+        <div class="header">
+            <div></div><div class="logo">7sens</div>
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+        </div>
+        
+        <h2 class="s3-title">Your<br>Relationship DNA</h2>
+        <p class="s3-sub">Here is your unique love blueprint</p>
+
+        <div class="s3-chart">
+            <div class="s3-chart-ring"><span class="s3-chart-7">7</span></div>
+            <div class="s3-trait s3-trait-1"><span class="s3-trait-val">Core Values</span>5 Selected</div>
+            <div class="s3-trait s3-trait-2"><span class="s3-trait-val">Love Language</span>Acts of Service</div>
+            <div class="s3-trait s3-trait-3" style="text-align:right;">Dreams<br>Family<br>Travel<br>Growth</div>
+            <div class="s3-trait s3-trait-4" style="text-align:left;">Lifestyle<br>Balanced</div>
+            <div class="s3-trait s3-trait-5"><span class="s3-trait-val">Relationship Vision</span>Long Term</div>
+        </div>
+
+        <div class="s3-box">
+            <svg viewBox="0 0 24 24" fill="var(--s7-gold)" stroke="none" style="width:30px;height:30px;flex-shrink:0;"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+            <p>You are authentic, loyal and value deep connection built on trust and respect.</p>
+        </div>
+
+        <div class="footer-action">
+            <button class="btn btn-dark">Continue to Dashboard <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:18px;height:18px;"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></button>
+        </div>
+    </div>
+</div>
+
+<!-- 4. Event Lobby -->
+<div class="screen-container">
+    <div class="screen-label">4. Event Lobby</div>
+    <div class="frame dark">
+        <div class="header">
+            <div></div><div class="logo">7sens</div>
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path><path d="M13.73 21a2 2 0 0 1-3.46 0"></path></svg>
+        </div>
+        
+        <div class="s4-greet">Good Evening,</div>
+        <div class="s4-name">Sarah</div>
+
+        <div class="s4-card">
+            <div class="s4-pill">TONIGHT</div>
+            <!-- Using a solid color for the fountain image placeholder to avoid broken links -->
+            <div class="s4-img" style="background: url('https://images.unsplash.com/photo-1595166946765-b1a1ea0340c2?w=500&q=80') center/cover;"></div>
+            <div class="s4-card-content">
+                <div class="s4-card-title">Geneva Premium Evening</div>
+                <div class="s4-card-info"><svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg> 18 May 2025 | 7:00 PM</div>
+                <div class="s4-card-info"><svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg> Hotel Beau Rivage, Geneva</div>
+            </div>
+        </div>
+
+        <div class="s4-timer-box">
+            <div class="s4-timer-title">Your First Match Starts in</div>
+            <div class="s4-timer">00 : 08 : 12</div>
+            <div class="s4-timer-labels"><span>HRS</span><span>MIN</span><span>SEC</span></div>
+        </div>
+
+        <div class="footer-action" style="margin-top:0;">
+            <button class="btn btn-gold">Enter Event <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:18px;height:18px;"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></button>
+        </div>
+    </div>
+</div>
+
+<!-- 5. Match Introduction -->
+<div class="screen-container">
+    <div class="screen-label">5. Match Introduction</div>
+    <div class="frame">
+        <div class="header">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" stroke="#111"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+            <div class="logo">7sens</div><div></div>
+        </div>
+
+        <div class="s5-avatar-box">
+            <div class="s5-avatar-ring"></div>
+            <img class="s5-avatar" src="https://images.unsplash.com/photo-1524504388940-b1c1722653e1?w=300&q=80" alt="Emma">
+        </div>
+        
+        <h2 class="s5-name">Meet Emma</h2>
+        <div class="s5-table">Table 6</div>
+
+        <div class="s5-score">89% Compatible</div>
+        <div class="s5-score-sub">Exceptional Match</div>
+
+        <div class="s5-traits-title">You Both Value</div>
+        <div class="s5-traits">
+            <div class="s5-trait"><svg viewBox="0 0 24 24" fill="none"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg> Family</div>
+            <div class="s5-trait"><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10"></circle><polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"></polygon></svg> Travel</div>
+            <div class="s5-trait"><svg viewBox="0 0 24 24" fill="none"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg> Honesty</div>
+        </div>
+
+        <div class="footer-action">
+            <button class="btn btn-dark">Move to Table 6 <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:18px;height:18px;"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></button>
+        </div>
+    </div>
+</div>
+
+<!-- 6. Live 7-Minute Date -->
+<div class="screen-container">
+    <div class="screen-label">6. Live 7-Minute Date</div>
+    <div class="frame dark">
+        <div class="header">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" stroke="#fff"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+            <div class="logo">7sens</div>
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" stroke="#fff"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+        </div>
+
+        <div class="s6-round">Round 1</div>
+        <h2 class="s6-name">Emma</h2>
+        <div class="s6-score">89%</div>
+        <div class="s6-score-sub">Exceptional Match</div>
+
+        <div class="s6-ring-container">
+            <div class="s6-ring-bg"></div>
+            <div class="s6-ring-progress"></div>
+            <div style="text-align:center;">
+                <div class="s6-timer">06:59</div>
+            </div>
+            <div class="s6-timer-sub">Time Remaining</div>
+        </div>
+
+        <div class="s6-traits-title">You Both Value</div>
+        <div class="s6-traits">
+            <div class="s6-trait"><div class="s6-trait-icon"><svg viewBox="0 0 24 24" fill="none"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg></div> Honesty</div>
+            <div class="s6-trait"><div class="s6-trait-icon"><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10"></circle><polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"></polygon></svg></div> Adventure</div>
+            <div class="s6-trait"><div class="s6-trait-icon"><svg viewBox="0 0 24 24" fill="none"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg></div> Deep<br>Conversations</div>
+        </div>
+    </div>
+</div>
+
+<!-- 7. Decision -->
+<div class="screen-container">
+    <div class="screen-label">7. Yes / Maybe / No Decision</div>
+    <div class="frame">
+        <div class="header">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" stroke="#111"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+            <div class="logo">7sens</div><div></div>
+        </div>
+
+        <div class="s7-icon-box">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#111" stroke-width="1.5" style="width:30px;height:30px;"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+        </div>
+        
+        <h2 class="s7-title">Would you like to<br>meet Emma again?</h2>
+        <p class="s7-sub">This helps us create better matches<br>for the rest of the evening.</p>
+
+        <div class="s7-btn-grid">
+            <button class="s7-btn s7-btn-gold">
+                <svg viewBox="0 0 24 24" fill="#fff" stroke="none" style="width:36px;height:36px;"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
+                <div class="s7-btn-title">YES</div>
+                <div class="s7-btn-sub">Definitely</div>
+            </button>
+            <button class="s7-btn s7-btn-white">
+                <div style="font-family:'Cormorant Garamond';font-size:2.5rem;font-weight:600;color:#111;">?</div>
+                <div class="s7-btn-title">MAYBE</div>
+                <div class="s7-btn-sub">Not sure yet</div>
+            </button>
+            <button class="s7-btn s7-btn-white">
+                <svg viewBox="0 0 24 24" fill="none" stroke="#111" stroke-width="2" stroke-linecap="round" style="width:36px;height:36px;"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+                <div class="s7-btn-title">NO</div>
+                <div class="s7-btn-sub">Not interested</div>
+            </button>
+        </div>
+
+        <div class="s7-footer">You must select an option to continue.</div>
+    </div>
+</div>
+
+<!-- 8. Compatibility Report -->
+<div class="screen-container">
+    <div class="screen-label">8. Compatibility Report</div>
+    <div class="frame dark">
+        <div class="header">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" stroke="#fff"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+            <div class="logo">7sens</div>
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" stroke="#fff"><path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"></path><polyline points="16 6 12 2 8 6"></polyline><line x1="12" y1="2" x2="12" y2="15"></line></svg>
+        </div>
+
+        <div class="s8-title">S7 Connection™</div>
+        <div class="s8-score">89%</div>
+        <div class="s8-score-sub">Exceptional Match</div>
+
+        <div class="s8-stats-grid">
+            <div class="s8-stat-box">
+                <div class="s8-stat-title">S7 Affinity™</div>
+                <div class="s8-stat-val">71 <span style="font-size:1rem;color:#888;">/ 80</span></div>
+                <div class="s8-stat-sub">Your answers<br>compatibility</div>
+            </div>
+            <div class="s8-stat-box">
+                <div class="s8-stat-title">S7 Resonance™</div>
+                <div class="s8-stat-val">18 <span style="font-size:1rem;color:#888;">/ 20</span></div>
+                <div class="s8-stat-sub">Emotional & energetic<br>alignment</div>
+            </div>
+        </div>
+
+        <div class="s8-list">
+            <div class="s8-list-item"><span>Shared Values</span><svg viewBox="0 0 24 24" fill="none" stroke="#fff" style="width:16px;"><polyline points="6 9 12 15 18 9"></polyline></svg></div>
+            <div class="s8-list-item"><span>Strengths</span><svg viewBox="0 0 24 24" fill="none" stroke="#fff" style="width:16px;"><polyline points="6 9 12 15 18 9"></polyline></svg></div>
+            <div class="s8-list-item"><span>Potential Challenges</span><svg viewBox="0 0 24 24" fill="none" stroke="#fff" style="width:16px;"><polyline points="6 9 12 15 18 9"></polyline></svg></div>
+            <div class="s8-list-item"><span>Relationship Vision</span><svg viewBox="0 0 24 24" fill="none" stroke="#fff" style="width:16px;"><polyline points="6 9 12 15 18 9"></polyline></svg></div>
+            <div class="s8-list-item"><span>Long-Term Potential</span><svg viewBox="0 0 24 24" fill="none" stroke="#fff" style="width:16px;"><polyline points="6 9 12 15 18 9"></polyline></svg></div>
+            <div class="s8-list-item" style="border:none;"><span>AI Summary</span><svg viewBox="0 0 24 24" fill="none" stroke="#fff" style="width:16px;"><polyline points="6 9 12 15 18 9"></polyline></svg></div>
+        </div>
+    </div>
+</div>
+
+<!-- 9. Mutual Match Success -->
+<div class="screen-container">
+    <div class="screen-label">9. Mutual Match Success</div>
+    <div class="frame dark">
+        <div class="header">
+            <div></div><div class="logo">7sens</div><div></div>
+        </div>
+
+        <div class="s9-rings">
+            <div class="s9-ring-1"></div>
+            <div class="s9-ring-2"></div>
+        </div>
+
+        <h2 class="s9-title">Congratulations!</h2>
+        <p class="s9-sub">You both selected <strong>YES</strong></p>
+        <p class="s9-sub" style="color:#aaa; font-size:0.8rem;">You have a mutual match</p>
+
+        <div class="s9-card">
+            <img src="https://images.unsplash.com/photo-1524504388940-b1c1722653e1?w=100&q=80" alt="Emma">
+            <div class="s9-card-info">
+                <div class="s9-card-name">Emma <svg viewBox="0 0 24 24" fill="var(--s7-gold)" stroke="none" style="width:14px;height:14px;"><circle cx="12" cy="12" r="10"/><path d="M8 12l3 3 5-5" stroke="#142539" stroke-width="2"/></svg></div>
+                <div class="s9-card-sub">Phone Number Shared</div>
+                <div class="s9-card-phone">+41 79 123 45 67</div>
+            </div>
+        </div>
+
+        <div style="padding: 0 20px;">
+            <button class="btn btn-gold" style="justify-content:center; gap:10px;"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" style="width:16px;height:16px;"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg> Call Now</button>
+        </div>
+        
+        <div class="s9-btn-group">
+            <button class="s9-btn-outline"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:14px;height:14px;"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg> Message</button>
+            <button class="s9-btn-outline">Back to Dashboard</button>
+        </div>
+    </div>
+</div>
+
+<!-- 10. Event Complete -->
+<div class="screen-container">
+    <div class="screen-label">10. Event Complete</div>
+    <div class="frame dark">
+        <div class="s10-fireworks"></div>
+
+        <div class="logo">7sens</div>
+        <h2 class="s10-title">Thank You!</h2>
+        <p class="s10-sub">Your evening has come to an end.<br>We hope you had meaningful conversations and great connections.</p>
+
+        <div class="s10-grid">
+            <div class="s10-stat">
+                <div class="s10-stat-val">7</div><div class="s10-stat-lbl">Conversations</div>
+            </div>
+            <div class="s10-stat">
+                <div class="s10-stat-val">2</div><div class="s10-stat-lbl">Mutual Matches</div>
+            </div>
+            <div class="s10-stat">
+                <div class="s10-stat-val">1</div><div class="s10-stat-lbl">Maybe</div>
+            </div>
+            <div class="s10-stat">
+                <div class="s10-stat-val">84%</div><div class="s10-stat-lbl">Average Match</div>
+            </div>
+        </div>
+
+        <div class="s10-list-title">Your Event Summary</div>
+        
+        <div class="s10-list-item">
+            <div class="s10-match-left"><div class="s10-match-rnd">Round 1</div><div class="s10-match-name">Emma</div></div>
+            <div class="s10-match-right"><div class="s10-match-score">89%</div><div class="s10-pill yes">Yes</div></div>
+        </div>
+        <div class="s10-list-item">
+            <div class="s10-match-left"><div class="s10-match-rnd">Round 2</div><div class="s10-match-name">Olivia</div></div>
+            <div class="s10-match-right"><div class="s10-match-score">84%</div><div class="s10-pill maybe">Maybe</div></div>
+        </div>
+        <div class="s10-list-item">
+            <div class="s10-match-left"><div class="s10-match-rnd">Round 3</div><div class="s10-match-name">Charlotte</div></div>
+            <div class="s10-match-right"><div class="s10-match-score">79%</div><div class="s10-pill no">No</div></div>
+        </div>
+        
+        <div class="s10-more">+4 more conversations</div>
+
+        <div class="footer-action">
+            <button class="btn btn-gold">Browse Upcoming Events <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:18px;height:18px;"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></button>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

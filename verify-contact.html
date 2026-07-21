@@ -1,0 +1,579 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vérification des Contacts — 7Sens Premium Social Club</title>
+    <meta name="description" content="Vérifiez votre adresse e-mail et votre numéro de téléphone pour rejoindre notre cercle privé.">
+    <meta name="robots" content="noindex, nofollow">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="style-v2.css">
+    <link rel="stylesheet" href="events-page.css">
+    
+    <style>
+        .verification-steps-container {
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+            width: 100%;
+        }
+
+        .step-card {
+            background: rgba(255, 255, 255, 0.6);
+            border: 1px solid rgba(20, 43, 99, 0.08);
+            padding: 24px;
+            position: relative;
+            transition: all 0.4s var(--transition-smooth);
+        }
+
+        .step-card.completed {
+            border-color: rgba(214, 164, 55, 0.3);
+            background: rgba(251, 248, 243, 0.5);
+        }
+
+        .step-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 12px;
+        }
+
+        .step-badge {
+            font-size: 0.58rem;
+            font-weight: 600;
+            letter-spacing: 0.1em;
+            padding: 4px 8px;
+            text-transform: uppercase;
+            border-radius: 2px;
+        }
+
+        .badge-mandatory {
+            background-color: var(--primary-navy);
+            color: var(--warm-ivory);
+        }
+
+        .badge-optional {
+            background-color: rgba(214, 164, 55, 0.15);
+            color: var(--luxury-gold);
+            border: 1px solid rgba(214, 164, 55, 0.3);
+        }
+
+        .badge-verified {
+            background-color: #2b8a3e;
+            color: #ffffff;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .step-number {
+            font-size: 0.72rem;
+            font-weight: 500;
+            color: var(--luxury-gold);
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+        }
+
+        .step-title-text {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.25rem;
+            font-weight: 400;
+            color: var(--primary-navy);
+            margin: 4px 0;
+        }
+
+        .step-desc {
+            font-size: 0.78rem;
+            color: var(--text-muted);
+            line-height: 1.4;
+        }
+
+        /* OTP Input grid */
+        .otp-wrapper {
+            display: flex;
+            gap: 12px;
+            margin: 15px 0;
+        }
+
+        .otp-digit {
+            width: 46px;
+            height: 48px;
+            text-align: center;
+            font-size: 1.3rem !important;
+            font-weight: 500 !important;
+            border: 1px solid rgba(20, 43, 99, 0.18) !important;
+            background-color: rgba(255, 255, 255, 0.75) !important;
+            border-radius: 0 !important;
+            color: var(--primary-navy) !important;
+            transition: all 0.3s var(--transition-smooth) !important;
+            padding: 0 !important;
+        }
+
+        .otp-digit:focus {
+            border-color: var(--luxury-gold) !important;
+            background-color: #ffffff !important;
+            box-shadow: 0 4px 10px rgba(214, 164, 55, 0.06) !important;
+            outline: none !important;
+        }
+
+        .timer-text {
+            font-size: 0.7rem;
+            color: var(--text-muted);
+            margin-top: 8px;
+        }
+
+        .resend-btn {
+            background: none;
+            border: none;
+            color: var(--luxury-gold);
+            font-size: 0.7rem;
+            font-weight: 600;
+            cursor: pointer;
+            text-decoration: underline;
+            padding: 0;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .resend-btn:disabled {
+            color: var(--text-muted);
+            cursor: not-allowed;
+            text-decoration: none;
+        }
+    </style>
+</head>
+
+<body style="overflow-y: auto;">
+
+    <!-- Canvas Noise Overlay -->
+    <div class="noise-overlay"></div>
+
+    <div class="auth-wrapper" style="background-image: url('assets/pexels-caleboquendo-34516144.jpg');">
+        
+        <!-- LEFT COLUMN: Image Banner Side -->
+        <div class="auth-image-side">
+            <div class="auth-image-overlay"></div>
+            <div class="auth-image-content">
+                <a href="index.html">
+                    <img src="assets/7sens.webp" alt="7Sens Premium Logo" class="auth-image-logo">
+                </a>
+                <div class="auth-image-quote-block">
+                    <span class="auth-image-tagline">VÉRIFICATION D'ACCÈS</span>
+                    <h2 class="auth-image-title">Établir la confiance offline</h2>
+                    <p class="auth-image-desc">
+                        7Sens préserve la qualité et l'authenticité de ses cercles privés. La validation de votre e-mail et de votre mobile garantit des connexions humaines saines et fiables.
+                    </p>
+                </div>
+                <div style="font-size: 0.65rem; letter-spacing: 0.1em; opacity: 0.6; text-transform: uppercase;">
+                    7Sens premium social club &copy; 2026
+                </div>
+            </div>
+        </div>
+
+        <!-- RIGHT COLUMN: Interactive Form Side -->
+        <div class="auth-form-side">
+            <!-- Back Link -->
+            <a href="events.html" class="auth-back-link btn-magnetic">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M19 12H5M5 12L12 19M5 12L12 5" stroke-linecap="round" stroke-linejoin="round" />
+                </svg>
+                <span>Calendrier</span>
+            </a>
+
+            <div class="auth-form-container" style="max-width: 440px;">
+                <!-- Mobile Logo -->
+                <a href="index.html" class="auth-logo-mobile">
+                    <img src="assets/7sens.webp" alt="7Sens Logo" style="height: 100%;">
+                </a>
+
+                <!-- Header -->
+                <div class="auth-header">
+                    <h1 class="auth-title">Vérification de sécurité</h1>
+                    <p class="auth-subtitle">Veuillez valider vos coordonnées pour débloquer votre accès membre complet.</p>
+                </div>
+
+                <!-- Verification Cards -->
+                <div class="verification-steps-container">
+                    
+                    <!-- STEP 1: Email Verification (Mandatory) -->
+                    <div class="step-card" id="card-email">
+                        <div class="step-header">
+                            <div>
+                                <span class="step-number">Étape 1</span>
+                                <h3 class="step-title-text">Adresse e-mail</h3>
+                            </div>
+                            <span class="step-badge badge-mandatory" id="email-badge-status">Obligatoire</span>
+                        </div>
+                        <p class="step-desc">
+                            Entrez le code OTP à 4 chiffres envoyé à <strong id="user-email-placeholder" style="color: var(--primary-navy);">votre adresse</strong>.
+                        </p>
+
+                        <form id="email-otp-form" class="auth-form" style="gap: 10px; margin-top: 10px;">
+                            <div class="otp-wrapper" id="email-otp-wrapper">
+                                <input type="text" class="otp-digit" maxlength="1" data-index="1" required autocomplete="off" inputmode="numeric" pattern="[0-9]*">
+                                <input type="text" class="otp-digit" maxlength="1" data-index="2" required autocomplete="off" inputmode="numeric" pattern="[0-9]*">
+                                <input type="text" class="otp-digit" maxlength="1" data-index="3" required autocomplete="off" inputmode="numeric" pattern="[0-9]*">
+                                <input type="text" class="otp-digit" maxlength="1" data-index="4" required autocomplete="off" inputmode="numeric" pattern="[0-9]*">
+                            </div>
+
+                            <button type="submit" class="booking-action-btn" id="email-verify-btn">
+                                <span>VÉRIFIER L'E-MAIL</span>
+                            </button>
+                        </form>
+                        
+                        <div class="timer-text">
+                            Pas reçu ? <button type="button" class="resend-btn" id="email-resend-btn" disabled>Renvoyer le code (<span id="email-timer">30</span>s)</button>
+                        </div>
+                    </div>
+
+                    <!-- STEP 2: Phone Verification (Optional for club but required for SMS/WhatsApp notifications) -->
+                    <div class="step-card" id="card-phone">
+                        <div class="step-header">
+                            <div>
+                                <span class="step-number">Étape 2</span>
+                                <h3 class="step-title-text">Notifications WhatsApp & SMS</h3>
+                            </div>
+                            <span class="step-badge badge-optional" id="phone-badge-status">Recommandé</span>
+                        </div>
+                        <p class="step-desc">
+                            Vérifiez votre mobile <strong id="user-phone-placeholder" style="color: var(--primary-navy);">+41...</strong> pour activer la réception sécurisée de vos billets et invitations.
+                        </p>
+
+                        <!-- Pre-verification state where they can enter/verify code -->
+                        <form id="phone-otp-form" class="auth-form" style="gap: 10px; margin-top: 10px;">
+                            <div class="otp-wrapper" id="phone-otp-wrapper">
+                                <input type="text" class="otp-digit" maxlength="1" data-index="1" required autocomplete="off" inputmode="numeric" pattern="[0-9]*">
+                                <input type="text" class="otp-digit" maxlength="1" data-index="2" required autocomplete="off" inputmode="numeric" pattern="[0-9]*">
+                                <input type="text" class="otp-digit" maxlength="1" data-index="3" required autocomplete="off" inputmode="numeric" pattern="[0-9]*">
+                                <input type="text" class="otp-digit" maxlength="1" data-index="4" required autocomplete="off" inputmode="numeric" pattern="[0-9]*">
+                            </div>
+
+                            <button type="submit" class="booking-action-btn" id="phone-verify-btn">
+                                <span>VÉRIFIER LE MOBILE</span>
+                            </button>
+                        </form>
+
+                        <div class="timer-text">
+                            Pas reçu ? <button type="button" class="resend-btn" id="phone-resend-btn" disabled>Renvoyer le code (<span id="phone-timer">30</span>s)</button>
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- Complete button -->
+                <button type="button" class="booking-action-btn" id="continue-btn" style="margin-top: 15px; opacity: 0.5; pointer-events: none;" disabled>
+                    <span>CONTINUER VERS LES ÉVÉNEMENTS</span>
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M5 12H19M19 12L13 6M19 12L13 18" stroke-linecap="round" stroke-linejoin="round" />
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Fullscreen Spinner & Success Overlay -->
+    <div class="checkout-overlay" id="auth-overlay">
+        <div class="checkout-overlay-content">
+            <!-- Loading Stage -->
+            <div id="loader-stage" style="text-align: center;">
+                <div class="luxury-spinner"></div>
+                <h3 class="overlay-title" id="auth-overlay-title">Vérification...</h3>
+                <p class="overlay-desc" id="auth-overlay-desc">Validation cryptographique de votre code OTP.</p>
+            </div>
+
+            <!-- Email Success Stage -->
+            <div id="email-success-stage" style="display: none; text-align: center; max-width: 500px; padding: 20px;">
+                <div class="success-checkmark-circle animate" style="margin: 0 auto 25px;">
+                    <svg viewBox="0 0 52 52" class="checkmark">
+                        <circle class="checkmark__circle" cx="26" cy="26" r="25" fill="none"/>
+                        <path class="checkmark__check" fill="none" d="M14.1 27.2l7.1 7.2 16.7-16.8"/>
+                    </svg>
+                </div>
+                <h2 class="overlay-title success-headline" style="color: var(--warm-ivory);">E-mail validé avec succès !</h2>
+                <p class="overlay-desc" style="margin: 15px auto 35px; color: rgba(251, 248, 243, 0.8); line-height: 1.6; font-size: 0.92rem;">
+                    Votre adresse e-mail a été vérifiée. Vous pouvez maintenant finaliser vos inscriptions et accéder aux listes d'attente.
+                </p>
+                <button type="button" class="btn btn-navy btn-magnetic" id="close-email-success-btn" style="width: 100%; max-width: 300px; justify-content: center; margin: 0 auto;">
+                    <span>POURSUIVRE</span>
+                </button>
+            </div>
+
+            <!-- Phone Success Stage -->
+            <div id="phone-success-stage" style="display: none; text-align: center; max-width: 500px; padding: 20px;">
+                <div class="success-checkmark-circle animate" style="margin: 0 auto 25px;">
+                    <svg viewBox="0 0 52 52" class="checkmark">
+                        <circle class="checkmark__circle" cx="26" cy="26" r="25" fill="none"/>
+                        <path class="checkmark__check" fill="none" d="M14.1 27.2l7.1 7.2 16.7-16.8"/>
+                    </svg>
+                </div>
+                <h2 class="overlay-title success-headline" style="color: var(--warm-ivory);">Mobile vérifié avec succès !</h2>
+                <p class="overlay-desc" style="margin: 15px auto 35px; color: rgba(251, 248, 243, 0.8); line-height: 1.6; font-size: 0.92rem;">
+                    Votre numéro de mobile est validé. Vous recevrez désormais vos billets électroniques et invitations directement par WhatsApp et SMS.
+                </p>
+                <button type="button" class="btn btn-navy btn-magnetic" id="close-phone-success-btn" style="width: 100%; max-width: 300px; justify-content: center; margin: 0 auto;">
+                    <span>POURSUIVRE</span>
+                </button>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- JS Libraries (GSAP) -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const authOverlay = document.getElementById("auth-overlay");
+            const loaderStage = document.getElementById("loader-stage");
+            
+            const emailSuccessStage = document.getElementById("email-success-stage");
+            const closeEmailSuccessBtn = document.getElementById("close-email-success-btn");
+            
+            const phoneSuccessStage = document.getElementById("phone-success-stage");
+            const closePhoneSuccessBtn = document.getElementById("close-phone-success-btn");
+
+            const emailForm = document.getElementById("email-otp-form");
+            const phoneForm = document.getElementById("phone-otp-form");
+
+            const emailCard = document.getElementById("card-email");
+            const phoneCard = document.getElementById("card-phone");
+
+            const emailBadge = document.getElementById("email-badge-status");
+            const phoneBadge = document.getElementById("phone-badge-status");
+
+            const continueBtn = document.getElementById("continue-btn");
+
+            // Retrieve current user details from storage
+            let currentUser = JSON.parse(localStorage.getItem("currentUser") || "{}");
+            if (!currentUser.email) {
+                // Fallback mock details if direct access
+                currentUser = {
+                    email: "candidat@exemple.com",
+                    firstname: "Candidat",
+                    lastname: "Premium",
+                    phone: "+41 79 123 45 67",
+                    isEmailVerified: false,
+                    isPhoneVerified: false
+                };
+                localStorage.setItem("currentUser", JSON.stringify(currentUser));
+            }
+
+            document.getElementById("user-email-placeholder").textContent = currentUser.email;
+            document.getElementById("user-phone-placeholder").textContent = currentUser.phone || "+41 79 123 45 67";
+
+            // OTP Input focus management helper
+            const setupOtpFocus = (wrapperId) => {
+                const inputs = document.querySelectorAll(`#${wrapperId} .otp-digit`);
+                inputs.forEach((input, index) => {
+                    input.addEventListener("input", (e) => {
+                        const val = e.target.value;
+                        if (val && index < inputs.length - 1) {
+                            inputs[index + 1].focus();
+                        }
+                    });
+
+                    input.addEventListener("keydown", (e) => {
+                        if (e.key === "Backspace" && !e.target.value && index > 0) {
+                            inputs[index - 1].focus();
+                        }
+                    });
+                });
+            };
+
+            setupOtpFocus("email-otp-wrapper");
+            setupOtpFocus("phone-otp-wrapper");
+
+            // Timers & Resends logic
+            const setupResendTimer = (btnId, timerId) => {
+                const btn = document.getElementById(btnId);
+                const timerSpan = document.getElementById(timerId);
+                let duration = 30;
+
+                const interval = setInterval(() => {
+                    duration--;
+                    if (duration <= 0) {
+                        clearInterval(interval);
+                        btn.disabled = false;
+                        btn.innerHTML = "Renvoyer le code";
+                    } else {
+                        timerSpan.textContent = duration;
+                    }
+                }, 1000);
+            };
+
+            setupResendTimer("email-resend-btn", "email-timer");
+            setupResendTimer("phone-resend-btn", "phone-timer");
+
+            // Resend clicks simulation
+            document.getElementById("email-resend-btn").addEventListener("click", (e) => {
+                e.target.disabled = true;
+                e.target.innerHTML = `Renvoyer le code (<span id="email-timer">30</span>s)`;
+                setupResendTimer("email-resend-btn", "email-timer");
+                alert("Simulé : Un nouveau code de vérification e-mail a été envoyé.");
+            });
+
+            document.getElementById("phone-resend-btn").addEventListener("click", (e) => {
+                e.target.disabled = true;
+                e.target.innerHTML = `Renvoyer le code (<span id="phone-timer">30</span>s)`;
+                setupResendTimer("phone-resend-btn", "phone-timer");
+                alert("Simulé : Un nouveau code de vérification SMS/WhatsApp a été envoyé.");
+            });
+
+            // Email Form submit verification logic
+            emailForm.addEventListener("submit", (e) => {
+                e.preventDefault();
+
+                // Open overlay and show loader
+                authOverlay.style.display = "flex";
+                loaderStage.style.display = "block";
+                emailSuccessStage.style.display = "none";
+                phoneSuccessStage.style.display = "none";
+                gsap.to(authOverlay, { opacity: 1, duration: 0.4 });
+
+                setTimeout(() => {
+                    // Update user storage
+                    currentUser.isEmailVerified = true;
+                    localStorage.setItem("currentUser", JSON.stringify(currentUser));
+                    
+                    // Update user in registered list
+                    const registeredUsers = JSON.parse(localStorage.getItem("registeredUsers") || "[]");
+                    const index = registeredUsers.findIndex(u => u.email === currentUser.email);
+                    if (index !== -1) {
+                        registeredUsers[index].isEmailVerified = true;
+                        localStorage.setItem("registeredUsers", JSON.stringify(registeredUsers));
+                    }
+
+                    // Hide loader, show success step
+                    loaderStage.style.display = "none";
+                    emailSuccessStage.style.display = "block";
+
+                    // Animate checkmark
+                    gsap.from("#email-success-stage .success-checkmark-circle", {
+                        scale: 0.5,
+                        opacity: 0,
+                        duration: 0.5,
+                        ease: "back.out(1.7)"
+                    });
+                }, 1800);
+            });
+
+            closeEmailSuccessBtn.addEventListener("click", () => {
+                // Hide Overlay
+                gsap.to(authOverlay, {
+                    opacity: 0,
+                    duration: 0.3,
+                    onComplete: () => {
+                        authOverlay.style.display = "none";
+                        
+                        // Set Card Step 1 UI to completed
+                        emailCard.classList.add("completed");
+                        emailBadge.className = "step-badge badge-verified";
+                        emailBadge.innerHTML = `
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" style="width: 10px; height: 10px;">
+                                <path d="M20 6L9 17L4 12" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg> Vérifié
+                        `;
+                        
+                        // Disable input fields
+                        document.querySelectorAll("#email-otp-wrapper input").forEach(inp => inp.disabled = true);
+                        document.getElementById("email-verify-btn").style.display = "none";
+                        
+                        // Enable Calendar redirection
+                        continueBtn.disabled = false;
+                        continueBtn.style.opacity = "1";
+                        continueBtn.style.pointerEvents = "auto";
+                    }
+                });
+            });
+
+            // Phone Form submit verification logic
+            phoneForm.addEventListener("submit", (e) => {
+                e.preventDefault();
+
+                // Open overlay and show loader
+                authOverlay.style.display = "flex";
+                loaderStage.style.display = "block";
+                emailSuccessStage.style.display = "none";
+                phoneSuccessStage.style.display = "none";
+                gsap.to(authOverlay, { opacity: 1, duration: 0.4 });
+
+                setTimeout(() => {
+                    // Update user storage
+                    currentUser.isPhoneVerified = true;
+                    localStorage.setItem("currentUser", JSON.stringify(currentUser));
+
+                    const registeredUsers = JSON.parse(localStorage.getItem("registeredUsers") || "[]");
+                    const index = registeredUsers.findIndex(u => u.email === currentUser.email);
+                    if (index !== -1) {
+                        registeredUsers[index].isPhoneVerified = true;
+                        localStorage.setItem("registeredUsers", JSON.stringify(registeredUsers));
+                    }
+
+                    // Hide loader, show success step
+                    loaderStage.style.display = "none";
+                    phoneSuccessStage.style.display = "block";
+
+                    // Animate checkmark
+                    gsap.from("#phone-success-stage .success-checkmark-circle", {
+                        scale: 0.5,
+                        opacity: 0,
+                        duration: 0.5,
+                        ease: "back.out(1.7)"
+                    });
+                }, 1800);
+            });
+
+            closePhoneSuccessBtn.addEventListener("click", () => {
+                // Hide Overlay
+                gsap.to(authOverlay, {
+                    opacity: 0,
+                    duration: 0.3,
+                    onComplete: () => {
+                        authOverlay.style.display = "none";
+                        
+                        // Set Card Step 2 UI to completed
+                        phoneCard.classList.add("completed");
+                        phoneBadge.className = "step-badge badge-verified";
+                        phoneBadge.innerHTML = `
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" style="width: 10px; height: 10px;">
+                                <path d="M20 6L9 17L4 12" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg> Activé
+                        `;
+                        
+                        // Disable input fields
+                        document.querySelectorAll("#phone-otp-wrapper input").forEach(inp => inp.disabled = true);
+                        document.getElementById("phone-verify-btn").style.display = "none";
+                    }
+                });
+            });
+
+            // Redirect button to Calendar
+            continueBtn.addEventListener("click", () => {
+                window.location.href = "events.html";
+            });
+
+            // Magnetic back button
+            const backLink = document.querySelector(".auth-back-link");
+            if (backLink) {
+                backLink.addEventListener("mousemove", (e) => {
+                    const rect = backLink.getBoundingClientRect();
+                    const x = e.clientX - rect.left - rect.width / 2;
+                    const y = e.clientY - rect.top - rect.height / 2;
+                    gsap.to(backLink, { x: x * 0.3, y: y * 0.3, duration: 0.3, ease: "power2.out" });
+                });
+                
+                backLink.addEventListener("mouseleave", () => {
+                    gsap.to(backLink, { x: 0, y: 0, duration: 0.6, ease: "elastic.out(1.1, 0.4)" });
+                });
+            }
+        });
+    </script>
+</body>
+
+</html>

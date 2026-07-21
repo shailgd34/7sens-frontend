@@ -1,0 +1,571 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Post-Date Feedback — 7Sens Premium Social Club</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Outfit:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="style-v2.css">
+    <style>
+        body {
+            background-color: var(--primary-navy);
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+            color: #fff;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+        }
+
+        .flow-container {
+            width: 100%;
+            max-width: 800px;
+            padding: 40px 20px;
+            text-align: center;
+            position: relative;
+        }
+
+        /* --- Questionnaire Form --- */
+        #feedback-form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            animation: fadeIn 0.8s ease forwards;
+        }
+
+        .q-header {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 40px;
+        }
+
+        .q-progress-container {
+            width: 60%;
+            max-width: 400px;
+        }
+
+        .q-progress-bar {
+            height: 4px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 4px;
+            overflow: hidden;
+            margin-bottom: 10px;
+        }
+
+        .q-progress-fill {
+            height: 100%;
+            background: var(--luxury-gold);
+            width: 12.5%;
+            transition: width 0.4s ease;
+        }
+
+        .q-progress-text {
+            font-family: 'Outfit', sans-serif;
+            font-size: 0.8rem;
+            color: rgba(255, 255, 255, 0.7);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+        }
+
+        .q-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2.5rem;
+            color: var(--luxury-gold);
+            font-weight: 300;
+            margin-bottom: 10px;
+        }
+
+        .q-desc {
+            font-family: 'Outfit', sans-serif;
+            font-size: 1rem;
+            color: rgba(255, 255, 255, 0.8);
+            margin-bottom: 40px;
+        }
+
+        .q-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 15px;
+            width: 100%;
+            max-width: 500px;
+            margin: 0 auto;
+        }
+
+        .q-text-btn {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 8px;
+            padding: 18px 20px;
+            font-size: 1rem;
+            color: #fff;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: 'Outfit', sans-serif;
+            text-align: center;
+        }
+
+        .q-text-btn:hover {
+            transform: translateY(-2px);
+            background: rgba(255, 255, 255, 0.1);
+            border-color: rgba(214, 164, 55, 0.5);
+        }
+
+        .q-text-btn.selected {
+            background: var(--luxury-gold);
+            color: var(--primary-navy);
+            border-color: var(--luxury-gold);
+            font-weight: 500;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(214, 164, 55, 0.2);
+        }
+
+        .btn-nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+            max-width: 500px;
+            margin-top: 40px;
+        }
+
+        .btn-nav {
+            background: var(--luxury-gold);
+            color: var(--primary-navy);
+            border: none;
+            padding: 15px 30px;
+            font-family: 'Outfit', sans-serif;
+            font-weight: 600;
+            border-radius: 4px;
+            cursor: pointer;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            transition: all 0.3s;
+        }
+
+        .btn-nav:disabled {
+            background: rgba(255, 255, 255, 0.1);
+            color: rgba(255, 255, 255, 0.3);
+            cursor: not-allowed;
+        }
+
+        .btn-nav.secondary {
+            background: transparent;
+            color: rgba(255, 255, 255, 0.5);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .btn-nav.secondary:hover {
+            background: rgba(255, 255, 255, 0.05);
+            color: #fff;
+        }
+
+        /* --- Processing State --- */
+        #state-processing,
+        #state-summary {
+            display: none;
+            flex-direction: column;
+            align-items: center;
+            animation: fadeIn 0.8s ease forwards;
+        }
+
+        .ai-core-container {
+            position: relative;
+            width: 200px;
+            height: 200px;
+            margin-bottom: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .ai-ring-1,
+        .ai-ring-2,
+        .ai-ring-3 {
+            position: absolute;
+            border-radius: 50%;
+            border: 1px solid transparent;
+        }
+
+        .ai-ring-1 {
+            width: 100%;
+            height: 100%;
+            border-top: 1px solid var(--luxury-gold);
+            border-bottom: 1px solid var(--luxury-gold);
+            animation: spin 3s linear infinite;
+        }
+
+        .ai-ring-2 {
+            width: 80%;
+            height: 80%;
+            border-left: 1px solid rgba(255, 255, 255, 0.5);
+            border-right: 1px solid rgba(255, 255, 255, 0.5);
+            animation: spin-reverse 4s linear infinite;
+        }
+
+        .ai-ring-3 {
+            width: 60%;
+            height: 60%;
+            border: 1px dashed var(--luxury-gold);
+            animation: spin 5s linear infinite;
+        }
+
+        .ai-core {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2rem;
+            color: var(--luxury-gold);
+            z-index: 10;
+            animation: pulse-text 2s infinite;
+        }
+
+        .processing-text {
+            font-family: 'Outfit', sans-serif;
+            font-size: 1rem;
+            color: rgba(255, 255, 255, 0.7);
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+        }
+
+        .processing-status {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.5rem;
+            color: #fff;
+            margin-top: 15px;
+            min-height: 30px;
+        }
+
+        .summary-card {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.01));
+            border: 1px solid rgba(214, 164, 55, 0.3);
+            border-radius: 16px;
+            padding: 50px 40px;
+            backdrop-filter: blur(15px);
+            text-align: center;
+            width: 100%;
+            max-width: 600px;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.2), inset 0 0 0 1px rgba(255, 255, 255, 0.1);
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes spin {
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        @keyframes spin-reverse {
+            100% {
+                transform: rotate(-360deg);
+            }
+        }
+
+        @keyframes pulse-text {
+            0% {
+                opacity: 0.6;
+            }
+
+            50% {
+                opacity: 1;
+                text-shadow: 0 0 10px rgba(214, 164, 55, 0.5);
+            }
+
+            100% {
+                opacity: 0.6;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="flow-container">
+
+        <!-- STATE 1: Feedback Form -->
+        <div id="feedback-form">
+            <div class="q-header">
+                <div class="q-progress-container">
+                    <div class="q-progress-bar">
+                        <div class="q-progress-fill" id="progress-fill"></div>
+                    </div>
+                    <div class="q-progress-text" id="progress-text">Step 1 of 8</div>
+                </div>
+            </div>
+
+            <h1 class="q-title" id="step-title">Overall Connection</h1>
+
+            <!-- Cinematic Step Icon -->
+            <div id="step-icon-container"
+                style="margin: 0 auto 20px auto; width: 60px; height: 60px; display: flex; align-items: center; justify-content: center; background: radial-gradient(circle at center, rgba(214,164,55,0.15) 0%, transparent 70%); border-radius: 50%; animation: pulseIcon 3s infinite ease-in-out;">
+                <svg id="step-icon-svg" viewBox="0 0 24 24" fill="none" stroke-width="1.5"
+                    style="width: 30px; height: 30px; stroke: var(--luxury-gold);">
+                    <circle cx="12" cy="12" r="10" />
+                </svg>
+            </div>
+            <style>
+                @keyframes pulseIcon {
+                    0% {
+                        transform: scale(1);
+                        opacity: 0.8;
+                    }
+
+                    50% {
+                        transform: scale(1.05);
+                        opacity: 1;
+                    }
+
+                    100% {
+                        transform: scale(1);
+                        opacity: 0.8;
+                    }
+                }
+
+                .q-text-btn {
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    text-align: center;
+                    padding: 18px 20px;
+                }
+            </style>
+            <p class="q-desc" id="step-desc">How strong was your connection with this person?</p>
+
+            <div class="q-grid" id="cards-container">
+                <!-- Buttons injected by JS -->
+            </div>
+
+            <div class="btn-nav-container">
+                <button class="btn-nav secondary" id="btn-back" onclick="goBack()">Back</button>
+                <div id="selection-counter"
+                    style="font-family: 'Outfit'; font-size: 0.9rem; color: rgba(255,255,255,0.5);"></div>
+                <button class="btn-nav" id="btn-next" onclick="goNext()" disabled>Next</button>
+            </div>
+        </div>
+
+        <!-- STATE 2: Processing -->
+        <div id="state-processing">
+            <div class="ai-core-container">
+                <div class="ai-ring-1"></div>
+                <div class="ai-ring-2"></div>
+                <div class="ai-ring-3"></div>
+                <div class="ai-core">S7</div>
+            </div>
+            <div class="processing-text">S7 Affinity™ Engine</div>
+            <div class="processing-status" id="processing-status-text">Encrypting Feedback...</div>
+        </div>
+
+        <!-- STATE 3: Summary -->
+        <div id="state-summary">
+            <div class="summary-card">
+                <svg viewBox="0 0 24 24" width="64" height="64" stroke="var(--luxury-gold)" stroke-width="1.5"
+                    fill="none" stroke-linecap="round" stroke-linejoin="round" style="margin-bottom: 20px;">
+                    <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                    <polyline points="22 4 12 14.01 9 11.01"></polyline>
+                </svg>
+                <h2
+                    style="font-family: 'Cormorant Garamond', serif; font-size: 3rem; margin-bottom: 15px; color: rgba(255,255,255,0.8);">
+                    Feedback Saved</h2>
+                <p
+                    style="font-family: 'Outfit', sans-serif; font-size: 1.1rem; color: rgba(255,255,255,0.8); margin-bottom: 30px;">
+                    Your confidential feedback has been securely processed by the S7 Engine. Mutual matches will be
+                    revealed at the end of the event.
+                </p>
+                <button class="btn-nav" onclick="window.location.href='match-detail.html'"
+                    style="box-shadow: 0 10px 20px rgba(214, 164, 55, 0.2);">Return to Dashboard</button>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        const questions = [
+            { id: 'pq1', title: 'Overall Connection', desc: "How strong was your connection with this person?", limit: 1, exact: true, options: ["⭐⭐⭐⭐⭐ Exceptional connection", "⭐⭐⭐⭐ Strong connection", "⭐⭐⭐ Good connection", "⭐⭐ Weak connection", "⭐ No connection"] },
+            { id: 'pq2', title: 'Authenticity', desc: "How comfortable did you feel being yourself during the conversation?", limit: 1, exact: true, options: ["Completely myself", "Mostly myself", "Neutral", "Somewhat uncomfortable", "Not myself at all"] },
+            { id: 'pq3', title: 'Relationship Potential', desc: "Can you realistically imagine building a relationship with this person?", limit: 1, exact: true, options: ["Definitely", "Probably", "Maybe", "Probably not", "Definitely not"] },
+            { id: 'pq4', title: 'Physical Attraction', desc: "How physically attracted were you to this person?", limit: 1, exact: true, options: ["Very attracted", "Attracted", "Neutral", "Slightly attracted", "Not attracted"] },
+            { id: 'pq5', title: 'Emotional Connection', desc: "Did you feel an emotional connection?", limit: 1, exact: true, options: ["Very strong", "Strong", "Moderate", "Weak", "None"] },
+            { id: 'pq6', title: 'Shared Values', desc: "How well do you think your values and life goals align?", limit: 1, exact: true, options: ["Excellent match", "Good match", "Unsure", "Different", "Completely different"] },
+            { id: 'pq7', title: 'Decision', desc: "What would you like to happen next?", limit: 1, exact: true, options: ["❤️ Yes, I'd like to exchange contact details.", "❓ Maybe, I'd like more time to decide.", "❌ No, I don't wish to continue."] },
+            { id: 'pq8', title: 'Why did you make this decision?', desc: "What was the main reason for your choice?", limit: 3, exact: false, options: ["We had great chemistry.", "I felt emotionally connected.", "Our personalities matched well.", "We shared similar values.", "The conversation flowed naturally.", "I found them physically attractive.", "They made me feel comfortable.", "They seemed genuine and authentic.", "We have similar life goals.", "We have compatible lifestyles.", "I didn't feel enough chemistry.", "Our personalities felt too different.", "I wasn't physically attracted.", "We wanted different things.", "The conversation felt forced.", "I couldn't be myself.", "Other"] }
+        ];
+
+        let currentStep = 0;
+        let selections = {};
+        let currentSelections = [];
+
+        const progressFill = document.getElementById('progress-fill');
+        const progressText = document.getElementById('progress-text');
+        const stepTitle = document.getElementById('step-title');
+        const stepDesc = document.getElementById('step-desc');
+        const cardsContainer = document.getElementById('cards-container');
+        const selectionCounter = document.getElementById('selection-counter');
+        const btnNext = document.getElementById('btn-next');
+        const btnBack = document.getElementById('btn-back');
+
+        function initStep() {
+            const q = questions[currentStep];
+            currentSelections = selections[q.id] || [];
+
+            progressFill.style.width = `${((currentStep + 1) / questions.length) * 100}%`;
+            progressText.innerText = `Step ${currentStep + 1} of ${questions.length}`;
+            stepTitle.innerText = q.title;
+            stepDesc.innerText = q.desc;
+
+            btnBack.style.visibility = currentStep === 0 ? 'hidden' : 'visible';
+            btnNext.innerText = currentStep === questions.length - 1 ? 'Submit' : 'Next';
+
+            cardsContainer.innerHTML = '';
+
+            q.options.forEach(item => {
+                const btn = document.createElement('div');
+                btn.className = 'q-text-btn';
+                if (currentSelections.includes(item)) {
+                    btn.classList.add('selected');
+                }
+
+                btn.innerHTML = `<span>${item}</span>`;
+
+                btn.addEventListener('click', () => toggleOption(btn, item, q));
+                cardsContainer.appendChild(btn);
+            });
+
+            updateCinematicIcon(currentStep);
+            updateFooter(q);
+        }
+
+        function toggleOption(btnElement, item, q) {
+            const isSelected = currentSelections.includes(item);
+
+            if (isSelected) {
+                currentSelections = currentSelections.filter(c => c !== item);
+                btnElement.classList.remove('selected');
+            } else {
+                if (currentSelections.length < q.limit) {
+                    currentSelections.push(item);
+                    btnElement.classList.add('selected');
+                } else if (q.limit === 1) {
+                    currentSelections = [item];
+                    Array.from(cardsContainer.children).forEach(c => c.classList.remove('selected'));
+                    btnElement.classList.add('selected');
+                }
+            }
+
+            updateFooter(q);
+            if (q.limit === 1 && currentSelections.length === 1) {
+                setTimeout(() => {
+                    goNext();
+                }, 300);
+            }
+        }
+
+        function updateFooter(q) {
+            if (q.limit === 1) {
+                selectionCounter.innerText = '';
+                btnNext.disabled = currentSelections.length === 0;
+            } else {
+                selectionCounter.innerText = `${currentSelections.length} / ${q.limit} selected`;
+                if (currentSelections.length > 0 && currentSelections.length <= q.limit) {
+                    btnNext.disabled = false;
+                    selectionCounter.style.color = 'var(--luxury-gold)';
+                } else {
+                    btnNext.disabled = true;
+                    selectionCounter.style.color = 'rgba(255,255,255,0.5)';
+                }
+            }
+        }
+
+        // Generate different cinematic icons based on the step index
+        function updateCinematicIcon(stepIdx) {
+            const iconSvg = document.getElementById('step-icon-svg');
+            if (!iconSvg) return;
+
+            const rotations = [0, 45, 90, 15, 30, 60, 75];
+            const rot = rotations[stepIdx % rotations.length];
+
+            let innerShape = '';
+            const mod = stepIdx % 4;
+            if (mod === 0) {
+                innerShape = `<polygon points="12 2 22 8.5 22 15.5 12 22 2 15.5 2 8.5 12 2" stroke="var(--luxury-gold)"/><circle cx="12" cy="12" r="3" stroke="#fff" fill="rgba(214,164,55,0.4)"/>`;
+            } else if (mod === 1) {
+                innerShape = `<path d="M12 2a10 10 0 1 0 10 10" stroke="var(--luxury-gold)"/><path d="M12 8v8M8 12h8" stroke="#fff"/>`;
+            } else if (mod === 2) {
+                innerShape = `<path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" stroke="var(--luxury-gold)"/><circle cx="12" cy="12" r="4" stroke="#fff" fill="rgba(255,255,255,0.2)"/>`;
+            } else {
+                innerShape = `<rect x="4" y="4" width="16" height="16" rx="2" stroke="var(--luxury-gold)"/><circle cx="12" cy="12" r="4" stroke="#fff"/>`;
+            }
+
+            iconSvg.style.transform = `rotate(${rot}deg)`;
+            iconSvg.innerHTML = innerShape;
+        }
+
+        function goBack() {
+            const q = questions[currentStep];
+            selections[q.id] = [...currentSelections];
+            if (currentStep > 0) {
+                currentStep--;
+                initStep();
+            }
+        }
+
+        function goNext() {
+            const q = questions[currentStep];
+            selections[q.id] = [...currentSelections];
+
+            if (currentStep < questions.length - 1) {
+                currentStep++;
+                initStep();
+            } else {
+                document.getElementById('feedback-form').style.display = 'none';
+                document.getElementById('state-processing').style.display = 'flex';
+
+                const statusText = document.getElementById('processing-status-text');
+                const sequence = [
+                    "Encrypting Feedback...",
+                    "Updating Compatibility Vectors...",
+                    "Analyzing S7 Behavioral Data...",
+                    "Cross-referencing Match Decisions..."
+                ];
+
+                let seqIndex = 0;
+                const seqInterval = setInterval(() => {
+                    seqIndex++;
+                    if (seqIndex < sequence.length) {
+                        statusText.innerText = sequence[seqIndex];
+                    } else {
+                        clearInterval(seqInterval);
+                    }
+                }, 1000);
+
+                setTimeout(() => {
+                    document.getElementById('state-processing').style.display = 'none';
+                    document.getElementById('state-summary').style.display = 'flex';
+                }, 4500);
+            }
+        }
+
+        document.addEventListener("DOMContentLoaded", () => {
+            initStep();
+        });
+    </script>
+</body>
+
+</html>

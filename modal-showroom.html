@@ -1,0 +1,947 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bibliothèque des États — 7Sens Premium Social Club</title>
+    <meta name="description" content="Showroom interactif présentant tous les états systèmes (vides, chargements, succès et erreurs) du club privé 7Sens.">
+    <meta name="robots" content="noindex, nofollow">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="style-v2.css">
+    <link rel="stylesheet" href="events-page.css">
+
+    <style>
+        .showroom-body {
+            background-color: #fbf9f6;
+            color: #142b63;
+            font-family: 'Outfit', sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        .show-nav {
+            background-color: #ffffff;
+            border-bottom: 1px solid rgba(20, 43, 99, 0.08);
+            padding: 16px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .show-logo-block {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .show-logo-img {
+            height: 28px;
+            width: auto;
+        }
+
+        .show-logo-text {
+            font-family: 'Outfit', sans-serif;
+            font-size: 0.85rem;
+            font-weight: 700;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+        }
+
+        .show-nav-right {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .show-pill {
+            font-size: 0.65rem;
+            font-weight: 600;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            padding: 6px 12px;
+            border-radius: 20px;
+            background-color: rgba(43, 138, 62, 0.1);
+            color: #2b8a3e;
+            border: 1px solid rgba(43, 138, 62, 0.2);
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .show-pill::before {
+            content: '';
+            display: inline-block;
+            width: 6px;
+            height: 6px;
+            background-color: #2b8a3e;
+            border-radius: 50%;
+        }
+
+        .show-theme-btn {
+            background: none;
+            border: none;
+            color: #142b63;
+            cursor: pointer;
+            padding: 4px;
+            display: flex;
+            align-items: center;
+            opacity: 0.7;
+        }
+
+        .show-theme-btn:hover {
+            opacity: 1;
+        }
+
+        .sr-main-wrapper {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 60px 24px 120px;
+        }
+
+        .sr-intro {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .sr-intro-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(2.2rem, 4vw, 3.2rem);
+            font-weight: 300;
+            color: #142b63;
+            margin: 0 0 10px;
+        }
+
+        .sr-intro-desc {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            max-width: 600px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+
+        .sr-section {
+            margin-bottom: 60px;
+        }
+
+        .sr-section-title {
+            font-size: 0.72rem;
+            font-weight: 700;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: #d6a437;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 25px;
+        }
+
+        .sr-section-title-num {
+            background-color: #142b63;
+            color: #fbf9f6;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.65rem;
+        }
+
+        .sr-section-title-text {
+            color: #142b63;
+            font-size: 0.85rem;
+            letter-spacing: 0.15em;
+        }
+
+        /* Empty States Layout */
+        .sr-empty-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 24px;
+        }
+
+        @media (max-width: 767px) {
+            .sr-empty-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .empty-card {
+            background-color: #ffffff;
+            border: 1px solid rgba(20, 43, 99, 0.06);
+            border-radius: 12px;
+            padding: 40px 30px;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+
+        .empty-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(20, 43, 99, 0.02);
+            border-color: rgba(214, 164, 55, 0.2);
+        }
+
+        .empty-icon-circle {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background-color: rgba(214, 164, 55, 0.1);
+            color: #d6a437;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        .empty-icon-circle svg {
+            width: 24px;
+            height: 24px;
+            stroke: currentColor;
+        }
+
+        .empty-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.25rem;
+            font-weight: 500;
+            margin: 0 0 10px;
+            color: #142b63;
+        }
+
+        .empty-desc {
+            font-size: 0.78rem;
+            color: var(--text-muted);
+            line-height: 1.5;
+            max-width: 280px;
+            margin: 0 auto 25px;
+        }
+
+        .empty-btn-group {
+            display: flex;
+            gap: 12px;
+            justify-content: center;
+        }
+
+        .showroom-btn {
+            font-family: 'Outfit', sans-serif;
+            font-size: 0.68rem;
+            font-weight: 600;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            padding: 10px 18px;
+            border: 1px solid #142b63;
+            background-color: #142b63;
+            color: #ffffff;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .showroom-btn:hover {
+            background-color: #d6a437;
+            border-color: #d6a437;
+            color: #142b63;
+        }
+
+        .showroom-btn.secondary {
+            background: none;
+            color: #142b63;
+            border-color: rgba(20, 43, 99, 0.2);
+        }
+
+        .showroom-btn.secondary:hover {
+            border-color: #d6a437;
+            color: #d6a437;
+        }
+
+        /* Loading Skeleton Screens */
+        .sr-loading-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 20px;
+        }
+
+        @media (max-width: 767px) {
+            .sr-loading-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .loading-card {
+            background-color: #ffffff;
+            border: 1px solid rgba(20, 43, 99, 0.06);
+            border-radius: 12px;
+            padding: 24px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        @keyframes shimmer {
+            0% { background-position: -200% 0; }
+            100% { background-position: 200% 0; }
+        }
+
+        .shimmer-box {
+            background: linear-gradient(90deg, rgba(20, 43, 99, 0.04) 25%, rgba(20, 43, 99, 0.1) 37%, rgba(20, 43, 99, 0.04) 63%);
+            background-size: 200% 100%;
+            animation: shimmer 1.5s infinite;
+            border-radius: 4px;
+        }
+
+        .skeleton-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 20px;
+        }
+
+        .skeleton-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+        }
+
+        .skeleton-line {
+            height: 12px;
+            margin-bottom: 8px;
+        }
+
+        .skeleton-line.title {
+            width: 60%;
+            height: 14px;
+        }
+
+        .skeleton-line.subtitle {
+            width: 40%;
+        }
+
+        .skeleton-line.full {
+            width: 100%;
+        }
+
+        .skeleton-line.half {
+            width: 80%;
+        }
+
+        .skeleton-line.short {
+            width: 50%;
+        }
+
+        .skeleton-image {
+            width: 100%;
+            height: 120px;
+            margin-bottom: 15px;
+            border-radius: 8px;
+        }
+
+        /* Success States Grid */
+        .sr-success-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 20px;
+        }
+
+        @media (max-width: 991px) {
+            .sr-success-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        @media (max-width: 580px) {
+            .sr-success-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .success-card {
+            background-color: #ffffff;
+            border: 1px solid rgba(20, 43, 99, 0.06);
+            border-radius: 12px;
+            padding: 28px 20px;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: space-between;
+            min-height: 250px;
+            transition: all 0.3s ease;
+        }
+
+        .success-card:hover {
+            transform: translateY(-2px);
+            border-color: rgba(43, 138, 62, 0.2);
+            box-shadow: 0 10px 30px rgba(43, 138, 62, 0.02);
+        }
+
+        .success-icon-badge {
+            width: 42px;
+            height: 42px;
+            border-radius: 50%;
+            background-color: rgba(43, 138, 62, 0.1);
+            color: #2b8a3e;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 15px;
+        }
+
+        .success-icon-badge svg {
+            width: 20px;
+            height: 20px;
+            stroke: currentColor;
+        }
+
+        .success-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.15rem;
+            font-weight: 500;
+            margin: 0 0 6px;
+            color: #142b63;
+        }
+
+        .success-desc {
+            font-size: 0.72rem;
+            color: var(--text-muted);
+            line-height: 1.4;
+            margin-bottom: 20px;
+            max-width: 220px;
+        }
+
+        .success-btn {
+            font-family: 'Outfit', sans-serif;
+            font-size: 0.65rem;
+            font-weight: 600;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            padding: 8px 16px;
+            background-color: transparent;
+            border: 1px solid rgba(43, 138, 62, 0.3);
+            color: #2b8a3e;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .success-btn:hover {
+            background-color: #2b8a3e;
+            color: #ffffff;
+            border-color: #2b8a3e;
+        }
+
+        /* Error and Warning Banners */
+        .sr-error-stack {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .alert-banner {
+            background-color: #ffffff;
+            border: 1px solid rgba(201, 42, 42, 0.1);
+            border-left: 4px solid #c92a2a;
+            border-radius: 8px;
+            padding: 20px 24px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 20px;
+            transition: all 0.3s ease;
+        }
+
+        .alert-banner.warning {
+            border-left-color: #f77f00;
+            border-color: rgba(247, 127, 0, 0.1);
+        }
+
+        @media (max-width: 767px) {
+            .alert-banner {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 15px;
+            }
+        }
+
+        .alert-left {
+            display: flex;
+            align-items: flex-start;
+            gap: 15px;
+        }
+
+        .alert-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background-color: #c92a2a;
+            margin-top: 5px;
+            flex-shrink: 0;
+        }
+
+        .alert-banner.warning .alert-dot {
+            background-color: #f77f00;
+        }
+
+        .alert-title {
+            font-size: 0.8rem;
+            font-weight: 700;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            color: #142b63;
+            margin-bottom: 4px;
+        }
+
+        .alert-desc {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            line-height: 1.4;
+            max-width: 600px;
+        }
+
+        .alert-btn {
+            font-family: 'Outfit', sans-serif;
+            font-size: 0.65rem;
+            font-weight: 600;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            padding: 8px 16px;
+            background: none;
+            border: 1px solid rgba(201, 42, 42, 0.3);
+            color: #c92a2a;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            white-space: nowrap;
+        }
+
+        .alert-btn:hover {
+            background-color: #c92a2a;
+            color: #ffffff;
+            border-color: #c92a2a;
+        }
+
+        .alert-banner.warning .alert-btn {
+            color: #f77f00;
+            border-color: rgba(247, 127, 0, 0.3);
+        }
+
+        .alert-banner.warning .alert-btn:hover {
+            background-color: #f77f00;
+            color: #ffffff;
+            border-color: #f77f00;
+        }
+
+        /* Dialog Panels Rendered Inline */
+        .sr-inline-dialog-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            align-items: start;
+        }
+
+        @media (max-width: 991px) {
+            .sr-inline-dialog-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .inline-dialog-card {
+            background-color: #ffffff;
+            border: 1px solid rgba(20, 43, 99, 0.06);
+            border-radius: 12px;
+            padding: 30px;
+            box-shadow: 0 10px 40px rgba(20, 43, 99, 0.02);
+            text-align: center;
+        }
+
+        .inline-dialog-card .otp-wrapper {
+            justify-content: center;
+            margin: 20px 0;
+            display: flex;
+            gap: 12px;
+        }
+
+        .inline-dialog-card .otp-digit {
+            width: 44px;
+            height: 46px;
+            text-align: center;
+            font-size: 1.3rem !important;
+            font-weight: 600 !important;
+            border: 1px solid rgba(20, 43, 99, 0.15) !important;
+            background-color: rgba(20, 43, 99, 0.01) !important;
+            border-radius: 4px !important;
+            color: #142b63 !important;
+            padding: 0 !important;
+        }
+
+        .inline-dialog-card .otp-digit:focus {
+            border-color: #d6a437 !important;
+            outline: none !important;
+            box-shadow: 0 0 8px rgba(214, 164, 55, 0.2);
+        }
+    </style>
+</head>
+
+<body class="showroom-body">
+
+    <!-- Sticky Navigation Showcase Header -->
+    <nav class="show-nav">
+        <div class="show-logo-block">
+            <img src="assets/7sens.webp" alt="7Sens Premium logo" class="show-logo-img">
+            <span class="show-logo-text">System States</span>
+        </div>
+        <div class="show-nav-right">
+            <span class="show-pill">Showcase États UI</span>
+            <button class="show-theme-btn" aria-label="Toggle theme">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width: 18px; height: 18px;">
+                    <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+                </svg>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Main Container -->
+    <main class="sr-main-wrapper">
+        
+        <!-- Showcase Title Block -->
+        <div class="sr-intro">
+            <h1 class="sr-intro-title">Bibliothèque des États Système</h1>
+            <p class="sr-intro-desc">
+                Une collection complète de cartes d'états vides, de chargements shimmers, de messages de succès et de bannières d'alerte, conçue spécifiquement pour l'espace Premium 7Sens.
+            </p>
+        </div>
+
+        <!-- SECTION 1: Empty States -->
+        <section class="sr-section">
+            <div class="sr-section-title">
+                <div class="sr-section-title-num">1</div>
+                <span class="sr-section-title-text">États Vides (Empty States)</span>
+            </div>
+            
+            <div class="sr-empty-grid">
+                
+                <!-- Card 1: No booked events -->
+                <div class="empty-card">
+                    <div class="empty-icon-circle">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                            <line x1="16" y1="2" x2="16" y2="6"></line>
+                            <line x1="8" y1="2" x2="8" y2="6"></line>
+                            <line x1="3" y1="10" x2="21" y2="10"></line>
+                        </svg>
+                    </div>
+                    <h3 class="empty-title">Aucun événement réservé</h3>
+                    <p class="empty-desc">
+                        Vous n'avez pas encore finalisé d'inscription à nos expériences de groupe. Parcourez l'agenda privé pour réserver votre place.
+                    </p>
+                    <div class="empty-btn-group">
+                        <button class="showroom-btn" onclick="location.href='events.html'">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="width:12px; height:12px;"><path d="M5 12H19M19 12L13 6M19 12L13 18"/></svg>
+                            <span>Parcourir l'agenda</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Card 2: Empty Waitlist -->
+                <div class="empty-card">
+                    <div class="empty-icon-circle" style="background-color: rgba(20,43,99,0.06); color: #142b63;">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                            <polyline points="22,6 12,13 2,6"></polyline>
+                        </svg>
+                    </div>
+                    <h3 class="empty-title">Votre liste d'attente est vide</h3>
+                    <p class="empty-desc">
+                        Vous n'avez aucune candidature de place en attente. Si un cercle se libère pour une expérience complète, vous serez notifié.
+                    </p>
+                    <div class="empty-btn-group">
+                        <button class="showroom-btn secondary" onclick="location.href='events.html'">
+                            <span>Voir les disponibilités</span>
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- SECTION 2: Loading & Shimmer States -->
+        <section class="sr-section">
+            <div class="sr-section-title">
+                <div class="sr-section-title-num">2</div>
+                <span class="sr-section-title-text">États de Chargement (Loading States)</span>
+            </div>
+            
+            <div class="sr-loading-grid">
+                
+                <!-- Skeleton 1: Card Preview -->
+                <div class="loading-card">
+                    <div class="shimmer-box skeleton-image"></div>
+                    <div class="shimmer-box skeleton-line title"></div>
+                    <div class="shimmer-box skeleton-line subtitle" style="margin-bottom: 20px;"></div>
+                    <div class="shimmer-box skeleton-line short" style="height: 30px;"></div>
+                </div>
+
+                <!-- Skeleton 2: Details List -->
+                <div class="loading-card">
+                    <div class="skeleton-header">
+                        <div class="shimmer-box skeleton-avatar"></div>
+                        <div style="flex-grow: 1;">
+                            <div class="shimmer-box skeleton-line title" style="width: 50%;"></div>
+                            <div class="shimmer-box skeleton-line subtitle" style="width: 30%; margin-bottom: 0;"></div>
+                        </div>
+                    </div>
+                    <div class="shimmer-box skeleton-line full"></div>
+                    <div class="shimmer-box skeleton-line half"></div>
+                    <div class="shimmer-box skeleton-line short"></div>
+                    <div class="shimmer-box skeleton-line full" style="margin-top: 15px;"></div>
+                </div>
+
+                <!-- Skeleton 3: Plain Block -->
+                <div class="loading-card" style="display:flex; flex-direction:column; justify-content: space-between;">
+                    <div>
+                        <div class="shimmer-box skeleton-line title" style="height: 18px; margin-bottom: 15px;"></div>
+                        <div class="shimmer-box skeleton-line full"></div>
+                        <div class="shimmer-box skeleton-line full"></div>
+                        <div class="shimmer-box skeleton-line half"></div>
+                    </div>
+                    <div class="shimmer-box skeleton-line full" style="height: 38px; margin-top: 20px; border-radius: 0;"></div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- SECTION 3: Success States -->
+        <section class="sr-section">
+            <div class="sr-section-title">
+                <div class="sr-section-title-num">3</div>
+                <span class="sr-section-title-text">États de Succès (Success States)</span>
+            </div>
+            
+            <div class="sr-success-grid">
+                
+                <!-- Success 1: Welcome -->
+                <div class="success-card">
+                    <div class="success-icon-badge">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6L9 17L4 12"/></svg>
+                    </div>
+                    <h3 class="success-title">Bienvenue au Club</h3>
+                    <p class="success-desc">
+                        Votre compte membre 7Sens Premium est activé. Vous pouvez désormais vous connecter.
+                    </p>
+                    <button class="success-btn" onclick="location.href='login.html'">Connexion</button>
+                </div>
+
+                <!-- Success 2: Payment Confirmed -->
+                <div class="success-card">
+                    <div class="success-icon-badge">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6L9 17L4 12"/></svg>
+                    </div>
+                    <h3 class="success-title">Règlement Validé</h3>
+                    <p class="success-desc">
+                        Votre paiement a été validé avec succès. Vos invitations vous attendent par e-mail.
+                    </p>
+                    <button class="success-btn" onclick="location.href='events.html'">Voir mon billet</button>
+                </div>
+
+                <!-- Success 3: Waitlist -->
+                <div class="success-card">
+                    <div class="success-icon-badge" style="background-color: rgba(214,164,55,0.1); color: #d6a437;">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+                    </div>
+                    <h3 class="success-title">Candidature Enregistrée</h3>
+                    <p class="success-desc">
+                        Vous avez rejoint la liste d'attente. Nous étudions votre profil pour assurer la parité.
+                    </p>
+                    <button class="success-btn" onclick="location.href='events.html'" style="color: #d6a437; border-color: rgba(214,164,55,0.3);">Retourner au club</button>
+                </div>
+
+                <!-- Success 4: Email verified -->
+                <div class="success-card">
+                    <div class="success-icon-badge">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6L9 17L4 12"/></svg>
+                    </div>
+                    <h3 class="success-title">Adresse E-mail validée</h3>
+                    <p class="success-desc">
+                        Votre adresse e-mail a été validée. L'accès aux inscriptions est maintenant débloqué.
+                    </p>
+                    <button class="success-btn" onclick="location.href='verify-contact.html'">Suivant</button>
+                </div>
+
+                <!-- Success 5: Mobile verified -->
+                <div class="success-card">
+                    <div class="success-icon-badge">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6L9 17L4 12"/></svg>
+                    </div>
+                    <h3 class="success-title">Mobile activé</h3>
+                    <p class="success-desc">
+                        Votre numéro a été vérifié. Vos invitations vous seront envoyées par WhatsApp & SMS.
+                    </p>
+                    <button class="success-btn" onclick="location.href='verify-contact.html'">Activer notifications</button>
+                </div>
+
+                <!-- Success 6: Password Changed -->
+                <div class="success-card">
+                    <div class="success-icon-badge">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6L9 17L4 12"/></svg>
+                    </div>
+                    <h3 class="success-title">Mot de passe modifié</h3>
+                    <p class="success-desc">
+                        Votre nouveau mot de passe est configuré avec succès. Vous pouvez vous connecter.
+                    </p>
+                    <button class="success-btn" onclick="location.href='login.html'">Connexion</button>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- SECTION 4: Error & Warning States -->
+        <section class="sr-section">
+            <div class="sr-section-title">
+                <div class="sr-section-title-num">4</div>
+                <span class="sr-section-title-text">États d'Erreur & Alertes (Error & Warning States)</span>
+            </div>
+            
+            <div class="sr-error-stack">
+                
+                <!-- Alert 1: Age check -->
+                <div class="alert-banner warning">
+                    <div class="alert-left">
+                        <div class="alert-dot"></div>
+                        <div>
+                            <h4 class="alert-title">Erreur d'éligibilité (Âge)</h4>
+                            <p class="alert-desc">
+                                Désolé, votre âge ne correspond pas aux critères fixés pour cette expérience privée (28 - 45 ans). Nous appliquons ce filtre pour préserver l'affinité du cercle.
+                            </p>
+                        </div>
+                    </div>
+                    <button class="alert-btn" onclick="location.href='events.html'">Autre événement</button>
+                </div>
+
+                <!-- Alert 2: Payment error -->
+                <div class="alert-banner">
+                    <div class="alert-left">
+                        <div class="alert-dot"></div>
+                        <div>
+                            <h4 class="alert-title">Échec du Règlement</h4>
+                            <p class="alert-desc">
+                                La transaction de paiement a été déclinée par votre établissement bancaire (Solde insuffisant, code erroné ou carte expirée). Veuillez essayer un autre moyen de paiement.
+                            </p>
+                        </div>
+                    </div>
+                    <button class="alert-btn" onclick="location.href='booking.html'">Réessayer</button>
+                </div>
+
+                <!-- Alert 3: OTP Code error -->
+                <div class="alert-banner warning">
+                    <div class="alert-left">
+                        <div class="alert-dot"></div>
+                        <div>
+                            <h4 class="alert-title">Code OTP Saisi Incorrect</h4>
+                            <p class="alert-desc">
+                                Le code de validation à 4 chiffres entré ne correspond pas à l'OTP envoyé. Veuillez revérifier vos messages ou cliquer sur renvoyer le code.
+                            </p>
+                        </div>
+                    </div>
+                    <button class="alert-btn" onclick="location.href='verify-contact.html'">Renvoyer le code</button>
+                </div>
+
+                <!-- Alert 4: Coupon Error -->
+                <div class="alert-banner warning">
+                    <div class="alert-left">
+                        <div class="alert-dot"></div>
+                        <div>
+                            <h4 class="alert-title">Code Promotionnel Invalide</h4>
+                            <p class="alert-desc">
+                                Le code coupon ou code de parrainage inséré n'existe pas dans notre base ou a déjà expiré.
+                            </p>
+                        </div>
+                    </div>
+                    <button class="alert-btn" onclick="alert('Simulation : Code annulé')">Effacer</button>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- SECTION 5: Dialog & Panel Showcases (OTP & Logout) -->
+        <section class="sr-section">
+            <div class="sr-section-title">
+                <div class="sr-section-title-num">5</div>
+                <span class="sr-section-title-text">Dialogues Système & Déconnexion (Dialog Panels)</span>
+            </div>
+
+            <div class="sr-inline-dialog-grid">
+                
+                <!-- Inline Panel A: OTP verification -->
+                <div class="inline-dialog-card">
+                    <div style="font-size: 0.65rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: #d6a437; margin-bottom: 8px;">Vérification de sécurité</div>
+                    <h3 class="success-title" style="font-size: 1.3rem; margin-bottom: 8px;">Code de Validation OTP</h3>
+                    <p class="success-desc" style="margin: 0 auto; max-width: 320px;">Saisissez le code de sécurité à 4 chiffres envoyé à vos contacts pour débloquer votre accès.</p>
+                    
+                    <div class="otp-wrapper">
+                        <input type="text" class="otp-digit" maxlength="1" value="1" disabled>
+                        <input type="text" class="otp-digit" maxlength="1" value="2" disabled>
+                        <input type="text" class="otp-digit" maxlength="1" value="3" disabled>
+                        <input type="text" class="otp-digit" maxlength="1" value="4" disabled>
+                    </div>
+
+                    <button class="showroom-btn" style="width: 100%; max-width: 240px; justify-content: center; margin: 0 auto;">
+                        <span>VÉRIFIER LE CODE</span>
+                    </button>
+                </div>
+
+                <!-- Inline Panel B: Logout Confirmation Dialog -->
+                <div class="inline-dialog-card" style="display: flex; flex-direction: column; justify-content: space-between; min-height: 250px;">
+                    <div>
+                        <div style="width: 40px; height: 40px; border-radius: 50%; border: 1.5px solid #d6a437; display: flex; align-items: center; justify-content: center; margin: 0 auto 15px; color: #d6a437;">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="width: 18px; height: 18px;">
+                                <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4M16 17l5-5-5-5M21 12H9" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </div>
+                        <h3 class="success-title" style="font-size: 1.3rem; margin-bottom: 8px;">Se déconnecter ?</h3>
+                        <p class="success-desc" style="margin: 0 auto; max-width: 320px;">Êtes-vous sûr de vouloir quitter votre espace membre 7Sens Premium Social Club ?</p>
+                    </div>
+
+                    <div style="display: flex; gap: 12px; justify-content: center; margin-top: 20px;">
+                        <button class="showroom-btn secondary" style="width: 100px; justify-content: center;" onclick="alert('Simulation : Annuler')">
+                            <span>ANNULER</span>
+                        </button>
+                        <button class="showroom-btn" style="width: 130px; justify-content: center;" onclick="simulateLogout()">
+                            <span>Déconnexion</span>
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+    </main>
+
+    <!-- JS Libraries (GSAP) -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script>
+        // Simple logout simulation
+        function simulateLogout() {
+            localStorage.removeItem("currentUser");
+            alert("Simulation : Déconnexion en cours. Redirection vers login.html...");
+            window.location.href = "login.html";
+        }
+        
+        // Theme button click simulation (aesthetic touch)
+        document.querySelector(".show-theme-btn").addEventListener("click", () => {
+            alert("Simulation : Bascule en mode sombre (Showroom).");
+        });
+    </script>
+</body>
+
+</html>

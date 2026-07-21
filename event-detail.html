@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Détails de l'Expérience — 7Sens Premium Social Club</title>
+    <meta name="description"
+        content="Découvrez les détails de cette expérience exclusive 7Sens : programme, inclusions et réservations.">
+    <meta name="robots" content="noindex, follow">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Outfit:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="style-v2.css">
+    <link rel="stylesheet" href="events-page.css">
+</head>
+
+<body>
+
+    <!-- Canvas Noise Overlay -->
+    <div class="noise-overlay"></div>
+
+    <!-- Header Navigation -->
+    <header class="v2-header scrolled" id="main-header">
+        <div class="header-container">
+            <a href="index.html" class="logo-link" id="header-logo">
+                <img src="assets/7sens.webp" alt="7Sens Logo" class="logo-img">
+            </a>
+
+            <nav class="nav-menu" id="nav-menu">
+                <ul>
+                    <li><a href="index.html#accueil" class="nav-link">ACCUEIL</a></li>
+                    <li><a href="index.html#about" class="nav-link">À PROPOS</a></li>
+                    <li><a href="events.html" class="nav-link active">ÉVÉNEMENTS</a></li>
+                    <li><a href="index.html#how-it-works" class="nav-link">COMMENT ÇA MARCHE</a></li>
+                    <li><a href="index.html#faq" class="nav-link">FAQ</a></li>
+                    <li><a href="index.html#testimonials" class="nav-link">TÉMOIGNAGES</a></li>
+                    <li><a href="index.html#contact" class="nav-link">CONTACT</a></li>
+                </ul>
+            </nav>
+
+            <div class="header-cta">
+                <a href="login.html" class="btn btn-navy btn-magnetic" id="btn-header-login">
+                    <span>CONNEXION</span>
+                </a>
+            </div>
+
+            <!-- Mobile Menu Toggle -->
+            <button class="mobile-nav-toggle" aria-label="Toggle menu" id="mobile-menu-toggle">
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </button>
+        </div>
+    </header>
+
+    <main>
+        <!-- Event Detail Section -->
+        <section class="event-detail-section">
+            <div class="event-detail-container">
+                <!-- Breadcrumbs -->
+                <div class="breadcrumb">
+                    <a href="events.html" class="breadcrumb-link">Calendrier</a>
+                    <svg class="breadcrumb-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                        <path d="M9 5l7 7-7 7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                    <span id="breadcrumb-event-name">Chargement...</span>
+                </div>
+
+                <!-- Main Layout Grid -->
+                <div class="detail-layout-grid">
+                    <!-- Left Column: Content -->
+                    <div class="detail-main-content">
+                        <div class="detail-header">
+                            <span class="detail-city-badge" id="detail-event-city">GENÈVE</span>
+                            <h1 class="detail-title" id="detail-event-title">Chargement de l'événement...</h1>
+                        </div>
+
+                        <!-- Meta Info List -->
+                        <div class="detail-meta-list">
+                            <div class="detail-meta-item">
+                                <svg class="detail-meta-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                    <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                                    <line x1="16" y1="2" x2="16" y2="6"></line>
+                                    <line x1="8" y1="2" x2="8" y2="6"></line>
+                                    <line x1="3" y1="10" x2="21" y2="10"></line>
+                                </svg>
+                                <span id="detail-event-date">Date de l'événement</span>
+                            </div>
+                            <div class="detail-meta-item">
+                                <svg class="detail-meta-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                    <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                                    <circle cx="9" cy="7" r="4"></circle>
+                                    <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                                    <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                                </svg>
+                                <span id="detail-event-age">Tranche d'âge</span>
+                            </div>
+                        </div>
+
+                        <!-- Main Image -->
+                        <div class="detail-image-wrapper">
+                            <img src="" alt="Aperçu de l'expérience" class="detail-image" id="detail-event-image">
+                        </div>
+
+                        <!-- Description -->
+                        <div class="detail-description-section">
+                            <h2 class="detail-section-title">L'Expérience</h2>
+                            <p class="detail-long-desc" id="detail-event-desc">
+                                Description détaillée en cours de chargement...
+                            </p>
+                        </div>
+
+                        <!-- Itinerary / Timeline -->
+                        <div class="detail-description-section">
+                            <h2 class="detail-section-title">Le Déroulement</h2>
+                            <div class="itinerary-timeline" id="detail-event-itinerary">
+                                <!-- Dynamic timeline nodes -->
+                            </div>
+                        </div>
+
+                        <!-- Inclusions -->
+                        <div class="detail-description-section">
+                            <h2 class="detail-section-title">Ce qui est inclus</h2>
+                            <div class="inclusions-grid" id="detail-event-inclusions">
+                                <!-- Dynamic inclusions list -->
+                            </div>
+                        </div>
+
+                        <!-- Venue -->
+                        <div class="venue-details-box">
+                            <h4 class="venue-title">Le Lieu</h4>
+                            <p class="venue-text" id="detail-event-venue">
+                                Informations sur le lieu en cours de chargement...
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Right Column: Sidebar Widget -->
+                    <aside class="booking-sidebar">
+                        <div class="sidebar-price-row">
+                            <span class="sidebar-price-label">Tarif unique</span>
+                            <span class="sidebar-price" id="detail-event-price">CHF 00</span>
+                        </div>
+
+                        <!-- Coupon Info Container -->
+                        <div class="coupon-info-box" style="border-bottom: 1px solid var(--border-color); padding-bottom: 25px; margin-top: -5px; margin-bottom: 20px;">
+                            <span style="font-size: 0.68rem; font-weight: 600; letter-spacing: 0.12em; color: var(--primary-navy); text-transform: uppercase; display: block; margin-bottom: 10px;">Offre de bienvenue</span>
+                            <div style="display: flex; justify-content: space-between; align-items: center; background: rgba(214,164,55,0.06); border: 1px dashed var(--luxury-gold); padding: 12px 16px;">
+                                <div>
+                                    <strong id="promo-code-val" style="font-family: 'Outfit', sans-serif; font-size: 0.95rem; color: var(--primary-navy); letter-spacing: 0.05em;">WELCOME10</strong>
+                                    <span style="display: block; font-size: 0.68rem; color: var(--text-muted); margin-top: 2px;">-CHF 10 sur votre réservation</span>
+                                </div>
+                                <button type="button" id="copy-promo-btn" class="filter-btn" style="padding: 6px 12px; margin: 0; font-size: 0.62rem; font-weight: 700; height: auto; border-color: var(--luxury-gold); color: var(--luxury-gold);">COPIER</button>
+                            </div>
+                            <div id="copy-status" style="font-size: 0.65rem; color: var(--luxury-gold); font-weight: 500; margin-top: 6px; min-height: 12px; transition: opacity 0.3s; opacity: 0; padding-left: 2px;">Code copié dans le presse-papiers !</div>
+                        </div>
+
+                        <!-- PRE-REGISTRATION CAPACITY TRACKER -->
+                        <div class="gender-capacity-tracker">
+                            <div class="tracker-section-title">
+                                <span>Pré-inscriptions</span>
+                                <span class="tracker-capacity-fraction" id="detail-capacity-ratio">0 / 0</span>
+                            </div>
+                            
+                            <div class="gender-ratio-bar-container" id="detail-gender-bar">
+                                <div class="capacity-bar-men" style="width: 50%"></div>
+                                <div class="capacity-bar-women" style="width: 50%"></div>
+                            </div>
+
+                            <div class="gender-metric-row">
+                                <div class="gender-metric-box">
+                                    <span class="gender-icon-label">
+                                        <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="var(--primary-navy)" stroke-width="3">
+                                            <circle cx="10" cy="14" r="6" />
+                                            <path d="M14 10l6-6M20 4h-5M20 4v5" />
+                                        </svg>
+                                        Hommes / Men
+                                    </span>
+                                    <span class="gender-value men" id="detail-men-count">0</span>
+                                </div>
+                                <div class="gender-metric-box">
+                                    <span class="gender-icon-label">
+                                        <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="var(--luxury-gold)" stroke-width="3">
+                                            <circle cx="12" cy="8" r="6" />
+                                            <path d="M12 14v6M9 17h6" />
+                                        </svg>
+                                        Femmes / Women
+                                    </span>
+                                    <span class="gender-value women" id="detail-women-count">0</span>
+                                </div>
+                            </div>
+                            <p class="booking-note-text" style="margin-top: 5px;">Aperçu en temps réel pour garantir la parité hommes-femmes.</p>
+                        </div>
+
+                        <!-- CONFIRMED AFTER PAYMENT TRACKER -->
+                        <div class="confirmed-payment-tracker" id="payment-tracker">
+                            <div class="payment-confirmed-header">
+                                <div class="payment-title-group">
+                                    <svg class="payment-secure-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+                                        <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+                                    </svg>
+                                    <span class="payment-title">Places confirmées</span>
+                                </div>
+                                <span class="payment-count-badge" id="detail-confirmed-ratio">0 / 0</span>
+                            </div>
+
+                            <div class="payment-progress-container">
+                                <div class="payment-progress-bar" id="detail-payment-bar" style="width: 0%"></div>
+                            </div>
+
+                            <div class="payment-breakdown-text" id="detail-payment-breakdown">
+                                0 Hommes et 0 Femmes confirmés après paiement.
+                            </div>
+                        </div>
+
+                        <!-- Action Button -->
+                        <button class="booking-action-btn" id="booking-action-btn">
+                            <span>S'INSCRIRE À L'EXPÉRIENCE</span>
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M5 12H19M19 12L13 6M19 12L13 18" stroke-linecap="round" stroke-linejoin="round" />
+                            </svg>
+                        </button>
+
+                        <p class="booking-note-text">
+                            * Après envoi de votre candidature, notre conciergerie validera votre profil sous 48h. Une fois validé, vous recevrez un lien de paiement sécurisé pour confirmer définitivement votre place.
+                        </p>
+                    </aside>
+                </div>
+            </div>
+        </section>
+
+        <!-- Related Events Slider Section -->
+        <section class="related-events-section" id="related-events-section">
+            <div class="related-events-container">
+                <div class="related-events-header">
+                    <div>
+                        <span class="related-events-tagline">CONTINUEZ L'AVENTURE</span>
+                        <h2 class="related-events-title">Événements Similaires</h2>
+                    </div>
+                    <div class="slider-controls">
+                        <button class="slider-arrow prev" id="slider-prev" aria-label="Précédent">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                <path d="M15 19l-7-7 7-7" stroke-linecap="round" stroke-linejoin="round" />
+                            </svg>
+                        </button>
+                        <button class="slider-arrow next" id="slider-next" aria-label="Suivant">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                <path d="M9 5l7 7-7 7" stroke-linecap="round" stroke-linejoin="round" />
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+                <div class="slider-viewport">
+                    <div class="slider-track" id="related-events-slider">
+                        <!-- Related events cards will be dynamically injected here -->
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="v2-footer">
+        <div class="footer-container">
+            <!-- Footer Upper -->
+            <div class="footer-upper">
+                
+                <!-- Col 1: Brand Info -->
+                <div class="footer-col brand-col">
+                    <a href="index.html#accueil" class="logo-link">
+                        <img src="assets/7sens.webp" alt="7Sens Logo" class="logo-img">
+                    </a>
+                    <p class="footer-tagline">Redefining offline human connections through exclusive curated experiences in Switzerland.</p>
+                    
+                    <div class="v2-footer-socials">
+                        <a href="https://instagram.com" aria-label="Instagram" target="_blank" class="v2-social-link btn-magnetic">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                <rect x="2" y="2" width="20" height="20" rx="5" ry="5" />
+                                <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
+                                <line x1="17.5" y1="6.5" x2="17.51" y2="6.5" />
+                            </svg>
+                        </a>
+                        <a href="https://facebook.com" aria-label="Facebook" target="_blank" class="v2-social-link btn-magnetic">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z" />
+                            </svg>
+                        </a>
+                        <a href="https://linkedin.com" aria-label="LinkedIn" target="_blank" class="v2-social-link btn-magnetic">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" />
+                                <rect x="2" y="9" width="4" height="12" />
+                                <circle cx="4" cy="4" r="2" />
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Col 2: Navigation -->
+                <div class="footer-col">
+                    <h5 class="v2-footer-heading">NAVIGATION</h5>
+                    <ul class="v2-footer-links">
+                        <li><a href="index.html#accueil">Accueil</a></li>
+                        <li><a href="index.html#about">À propos</a></li>
+                        <li><a href="events.html">Événements</a></li>
+                        <li><a href="index.html#how-it-works">Comment ça marche</a></li>
+                        <li><a href="index.html#testimonials">Témoignages</a></li>
+                        <li><a href="index.html#contact">Contact</a></li>
+                    </ul>
+                </div>
+
+                <!-- Col 3: Information -->
+                <div class="footer-col">
+                    <h5 class="v2-footer-heading">INFORMATIONS</h5>
+                    <ul class="v2-footer-links">
+                        <li><a href="index.html#faq">FAQ Accordion</a></li>
+                        <li><a href="index.html#accueil">Terms of Service</a></li>
+                        <li><a href="index.html#accueil">Privacy Policy</a></li>
+                        <li><a href="index.html#accueil">Legal Mentions</a></li>
+                    </ul>
+                </div>
+
+                <!-- Col 4: Newsletter -->
+                <div class="footer-col newsletter-col">
+                    <h5 class="v2-footer-heading">NEWSLETTER</h5>
+                    <p class="v2-newsletter-desc">Receive exclusive invitations and updates on upcoming Swiss events.</p>
+                    <form id="newsletter-form" class="v2-newsletter-form">
+                        <div class="v2-newsletter-input-wrap">
+                            <input type="email" placeholder="Your email address" required id="newsletter-email">
+                            <button type="submit" aria-label="Subscribe" class="v2-newsletter-btn">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M5 12H19M19 12L13 6M19 12L13 18" />
+                                </svg>
+                            </button>
+                        </div>
+                        <label class="v2-checkbox-label">
+                            <input type="checkbox" required id="newsletter-agree">
+                            <span class="v2-checkbox-box"></span>
+                            <span class="v2-checkbox-text">I agree to receive private circle invitations.</span>
+                        </label>
+                        <div class="form-status-msg" id="newsletter-form-status"></div>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Footer Middle: City Badges Running Line -->
+            <div class="v2-footer-cities-line">
+                <span>GENÈVE &nbsp;•&nbsp; LAUSANNE &nbsp;•&nbsp; ZURICH &nbsp;•&nbsp; MONTREUX &nbsp;•&nbsp; NEUCHÂTEL</span>
+            </div>
+
+            <!-- Footer Lower -->
+            <div class="footer-lower">
+                <p class="copyright">&copy; 2026 7Sens. All rights reserved.</p>
+                <p class="footer-crafted-by">Conçu en Suisse. <a href="index-v1.html" class="v2-version-link">← RETOUR VERSION I</a></p>
+                <a href="#accueil" class="v2-back-to-top btn-magnetic" id="back-to-top-btn">
+                    <span>BACK TO TOP</span>
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                        <path d="M12 19V5M12 5L5 12M12 5L19 12" stroke-linecap="round" stroke-linejoin="round" />
+                    </svg>
+                </a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JS Libraries (GSAP, Lenis Smooth Scroll) -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script src="https://unpkg.com/@studio-freight/lenis@1.0.34/dist/lenis.min.js"></script>
+
+    <!-- Unified Events Logic -->
+    <script src="events-data.js"></script>
+    <script src="events.js"></script>
+</body>
+
+</html>

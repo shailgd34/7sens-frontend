@@ -1,0 +1,676 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Candidature & Contact — 7Sens Premium Social Club</title>
+    <meta name="description" content="Prenez contact avec la conciergerie privée 7Sens pour postuler à l'adhésion membre ou organiser des partenariats événementiels en Suisse.">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="style-v2.css">
+    <link rel="stylesheet" href="events-page.css">
+
+    <style>
+        /* Scoped style overrides for luxury Contact/Candidacy page */
+        .contact-main {
+            padding: 100px 0 140px;
+            background-color: var(--warm-ivory);
+            color: var(--primary-navy);
+        }
+
+        .contact-container {
+            max-width: 1150px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1.15fr 0.85fr;
+            gap: 60px;
+            align-items: start;
+        }
+
+        @media (max-width: 991px) {
+            .contact-grid {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+        }
+
+        /* Form Desk styling */
+        .contact-card-desk {
+            background: rgba(255, 255, 255, 0.45);
+            border: 1px solid rgba(20, 43, 99, 0.06);
+            padding: 55px 45px;
+            box-shadow: 0 10px 40px rgba(16, 42, 94, 0.02);
+            position: relative;
+        }
+
+        @media (max-width: 576px) {
+            .contact-card-desk {
+                padding: 30px 20px;
+            }
+        }
+
+        /* Multistep Progress header */
+        .candidacy-steps-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 40px;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 20px;
+        }
+
+        .candidacy-step-node {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .candidacy-step-circle {
+            width: 22px;
+            height: 22px;
+            border-radius: 50%;
+            border: 1px solid var(--text-muted);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.65rem;
+            font-weight: 600;
+            color: var(--text-muted);
+            transition: all 0.3s;
+        }
+
+        .candidacy-step-node.active .candidacy-step-circle {
+            background-color: var(--primary-navy);
+            border-color: var(--primary-navy);
+            color: var(--warm-ivory);
+        }
+
+        .candidacy-step-node.completed .candidacy-step-circle {
+            background-color: var(--luxury-gold);
+            border-color: var(--luxury-gold);
+            color: var(--primary-navy);
+        }
+
+        .candidacy-step-label {
+            font-size: 0.65rem;
+            font-weight: 600;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: var(--text-muted);
+        }
+
+        .candidacy-step-node.active .candidacy-step-label {
+            color: var(--primary-navy);
+        }
+
+        .candidacy-step-line {
+            flex-grow: 1;
+            height: 1px;
+            background-color: var(--border-color);
+            margin: 0 15px;
+        }
+
+        /* Luxury Contact Form formatting */
+        .candidacy-form {
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+        }
+
+        .form-section-panel {
+            display: none;
+        }
+
+        .form-section-panel.active {
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+            animation: fadeIn 0.4s ease forwards;
+        }
+
+        .candidacy-input-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 24px;
+        }
+
+        @media (max-width: 576px) {
+            .candidacy-input-row {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+        }
+
+        .candidacy-input-group {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            position: relative;
+        }
+
+        .candidacy-input-group label {
+            font-size: 0.65rem;
+            font-weight: 600;
+            letter-spacing: 0.12em;
+            color: var(--primary-navy);
+            text-transform: uppercase;
+        }
+
+        /* Bottom border emphasis on focus */
+        .candidacy-input-group input, .candidacy-input-group select, .candidacy-input-group textarea {
+            background-color: rgba(255, 255, 255, 0.72) !important;
+            border: 1px solid rgba(20, 43, 99, 0.14) !important;
+            padding: 13px 18px !important;
+            font-family: 'Outfit', sans-serif !important;
+            font-size: 0.88rem !important;
+            border-radius: 0 !important;
+            color: var(--primary-navy) !important;
+            transition: all 0.3s var(--transition-smooth) !important;
+            width: 100%;
+        }
+
+        .candidacy-input-group input:focus, .candidacy-input-group select:focus, .candidacy-input-group textarea:focus {
+            border-color: var(--luxury-gold) !important;
+            background-color: #ffffff !important;
+            outline: none !important;
+            box-shadow: 0 4px 15px rgba(214, 164, 55, 0.06) !important;
+        }
+
+        /* Action Buttons */
+        .candidacy-nav-buttons {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 20px;
+            border-top: 1px solid var(--border-color);
+            padding-top: 25px;
+        }
+
+        .candidacy-btn {
+            background: none;
+            border: 1px solid var(--border-color);
+            color: var(--primary-navy);
+            padding: 13px 25px;
+            font-family: 'Outfit', sans-serif;
+            font-size: 0.72rem;
+            font-weight: 600;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .candidacy-btn:hover {
+            border-color: var(--primary-navy);
+            background-color: rgba(20, 43, 99, 0.02);
+        }
+
+        .candidacy-btn.primary-action {
+            background: var(--primary-navy);
+            border-color: var(--primary-navy);
+            color: var(--warm-ivory);
+        }
+
+        .candidacy-btn.primary-action:hover {
+            background: var(--luxury-gold);
+            border-color: var(--luxury-gold);
+            color: var(--primary-navy);
+        }
+
+        .candidacy-btn svg {
+            width: 12px;
+            height: 12px;
+            stroke: currentColor;
+            fill: none;
+        }
+
+        /* Right Side: Concierge Card & Map Info */
+        .contact-details-panel {
+            display: flex;
+            flex-direction: column;
+            gap: 40px;
+        }
+
+        .concierge-card-prestige {
+            background: linear-gradient(135deg, rgba(20, 43, 99, 0.98) 0%, rgba(27, 27, 27, 0.98) 100%);
+            border: 1px solid rgba(214, 164, 55, 0.25);
+            padding: 40px 35px;
+            color: var(--warm-ivory);
+            box-shadow: 0 15px 45px rgba(16, 42, 94, 0.05);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .concierge-card-prestige::after {
+            content: 'VII';
+            position: absolute;
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 11rem;
+            color: rgba(214, 164, 55, 0.03);
+            bottom: -50px;
+            right: -20px;
+            font-weight: 300;
+            line-height: 1;
+        }
+
+        .concierge-badge-gold {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            border: 1px solid var(--luxury-gold);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.3rem;
+            color: var(--luxury-gold);
+            margin-bottom: 25px;
+        }
+
+        .concierge-headline {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.6rem;
+            font-weight: 300;
+            color: var(--warm-ivory);
+            margin-bottom: 12px;
+            line-height: 1.3;
+        }
+
+        .concierge-subhead {
+            font-size: 0.8rem;
+            color: rgba(250, 248, 243, 0.65);
+            line-height: 1.5;
+            margin-bottom: 30px;
+        }
+
+        /* Specialized email listings */
+        .specialized-channels {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            border-top: 1px solid rgba(250, 248, 243, 0.1);
+            padding-top: 25px;
+        }
+
+        .channel-row {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .channel-label {
+            font-size: 0.62rem;
+            font-weight: 600;
+            letter-spacing: 0.15em;
+            color: var(--luxury-gold);
+            text-transform: uppercase;
+        }
+
+        .channel-value {
+            font-size: 0.95rem;
+            color: var(--warm-ivory);
+        }
+
+        .channel-value a {
+            color: inherit;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .channel-value a:hover {
+            color: var(--luxury-gold);
+        }
+
+        /* Swiss Map coordinate alignment box */
+        .concierge-map-block {
+            position: relative;
+            height: 250px;
+            border: 1px solid rgba(20, 43, 99, 0.05);
+            background-color: #faf8f4;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .concierge-map-marker {
+            position: absolute;
+            top: 55%;
+            left: 20%;
+            width: 10px;
+            height: 10px;
+            background-color: var(--luxury-gold);
+            border-radius: 50%;
+            box-shadow: 0 0 0 rgba(214, 164, 55, 0.4);
+            animation: pulse-marker 2.2s infinite;
+        }
+
+        .concierge-map-tooltip {
+            position: absolute;
+            top: 30%;
+            left: 25%;
+            background: var(--primary-navy);
+            color: var(--warm-ivory);
+            padding: 8px 14px;
+            font-size: 0.68rem;
+            font-family: 'Outfit', sans-serif;
+            letter-spacing: 0.05em;
+            border: 1px solid rgba(214, 164, 55, 0.25);
+            z-index: 3;
+        }
+
+        .concierge-map-tooltip strong {
+            color: var(--luxury-gold);
+            text-transform: uppercase;
+        }
+
+        .concierge-map-svg {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+        }
+
+        @keyframes pulse-marker {
+            0% { box-shadow: 0 0 0 0 rgba(214, 164, 55, 0.7); }
+            70% { box-shadow: 0 0 0 10px rgba(214, 164, 55, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(214, 164, 55, 0); }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(8px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Canvas Noise Overlay -->
+    <div class="noise-overlay"></div>
+
+    <!-- MAIN CONTACT CONTENT (No Header, No Footer) -->
+    <main class="contact-main">
+        <div class="contact-container">
+            
+            <div class="contact-grid">
+                
+                <!-- LEFT COLUMN: Candidates Structured Questionnaire Form -->
+                <div class="contact-card-desk">
+                    
+                    <!-- Steps navigation -->
+                    <div class="candidacy-steps-header">
+                        <div class="candidacy-step-node active" id="node-step-1">
+                            <span class="candidacy-step-circle">1</span>
+                            <span class="candidacy-step-label">Coordonnées</span>
+                        </div>
+                        <div class="candidacy-step-line"></div>
+                        <div class="candidacy-step-node" id="node-step-2">
+                            <span class="candidacy-step-circle">2</span>
+                            <span class="candidacy-step-label">Profil & Intérêts</span>
+                        </div>
+                        <div class="candidacy-step-line"></div>
+                        <div class="candidacy-step-node" id="node-step-3">
+                            <span class="candidacy-step-circle">3</span>
+                            <span class="candidacy-step-label">Candidature</span>
+                        </div>
+                    </div>
+
+                    <form id="contact-multistep-form" class="candidacy-form">
+                        
+                        <!-- PANEL 1: Contact coordinates -->
+                        <div class="form-section-panel active" id="panel-step-1">
+                            <h2 class="contact-page-heading" style="margin-bottom: 5px;">Vos Informations</h2>
+                            <p class="contact-page-subtext">Renseignez vos coordonnées directes de correspondance privée.</p>
+
+                            <div class="candidacy-input-row">
+                                <div class="candidacy-input-group">
+                                    <label for="candidacy-firstname">Prénom *</label>
+                                    <input type="text" id="candidacy-firstname" required placeholder="Jean">
+                                </div>
+                                <div class="candidacy-input-group">
+                                    <label for="candidacy-lastname">Nom *</label>
+                                    <input type="text" id="candidacy-lastname" required placeholder="Dupont">
+                                </div>
+                            </div>
+
+                            <div class="candidacy-input-row">
+                                <div class="candidacy-input-group">
+                                    <label for="candidacy-email">Adresse e-mail *</label>
+                                    <input type="email" id="candidacy-email" required placeholder="jean.dupont@example.ch">
+                                </div>
+                                <div class="candidacy-input-group">
+                                    <label for="candidacy-phone">Téléphone mobile *</label>
+                                    <input type="tel" id="candidacy-phone" required placeholder="+41 79 123 45 67">
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- PANEL 2: Demographics & Selection criteria -->
+                        <div class="form-section-panel" id="panel-step-2">
+                            <h2 class="contact-page-heading" style="margin-bottom: 5px;">Votre Profil Membre</h2>
+                            <p class="contact-page-subtext">Ces critères aident la conciergerie à configurer les tranches d'âges de nos tables.</p>
+
+                            <div class="candidacy-input-row">
+                                <div class="candidacy-input-group">
+                                    <label for="candidacy-age-bracket">Votre catégorie d'âge d'affinité *</label>
+                                    <select id="candidacy-age-bracket" required>
+                                        <option value="" disabled selected>Sélectionner...</option>
+                                        <option value="25-35">25 - 35 ans</option>
+                                        <option value="35-50">35 - 50 ans</option>
+                                        <option value="50-65">50 - 65 ans</option>
+                                    </select>
+                                </div>
+                                <div class="candidacy-input-group">
+                                    <label for="candidacy-interests">Intérêt principal *</label>
+                                    <select id="candidacy-interests" required>
+                                        <option value="" disabled selected>Sélectionner...</option>
+                                        <option value="gastronomie">Gastronomie & Tables privées</option>
+                                        <option value="oenologie">Dégustations Œnologiques</option>
+                                        <option value="mixologie">Mixologie & Ateliers Cocktails</option>
+                                        <option value="art">Art, Design & Conversations</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="candidacy-input-group">
+                                <label for="candidacy-city">Ville de résidence principale *</label>
+                                <input type="text" id="candidacy-city" required placeholder="Genève, Lausanne, etc.">
+                            </div>
+                        </div>
+
+                        <!-- PANEL 3: Text Candidacy and motivation submission -->
+                        <div class="form-section-panel" id="panel-step-3">
+                            <h2 class="contact-page-heading" style="margin-bottom: 5px;">Votre Motivation</h2>
+                            <p class="contact-page-subtext">Partagez avec le comité vos valeurs de partage social offline.</p>
+
+                            <div class="candidacy-input-group">
+                                <label for="candidacy-motivation">Pourquoi souhaitez-vous intégrer le cercle 7Sens ? *</label>
+                                <textarea id="candidacy-motivation" rows="5" required placeholder="Décrivez en quelques mots vos attentes vis-à-vis du club social et votre goût pour les échanges réels..."></textarea>
+                            </div>
+                        </div>
+
+                        <!-- Navigation Controls -->
+                        <div class="candidacy-nav-buttons">
+                            <button type="button" class="candidacy-btn" id="candidacy-prev-btn" style="visibility: hidden;">
+                                <svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M19 12H5M5 12L11 18M5 12L11 6"/></svg>
+                                <span>Précédent</span>
+                            </button>
+                            <button type="button" class="candidacy-btn primary-action" id="candidacy-next-btn">
+                                <span>Suivant</span>
+                                <svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M5 12H19M19 12L13 6M19 12L13 18"/></svg>
+                            </button>
+                        </div>
+
+                    </form>
+                </div>
+
+                <!-- RIGHT COLUMN: Luxury Concierge desk contacts & Coordinates Map -->
+                <div class="contact-details-panel">
+                    
+                    <!-- Concierge Prestige Card -->
+                    <div class="concierge-card-prestige">
+                        <div class="concierge-badge-gold">VII</div>
+                        <h3 class="concierge-headline">La Conciergerie Privée</h3>
+                        <p class="concierge-subhead">Notre secrétariat assure le suivi individuel de chaque candidature sous 24 heures ouvrées.</p>
+                        
+                        <div class="specialized-channels">
+                            <!-- candidacy inbox -->
+                            <div class="channel-row">
+                                <span class="channel-label">ADMISSIONS MEMBRES</span>
+                                <span class="channel-value"><a href="mailto:membres@7sens.ch">membres@7sens.ch</a></span>
+                            </div>
+                            
+                            <!-- events inbox -->
+                            <div class="channel-row">
+                                <span class="channel-label">RELATIONS HÔTELIÈRES & LOUNGES</span>
+                                <span class="channel-value"><a href="mailto:lounge@7sens.ch">lounge@7sens.ch</a></span>
+                            </div>
+
+                            <!-- direct helpline hours -->
+                            <div class="channel-row">
+                                <span class="channel-label">CONCIERGE DIRECT HEURES</span>
+                                <span class="channel-value">Lundi - Vendredi : 09:00 - 19:00</span>
+                                <span class="channel-value">Tél : +41 (0) 22 730 07 07</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Swiss Locator graphic -->
+                    <div class="concierge-map-block">
+                        <div class="concierge-map-marker"></div>
+                        <div class="concierge-map-tooltip">
+                            <strong>7Sens HQ Suisse</strong>
+                            <span>Rue du Rhône 12, Genève</span>
+                        </div>
+                        
+                        <svg class="concierge-map-svg" viewBox="0 0 400 250" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <rect width="100%" height="100%" fill="#F3EFE8" />
+                            <!-- Lake silhouettes lines -->
+                            <path d="M40 130 C90 110, 190 150, 270 100 C310 70, 350 60, 390 80" stroke="#102A5E" stroke-opacity="0.08" stroke-width="8" stroke-linecap="round" />
+                            <path d="M60 132 C100 115, 185 148, 265 102 C305 75, 345 63, 385 82" stroke="#FAF8F4" stroke-width="6" stroke-linecap="round" />
+                            <!-- Coordinates alignment grids -->
+                            <line x1="80" y1="0" x2="80" y2="250" stroke="#102A5E" stroke-opacity="0.03" />
+                            <line x1="180" y1="0" x2="180" y2="250" stroke="#102A5E" stroke-opacity="0.03" />
+                            <line x1="280" y1="0" x2="280" y2="250" stroke="#102A5E" stroke-opacity="0.03" />
+                            <line x1="0" y1="90" x2="400" y2="90" stroke="#102A5E" stroke-opacity="0.03" />
+                            <line x1="0" y1="175" x2="400" y2="175" stroke="#102A5E" stroke-opacity="0.03" />
+                        </svg>
+                    </div>
+
+                </div>
+
+            </div>
+            
+        </div>
+    </main>
+
+    <!-- Multistep wizard script -->
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            let currentStep = 1;
+            const totalSteps = 3;
+
+            const nextBtn = document.getElementById("candidacy-next-btn");
+            const prevBtn = document.getElementById("candidacy-prev-btn");
+            const form = document.getElementById("contact-multistep-form");
+
+            const updateStepsUI = () => {
+                // Toggle active states of progress circles
+                for (let i = 1; i <= totalSteps; i++) {
+                    const node = document.getElementById(`node-step-${i}`);
+                    if (i < currentStep) {
+                        node.classList.remove("active");
+                        node.classList.add("completed");
+                    } else if (i === currentStep) {
+                        node.classList.add("active");
+                        node.classList.remove("completed");
+                    } else {
+                        node.classList.remove("active");
+                        node.classList.remove("completed");
+                    }
+
+                    // Toggle panel views
+                    const panel = document.getElementById(`panel-step-${i}`);
+                    if (i === currentStep) {
+                        panel.classList.add("active");
+                    } else {
+                        panel.classList.remove("active");
+                    }
+                }
+
+                // Handle navigation buttons label
+                if (currentStep === 1) {
+                    prevBtn.style.visibility = "hidden";
+                } else {
+                    prevBtn.style.visibility = "visible";
+                }
+
+                if (currentStep === totalSteps) {
+                    nextBtn.innerHTML = `
+                        <span>Soumettre</span>
+                        <svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M5 12H19M19 12L13 6M19 12L13 18"/></svg>
+                    `;
+                } else {
+                    nextBtn.innerHTML = `
+                        <span>Suivant</span>
+                        <svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M5 12H19M19 12L13 6M19 12L13 18"/></svg>
+                    `;
+                }
+            };
+
+            // Form validation helper
+            const checkStepValidity = (step) => {
+                const activePanel = document.getElementById(`panel-step-${step}`);
+                const requiredInputs = activePanel.querySelectorAll("input[required], select[required], textarea[required]");
+                
+                let isValid = true;
+                requiredInputs.forEach(input => {
+                    if (!input.value.trim() || !input.checkValidity()) {
+                        input.reportValidity();
+                        isValid = false;
+                    }
+                });
+                return isValid;
+            };
+
+            nextBtn.addEventListener("click", () => {
+                // Validate active panel inputs
+                if (!checkStepValidity(currentStep)) return;
+
+                if (currentStep < totalSteps) {
+                    currentStep++;
+                    updateStepsUI();
+                } else {
+                    // Form submit triggered
+                    alert("Candidature soumise ! Notre comité de conciergerie a bien reçu votre demande et l'étudiera sous 24 heures.");
+                    form.reset();
+                    currentStep = 1;
+                    updateStepsUI();
+                }
+            });
+
+            prevBtn.addEventListener("click", () => {
+                if (currentStep > 1) {
+                    currentStep--;
+                    updateStepsUI();
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>

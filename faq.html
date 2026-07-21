@@ -1,0 +1,573 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Conciergerie & FAQ — 7Sens Premium Social Club</title>
+    <meta name="description" content="Découvrez les réponses de notre conciergerie sur les règles du club, la parité et le fonctionnement de nos listes d'attente privées.">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="style-v2.css">
+    <link rel="stylesheet" href="events-page.css">
+
+    <style>
+        /* Scoped style overrides for luxury FAQ page */
+        .faq-main {
+            padding: 100px 0 140px;
+            background-color: var(--warm-ivory);
+            position: relative;
+        }
+
+        .faq-container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        .faq-hero {
+            text-align: center;
+            margin-bottom: 80px;
+        }
+
+        .faq-tagline {
+            font-size: 0.7rem;
+            font-weight: 600;
+            letter-spacing: 0.25em;
+            color: var(--luxury-gold);
+            text-transform: uppercase;
+            margin-bottom: 15px;
+            display: block;
+        }
+
+        .faq-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(2.4rem, 6vw, 4rem);
+            font-weight: 300;
+            color: var(--primary-navy);
+            line-height: 1.15;
+        }
+
+        /* Split-screen layout */
+        .faq-split-grid {
+            display: grid;
+            grid-template-columns: 320px 1fr;
+            gap: 60px;
+            align-items: start;
+            margin-bottom: 80px;
+        }
+
+        @media (max-width: 991px) {
+            .faq-split-grid {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+        }
+
+        /* Left Side: Category Navigator */
+        .faq-nav-card {
+            background: rgba(255, 255, 255, 0.4);
+            border: 1px solid rgba(20, 43, 99, 0.05);
+            padding: 35px 25px;
+            position: sticky;
+            top: 40px;
+            box-shadow: 0 10px 30px rgba(16, 42, 94, 0.01);
+        }
+
+        .faq-nav-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.5rem;
+            color: var(--primary-navy);
+            font-weight: 400;
+            margin-bottom: 25px;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 15px;
+        }
+
+        .faq-nav-list {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .faq-nav-btn {
+            background: none;
+            border: none;
+            font-family: 'Outfit', sans-serif;
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 0.08em;
+            color: var(--text-muted);
+            text-align: left;
+            padding: 12px 15px;
+            cursor: pointer;
+            text-transform: uppercase;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .faq-nav-btn:hover, .faq-nav-btn.active {
+            color: var(--primary-navy);
+            background-color: rgba(20, 43, 99, 0.03);
+            border-left: 2px solid var(--luxury-gold);
+            padding-left: 18px;
+        }
+
+        .faq-nav-btn svg {
+            width: 12px;
+            height: 12px;
+            opacity: 0;
+            transition: opacity 0.3s, transform 0.3s;
+            stroke: var(--luxury-gold);
+        }
+
+        .faq-nav-btn.active svg {
+            opacity: 1;
+            transform: translateX(3px);
+        }
+
+        /* Right Side: Category Panels & Question Accordions */
+        .faq-panel {
+            display: none;
+        }
+
+        .faq-panel.active {
+            display: block;
+            animation: fadeIn 0.4s ease forwards;
+        }
+
+        .faq-panel-header {
+            margin-bottom: 25px;
+        }
+
+        .faq-panel-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.8rem;
+            color: var(--primary-navy);
+            font-weight: 300;
+        }
+
+        .faq-panel-desc {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            margin-top: 5px;
+        }
+
+        /* Premium card accordion styling */
+        .faq-card-list {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .faq-card-item {
+            background: rgba(255, 255, 255, 0.45);
+            border: 1px solid rgba(20, 43, 99, 0.06);
+            transition: all 0.3s var(--transition-smooth);
+        }
+
+        .faq-card-item:hover, .faq-card-item.active {
+            border-color: rgba(214, 164, 55, 0.3);
+            background-color: rgba(255, 255, 255, 0.8);
+            box-shadow: 0 10px 30px rgba(16, 42, 94, 0.02);
+        }
+
+        .faq-card-trigger {
+            width: 100%;
+            background: none;
+            border: none;
+            font-family: 'Outfit', sans-serif;
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: var(--primary-navy);
+            text-align: left;
+            padding: 22px 28px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .faq-card-icon {
+            width: 12px;
+            height: 12px;
+            position: relative;
+            flex-shrink: 0;
+            color: var(--luxury-gold);
+            transition: transform 0.3s;
+        }
+
+        .faq-card-icon::before, .faq-card-icon::after {
+            content: '';
+            position: absolute;
+            background-color: currentColor;
+            transition: transform 0.35s ease;
+        }
+
+        .faq-card-icon::before {
+            top: 5px;
+            left: 0;
+            width: 12px;
+            height: 2px;
+        }
+
+        .faq-card-icon::after {
+            top: 0;
+            left: 5px;
+            width: 2px;
+            height: 12px;
+        }
+
+        .faq-card-item.active .faq-card-icon::after {
+            transform: rotate(90deg) scaleY(0);
+        }
+
+        .faq-card-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s var(--transition-smooth);
+        }
+
+        .faq-card-inner {
+            padding: 0 28px 28px;
+            font-size: 0.88rem;
+            line-height: 1.65;
+            color: rgba(27, 27, 27, 0.78);
+        }
+
+        .faq-card-inner p {
+            margin: 0 0 12px;
+        }
+
+        .faq-card-inner p:last-child {
+            margin-bottom: 0;
+        }
+
+        /* Concierge Bottom Banner */
+        .faq-cta-banner {
+            background: linear-gradient(135deg, rgba(20, 43, 99, 0.95) 0%, rgba(27, 27, 27, 0.95) 100%);
+            border: 1px solid rgba(214, 164, 55, 0.25);
+            padding: 50px;
+            color: var(--warm-ivory);
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 25px;
+            box-shadow: 0 20px 50px rgba(16, 42, 94, 0.1);
+        }
+
+        .faq-cta-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.8rem;
+            font-weight: 300;
+            color: var(--warm-ivory);
+        }
+
+        .faq-cta-title span {
+            color: var(--luxury-gold);
+            font-style: italic;
+        }
+
+        .faq-cta-desc {
+            font-size: 0.88rem;
+            max-width: 600px;
+            line-height: 1.6;
+            color: rgba(250, 248, 243, 0.75);
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @media (max-width: 768px) {
+            .faq-card-trigger {
+                padding: 18px 20px;
+                font-size: 0.85rem;
+            }
+            .faq-card-inner {
+                padding: 0 20px 20px;
+            }
+            .faq-cta-banner {
+                padding: 30px 20px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Canvas Noise Overlay -->
+    <div class="noise-overlay"></div>
+
+    <!-- MAIN FAQ CONTENT (No Header, No Footer) -->
+    <main class="faq-main">
+        <div class="faq-container">
+            
+            <!-- Hero Title -->
+            <div class="faq-hero">
+                <span class="faq-tagline">RÉPONSES DE LA CONCIERGERIE</span>
+                <h1 class="faq-title">Une Clarté Absolue</h1>
+            </div>
+
+            <!-- Split Grid -->
+            <div class="faq-split-grid">
+                
+                <!-- LEFT: Categories -->
+                <aside class="faq-nav-card">
+                    <h3 class="faq-nav-title">Catégories</h3>
+                    <div class="faq-nav-list">
+                        <button class="faq-nav-btn active" onclick="switchFaqCategory('club')" id="btn-faq-club">
+                            <span>Le Club & Adhésion</span>
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12H19M19 12L13 6M19 12L13 18" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                        </button>
+                        <button class="faq-nav-btn" onclick="switchFaqCategory('experiences')" id="btn-faq-experiences">
+                            <span>Expériences & Parité</span>
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12H19M19 12L13 6M19 12L13 18" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                        </button>
+                        <button class="faq-nav-btn" onclick="switchFaqCategory('attente')" id="btn-faq-attente">
+                            <span>Réservations & Attente</span>
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12H19M19 12L13 6M19 12L13 18" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                        </button>
+                    </div>
+                </aside>
+
+                <!-- RIGHT: Accordions panels -->
+                <div class="faq-panels-wrapper">
+                    
+                    <!-- PANEL 1: Club & Adhesion -->
+                    <div id="panel-faq-club" class="faq-panel active">
+                        <div class="faq-panel-header">
+                            <h2 class="faq-panel-title">Le Club & L'Adhésion</h2>
+                            <p class="faq-panel-desc">Questions relatives au processus de sélection et à l'esprit du club social.</p>
+                        </div>
+
+                        <div class="faq-card-list">
+                            <div class="faq-card-item">
+                                <button class="faq-card-trigger" aria-expanded="false">
+                                    <span>Comment fonctionne la sélection des membres ?</span>
+                                    <span class="faq-card-icon"></span>
+                                </button>
+                                <div class="faq-card-content">
+                                    <div class="faq-card-inner">
+                                        <p>L'adhésion au club privé 7Sens se fait uniquement sur candidature via notre formulaire en ligne ou par parrainage. Notre comité évalue chaque profil de manière confidentielle afin de réunir des personnes partageant une même ouverture d'esprit, une courtoisie exemplaire et un respect mutuel des dynamiques de groupe.</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="faq-card-item">
+                                <button class="faq-card-trigger" aria-expanded="false">
+                                    <span>Y a-t-il des frais d'inscription ou un abonnement annuel ?</span>
+                                    <span class="faq-card-icon"></span>
+                                </button>
+                                <div class="faq-card-content">
+                                    <div class="faq-card-inner">
+                                        <p>L'étude de votre dossier de candidature est entièrement gratuite. Une fois admis, le club fonctionne sur un principe de <strong>paiement par expérience</strong> : vous ne réglez que les soirées, dégustations ou masterclasses auxquelles vous choisissez de participer, sans aucune obligation d'abonnement récurrent.</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="faq-card-item">
+                                <button class="faq-card-trigger" aria-expanded="false">
+                                    <span>Qu'attend-on d'un membre 7Sens ?</span>
+                                    <span class="faq-card-icon"></span>
+                                </button>
+                                <div class="faq-card-content">
+                                    <div class="faq-card-inner">
+                                        <p>Nous prônons la courtoisie, l'authenticité et la bienveillance. Tout membre s'engage à respecter notre charte éthique : pas d'agressivité, aucun comportement intrusif, ponctualité rigoureuse, et respect strict de la confidentialité des autres participants durant et après nos réunions.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- PANEL 2: Experiences & Parity -->
+                    <div id="panel-faq-experiences" class="faq-panel">
+                        <div class="faq-panel-header">
+                            <h2 class="faq-panel-title">Expériences & Parité</h2>
+                            <p class="faq-panel-desc">Comprendre comment se déroulent nos soirées et l'équilibre des participants.</p>
+                        </div>
+
+                        <div class="faq-card-list">
+                            <div class="faq-card-item">
+                                <button class="faq-card-trigger" aria-expanded="false">
+                                    <span>Comment se déroule concrètement une soirée type ?</span>
+                                    <span class="faq-card-icon"></span>
+                                </button>
+                                <div class="faq-card-content">
+                                    <div class="faq-card-inner">
+                                        <p>Chaque expérience commence par un verre d'accueil et une introduction décontractée par notre hôte de conciergerie. S'ensuit l'activité thématique (dégustation de vins fins, création de cocktails, ou atelier culinaire) par petits groupes paritaires alternés. Tout au long de la soirée, les participants changent d'interlocuteurs lors de sessions de discussions guidées pour permettre à chacun de faire connaissance naturellement.</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="faq-card-item">
+                                <button class="faq-card-trigger" aria-expanded="false">
+                                    <span>Comment la parité homme/femme est-elle garantie ?</span>
+                                    <span class="faq-card-icon"></span>
+                                </button>
+                                <div class="faq-card-content">
+                                    <div class="faq-card-inner">
+                                        <p>Notre système de réservation suit en temps réel le ratio des genres. Dès qu'un déséquilibre se profile (par exemple, plus de places réservées par des femmes que par des hommes pour une session), le système bloque temporairement les nouvelles inscriptions pour le genre excédentaire. Les réservations suivantes pour ce genre sont placées sur liste d'attente jusqu'à ce que l'équilibre soit rétabli.</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="faq-card-item">
+                                <button class="faq-card-trigger" aria-expanded="false">
+                                    <span>Quel est le rôle du calcul de l'âge par date de naissance ?</span>
+                                    <span class="faq-card-icon"></span>
+                                </button>
+                                <div class="faq-card-content">
+                                    <div class="faq-card-inner">
+                                        <p>Les tranches d'âges (ex. <em>35 - 50 ans</em>) sont indispensables pour assurer la cohérence et le confort d'échange des cercles. Afin d'éviter les déclarations erronées, la saisie manuelle de votre date de naissance complète est requise lors de la commande. Notre script vérifie automatiquement l'éligibilité calendaire et désactive le paiement si l'âge calculé est hors-tranche.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- PANEL 3: Bookings & Waitlist -->
+                    <div id="panel-faq-attente" class="faq-panel">
+                        <div class="faq-panel-header">
+                            <h2 class="faq-panel-title">Réservations & Attente</h2>
+                            <p class="faq-panel-desc">Gestion de vos commandes, coupons cadeaux, et participation aux listes d'attente simultanées.</p>
+                        </div>
+
+                        <div class="faq-card-list">
+                            <div class="faq-card-item">
+                                <button class="faq-card-trigger" aria-expanded="false">
+                                    <span>Puis-je rejoindre plusieurs listes d'attente en même temps ?</span>
+                                    <span class="faq-card-icon"></span>
+                                </button>
+                                <div class="faq-card-content">
+                                    <div class="faq-card-inner">
+                                        <p><strong>Oui, absolument.</strong> Si plusieurs expériences de votre catégorie d'âge sont complètes, vous pouvez vous inscrire sur leurs listes d'attente respectives de manière simultanée. Dès qu'une place se libère (par exemple à la suite d'une annulation ou d'un rééquilibrage de parité), notre conciergerie vous alerte immédiatement par SMS ou WhatsApp.</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="faq-card-item">
+                                <button class="faq-card-trigger" aria-expanded="false">
+                                    <span>Comment appliquer un code coupon de réduction ?</span>
+                                    <span class="faq-card-icon"></span>
+                                </button>
+                                <div class="faq-card-content">
+                                    <div class="faq-card-inner">
+                                        <p>Lors de l'étape de confirmation de réservation sur [booking.html](file:///e:/7sens/booking.html), insérez votre code coupon (ex. <em>WELCOME10</em> pour CHF 10.- d'accueil, ou <em>VIP20</em> pour CHF 20.- privilège) dans le champ dédié. Cliquez sur "Appliquer" : la réduction se calcule instantanément et met à jour le récapitulatif financier avant validation finale.</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="faq-card-item">
+                                <button class="faq-card-trigger" aria-expanded="false">
+                                    <span>Quelle est votre politique de remboursement ?</span>
+                                    <span class="faq-card-icon"></span>
+                                </button>
+                                <div class="faq-card-content">
+                                    <div class="faq-card-inner">
+                                        <p>Pour des raisons logistiques d'organisation de parité, les annulations signalées plus de 7 jours avant l'événement font l'objet d'un avoir intégral. Entre 3 et 7 jours, nous créditons 50% de la somme. À moins de 72 heures de l'expérience, aucun remboursement n'est effectué, car la place n'a pas pu être réallouée à temps à un membre en attente.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!-- Luxury Help Desk Banner -->
+            <div class="faq-cta-banner">
+                <h3 class="faq-cta-title">Besoin d'une <span>assistance personnalisée</span> ?</h3>
+                <p class="faq-cta-desc">Nos chargés de relations membres sont à votre entière disposition pour répondre à vos demandes spécifiques d'admissions ou d'organisation d'événements privés.</p>
+                <a href="contact.html" class="booking-action-btn" style="max-width: 280px; background-color: var(--luxury-gold); border-color: var(--luxury-gold); color: var(--primary-navy);">
+                    <span>ÉCRIRE À LA CONCIERGERIE</span>
+                </a>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- Accordion and Tabs Scripts -->
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            
+            // Accordion trigger handler
+            const initAccordions = () => {
+                const triggers = document.querySelectorAll(".faq-card-trigger");
+                
+                triggers.forEach(trigger => {
+                    trigger.addEventListener("click", () => {
+                        const item = trigger.closest(".faq-card-item");
+                        const content = item.querySelector(".faq-card-content");
+                        const isActive = item.classList.contains("active");
+
+                        // Close others in current panel
+                        const currentPanel = item.closest(".faq-panel");
+                        currentPanel.querySelectorAll(".faq-card-item").forEach(otherItem => {
+                            if (otherItem !== item && otherItem.classList.contains("active")) {
+                                otherItem.classList.remove("active");
+                                otherItem.querySelector(".faq-card-trigger").setAttribute("aria-expanded", "false");
+                                otherItem.querySelector(".faq-card-content").style.maxHeight = "0";
+                            }
+                        });
+
+                        // Toggle active state
+                        if (isActive) {
+                            item.classList.remove("active");
+                            trigger.setAttribute("aria-expanded", "false");
+                            content.style.maxHeight = "0";
+                        } else {
+                            item.classList.add("active");
+                            trigger.setAttribute("aria-expanded", "true");
+                            content.style.maxHeight = content.scrollHeight + "px";
+                        }
+                    });
+                });
+            };
+
+            initAccordions();
+        });
+
+        // Category switching handler
+        function switchFaqCategory(catName) {
+            // Manage active aside navigation state
+            document.querySelectorAll('.faq-nav-btn').forEach(btn => btn.classList.remove('active'));
+            const activeBtn = document.getElementById(`btn-faq-${catName}`);
+            if (activeBtn) activeBtn.classList.add('active');
+
+            // Toggle panels
+            const panels = document.querySelectorAll('.faq-panel');
+            const targetPanel = document.getElementById(`panel-faq-${catName}`);
+
+            panels.forEach(p => {
+                if (p.classList.contains('active')) {
+                    p.classList.remove('active');
+                }
+            });
+
+            if (targetPanel) {
+                targetPanel.classList.add('active');
+                
+                // Reset heights of accordion components in new active panel
+                targetPanel.querySelectorAll('.faq-card-item').forEach(item => {
+                    item.classList.remove('active');
+                    item.querySelector('.faq-card-trigger').setAttribute('aria-expanded', 'false');
+                    item.querySelector('.faq-card-content').style.maxHeight = '0';
+                });
+            }
+        }
+    </script>
+</body>
+
+</html>

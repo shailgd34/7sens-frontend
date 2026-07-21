@@ -1,0 +1,1180 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>7Sens — Premium Curated Group Experiences (Version II)</title>
+    <meta name="description"
+        content="Version II de la page 7Sens - Club social exclusif en Suisse. Des expériences de groupe authentiques pour esprits sélectifs.">
+    <meta name="robots" content="index, follow">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Outfit:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="style-v2.css">
+</head>
+
+<body>
+
+    <!-- Canvas Noise Overlay -->
+    <div class="noise-overlay"></div>
+
+    <!-- Header Navigation -->
+    <header class="v2-header" id="main-header">
+        <div class="header-container">
+            <a href="#accueil" class="logo-link" id="header-logo">
+                <img src="assets/7sens.webp" alt="7Sens Logo" class="logo-img">
+            </a>
+
+            <nav class="nav-menu" id="nav-menu">
+                <ul>
+                    <li><a href="#accueil" class="nav-link active">ACCUEIL</a></li>
+                    <li><a href="#about" class="nav-link">À PROPOS</a></li>
+                    <li><a href="events.html" class="nav-link">ÉVÉNEMENTS</a></li>
+                    <li><a href="#how-it-works" class="nav-link">COMMENT ÇA MARCHE</a></li>
+                    <li><a href="#faq" class="nav-link">FAQ</a></li>
+                    <li><a href="#testimonials" class="nav-link">TÉMOIGNAGES</a></li>
+                    <li><a href="#contact" class="nav-link">CONTACT</a></li>
+                </ul>
+            </nav>
+
+            <div class="header-cta">
+                <a href="#contact" class="btn btn-navy btn-magnetic" id="btn-header-appointment">
+                    <span>PRENDRE RENDEZ-VOUS</span>
+                </a>
+            </div>
+
+        </div>
+    </header>
+
+    <main>
+
+        <!-- SECTION 02: Full-screen Hero Section V2 (Full-Width Background Image) -->
+        <section class="v2-hero-section" id="accueil">
+            <div class="v2-hero-container">
+                <div class="v2-hero-content">
+                    <span class="v2-hero-tag reveal-text">CURATED SOCIAL EXPERIENCES</span>
+                    <h1 class="v2-hero-title reveal-text">Meaningful Connections Through Shared Experiences.</h1>
+                    <p class="v2-hero-subheading fade-in-up">Discover exclusive social events designed to let genuine
+                        chemistry develop naturally through conversation, activities, and unforgettable moments.</p>
+                    <div class="v2-hero-actions fade-in-up">
+                        <a href="events.html" class="btn btn-navy btn-arrow btn-magnetic" id="btn-v2-explore">
+                            <span>EXPLORE EVENTS</span>
+                            <svg class="btn-arrow-icon" viewBox="0 0 24 24" fill="none">
+                                <path d="M5 12H19M19 12L13 6M19 12L13 18" stroke="currentColor" stroke-width="1.5"
+                                    stroke-linecap="round" stroke-linejoin="round" />
+                            </svg>
+                        </a>
+                        <a href="#how-it-works" class="btn btn-outline btn-arrow btn-magnetic" id="btn-v2-how"
+                            style="border-color: var(--warm-ivory); color: var(--warm-ivory);">
+                            <span>HOW IT WORKS</span>
+                            <svg class="btn-arrow-icon" viewBox="0 0 24 24" fill="none">
+                                <path d="M5 12H19M19 12L13 6M19 12L13 18" stroke="currentColor" stroke-width="1.5"
+                                    stroke-linecap="round" stroke-linejoin="round" />
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 03: Featured Experiences V2 (Full-Width Horizontal Slider) -->
+        <section class="v2-featured-section" id="featured-experiences">
+            <div class="section-container">
+                <div class="section-header-row mb-60">
+                    <div>
+                        <span class="section-tagline">EVENTS CALENDAR</span>
+                        <h2 class="section-title">Featured Experiences</h2>
+                    </div>
+                    <div class="v2-slider-header-right">
+                        <span class="v2-section-desc">Hand-picked events where connections form effortlessly.</span>
+                        <div class="v2-slider-controls">
+                            <button class="v2-slider-arrow-btn v2-prev-btn" aria-label="Slide Left">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                    <path d="M19 12H5M5 12L11 6M5 12L11 18" stroke-linecap="round"
+                                        stroke-linejoin="round" />
+                                </svg>
+                            </button>
+                            <button class="v2-slider-arrow-btn v2-next-btn" aria-label="Slide Right">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                    <path d="M5 12H19M19 12L13 6M19 12L13 18" stroke-linecap="round"
+                                        stroke-linejoin="round" />
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Full-width slider viewport -->
+            <div class="v2-slider-viewport">
+                <div class="v2-slider-track">
+                    <!-- Card 1 -->
+                    <a href="event-detail.html?id=wine-degustation-geneva" class="v2-featured-card" data-cursor-hover="VIEW" style="text-decoration: none; color: inherit;">
+                        <div class="v2-card-image-frame overflow-hidden">
+                            <img src="assets/pexels-stephen-leonardi-587681991-35120679.jpg" alt="Wine Tasting Geneva"
+                                class="v2-card-img">
+                            <div class="v2-status-badge open">BOOKING OPEN</div>
+                        </div>
+                        <div class="v2-card-details">
+                            <div class="v2-card-top-row">
+                                <span class="v2-card-city">GENÈVE</span>
+                                <span class="v2-card-price">CHF 55</span>
+                            </div>
+                            <h3 class="v2-card-title">Wine Dégustation & Connections</h3>
+                            <div class="v2-card-info-grid">
+                                <div class="v2-info-item">
+                                    <span class="v2-info-label">DATE</span>
+                                    <span class="v2-info-value">24 Mai 2025</span>
+                                </div>
+                                <div class="v2-info-item">
+                                    <span class="v2-info-label">AGE TARGET</span>
+                                    <span class="v2-info-value">35 - 50 ans</span>
+                                </div>
+                                <div class="v2-info-item">
+                                    <span class="v2-info-label">CAPACITY</span>
+                                    <span class="v2-info-value">14 / 40 places</span>
+                                </div>
+                            </div>
+                            <div class="v2-card-booking-footer">
+                                <span class="v2-booking-btn-text">RESERVER L'EXPERIENCE</span>
+                                <svg class="v2-booking-arrow" viewBox="0 0 24 24" fill="none">
+                                    <path d="M5 12H19M19 12L13 6M19 12L13 18" stroke="currentColor" stroke-width="1.5"
+                                        stroke-linecap="round" stroke-linejoin="round" />
+                                </svg>
+                            </div>
+                        </div>
+                    </a>
+
+                    <!-- Card 2 -->
+                    <a href="event-detail.html?id=mixology-zurich" class="v2-featured-card" data-cursor-hover="VIEW" style="text-decoration: none; color: inherit;">
+                        <div class="v2-card-image-frame overflow-hidden">
+                            <img src="assets/pexels-jibarofoto-18482996.jpg" alt="Mixology Zurich" class="v2-card-img">
+                            <div class="v2-status-badge limited">FEW PLACES LEFT</div>
+                        </div>
+                        <div class="v2-card-details">
+                            <div class="v2-card-top-row">
+                                <span class="v2-card-city">ZURICH</span>
+                                <span class="v2-card-price">CHF 70</span>
+                            </div>
+                            <h3 class="v2-card-title">Cocktail & Mixology Club</h3>
+                            <div class="v2-card-info-grid">
+                                <div class="v2-info-item">
+                                    <span class="v2-info-label">DATE</span>
+                                    <span class="v2-info-value">14 Juin 2025</span>
+                                </div>
+                                <div class="v2-info-item">
+                                    <span class="v2-info-label">AGE TARGET</span>
+                                    <span class="v2-info-value">28 - 40 ans</span>
+                                </div>
+                                <div class="v2-info-item">
+                                    <span class="v2-info-label">CAPACITY</span>
+                                    <span class="v2-info-value">8 / 25 places</span>
+                                </div>
+                            </div>
+                            <div class="v2-card-booking-footer">
+                                <span class="v2-booking-btn-text">RESERVER L'EXPERIENCE</span>
+                                <svg class="v2-booking-arrow" viewBox="0 0 24 24" fill="none">
+                                    <path d="M5 12H19M19 12L13 6M19 12L13 18" stroke="currentColor" stroke-width="1.5"
+                                        stroke-linecap="round" stroke-linejoin="round" />
+                                </svg>
+                            </div>
+                        </div>
+                    </a>
+
+                    <!-- Card 3 -->
+                    <a href="event-detail.html?id=sunset-dinner-montreux" class="v2-featured-card" data-cursor-hover="VIEW" style="text-decoration: none; color: inherit;">
+                        <div class="v2-card-image-frame overflow-hidden">
+                            <img src="assets/pexels-seemihaozkan-21413075.jpg" alt="Sunset Dinner Montreux"
+                                class="v2-card-img">
+                            <div class="v2-status-badge waiting">WAITING LIST</div>
+                        </div>
+                        <div class="v2-card-details">
+                            <div class="v2-card-top-row">
+                                <span class="v2-card-city">MONTREUX</span>
+                                <span class="v2-card-price">CHF 60</span>
+                            </div>
+                            <h3 class="v2-card-title">Sunset Dinner Experience</h3>
+                            <div class="v2-card-info-grid">
+                                <div class="v2-info-item">
+                                    <span class="v2-info-label">DATE</span>
+                                    <span class="v2-info-value">7 Juin 2025</span>
+                                </div>
+                                <div class="v2-info-item">
+                                    <span class="v2-info-label">AGE TARGET</span>
+                                    <span class="v2-info-value">25 - 38 ans</span>
+                                </div>
+                                <div class="v2-info-item">
+                                    <span class="v2-info-label">CAPACITY</span>
+                                    <span class="v2-info-value">40 / 40 places</span>
+                                </div>
+                            </div>
+                            <div class="v2-card-booking-footer">
+                                <span class="v2-booking-btn-text">RESERVER L'EXPERIENCE</span>
+                                <svg class="v2-booking-arrow" viewBox="0 0 24 24" fill="none">
+                                    <path d="M5 12H19M19 12L13 6M19 12L13 18" stroke="currentColor" stroke-width="1.5"
+                                        stroke-linecap="round" stroke-linejoin="round" />
+                                </svg>
+                            </div>
+                        </div>
+                    </a>
+
+                    <!-- Card 4 -->
+                    <a href="event-detail.html?id=pottery-lausanne" class="v2-featured-card" data-cursor-hover="VIEW" style="text-decoration: none; color: inherit;">
+                        <div class="v2-card-image-frame overflow-hidden">
+                            <img src="assets/pexels-jibarofoto-14373426.jpg" alt="Pottery Lausanne" class="v2-card-img">
+                            <div class="v2-status-badge waiting">WAITING LIST</div>
+                        </div>
+                        <div class="v2-card-details">
+                            <div class="v2-card-top-row">
+                                <span class="v2-card-city">LAUSANNE</span>
+                                <span class="v2-card-price">CHF 45</span>
+                            </div>
+                            <h3 class="v2-card-title">Pottery & Social Workshop</h3>
+                            <div class="v2-card-info-grid">
+                                <div class="v2-info-item">
+                                    <span class="v2-info-label">DATE</span>
+                                    <span class="v2-info-value">28 Mai 2025</span>
+                                </div>
+                                <div class="v2-info-item">
+                                    <span class="v2-info-label">AGE TARGET</span>
+                                    <span class="v2-info-value">30 - 45 ans</span>
+                                </div>
+                                <div class="v2-info-item">
+                                    <span class="v2-info-label">CAPACITY</span>
+                                    <span class="v2-info-value">18 / 30 places</span>
+                                </div>
+                            </div>
+                            <div class="v2-card-booking-footer">
+                                <span class="v2-booking-btn-text">RESERVER L'EXPERIENCE</span>
+                                <svg class="v2-booking-arrow" viewBox="0 0 24 24" fill="none">
+                                    <path d="M5 12H19M19 12L13 6M19 12L13 18" stroke="currentColor" stroke-width="1.5"
+                                        stroke-linecap="round" stroke-linejoin="round" />
+                                </svg>
+                            </div>
+                        </div>
+                    </a>
+
+                    <!-- Card 5 -->
+                    <a href="event-detail.html?id=hiking-brunch-neuchatel" class="v2-featured-card" data-cursor-hover="VIEW" style="text-decoration: none; color: inherit;">
+                        <div class="v2-card-image-frame overflow-hidden">
+                            <img src="assets/pexels-caleboquendo-34516144.jpg" alt="Neuchatel Hiking"
+                                class="v2-card-img">
+                            <div class="v2-status-badge open">BOOKING OPEN</div>
+                        </div>
+                        <div class="v2-card-details">
+                            <div class="v2-card-top-row">
+                                <span class="v2-card-city">NEUCHÂTEL</span>
+                                <span class="v2-card-price">CHF 40</span>
+                            </div>
+                            <h3 class="v2-card-title">Outdoor Hiking & Brunch</h3>
+                            <div class="v2-card-info-grid">
+                                <div class="v2-info-item">
+                                    <span class="v2-info-label">DATE</span>
+                                    <span class="v2-info-value">21 Juin 2025</span>
+                                </div>
+                                <div class="v2-info-item">
+                                    <span class="v2-info-label">AGE TARGET</span>
+                                    <span class="v2-info-value">25 - 40 ans</span>
+                                </div>
+                                <div class="v2-info-item">
+                                    <span class="v2-info-label">CAPACITY</span>
+                                    <span class="v2-info-value">12 / 20 places</span>
+                                </div>
+                            </div>
+                            <div class="v2-card-booking-footer">
+                                <span class="v2-booking-btn-text">RESERVER L'EXPERIENCE</span>
+                                <svg class="v2-booking-arrow" viewBox="0 0 24 24" fill="none">
+                                    <path d="M5 12H19M19 12L13 6M19 12L13 18" stroke="currentColor" stroke-width="1.5"
+                                        stroke-linecap="round" stroke-linejoin="round" />
+                                </svg>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 04: How It Works V2 — Premium Icon Cards -->
+        <section class="v2-how-section" id="how-it-works">
+            <div class="section-container">
+
+                <!-- Section Header -->
+                <div class="v2-how-header">
+                    <span class="section-tagline section-tagline--light">OUR METHOD</span>
+                    <h2 class="v2-how-heading">Un processus simple<br>et discret.</h2>
+                    <p class="v2-how-subtext">7Sens orchestrates offline group experiences where<br>conversations flow
+                        naturally, bypassing algorithms.</p>
+                </div>
+
+                <!-- 3-Column Premium Cards -->
+                <div class="v2-how-cards">
+
+                    <!-- Card 1 -->
+                    <div class="v2-how-card">
+                        <div class="v2-how-card-top">
+                            <span class="v2-how-step-num">01</span>
+                            <div class="v2-how-icon-wrap">
+                                <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <circle cx="24" cy="16" r="8" stroke="currentColor" stroke-width="1.5" />
+                                    <path d="M8 40c0-8.837 7.163-16 16-16s16 7.163 16 16" stroke="currentColor"
+                                        stroke-width="1.5" stroke-linecap="round" />
+                                    <circle cx="38" cy="14" r="5" stroke="currentColor" stroke-width="1.2"
+                                        opacity="0.5" />
+                                    <path d="M43 28c3 2 5 5.5 5 9" stroke="currentColor" stroke-width="1.2"
+                                        stroke-linecap="round" opacity="0.5" />
+                                    <circle cx="10" cy="14" r="5" stroke="currentColor" stroke-width="1.2"
+                                        opacity="0.5" />
+                                    <path d="M5 28c-3 2-5 5.5-5 9" stroke="currentColor" stroke-width="1.2"
+                                        stroke-linecap="round" opacity="0.5" />
+                                </svg>
+                            </div>
+                        </div>
+                        <h3 class="v2-how-card-title">Apply & Join an Exclusive Event.</h3>
+                        <p class="v2-how-card-text">Apply for our private experiences calendar. Each event hosts
+                            carefully aligned profiles for maximum natural chemistry.</p>
+                        <div class="v2-how-card-line"></div>
+                    </div>
+
+                    <!-- Card 2 -->
+                    <div class="v2-how-card v2-how-card--accent">
+                        <div class="v2-how-card-top">
+                            <span class="v2-how-step-num">02</span>
+                            <div class="v2-how-icon-wrap">
+                                <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M24 6L28 16H40L30 23L34 34L24 27L14 34L18 23L8 16H20L24 6Z"
+                                        stroke="currentColor" stroke-width="1.5" stroke-linejoin="round" />
+                                    <circle cx="24" cy="24" r="5" fill="currentColor" opacity="0.15" />
+                                </svg>
+                            </div>
+                        </div>
+                        <h3 class="v2-how-card-title">Meet Naturally Through Activities.</h3>
+                        <p class="v2-how-card-text">Participate in wine tastings, pottery workshops, or sunset dinners.
+                            The shared activity creates organic connection without pressure.</p>
+                        <div class="v2-how-card-line"></div>
+                    </div>
+
+                    <!-- Card 3 -->
+                    <div class="v2-how-card">
+                        <div class="v2-how-card-top">
+                            <span class="v2-how-step-num">03</span>
+                            <div class="v2-how-icon-wrap">
+                                <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M16 24C16 24 18 28 24 28C30 28 32 24 32 24" stroke="currentColor"
+                                        stroke-width="1.5" stroke-linecap="round" />
+                                    <circle cx="17" cy="18" r="3" stroke="currentColor" stroke-width="1.5" />
+                                    <circle cx="31" cy="18" r="3" stroke="currentColor" stroke-width="1.5" />
+                                    <path d="M6 42c2-5 8-8 18-8s16 3 18 8" stroke="currentColor" stroke-width="1.5"
+                                        stroke-linecap="round" />
+                                    <path d="M24 28v6" stroke="currentColor" stroke-width="1.5"
+                                        stroke-linecap="round" />
+                                    <path d="M20 42l4-8 4 8" stroke="currentColor" stroke-width="1.2"
+                                        stroke-linecap="round" stroke-linejoin="round" opacity="0.5" />
+                                </svg>
+                            </div>
+                        </div>
+                        <h3 class="v2-how-card-title">Continue if There's Mutual Interest.</h3>
+                        <p class="v2-how-card-text">Indicate affinities discreetly via our concierge system. We securely
+                            share contact details only when both parties confirm mutual interest.</p>
+                        <div class="v2-how-card-line"></div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+
+        <!-- SECTION 05: Upcoming Swiss Experiences — Premium Image Cards -->
+        <section class="v2-timeline-section">
+            <div class="section-container">
+                <div class="v2-upcoming-header">
+                    <div>
+                        <span class="section-tagline">EXPLORE BY CITIES</span>
+                        <h2 class="section-title">Upcoming Swiss Experiences</h2>
+                    </div>
+                    <a href="#contact" class="v2-upcoming-view-all">
+                        View All Events
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                            <path d="M5 12H19M19 12L13 6M19 12L13 18" stroke-linecap="round" stroke-linejoin="round" />
+                        </svg>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Scrolling track — full bleed right -->
+            <div class="v2-upcoming-scroll-wrap">
+                <div class="v2-upcoming-track">
+
+                    <!-- Card 1: Geneva -->
+                    <div class="v2-upcoming-card"
+                        style="--card-bg: url('assets/pexels-stephen-leonardi-587681991-35120679.jpg')">
+                        <div class="v2-uc-inner">
+                            <div class="v2-uc-top">
+                                <span class="v2-uc-date">24 Mai 2025</span>
+                                <span class="v2-uc-status open">Booking Open</span>
+                            </div>
+                            <div class="v2-uc-bottom">
+                                <span class="v2-uc-city">GENÈVE</span>
+                                <h4 class="v2-uc-title">Wine Dégustation<br>& Connections</h4>
+                                <div class="v2-uc-meta">
+                                    <span class="v2-uc-price">CHF 55</span>
+                                    <span class="v2-uc-capacity">14 / 40 places</span>
+                                </div>
+                                <div class="v2-uc-cta">
+                                    <span>RÉSERVER</span>
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                        <path d="M5 12H19M19 12L13 6M19 12L13 18" stroke-linecap="round"
+                                            stroke-linejoin="round" />
+                                    </svg>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Card 2: Lausanne -->
+                    <div class="v2-upcoming-card" style="--card-bg: url('assets/pexels-marina-1852469-3958020.jpg')">
+                        <div class="v2-uc-inner">
+                            <div class="v2-uc-top">
+                                <span class="v2-uc-date">28 Mai 2025</span>
+                                <span class="v2-uc-status waiting">Waiting List</span>
+                            </div>
+                            <div class="v2-uc-bottom">
+                                <span class="v2-uc-city">LAUSANNE</span>
+                                <h4 class="v2-uc-title">Creative Pottery<br>Workshop</h4>
+                                <div class="v2-uc-meta">
+                                    <span class="v2-uc-price">CHF 45</span>
+                                    <span class="v2-uc-capacity">18 / 30 places</span>
+                                </div>
+                                <div class="v2-uc-cta">
+                                    <span>RÉSERVER</span>
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                        <path d="M5 12H19M19 12L13 6M19 12L13 18" stroke-linecap="round"
+                                            stroke-linejoin="round" />
+                                    </svg>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Card 3: Zurich -->
+                    <div class="v2-upcoming-card" style="--card-bg: url('assets/pexels-jibarofoto-18482996.jpg')">
+                        <div class="v2-uc-inner">
+                            <div class="v2-uc-top">
+                                <span class="v2-uc-date">14 Juin 2025</span>
+                                <span class="v2-uc-status open">Booking Open</span>
+                            </div>
+                            <div class="v2-uc-bottom">
+                                <span class="v2-uc-city">ZURICH</span>
+                                <h4 class="v2-uc-title">Sunset Lake<br>Dinner</h4>
+                                <div class="v2-uc-meta">
+                                    <span class="v2-uc-price">CHF 65</span>
+                                    <span class="v2-uc-capacity">22 / 35 places</span>
+                                </div>
+                                <div class="v2-uc-cta">
+                                    <span>RÉSERVER</span>
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                        <path d="M5 12H19M19 12L13 6M19 12L13 18" stroke-linecap="round"
+                                            stroke-linejoin="round" />
+                                    </svg>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Card 4: Montreux -->
+                    <div class="v2-upcoming-card" style="--card-bg: url('assets/pexels-maorattias-5152573.jpg')">
+                        <div class="v2-uc-inner">
+                            <div class="v2-uc-top">
+                                <span class="v2-uc-date">7 Juin 2025</span>
+                                <span class="v2-uc-status limited">Few Places Left</span>
+                            </div>
+                            <div class="v2-uc-bottom">
+                                <span class="v2-uc-city">MONTREUX</span>
+                                <h4 class="v2-uc-title">Cocktail &<br>Mixology Class</h4>
+                                <div class="v2-uc-meta">
+                                    <span class="v2-uc-price">CHF 70</span>
+                                    <span class="v2-uc-capacity">28 / 30 places</span>
+                                </div>
+                                <div class="v2-uc-cta">
+                                    <span>RÉSERVER</span>
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                        <path d="M5 12H19M19 12L13 6M19 12L13 18" stroke-linecap="round"
+                                            stroke-linejoin="round" />
+                                    </svg>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Card 5: Neuchâtel -->
+                    <div class="v2-upcoming-card" style="--card-bg: url('assets/pexels-caleboquendo-34516144.jpg')">
+                        <div class="v2-uc-inner">
+                            <div class="v2-uc-top">
+                                <span class="v2-uc-date">21 Juin 2025</span>
+                                <span class="v2-uc-status open">Booking Open</span>
+                            </div>
+                            <div class="v2-uc-bottom">
+                                <span class="v2-uc-city">NEUCHÂTEL</span>
+                                <h4 class="v2-uc-title">Outdoor Hiking<br>& Brunch</h4>
+                                <div class="v2-uc-meta">
+                                    <span class="v2-uc-price">CHF 40</span>
+                                    <span class="v2-uc-capacity">12 / 20 places</span>
+                                </div>
+                                <div class="v2-uc-cta">
+                                    <span>RÉSERVER</span>
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                        <path d="M5 12H19M19 12L13 6M19 12L13 18" stroke-linecap="round"
+                                            stroke-linejoin="round" />
+                                    </svg>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+
+        <!-- SECTION 06: The Curated Experience — Bento Grid -->
+        <section class="v2-gallery-section">
+            <div class="section-container">
+                <div class="v2-gallery-header">
+                    <span class="section-tagline">OUR SPHERE</span>
+                    <h2 class="section-title">The Curated Experience</h2>
+                    <p class="v2-gallery-intro">Hand-picked venues, activities, and atmospheres — designed to let
+                        genuine connections happen naturally.</p>
+                </div>
+
+                <!-- Bento grid inside container -->
+                <div class="v2-bento-grid">
+
+                    <!-- Cell A: Wide landscape — top left (col span 2) -->
+                    <div class="v2-bento-cell v2-bento-wide">
+                        <img src="assets/pexels-stephen-leonardi-587681991-35120679.jpg" alt="Wine Tasting"
+                            class="v2-bento-img">
+                        <div class="v2-bento-label">
+                            <span class="v2-bento-tag">Wine Tasting</span>
+                            <span class="v2-bento-city">Genève</span>
+                        </div>
+                    </div>
+
+                    <!-- Cell B: Tall portrait — top right -->
+                    <div class="v2-bento-cell v2-bento-tall">
+                        <img src="assets/pexels-maorattias-5152573.jpg" alt="Sunset Walk" class="v2-bento-img">
+                        <div class="v2-bento-label">
+                            <span class="v2-bento-tag">Sunset Walk</span>
+                            <span class="v2-bento-city">Montreux</span>
+                        </div>
+                    </div>
+
+                    <!-- Cell C: Square portrait — bottom left -->
+                    <div class="v2-bento-cell v2-bento-square">
+                        <img src="assets/pexels-marina-1852469-3958020.jpg" alt="Cooking Class" class="v2-bento-img">
+                        <div class="v2-bento-label">
+                            <span class="v2-bento-tag">Cooking Class</span>
+                            <span class="v2-bento-city">Lausanne</span>
+                        </div>
+                    </div>
+
+                    <div class="v2-bento-cell v2-bento-square">
+                        <img src="assets/pexels-visitalmaty-1143302.jpg" alt="Cooking Class" class="v2-bento-img">
+                        <div class="v2-bento-label">
+                            <span class="v2-bento-tag">Cooking Class</span>
+                            <span class="v2-bento-city">Lausanne</span>
+                        </div>
+                    </div>
+
+
+
+                </div><!-- /.v2-bento-grid -->
+            </div><!-- /.section-container -->
+        </section>
+
+
+
+
+        <!-- SECTION 07: Our Values -->
+        <section class="v2-why-section" id="about">
+            <div class="section-container">
+
+                <!-- Section header: 2-col split -->
+                <div class="v2-why-header">
+                    <div class="v2-why-header-left">
+                        <span class="section-tagline">OUR VALUES</span>
+                        <h2 class="v2-why-heading">Real chemistry<br>can't be scheduled.</h2>
+                    </div>
+                    <div class="v2-why-header-right">
+                        <p class="v2-why-text">Traditional dating apps reduce human relationships to algorithms and metrics. We believe genuine sparks happen offline — through shared experiences, organic laughter, and real conversation.</p>
+                    </div>
+                </div>
+
+                <!-- 4-column value cards -->
+                <div class="v2-why-values">
+
+                    <div class="v2-value-card">
+                        <span class="v2-value-num">01</span>
+                        <h3 class="v2-value-title">Authentic Discretion</h3>
+                        <p class="v2-value-text">Your privacy is paramount. We never share your information or expose your interest without explicit mutual consent.</p>
+                    </div>
+
+                    <div class="v2-value-card">
+                        <span class="v2-value-num">02</span>
+                        <h3 class="v2-value-title">Curated Communities</h3>
+                        <p class="v2-value-text">Every participant is vetted for shared values — curiosity, respect, and authenticity. Quality over quantity, always.</p>
+                    </div>
+
+                    <div class="v2-value-card">
+                        <span class="v2-value-num">03</span>
+                        <h3 class="v2-value-title">Offline-First Design</h3>
+                        <p class="v2-value-text">We engineer environments where chemistry develops naturally — no screens, no swiping. Just people, activities, and presence.</p>
+                    </div>
+
+                    <div class="v2-value-card">
+                        <span class="v2-value-num">04</span>
+                        <h3 class="v2-value-title">Swiss Precision</h3>
+                        <p class="v2-value-text">Every event detail — venue, timing, group size — is orchestrated with the meticulous care that defines Swiss hospitality.</p>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+
+        <!-- SECTION 08: Swiss Cities Club -->
+        <section class="v2-cities-section">
+            <div class="section-container">
+
+                <!-- Header -->
+                <div class="v2-cities-header">
+                    <div>
+                        <span class="section-tagline">OUR GEOGRAPHY</span>
+                        <h2 class="section-title">Swiss Cities Club</h2>
+                    </div>
+                    <p class="v2-cities-intro">We host exclusive events in Switzerland's most vibrant cities — each with its own character, culture, and community.</p>
+                </div>
+
+                <!-- City cards — row 1: 3 cols -->
+                <div class="v2-cities-grid">
+
+                    <!-- Geneva -->
+                    <div class="v2-city-card" style="--city-bg: url('assets/pexels-stephen-leonardi-587681991-35120679.jpg')">
+                        <div class="v2-city-inner">
+                            <div class="v2-city-top">
+                                <span class="v2-city-canton">GE — Suisse romande</span>
+                                <span class="v2-city-events-badge">4 events</span>
+                            </div>
+                            <div class="v2-city-bottom">
+                                <h3 class="v2-city-name">Genève</h3>
+                                <div class="v2-city-cta">
+                                    <span>EXPLORE</span>
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 12H19M19 12L13 6M19 12L13 18" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Lausanne -->
+                    <div class="v2-city-card" style="--city-bg: url('assets/pexels-marina-1852469-3958020.jpg')">
+                        <div class="v2-city-inner">
+                            <div class="v2-city-top">
+                                <span class="v2-city-canton">VD — Suisse romande</span>
+                                <span class="v2-city-events-badge">3 events</span>
+                            </div>
+                            <div class="v2-city-bottom">
+                                <h3 class="v2-city-name">Lausanne</h3>
+                                <div class="v2-city-cta">
+                                    <span>EXPLORE</span>
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 12H19M19 12L13 6M19 12L13 18" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Zurich -->
+                    <div class="v2-city-card" style="--city-bg: url('assets/pexels-jibarofoto-18482996.jpg')">
+                        <div class="v2-city-inner">
+                            <div class="v2-city-top">
+                                <span class="v2-city-canton">ZH — Deutschschweiz</span>
+                                <span class="v2-city-events-badge">5 events</span>
+                            </div>
+                            <div class="v2-city-bottom">
+                                <h3 class="v2-city-name">Zurich</h3>
+                                <div class="v2-city-cta">
+                                    <span>EXPLORE</span>
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 12H19M19 12L13 6M19 12L13 18" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Montreux -->
+                    <div class="v2-city-card v2-city-card--wide" style="--city-bg: url('assets/pexels-maorattias-5152573.jpg')">
+                        <div class="v2-city-inner">
+                            <div class="v2-city-top">
+                                <span class="v2-city-canton">VD — Suisse romande</span>
+                                <span class="v2-city-events-badge">2 events</span>
+                            </div>
+                            <div class="v2-city-bottom">
+                                <h3 class="v2-city-name">Montreux</h3>
+                                <div class="v2-city-cta">
+                                    <span>EXPLORE</span>
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 12H19M19 12L13 6M19 12L13 18" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Neuchâtel -->
+                    <div class="v2-city-card v2-city-card--wide" style="--city-bg: url('assets/pexels-caleboquendo-34516144.jpg')">
+                        <div class="v2-city-inner">
+                            <div class="v2-city-top">
+                                <span class="v2-city-canton">NE — Suisse romande</span>
+                                <span class="v2-city-events-badge">2 events</span>
+                            </div>
+                            <div class="v2-city-bottom">
+                                <h3 class="v2-city-name">Neuchâtel</h3>
+                                <div class="v2-city-cta">
+                                    <span>EXPLORE</span>
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 12H19M19 12L13 6M19 12L13 18" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- Counter strip inside dark section -->
+                <div class="v2-city-counter-strip">
+                    <div class="v2-counter-item">
+                        <span class="v2-counter-num">120<em>+</em></span>
+                        <span class="v2-counter-label">Events Hosted</span>
+                    </div>
+                    <div class="v2-counter-divider"></div>
+                    <div class="v2-counter-item">
+                        <span class="v2-counter-num">5 000<em>+</em></span>
+                        <span class="v2-counter-label">Verified Members</span>
+                    </div>
+                    <div class="v2-counter-divider"></div>
+                    <div class="v2-counter-item">
+                        <span class="v2-counter-num">95<em>%</em></span>
+                        <span class="v2-counter-label">Positive Feedback</span>
+                    </div>
+                    <div class="v2-counter-divider"></div>
+                    <div class="v2-counter-item">
+                        <span class="v2-counter-num">5</span>
+                        <span class="v2-counter-label">Swiss Cities</span>
+                    </div>
+                    <div class="v2-counter-divider"></div>
+                    <div class="v2-counter-item">
+                        <span class="v2-counter-num">100<em>%</em></span>
+                        <span class="v2-counter-label">Offline & Discreet</span>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+
+
+        <!-- SECTION 10: Testimonials V2 (Premium Review Layout) -->
+        <section class="v2-reviews-section" id="testimonials">
+            <div class="section-container">
+                <!-- Header -->
+                <div class="v2-reviews-header">
+                    <div>
+                        <span class="section-tagline">VOICES OF THE CLUB</span>
+                        <h2 class="section-title">Verified Member Reviews</h2>
+                    </div>
+                    <p class="v2-reviews-intro">Hear from our members who traded screen fatigue for real, offline chemistry defined by premium Swiss hospitality.</p>
+                </div>
+
+                <!-- Review Cards -->
+                <div class="v2-reviews-grid">
+                    
+                    <!-- Card 1 -->
+                    <div class="v2-review-card">
+                        <div class="v2-review-stars">★★★★★</div>
+                        <p class="v2-review-quote">"A deeply refined way to connect. I met fascinating, successful professionals in a completely relaxed setting without speed-dating pressure."</p>
+                        <div class="v2-review-user">
+                            <div class="v2-user-avatar" style="background-image: url('assets/pexels-alex-salazar-1109338-17148098.jpg')"></div>
+                            <div class="v2-user-meta">
+                                <span class="v2-user-name">Clara Dubois</span>
+                                <span class="v2-user-location">Genève • Member since 2024</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Card 2 -->
+                    <div class="v2-review-card">
+                        <div class="v2-review-stars">★★★★★</div>
+                        <p class="v2-review-quote">"7Sens focuses entirely on genuine human moments. Engaging in curated activities together was the perfect natural icebreaker."</p>
+                        <div class="v2-review-user">
+                            <div class="v2-user-avatar" style="background-image: url('assets/pexels-marwen-larafa-2159807713-36606989.jpg')"></div>
+                            <div class="v2-user-meta">
+                                <span class="v2-user-name">Thomas Keller</span>
+                                <span class="v2-user-location">Zurich • Member since 2023</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Card 3 -->
+                    <div class="v2-review-card">
+                        <div class="v2-review-stars">★★★★★</div>
+                        <p class="v2-review-quote">"The post-event coordination is exceptionally discreet and smooth. Safe, exclusive, and authentic — exactly what Switzerland needed."</p>
+                        <div class="v2-review-user">
+                            <div class="v2-user-avatar" style="background-image: url('assets/pexels-antonbru-954623.jpg')"></div>
+                            <div class="v2-user-meta">
+                                <span class="v2-user-name">Elena Rossi</span>
+                                <span class="v2-user-location">Lugano • Member since 2024</span>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+
+        <!-- SECTION 11: Call To Action (Modern Editorial Box) -->
+        <section class="v2-cta-section">
+            <div class="section-container">
+                <div class="v2-cta-box">
+                    <div class="v2-cta-content">
+                        <span class="v2-cta-tag">THE CLIQUE</span>
+                        <h2 class="v2-cta-heading">Elevate your social circles.</h2>
+                        <p class="v2-cta-text">Apply for our private membership today. Our concierge reviews each profile to match age, interests, and values for our curated Swiss experiences.</p>
+                    </div>
+                    <div class="v2-cta-action-wrap">
+                        <a href="#contact" class="v2-cta-button btn-magnetic">
+                            <span>APPLY FOR MEMBERSHIP</span>
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                <path d="M5 12H19M19 12L13 6M19 12L13 18" stroke-linecap="round" stroke-linejoin="round" />
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- SECTION 12: FAQ Accordion V2 (Sticky Left Side Layout) -->
+        <section class="v2-faq-section" id="faq">
+            <div class="section-container grid-12">
+                
+                <!-- Left Column: Sticky Header -->
+                <div class="v2-faq-sidebar col-4">
+                    <div class="v2-faq-sticky-container">
+                        <span class="section-tagline">QUESTIONS & ANSWERS</span>
+                        <h2 class="v2-faq-heading-sticky">Frequently<br>Asked Questions</h2>
+                        <p class="v2-faq-subtext">Everything you need to know about our selection process, event formats, and membership rules.</p>
+                        <a href="#contact" class="v2-faq-contact-link">
+                            Still have questions? Contact us
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 12H19M19 12L13 6M19 12L13 18" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Right Column: Accordion Items -->
+                <div class="v2-faq-accordion-col col-8">
+                    <div class="v2-faq-wrapper">
+                        
+                        <!-- FAQ 1 -->
+                        <div class="v2-faq-item">
+                            <button class="v2-faq-trigger" aria-expanded="false">
+                                <span class="v2-faq-question">Where do the 7Sens events take place?</span>
+                                <span class="v2-faq-icon">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                        <path d="M12 5v14M5 12h14" stroke-linecap="round" stroke-linejoin="round"/>
+                                    </svg>
+                                </span>
+                            </button>
+                            <div class="v2-faq-content">
+                                <div class="v2-faq-inner">
+                                    <p>Our group experiences are hosted in private lounges of premium hotels, luxury vineyards, private galleries, and refined outdoor sites across Switzerland — primarily Geneva, Lausanne, Montreux, and Zurich.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- FAQ 2 -->
+                        <div class="v2-faq-item">
+                            <button class="v2-faq-trigger" aria-expanded="false">
+                                <span class="v2-faq-question">How is participant selection handled?</span>
+                                <span class="v2-faq-icon">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                        <path d="M12 5v14M5 12h14" stroke-linecap="round" stroke-linejoin="round"/>
+                                    </svg>
+                                </span>
+                            </button>
+                            <div class="v2-faq-content">
+                                <div class="v2-faq-inner">
+                                    <p>To preserve a secure, premium environment, entry is application-only. Our concierge evaluates candidate values (respect, authenticity, curiosity) to compose harmoniously balanced age and affinity groups.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- FAQ 3 -->
+                        <div class="v2-faq-item">
+                            <button class="v2-faq-trigger" aria-expanded="false">
+                                <span class="v2-faq-question">Is this a dating website or speed-dating?</span>
+                                <span class="v2-faq-icon">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                        <path d="M12 5v14M5 12h14" stroke-linecap="round" stroke-linejoin="round"/>
+                                    </svg>
+                                </span>
+                            </button>
+                            <div class="v2-faq-content">
+                                <div class="v2-faq-inner">
+                                    <p>No. 7Sens does not employ dating algorithms or swipe screens. We are a premium social club that hosts real-world events. Chemistry arises naturally from shared interactive experiences, not matching profiles.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- FAQ 4 -->
+                        <div class="v2-faq-item">
+                            <button class="v2-faq-trigger" aria-expanded="false">
+                                <span class="v2-faq-question">What happens after an event if there is mutual interest?</span>
+                                <span class="v2-faq-icon">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                        <path d="M12 5v14M5 12h14" stroke-linecap="round" stroke-linejoin="round"/>
+                                    </svg>
+                                </span>
+                            </button>
+                            <div class="v2-faq-content">
+                                <div class="v2-faq-inner">
+                                    <p>After the event, you tell our concierge privately who you'd like to stay in touch with. If there is mutual interest, we share contact details in absolute discretion so you can schedule your next meet.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+
+        <!-- SECTION 13: Contact / Application Section (Vetting Form) -->
+        <section class="v2-contact-section" id="contact">
+            <div class="section-container">
+                <div class="v2-contact-grid">
+                    
+                    <!-- Left: Form Side -->
+                    <div class="v2-contact-form-wrapper">
+                        <span class="section-tagline">APPLY FOR MEMBERSHIP</span>
+                        <h2 class="v2-contact-heading">Plan your interview.</h2>
+                        <p class="v2-contact-subtext">Submit your profile to our conciergerie. We compose group invitations based on age compatibility, interests, and shared chemistry values.</p>
+
+                        <form id="v2-contact-form" class="v2-luxury-form">
+                            <div class="v2-form-row">
+                                <div class="v2-form-group">
+                                    <label for="form-name">Full Name</label>
+                                    <input type="text" id="form-name" required placeholder="e.g. Clara Dubois">
+                                </div>
+                                <div class="v2-form-group">
+                                    <label for="form-email">Email Address</label>
+                                    <input type="email" id="form-email" required placeholder="e.g. clara@gmail.com">
+                                </div>
+                            </div>
+                            
+                            <div class="v2-form-row">
+                                <div class="v2-form-group">
+                                    <label for="form-phone">Phone Number</label>
+                                    <input type="tel" id="form-phone" placeholder="e.g. +41 78 123 45 67">
+                                </div>
+                                <div class="v2-form-group">
+                                    <label for="form-city">Preferred City Club</label>
+                                    <select id="form-city">
+                                        <option value="Geneve">Genève Club</option>
+                                        <option value="Lausanne">Lausanne Club</option>
+                                        <option value="Montreux">Montreux Club</option>
+                                        <option value="Zurich">Zurich Club</option>
+                                        <option value="Other">Other / Switzerland</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="v2-form-group">
+                                <label for="form-message">Why do you wish to join the cercle?</label>
+                                <textarea id="form-message" rows="3" placeholder="Share your vision of offline, authentic connections..."></textarea>
+                            </div>
+
+                            <button type="submit" class="v2-form-submit-btn btn-magnetic" id="btn-v2-submit-contact">
+                                <span>SUBMIT APPLICATION</span>
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                    <path d="M5 12H19M19 12L13 6M19 12L13 18" stroke-linecap="round" stroke-linejoin="round" />
+                                </svg>
+                            </button>
+                            
+                            <div class="form-status-msg" id="contact-form-status"></div>
+                        </form>
+                    </div>
+
+                    <!-- Right: Info / Guidelines Card -->
+                    <div class="v2-contact-info-wrapper">
+                        <div class="v2-guidelines-card">
+                            <h3 class="v2-guidelines-title">Club Discretion</h3>
+                            
+                            <div class="v2-guideline-item">
+                                <span class="v2-guideline-num">01</span>
+                                <div class="v2-guideline-content">
+                                    <h4>Absolute Confidentiality</h4>
+                                    <p>Your application and membership data are protected by strict privacy guidelines. We never index or publish profiles.</p>
+                                </div>
+                            </div>
+
+                            <div class="v2-guideline-item">
+                                <span class="v2-guideline-num">02</span>
+                                <div class="v2-guideline-content">
+                                    <h4>Hand-Composed Chemistry</h4>
+                                    <p>Our conciergerie curates group seating charts and invitation cohorts individually. No cold algorithms.</p>
+                                </div>
+                            </div>
+
+                            <div class="v2-guideline-item">
+                                <span class="v2-guideline-num">03</span>
+                                <div class="v2-guideline-content">
+                                    <h4>Discreet Invoicing</h4>
+                                    <p>Event fees and membership dues are invoiced securely per experience, with zero automated recurring billings.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Conciergerie communications -->
+                        <div class="v2-concierge-block">
+                            <span class="v2-concierge-tag">CONCIERGERIE HUB</span>
+                            <p class="v2-concierge-detail">Rue du Rhône 12, 1204 Genève</p>
+                            <p class="v2-concierge-links">
+                                <a href="mailto:hello@7sens.ch">hello@7sens.ch</a>
+                                <span>•</span>
+                                <a href="tel:+41227300707">+41 22 730 07 07</a>
+                            </p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="v2-footer">
+        <div class="footer-container">
+            <!-- Footer Upper -->
+            <div class="footer-upper">
+                
+                <!-- Col 1: Brand Info -->
+                <div class="footer-col brand-col">
+                    <a href="#accueil" class="logo-link">
+                        <img src="assets/7sens.webp" alt="7Sens Logo" class="logo-img">
+                    </a>
+                    <p class="footer-tagline">Redefining offline human connections through exclusive curated experiences in Switzerland.</p>
+                    
+                    <div class="v2-footer-socials">
+                        <a href="https://instagram.com" aria-label="Instagram" target="_blank" class="v2-social-link btn-magnetic">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                <rect x="2" y="2" width="20" height="20" rx="5" ry="5" />
+                                <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
+                                <line x1="17.5" y1="6.5" x2="17.51" y2="6.5" />
+                            </svg>
+                        </a>
+                        <a href="https://facebook.com" aria-label="Facebook" target="_blank" class="v2-social-link btn-magnetic">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z" />
+                            </svg>
+                        </a>
+                        <a href="https://linkedin.com" aria-label="LinkedIn" target="_blank" class="v2-social-link btn-magnetic">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" />
+                                <rect x="2" y="9" width="4" height="12" />
+                                <circle cx="4" cy="4" r="2" />
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Col 2: Navigation -->
+                <div class="footer-col">
+                    <h5 class="v2-footer-heading">NAVIGATION</h5>
+                    <ul class="v2-footer-links">
+                        <li><a href="#accueil">Accueil</a></li>
+                        <li><a href="#about">À propos</a></li>
+                        <li><a href="events.html">Événements</a></li>
+                        <li><a href="#how-it-works">Comment ça marche</a></li>
+                        <li><a href="#testimonials">Témoignages</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </div>
+
+                <!-- Col 3: Information -->
+                <div class="footer-col">
+                    <h5 class="v2-footer-heading">INFORMATIONS</h5>
+                    <ul class="v2-footer-links">
+                        <li><a href="#faq">FAQ Accordion</a></li>
+                        <li><a href="#accueil">Terms of Service</a></li>
+                        <li><a href="#accueil">Privacy Policy</a></li>
+                        <li><a href="#accueil">Legal Mentions</a></li>
+                    </ul>
+                </div>
+
+                <!-- Col 4: Newsletter -->
+                <div class="footer-col newsletter-col">
+                    <h5 class="v2-footer-heading">NEWSLETTER</h5>
+                    <p class="v2-newsletter-desc">Receive exclusive invitations and updates on upcoming Swiss events.</p>
+                    <form id="newsletter-form" class="v2-newsletter-form">
+                        <div class="v2-newsletter-input-wrap">
+                            <input type="email" placeholder="Your email address" required id="newsletter-email">
+                            <button type="submit" aria-label="Subscribe" class="v2-newsletter-btn">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M5 12H19M19 12L13 6M19 12L13 18" />
+                                </svg>
+                            </button>
+                        </div>
+                        <label class="v2-checkbox-label">
+                            <input type="checkbox" required id="newsletter-agree">
+                            <span class="v2-checkbox-box"></span>
+                            <span class="v2-checkbox-text">I agree to receive private circle invitations.</span>
+                        </label>
+                        <div class="form-status-msg" id="newsletter-form-status"></div>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Footer Middle: City Badges Running Line -->
+            <div class="v2-footer-cities-line">
+                <span>GENÈVE &nbsp;•&nbsp; LAUSANNE &nbsp;•&nbsp; ZURICH &nbsp;•&nbsp; MONTREUX &nbsp;•&nbsp; NEUCHÂTEL</span>
+            </div>
+
+            <!-- Footer Lower -->
+            <div class="footer-lower">
+                <p class="copyright">&copy; 2026 7Sens. All rights reserved.</p>
+                <p class="footer-crafted-by">Conçu en Suisse. <a href="index.html" class="v2-version-link">← RETOUR VERSION I</a></p>
+                <a href="#accueil" class="v2-back-to-top btn-magnetic" id="back-to-top-btn">
+                    <span>BACK TO TOP</span>
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                        <path d="M12 19V5M12 5L5 12M12 5L19 12" stroke-linecap="round" stroke-linejoin="round" />
+                    </svg>
+                </a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JS Libraries (GSAP, Lenis Smooth Scroll) -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script src="https://unpkg.com/@studio-freight/lenis@1.0.34/dist/lenis.min.js"></script>
+
+    <!-- Main Logic Script -->
+    <script src="main.js"></script>
+    <script src="main-v2.js"></script>
+</body>
+
+</html>

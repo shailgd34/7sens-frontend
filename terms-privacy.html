@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Conditions Générales & Confidentialité — 7Sens Premium Social Club</title>
+    <meta name="description"
+        content="Consultez les conditions d'adhésion et la politique de confidentialité du club privé 7Sens.">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Outfit:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="style-v2.css">
+    <link rel="stylesheet" href="events-page.css">
+
+    <style>
+        /* Scoped style overrides for editorial terms page */
+        .legal-main {
+            padding: 100px 0 140px;
+            background-color: var(--warm-ivory);
+            position: relative;
+        }
+
+        .legal-container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        .legal-hero {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .legal-tagline {
+            font-size: 0.7rem;
+            font-weight: 600;
+            letter-spacing: 0.2em;
+            color: var(--luxury-gold);
+            text-transform: uppercase;
+            margin-bottom: 15px;
+            display: block;
+        }
+
+        .legal-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(2.2rem, 5vw, 3.4rem);
+            font-weight: 300;
+            color: var(--primary-navy);
+            line-height: 1.15;
+        }
+
+        .legal-meta {
+            font-size: 0.78rem;
+            color: var(--text-muted);
+            margin-top: 15px;
+            letter-spacing: 0.05em;
+        }
+
+        /* Editorial content blocks */
+        .legal-nav-tabs {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            border-bottom: 1px solid var(--border-color);
+            margin-bottom: 50px;
+            padding-bottom: 1px;
+        }
+
+        .legal-tab-btn {
+            background: none;
+            border: none;
+            font-family: 'Outfit', sans-serif;
+            font-size: 0.78rem;
+            font-weight: 600;
+            letter-spacing: 0.12em;
+            color: var(--text-muted);
+            padding: 15px 10px;
+            cursor: pointer;
+            position: relative;
+            text-transform: uppercase;
+            transition: color 0.3s;
+        }
+
+        .legal-tab-btn.active {
+            color: var(--primary-navy);
+        }
+
+        .legal-tab-btn.active::after {
+            content: '';
+            position: absolute;
+            bottom: -1px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background-color: var(--luxury-gold);
+        }
+
+        .legal-section-content {
+            display: none;
+            animation: fadeIn 0.5s ease forwards;
+        }
+
+        .legal-section-content.active {
+            display: block;
+        }
+
+        .legal-article-card {
+            background: rgba(255, 255, 255, 0.4);
+            border: 1px solid rgba(20, 43, 99, 0.06);
+            padding: 40px;
+            box-shadow: 0 10px 30px rgba(16, 42, 94, 0.01);
+            display: flex;
+            flex-direction: column;
+            gap: 35px;
+        }
+
+        .legal-clause {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .legal-clause-num {
+            font-size: 0.65rem;
+            font-weight: 600;
+            color: var(--luxury-gold);
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+        }
+
+        .legal-clause-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.85rem !important;
+            font-weight: 400;
+            color: var(--primary-navy);
+        }
+
+        .legal-clause-text {
+            font-size: 0.95rem;
+            line-height: 1.7;
+            color: rgba(27, 27, 27, 0.8);
+            margin: 0;
+        }
+
+        .legal-clause-text strong {
+            color: var(--primary-navy);
+        }
+
+        .legal-clause ul {
+            padding-left: 20px;
+            margin: 10px 0 0;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .legal-clause li {
+            font-size: 0.92rem;
+            line-height: 1.6;
+            color: rgba(27, 27, 27, 0.75);
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .legal-article-card {
+                padding: 24px;
+            }
+
+            .legal-nav-tabs {
+                gap: 15px;
+            }
+
+            .legal-tab-btn {
+                font-size: 0.7rem;
+                letter-spacing: 0.08em;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Canvas Noise Overlay -->
+    <div class="noise-overlay"></div>
+
+    <!-- MAIN LEGAL CONTENT (No Header, No Footer) -->
+    <main class="legal-main">
+        <div class="legal-container">
+
+            <!-- Hero Title -->
+            <div class="legal-hero">
+                <span class="legal-tagline">ENGAGEMENTS & CONFIDENTIALITÉ</span>
+                <h1 class="legal-title">Cadre Réglementaire</h1>
+                <div class="legal-meta">Dernière mise à jour : 30 Juin 2026</div>
+            </div>
+
+            <!-- Tab Switchers -->
+            <div class="legal-nav-tabs">
+                <button class="legal-tab-btn active" onclick="switchTab('terms')">Conditions Générales</button>
+                <button class="legal-tab-btn" onclick="switchTab('privacy')">Charte de Confidentialité</button>
+            </div>
+
+            <!-- TERMS SECTION -->
+            <div id="legal-terms" class="legal-section-content active">
+                <div class="legal-article-card">
+
+                    <div class="legal-clause">
+                        <span class="legal-clause-num">Article 1</span>
+                        <h2 class="legal-clause-title">Acceptation des Conditions d'Adhésion</h2>
+                        <p class="legal-clause-text">
+                            L'accès au club privé 7Sens est réservé exclusivement aux membres agréés par notre comité de
+                            sélection. En soumettant votre candidature ou en vous inscrivant à une expérience, vous
+                            acceptez sans réserve les présentes conditions générales d'adhésion.
+                        </p>
+                    </div>
+
+                    <div class="legal-clause">
+                        <span class="legal-clause-num">Article 2</span>
+                        <h2 class="legal-clause-title">Éthique, Mixité et Respect Mutuel</h2>
+                        <p class="legal-clause-text">
+                            7Sens est fondé sur le respect mutuel, la courtoisie et la bienveillance. Tout membre
+                            s'engage à respecter les règles de bienséance physique et verbale lors de nos réunions. Le
+                            club s'assure de l'équilibre paritaire des participants à chaque réunion et se réserve le
+                            droit d'exclure tout membre dont le comportement nuirait à cette dynamique de groupe.
+                        </p>
+                    </div>
+
+                    <div class="legal-clause">
+                        <span class="legal-clause-num">Article 3</span>
+                        <h2 class="legal-clause-title">Vérification de l'Âge et des Catégories</h2>
+                        <p class="legal-clause-text">
+                            Chaque expérience est structurée autour d'une <strong>tranche d'âge spécifique</strong> afin
+                            de garantir l'affinité des cercles de discussion. Les membres s'engagent à fournir une date
+                            de naissance exacte. L'inscription est validée uniquement après calcul automatique de l'âge
+                            du participant. Toute tentative de falsification entraînera la radiation immédiate sans
+                            remboursement.
+                        </p>
+                    </div>
+
+                    <div class="legal-clause">
+                        <span class="legal-clause-num">Article 4</span>
+                        <h2 class="legal-clause-title">Conditions de Réservation & Annulation</h2>
+                        <p class="legal-clause-text">
+                            Les réservations d'événements sont nominatives et non cessibles. En cas d'empêchement :
+                        </p>
+                        <ul>
+                            <li>Annulation plus de 7 jours avant l'événement : Remboursement intégral sous forme d'avoir
+                                7Sens.</li>
+                            <li>Annulation entre 3 et 7 jours : Retenue de 50% du montant de l'inscription.</li>
+                            <li>Annulation moins de 72 heures avant l'événement : Aucun remboursement possible.</li>
+                        </ul>
+                    </div>
+
+                    <div class="legal-clause">
+                        <span class="legal-clause-num">Article 5</span>
+                        <h2 class="legal-clause-title">Fonctionnement de la Liste d'Attente</h2>
+                        <p class="legal-clause-text">
+                            Les membres peuvent rejoindre les listes d'attente de plusieurs événements en cours. Si une
+                            place se libère, un e-mail ou une notification directe sera envoyée selon l'ordre
+                            d'enregistrement. Le membre dispose alors de 24 heures pour finaliser son paiement avant que
+                            la place ne soit proposée au profil suivant.
+                        </p>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- PRIVACY SECTION -->
+            <div id="legal-privacy" class="legal-section-content">
+                <div class="legal-article-card">
+
+                    <div class="legal-clause">
+                        <span class="legal-clause-num">Article 1</span>
+                        <h2 class="legal-clause-title">Collecte et Usage de vos Données Personnelles</h2>
+                        <p class="legal-clause-text">
+                            Nous collectons uniquement les informations indispensables au traitement de vos candidatures
+                            et à l'organisation des expériences : Nom, Prénom, E-mail, Numéro de mobile, Date de
+                            naissance et préférences d'affinité. Ces données sont conservées de manière sécurisée et ne
+                            sont en aucun cas revendues à des tiers.
+                        </p>
+                    </div>
+
+                    <div class="legal-clause">
+                        <span class="legal-clause-num">Article 2</span>
+                        <h2 class="legal-clause-title">Confidentialité Mutuelle des Coordonnées</h2>
+                        <p class="legal-clause-text">
+                            Conformément à notre charte éthique, <strong>les coordonnées des membres restent
+                                confidentielles</strong>. À l'issue d'une expérience, si deux personnes expriment un
+                            intérêt mutuel de poursuite d'échange (match), nous partageons uniquement leurs coordonnées
+                            (Email/Mobile) avec leur accord explicite. Aucun membre n'est autorisé à divulguer les
+                            contacts d'un autre participant.
+                        </p>
+                    </div>
+
+                    <div class="legal-clause">
+                        <span class="legal-clause-num">Article 3</span>
+                        <h2 class="legal-clause-title">Gestion de vos Canaux de Notifications</h2>
+                        <p class="legal-clause-text">
+                            Vous disposez d'un contrôle total sur les alertes de communication émanant de la
+                            conciergerie 7Sens. Depuis votre espace membre, vous pouvez activer ou désactiver les
+                            alertes d'invitation séparément pour chaque canal (E-mail, SMS, et messagerie WhatsApp).
+                        </p>
+                    </div>
+
+                    <div class="legal-clause">
+                        <span class="legal-clause-num">Article 4</span>
+                        <h2 class="legal-clause-title">Sécurité des Transactions Financières</h2>
+                        <p class="legal-clause-text">
+                            Les transactions de réservation par carte bancaire sont gérées par notre prestataire de
+                            paiement certifié PCI-DSS. Aucune donnée relative à vos cartes bancaires n'est stockée sur
+                            nos serveurs.
+                        </p>
+                    </div>
+
+                    <div class="legal-clause">
+                        <span class="legal-clause-num">Article 5</span>
+                        <h2 class="legal-clause-title">Droits d'Accès et de Suppression</h2>
+                        <p class="legal-clause-text">
+                            Conformément à la Loi Suisse sur la Protection des Données (LPD) et au RGPD, vous disposez
+                            d'un droit d'accès, de rectification et de suppression totale de vos données. Vous pouvez
+                            exercer ce droit à tout moment en contactant notre délégué à la protection des données par
+                            e-mail à hello@7sens.ch.
+                        </p>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- JS Tabs Controller -->
+    <script>
+        function switchTab(tabName) {
+            // Remove active states
+            document.querySelectorAll('.legal-tab-btn').forEach(btn => btn.classList.remove('active'));
+            document.querySelectorAll('.legal-section-content').forEach(content => content.classList.remove('active'));
+
+            // Find current triggers
+            const clickedBtn = Array.from(document.querySelectorAll('.legal-tab-btn')).find(btn =>
+                tabName === 'terms' ? btn.textContent.includes('Conditions') : btn.textContent.includes('Confidentialité')
+            );
+
+            if (clickedBtn) clickedBtn.classList.add('active');
+
+            const activeContent = document.getElementById(`legal-${tabName}`);
+            if (activeContent) activeContent.classList.add('active');
+        }
+    </script>
+</body>
+
+</html>

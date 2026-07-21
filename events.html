@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calendrier des Expériences — 7Sens Premium Social Club</title>
+    <meta name="description"
+        content="Parcourez nos événements exclusifs en Suisse. Des expériences de groupe raffinées et paritaires à Genève, Lausanne, Zurich, Montreux et plus encore.">
+    <meta name="robots" content="index, follow">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Outfit:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="style-v2.css">
+    <link rel="stylesheet" href="events-page.css">
+</head>
+
+<body>
+
+    <!-- Canvas Noise Overlay -->
+    <div class="noise-overlay"></div>
+
+    <!-- Header Navigation -->
+    <header class="v2-header scrolled" id="main-header">
+        <div class="header-container">
+            <a href="index.html" class="logo-link" id="header-logo">
+                <img src="assets/7sens.webp" alt="7Sens Logo" class="logo-img">
+            </a>
+
+            <nav class="nav-menu" id="nav-menu">
+                <ul>
+                    <li><a href="index.html#accueil" class="nav-link">ACCUEIL</a></li>
+                    <li><a href="index.html#about" class="nav-link">À PROPOS</a></li>
+                    <li><a href="events.html" class="nav-link active">ÉVÉNEMENTS</a></li>
+                    <li><a href="index.html#how-it-works" class="nav-link">COMMENT ÇA MARCHE</a></li>
+                    <li><a href="index.html#faq" class="nav-link">FAQ</a></li>
+                    <li><a href="index.html#testimonials" class="nav-link">TÉMOIGNAGES</a></li>
+                    <li><a href="index.html#contact" class="nav-link">CONTACT</a></li>
+                </ul>
+            </nav>
+
+            <div class="header-cta">
+                <a href="login.html" class="btn btn-navy btn-magnetic" id="btn-header-login">
+                    <span>CONNEXION</span>
+                </a>
+            </div>
+
+            <!-- Mobile Menu Toggle -->
+            <button class="mobile-nav-toggle" aria-label="Toggle menu" id="mobile-menu-toggle">
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </button>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section class="events-hero-section">
+            <div class="events-hero-container">
+                <span class="events-hero-tagline fade-in-up">EXCLUSIVITÉ & ÉQUILIBRE</span>
+                <h1 class="events-hero-title reveal-text">Calendrier des Expériences</h1>
+                <p class="events-hero-desc fade-in-up">
+                    Chaque rencontre est pensée dans les moindres détails. Des expériences de groupe exclusives, paritaires et encadrées, dans les plus beaux lieux de Suisse.
+                </p>
+            </div>
+        </section>
+
+        <!-- Filters Section -->
+        <section class="filters-section">
+            <div class="filters-container">
+                <div class="filter-group" id="city-filters">
+                    <span class="filter-label">Villes :</span>
+                    <button class="filter-btn active" data-city="all">TOUTES</button>
+                    <button class="filter-btn" data-city="GENÈVE">GENÈVE</button>
+                    <button class="filter-btn" data-city="LAUSANNE">LAUSANNE</button>
+                    <button class="filter-btn" data-city="ZURICH">ZURICH</button>
+                    <button class="filter-btn" data-city="MONTREUX">MONTREUX</button>
+                    <button class="filter-btn" data-city="NEUCHÂTEL">NEUCHÂTEL</button>
+                </div>
+                <div class="filter-group" id="status-filters">
+                    <span class="filter-label">Disponibilité :</span>
+                    <button class="filter-btn active" data-status="all">TOUS</button>
+                    <button class="filter-btn" data-status="available">DISPONIBLE</button>
+                    <button class="filter-btn" data-status="full">COMPLET</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Grid Cards Section -->
+        <section class="events-grid-section">
+            <div class="events-grid-container">
+                <div class="events-cards-grid" id="events-grid-container">
+                    <!-- Events will be dynamically injected here by events.js -->
+                </div>
+                <!-- Pagination Controls -->
+                <div class="pagination-container" id="events-pagination"></div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="v2-footer">
+        <div class="footer-container">
+            <!-- Footer Upper -->
+            <div class="footer-upper">
+                
+                <!-- Col 1: Brand Info -->
+                <div class="footer-col brand-col">
+                    <a href="index.html#accueil" class="logo-link">
+                        <img src="assets/7sens.webp" alt="7Sens Logo" class="logo-img">
+                    </a>
+                    <p class="footer-tagline">Redefining offline human connections through exclusive curated experiences in Switzerland.</p>
+                    
+                    <div class="v2-footer-socials">
+                        <a href="https://instagram.com" aria-label="Instagram" target="_blank" class="v2-social-link btn-magnetic">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                <rect x="2" y="2" width="20" height="20" rx="5" ry="5" />
+                                <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
+                                <line x1="17.5" y1="6.5" x2="17.51" y2="6.5" />
+                            </svg>
+                        </a>
+                        <a href="https://facebook.com" aria-label="Facebook" target="_blank" class="v2-social-link btn-magnetic">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z" />
+                            </svg>
+                        </a>
+                        <a href="https://linkedin.com" aria-label="LinkedIn" target="_blank" class="v2-social-link btn-magnetic">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" />
+                                <rect x="2" y="9" width="4" height="12" />
+                                <circle cx="4" cy="4" r="2" />
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Col 2: Navigation -->
+                <div class="footer-col">
+                    <h5 class="v2-footer-heading">NAVIGATION</h5>
+                    <ul class="v2-footer-links">
+                        <li><a href="index.html#accueil">Accueil</a></li>
+                        <li><a href="index.html#about">À propos</a></li>
+                        <li><a href="events.html">Événements</a></li>
+                        <li><a href="index.html#how-it-works">Comment ça marche</a></li>
+                        <li><a href="index.html#testimonials">Témoignages</a></li>
+                        <li><a href="index.html#contact">Contact</a></li>
+                    </ul>
+                </div>
+
+                <!-- Col 3: Information -->
+                <div class="footer-col">
+                    <h5 class="v2-footer-heading">INFORMATIONS</h5>
+                    <ul class="v2-footer-links">
+                        <li><a href="index.html#faq">FAQ Accordion</a></li>
+                        <li><a href="index.html#accueil">Terms of Service</a></li>
+                        <li><a href="index.html#accueil">Privacy Policy</a></li>
+                        <li><a href="index.html#accueil">Legal Mentions</a></li>
+                    </ul>
+                </div>
+
+                <!-- Col 4: Newsletter -->
+                <div class="footer-col newsletter-col">
+                    <h5 class="v2-footer-heading">NEWSLETTER</h5>
+                    <p class="v2-newsletter-desc">Receive exclusive invitations and updates on upcoming Swiss events.</p>
+                    <form id="newsletter-form" class="v2-newsletter-form">
+                        <div class="v2-newsletter-input-wrap">
+                            <input type="email" placeholder="Your email address" required id="newsletter-email">
+                            <button type="submit" aria-label="Subscribe" class="v2-newsletter-btn">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M5 12H19M19 12L13 6M19 12L13 18" />
+                                </svg>
+                            </button>
+                        </div>
+                        <label class="v2-checkbox-label">
+                            <input type="checkbox" required id="newsletter-agree">
+                            <span class="v2-checkbox-box"></span>
+                            <span class="v2-checkbox-text">I agree to receive private circle invitations.</span>
+                        </label>
+                        <div class="form-status-msg" id="newsletter-form-status"></div>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Footer Middle: City Badges Running Line -->
+            <div class="v2-footer-cities-line">
+                <span>GENÈVE &nbsp;•&nbsp; LAUSANNE &nbsp;•&nbsp; ZURICH &nbsp;•&nbsp; MONTREUX &nbsp;•&nbsp; NEUCHÂTEL</span>
+            </div>
+
+            <!-- Footer Lower -->
+            <div class="footer-lower">
+                <p class="copyright">&copy; 2026 7Sens. All rights reserved.</p>
+                <p class="footer-crafted-by">Conçu en Suisse. <a href="index-v1.html" class="v2-version-link">← RETOUR VERSION I</a></p>
+                <a href="#accueil" class="v2-back-to-top btn-magnetic" id="back-to-top-btn">
+                    <span>BACK TO TOP</span>
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                        <path d="M12 19V5M12 5L5 12M12 5L19 12" stroke-linecap="round" stroke-linejoin="round" />
+                    </svg>
+                </a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JS Libraries (GSAP, Lenis Smooth Scroll) -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script src="https://unpkg.com/@studio-freight/lenis@1.0.34/dist/lenis.min.js"></script>
+
+    <!-- Unified Events Logic -->
+    <script src="events-data.js"></script>
+    <script src="events.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Notre Concept — 7Sens Premium Social Club</title>
+    <meta name="description" content="Découvrez la philosophie de 7Sens, le club social premium suisse dédié aux rencontres réelles hors-ligne.">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="style-v2.css">
+    <link rel="stylesheet" href="events-page.css">
+
+    <style>
+        /* Scoped style definitions for Concept page */
+        .concept-main {
+            padding: 100px 0 140px;
+            background-color: var(--warm-ivory);
+            color: var(--primary-navy);
+        }
+
+        .concept-container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* Hero block */
+        .concept-hero {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto 100px;
+        }
+
+        .concept-tagline {
+            font-size: 0.7rem;
+            font-weight: 600;
+            letter-spacing: 0.25em;
+            color: var(--luxury-gold);
+            text-transform: uppercase;
+            margin-bottom: 20px;
+            display: block;
+        }
+
+        .concept-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(2.4rem, 6vw, 4.2rem);
+            font-weight: 300;
+            line-height: 1.15;
+            margin-bottom: 30px;
+        }
+
+        .concept-lead {
+            font-size: 1.1rem;
+            line-height: 1.7;
+            color: var(--text-muted);
+            font-weight: 300;
+        }
+
+        /* Split details grid */
+        .concept-split-grid {
+            display: grid;
+            grid-template-columns: 1.1fr 0.9fr;
+            gap: 60px;
+            align-items: center;
+            margin-bottom: 120px;
+        }
+
+        @media (max-width: 991px) {
+            .concept-split-grid {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+        }
+
+        .concept-text-side {
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+        }
+
+        .concept-section-heading {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2.2rem;
+            font-weight: 300;
+            line-height: 1.25;
+            color: var(--primary-navy);
+        }
+
+        .concept-paragraph {
+            font-size: 1.02rem;
+            line-height: 1.7;
+            color: rgba(27, 27, 27, 0.78);
+            margin: 0;
+        }
+
+        /* Collage Grid */
+        .about-collage-container {
+            position: relative;
+            height: 500px;
+            width: 100%;
+        }
+
+        @media (max-width: 991px) {
+            .about-collage-container {
+                height: 420px;
+            }
+        }
+
+        .about-collage-main {
+            width: 80%;
+            height: 380px;
+            background-size: cover;
+            background-position: center;
+            border: 1px solid rgba(214, 164, 55, 0.2);
+            position: absolute;
+            top: 20px;
+            left: 0;
+            z-index: 1;
+            box-shadow: 0 15px 45px rgba(16, 42, 94, 0.04);
+            transition: transform 0.6s var(--transition-smooth);
+        }
+
+        .about-collage-secondary {
+            width: 55%;
+            height: 250px;
+            background-size: cover;
+            background-position: center;
+            border: 1px solid rgba(214, 164, 55, 0.3);
+            position: absolute;
+            bottom: 20px;
+            right: 0;
+            z-index: 2;
+            box-shadow: 0 20px 50px rgba(16, 42, 94, 0.08);
+            transition: transform 0.6s var(--transition-smooth);
+        }
+
+        .about-collage-container:hover .about-collage-main {
+            transform: translateY(-5px) scale(1.02);
+        }
+
+        .about-collage-container:hover .about-collage-secondary {
+            transform: translateY(5px) scale(0.98);
+        }
+
+        .about-collage-badge {
+            position: absolute;
+            top: -15px;
+            right: 20%;
+            background: var(--primary-navy);
+            color: var(--warm-ivory);
+            border: 1px solid var(--luxury-gold);
+            padding: 12px 18px;
+            z-index: 3;
+            font-family: 'Outfit', sans-serif;
+            font-size: 0.62rem;
+            font-weight: 600;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+        }
+
+        /* Pillars Section */
+        .concept-pillars-header {
+            text-align: center;
+            margin-bottom: 70px;
+        }
+
+        .concept-pillars-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+        }
+
+        @media (max-width: 768px) {
+            .concept-pillars-grid {
+                grid-template-columns: 1fr;
+                gap: 25px;
+            }
+        }
+
+        .concept-pillar-card {
+            position: relative;
+            background: rgba(255, 255, 255, 0.45);
+            border: 1px solid rgba(20, 43, 99, 0.06);
+            padding: 55px 35px;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            overflow: hidden;
+            transition: all 0.4s var(--transition-smooth);
+            z-index: 1;
+        }
+
+        .concept-pillar-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 3px;
+            height: 0;
+            background-color: var(--luxury-gold);
+            transition: height 0.4s var(--transition-smooth);
+        }
+
+        .concept-pillar-card:hover::before {
+            height: 100%;
+        }
+
+        .concept-pillar-card:hover {
+            border-color: rgba(214, 164, 55, 0.3);
+            transform: translateY(-5px);
+            background-color: rgba(255, 255, 255, 0.85);
+            box-shadow: 0 15px 40px rgba(16, 42, 94, 0.02);
+        }
+
+        .concept-pillar-num {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 7rem;
+            font-weight: 300;
+            line-height: 1;
+            color: rgba(214, 164, 55, 0.08); /* Watermark style outline number */
+            position: absolute;
+            top: -10px;
+            right: 15px;
+            z-index: -1;
+            user-select: none;
+            transition: transform 0.6s var(--transition-smooth), color 0.4s;
+        }
+
+        .concept-pillar-card:hover .concept-pillar-num {
+            transform: translateY(-5px);
+            color: rgba(214, 164, 55, 0.16);
+        }
+
+        .concept-pillar-tag {
+            font-size: 0.65rem;
+            font-weight: 600;
+            letter-spacing: 0.15em;
+            color: var(--luxury-gold);
+            text-transform: uppercase;
+        }
+
+        .concept-pillar-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.5rem;
+            font-weight: 400;
+            color: var(--primary-navy);
+            line-height: 1.25;
+        }
+
+        .concept-pillar-desc {
+            font-size: 0.9rem;
+            line-height: 1.65;
+            color: rgba(27, 27, 27, 0.72);
+            margin: 0;
+        }
+
+        /* Reviews Section styling */
+        .reviews-section {
+            margin-top: 130px;
+        }
+
+        .reviews-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        @media (max-width: 991px) {
+            .reviews-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .reviews-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .review-card {
+            background: rgba(255, 255, 255, 0.45);
+            border: 1px solid rgba(20, 43, 99, 0.06);
+            padding: 40px 30px;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            box-shadow: 0 10px 30px rgba(16, 42, 94, 0.01);
+            transition: all 0.3s;
+        }
+
+        .review-card:hover {
+            border-color: rgba(214, 164, 55, 0.3);
+            background-color: rgba(255, 255, 255, 0.8);
+            transform: translateY(-5px);
+        }
+
+        .review-stars {
+            color: var(--luxury-gold);
+            font-size: 0.85rem;
+            letter-spacing: 2px;
+        }
+
+        .review-text {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.15rem;
+            font-style: italic;
+            line-height: 1.6;
+            color: var(--primary-navy);
+        }
+
+        .review-author {
+            font-size: 0.78rem;
+            color: var(--text-muted);
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        /* About CTA Section styling */
+        .about-cta-section {
+            margin-top: 130px;
+        }
+
+        .about-cta-card {
+            background: linear-gradient(135deg, rgba(20, 43, 99, 0.98) 0%, rgba(27, 27, 27, 0.98) 100%);
+            border: 1px solid rgba(214, 164, 55, 0.25);
+            padding: 70px 50px;
+            color: var(--warm-ivory);
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 30px;
+            box-shadow: 0 20px 50px rgba(16, 42, 94, 0.1);
+        }
+
+        .about-cta-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(2rem, 5vw, 2.8rem);
+            font-weight: 300;
+            line-height: 1.2;
+            color: var(--warm-ivory);
+            max-width: 700px;
+        }
+
+        .about-cta-desc {
+            font-size: 0.92rem;
+            max-width: 600px;
+            line-height: 1.6;
+            color: rgba(250, 248, 243, 0.75);
+        }
+
+        .about-cta-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Canvas Noise Overlay -->
+    <div class="noise-overlay"></div>
+
+    <!-- MAIN CONCEPT CONTENT (No Header, No Footer) -->
+    <main class="concept-main">
+        <div class="concept-container">
+            
+            <!-- Hero Block -->
+            <div class="concept-hero">
+                <span class="concept-tagline">L'ALTERNATIVE OFFLINE</span>
+                <h1 class="concept-title">Se connecter par les sens, dans le monde réel.</h1>
+                <p class="concept-lead">
+                    À l'ère du tout-numérique, les algorithmes de rencontre isolent plus qu'ils ne rapprochent. 7Sens réhabilite l'évidence physique, la première impression offline, et le plaisir d'échanger au détour d'expériences prestigieuses partagées.
+                </p>
+            </div>
+
+            <!-- Split Section 1 -->
+            <div class="concept-split-grid">
+                <div class="concept-text-side">
+                    <h2 class="concept-section-heading">L'Art de la première impression offline.</h2>
+                    <p class="concept-paragraph">
+                        Le virtuel élimine les nuances essentielles de l'attraction. Un regard, le ton d'une voix, la spontanéité d'un rire, ou l'émotion d'un silence : ce sont ces détails sensoriels qui déclenchent l'alchimie. 
+                    </p>
+                    <p class="concept-paragraph">
+                        7Sens ne vous propose pas de faire défiler des profils ou de chatter derrière un écran. Notre club social réunit de petits groupes de célibataires soigneusement sélectionnés autour d'activités immersives. Dans ce contexte neutre, ludique et haut de gamme, les échanges s'amorcent sans aucune pression de séduction forcée.
+                    </p>
+                </div>
+                
+                <div class="about-collage-container">
+                    <div class="about-collage-main" style="background-image: url('assets/pexels-stephen-leonardi-587681991-35120679.jpg');"></div>
+                    <div class="about-collage-secondary" style="background-image: url('assets/pexels-jibarofoto-18482996.jpg');"></div>
+                    <div class="about-collage-badge">100% OFF-LINE</div>
+                </div>
+            </div>
+
+            <!-- Pillars Block -->
+            <div class="concept-pillars-section">
+                <div class="concept-pillars-header">
+                    <span class="concept-tagline">NOTRE ENGAGEMENT</span>
+                    <h2 class="concept-section-heading" style="font-size: 2rem;">Les trois piliers du club</h2>
+                </div>
+
+                <div class="concept-pillars-grid">
+                    
+                    <!-- Pillar 1 -->
+                    <div class="concept-pillar-card">
+                        <span class="concept-pillar-tag">PILIER 01</span>
+                        <div class="concept-pillar-num">01</div>
+                        <h3 class="concept-pillar-title">Sélection Privée et Cohérence</h3>
+                        <p class="concept-pillar-desc">
+                            Pour préserver la qualité de nos groupes, l'accès se fait uniquement sur candidature. Notre service conciergerie veille à regrouper des membres partageant des aspirations culturelles similaires et des valeurs de respect communes.
+                        </p>
+                    </div>
+
+                    <!-- Pillar 2 -->
+                    <div class="concept-pillar-card">
+                        <span class="concept-pillar-tag">PILIER 02</span>
+                        <div class="concept-pillar-num">02</div>
+                        <h3 class="concept-pillar-title">Parité et Équilibre Absolus</h3>
+                        <p class="concept-pillar-desc">
+                            Nous accordons une importance primordiale à l'équilibre des genres et des tranches d'âge. Les inscriptions sont fermées dès que la parité homme/femme et la cible démographique de l'expérience sont atteintes, favorisant des dynamiques équitables.
+                        </p>
+                    </div>
+
+                    <!-- Pillar 3 -->
+                    <div class="concept-pillar-card">
+                        <span class="concept-pillar-tag">PILIER 03</span>
+                        <div class="concept-pillar-num">03</div>
+                        <h3 class="concept-pillar-title">Confidentialité & Zéro Profil</h3>
+                        <p class="concept-pillar-desc">
+                            Vos données sont protégées. Aucune photo de profil n'est visible publiquement. Les mises en relation s'effectuent uniquement après l'événement, par l'entremise discrète de notre équipe, préservant la tranquillité de nos membres.
+                        </p>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- Reviews Section -->
+            <div class="reviews-section">
+                <div class="concept-pillars-header">
+                    <span class="concept-tagline">TEMOIGNAGES</span>
+                    <h2 class="concept-section-heading" style="font-size: 2rem;">L'expérience racontée par nos membres</h2>
+                </div>
+
+                <div class="reviews-grid">
+                    <!-- Review 1 -->
+                    <div class="review-card">
+                        <div class="review-stars">★★★★★</div>
+                        <p class="review-text">"Une expérience unique. Loin de la superficialité des applications, j'ai rencontré des personnes formidables dans un cadre somptueux."</p>
+                        <span class="review-author">Sophie M. — 38 ans, Genève</span>
+                    </div>
+
+                    <!-- Review 2 -->
+                    <div class="review-card">
+                        <div class="review-stars">★★★★★</div>
+                        <p class="review-text">"L'atelier mixologie était ludique et décontracté. La parité absolue change totalement l'atmosphère, tout est naturel."</p>
+                        <span class="review-author">Marc D. — 42 ans, Lausanne</span>
+                    </div>
+
+                    <!-- Review 3 -->
+                    <div class="review-card">
+                        <div class="review-stars">★★★★★</div>
+                        <p class="review-text">"Un club d'une grande élégance. Le système offline permet de vrais regards et des connexions immédiates."</p>
+                        <span class="review-author">Émilie R. — 34 ans, Zurich</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- About CTA Section -->
+            <div class="about-cta-section">
+                <div class="about-cta-card">
+                    <h2 class="about-cta-title">Prêt à vivre l'expérience <span>offline</span> ?</h2>
+                    <p class="about-cta-desc">Rejoignez le cercle privé 7Sens et accédez à nos prochains événements exclusifs en Suisse. Les places sont limitées afin de préserver une parité parfaite.</p>
+                    <div class="about-cta-buttons">
+                        <a href="contact.html" class="booking-action-btn" style="max-width: 250px; background-color: var(--luxury-gold); border-color: var(--luxury-gold); color: var(--primary-navy);">
+                            <span>POSTULER AU CLUB</span>
+                        </a>
+                        <a href="events.html" class="booking-action-btn" style="max-width: 250px; background-color: transparent; border-color: var(--warm-ivory); color: var(--warm-ivory);">
+                            <span>VOIR LES ÉVÉNEMENTS</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+</body>
+
+</html>

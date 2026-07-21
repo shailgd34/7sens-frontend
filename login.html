@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Connexion Espace Membre — 7Sens Premium Social Club</title>
+    <meta name="description" content="Accédez à votre espace membre 7Sens pour réserver vos expériences exclusives en Suisse.">
+    <meta name="robots" content="noindex, nofollow">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="style-v2.css">
+    <link rel="stylesheet" href="events-page.css">
+</head>
+
+<body style="overflow-y: auto;">
+
+    <!-- Canvas Noise Overlay -->
+    <div class="noise-overlay"></div>
+
+    <div class="auth-wrapper" style="background-image: url('assets/pexels-stephen-leonardi-587681991-35120679.jpg');">
+        
+        <!-- LEFT COLUMN: Image Banner Side -->
+        <div class="auth-image-side">
+            <div class="auth-image-overlay"></div>
+            <div class="auth-image-content">
+                <a href="index.html">
+                    <img src="assets/7sens.webp" alt="7Sens Premium Logo" class="auth-image-logo">
+                </a>
+                <div class="auth-image-quote-block">
+                    <span class="auth-image-tagline">CLUB PRIVÉ PRIVILÈGE</span>
+                    <h2 class="auth-image-title">L'art de la connexion humaine offline</h2>
+                    <p class="auth-image-desc">
+                        Rejoignez un cercle de célibataires partageant la même vision et participez à des expériences prestigieuses dans toute la Suisse.
+                    </p>
+                </div>
+                <div style="font-size: 0.65rem; letter-spacing: 0.1em; opacity: 0.6; text-transform: uppercase;">
+                    7Sens premium social club &copy; 2026
+                </div>
+            </div>
+        </div>
+
+        <!-- RIGHT COLUMN: Interactive Form Side -->
+        <div class="auth-form-side">
+            <!-- Back Link -->
+            <a href="index.html" class="auth-back-link btn-magnetic">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M19 12H5M5 12L12 19M5 12L12 5" stroke-linecap="round" stroke-linejoin="round" />
+                </svg>
+                <span>Retour</span>
+            </a>
+
+            <div class="auth-form-container">
+                <!-- Mobile Logo (displays only when image column hides) -->
+                <a href="index.html" class="auth-logo-mobile">
+                    <img src="assets/7sens.webp" alt="7Sens Logo" style="height: 100%;">
+                </a>
+
+                <!-- Header -->
+                <div class="auth-header">
+                    <h1 class="auth-title">Se connecter</h1>
+                    <p class="auth-subtitle">Entrez vos identifiants pour accéder à votre espace membre</p>
+                </div>
+
+                <!-- Form -->
+                <form id="login-form" class="auth-form">
+                    <div class="form-group">
+                        <label for="login-email">Adresse e-mail</label>
+                        <input type="email" id="login-email" required placeholder="nom@exemple.com">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="login-password">Mot de passe</label>
+                        <div class="password-toggle-wrapper">
+                            <input type="password" id="login-password" required placeholder="••••••••">
+                            <button type="button" class="password-toggle-btn" id="password-toggle" aria-label="Afficher le mot de passe">
+                                <svg viewBox="0 0 24 24" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" id="eye-icon">
+                                    <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" />
+                                    <circle cx="12" cy="12" r="3" />
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Utilities -->
+                    <div class="auth-utilities">
+                        <label>
+                            <input type="checkbox" id="remember-me" style="width: auto; margin-right: 6px; accent-color: var(--primary-navy);">
+                            <span>Se souvenir de moi</span>
+                        </label>
+                        <a href="forgot-password.html" class="auth-link" id="forgot-password">Mot de passe oublié ?</a>
+                    </div>
+
+                    <!-- Submit Button -->
+                    <button type="submit" class="booking-action-btn" id="login-submit-btn" style="margin-top: 10px;">
+                        <span>SE CONNECTER</span>
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                             <path d="M5 12H19M19 12L13 6M19 12L13 18" stroke-linecap="round" stroke-linejoin="round" />
+                        </svg>
+                    </button>
+                </form>
+
+
+
+                <!-- Footer Redirect -->
+                <div class="auth-footer" style="text-align: left; margin-top: 10px;">
+                    <span>Pas encore membre ? </span>
+                    <a href="signup.html" class="auth-link">Créer un compte</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Fullscreen Transaction Spinner -->
+    <div class="checkout-overlay" id="auth-overlay">
+        <div class="checkout-overlay-content">
+            <div class="luxury-spinner"></div>
+            <h3 class="overlay-title" id="auth-overlay-title">Authentification en cours...</h3>
+            <p class="overlay-desc" id="auth-overlay-desc">Connexion sécurisée à votre espace Premium Social Club.</p>
+        </div>
+    </div>
+
+    <!-- JS Libraries (GSAP) -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const loginForm = document.getElementById("login-form");
+            const loginPassword = document.getElementById("login-password");
+            const passwordToggle = document.getElementById("password-toggle");
+            const eyeIcon = document.getElementById("eye-icon");
+            const authOverlay = document.getElementById("auth-overlay");
+            const authOverlayTitle = document.getElementById("auth-overlay-title");
+            const authOverlayDesc = document.getElementById("auth-overlay-desc");
+
+            // Password Toggle
+            passwordToggle.addEventListener("click", () => {
+                const type = loginPassword.getAttribute("type") === "password" ? "text" : "password";
+                loginPassword.setAttribute("type", type);
+                
+                if (type === "text") {
+                    eyeIcon.innerHTML = `
+                        <path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24" />
+                        <line x1="1" y1="1" x2="23" y2="23" />
+                    `;
+                    passwordToggle.setAttribute("aria-label", "Masquer le mot de passe");
+                } else {
+                    eyeIcon.innerHTML = `
+                        <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" />
+                        <circle cx="12" cy="12" r="3" />
+                    `;
+                    passwordToggle.setAttribute("aria-label", "Afficher le mot de passe");
+                }
+            });
+
+            // Form Submit Simulation
+            loginForm.addEventListener("submit", (e) => {
+                e.preventDefault();
+
+                // Save user info in localStorage for simulation
+                const email = document.getElementById("login-email").value;
+                
+                // If user doesn't exist in our mock list, we mock a verified user, but if they signed up, we retrieve that
+                const registeredUsers = JSON.parse(localStorage.getItem("registeredUsers") || "[]");
+                let user = registeredUsers.find(u => u.email === email);
+                
+                if (!user) {
+                    user = {
+                        email: email,
+                        firstname: email.split('@')[0],
+                        lastname: "Membre",
+                        phone: "+41 79 123 45 67",
+                        isEmailVerified: true,
+                        isPhoneVerified: true
+                    };
+                    registeredUsers.push(user);
+                    localStorage.setItem("registeredUsers", JSON.stringify(registeredUsers));
+                }
+                
+                localStorage.setItem("currentUser", JSON.stringify(user));
+
+                authOverlay.style.display = "flex";
+                gsap.to(authOverlay, { opacity: 1, duration: 0.4 });
+
+                setTimeout(() => {
+                    authOverlayTitle.textContent = "Accès autorisé";
+                    authOverlayDesc.textContent = "Bienvenue dans le cercle. Redirection vers le calendrier...";
+                    
+                    setTimeout(() => {
+                        window.location.href = "events.html";
+                    }, 1200);
+                }, 2000);
+            });
+
+            // Social Buttons Simulation
+            document.querySelectorAll(".social-btn").forEach(btn => {
+                btn.addEventListener("click", () => {
+                    const platform = btn.id.includes("google") ? "Google" : "Apple";
+                    authOverlay.style.display = "flex";
+                    authOverlayTitle.textContent = `Connexion via ${platform}`;
+                    authOverlayDesc.textContent = "Redirection vers le portail d'authentification tiers...";
+                    gsap.to(authOverlay, { opacity: 1, duration: 0.4 });
+
+                    setTimeout(() => {
+                        authOverlayTitle.textContent = "Accès autorisé";
+                        authOverlayDesc.textContent = `Connecté avec succès via ${platform}.`;
+                        
+                        setTimeout(() => {
+                            window.location.href = "events.html";
+                        }, 1200);
+                    }, 2000);
+                });
+            });
+
+            // Magnetic Back Button
+            const backLink = document.querySelector(".auth-back-link");
+            if (backLink) {
+                backLink.addEventListener("mousemove", (e) => {
+                    const rect = backLink.getBoundingClientRect();
+                    const x = e.clientX - rect.left - rect.width / 2;
+                    const y = e.clientY - rect.top - rect.height / 2;
+                    gsap.to(backLink, { x: x * 0.3, y: y * 0.3, duration: 0.3, ease: "power2.out" });
+                });
+                
+                backLink.addEventListener("mouseleave", () => {
+                    gsap.to(backLink, { x: 0, y: 0, duration: 0.6, ease: "elastic.out(1.1, 0.4)" });
+                });
+            }
+        });
+    </script>
+</body>
+
+</html>

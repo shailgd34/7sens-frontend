@@ -16,41 +16,44 @@
         rel="stylesheet">
 
     <!-- Stylesheets -->
+    <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="style-v2.css">
     <link rel="stylesheet" href="events-page.css">
 
     <style>
         /* Scoped style definitions for user dashboard */
         .db-main {
-            padding: 80px 0 140px;
+            padding: 0 !important;
+            margin: 0 !important;
             background-color: var(--warm-ivory);
             min-height: 100vh;
         }
 
         .db-container {
-            max-width: 1300px;
-            margin: 0 auto;
-            padding: 0 24px;
+            max-width: 100% !important;
+            margin: 0 !important;
+            padding: 0 !important;
         }
 
         .db-grid {
             display: grid;
             grid-template-columns: 280px 1fr;
-            gap: 40px;
-            align-items: start;
+            gap: 0;
+            align-items: stretch;
+            margin: 0 !important;
+            padding: 0 !important;
         }
 
         @media (max-width: 991px) {
             .db-grid {
                 grid-template-columns: 1fr;
-                gap: 30px;
             }
         }
 
         /* Sidebar Column styling */
         .db-sidebar-card {
-            background: rgba(255, 255, 255, 0.45);
-            border: 1px solid rgba(20, 43, 99, 0.06);
+            background: rgba(255, 255, 255, 0.95);
+            border-right: 1px solid rgba(20, 43, 99, 0.08);
             backdrop-filter: blur(20px);
             -webkit-backdrop-filter: blur(20px);
             padding: 35px 25px;
@@ -58,7 +61,12 @@
             flex-direction: column;
             align-items: center;
             text-align: center;
-            box-shadow: 0 10px 40px rgba(16, 42, 94, 0.02);
+            box-shadow: 2px 0 20px rgba(16, 42, 94, 0.03);
+            position: sticky;
+            top: 0 !important;
+            height: 100vh !important;
+            overflow-y: auto;
+            border-radius: 0;
         }
 
         .db-avatar-wrapper {
@@ -108,6 +116,7 @@
         #form-avatar-circle:hover #form-avatar-overlay {
             opacity: 1 !important;
         }
+
         #form-avatar-circle:hover {
             border-color: var(--luxury-gold) !important;
             transform: scale(1.02);
@@ -178,13 +187,10 @@
 
         /* Content Panel styling */
         .db-content-card {
-            background: rgba(255, 255, 255, 0.45);
-            border: 1px solid rgba(20, 43, 99, 0.06);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            padding: 45px;
-            box-shadow: 0 10px 40px rgba(16, 42, 94, 0.02);
-            min-height: 500px;
+            background: transparent;
+            border: none;
+            padding: 25px 60px;
+            min-height: calc(100vh - 75px);
         }
 
         @media (max-width: 768px) {
@@ -243,29 +249,36 @@
 
         .db-form-group label {
             font-size: 0.65rem;
-            font-weight: 600;
+            font-weight: 700;
             letter-spacing: 0.12em;
             color: var(--primary-navy);
             text-transform: uppercase;
+            margin-bottom: 8px;
+            display: inline-block;
         }
 
         .db-form-group input,
-        .db-form-group select {
-            background-color: rgba(255, 255, 255, 0.7) !important;
-            border: 1px solid rgba(20, 43, 99, 0.12) !important;
-            padding: 12px 16px !important;
+        .db-form-group select,
+        .db-form-group textarea {
+            background-color: rgba(255, 255, 255, 0.6) !important;
+            border: 1px solid rgba(20, 43, 99, 0.15) !important;
+            padding: 14px 18px !important;
             font-family: 'Outfit', sans-serif !important;
             font-size: 0.88rem !important;
-            border-radius: 0 !important;
+            border-radius: 8px !important;
             color: var(--primary-navy) !important;
             transition: all 0.3s var(--transition-smooth) !important;
             width: 100%;
+            box-shadow: inset 0 2px 4px rgba(0,0,0,0.02);
         }
 
-        .db-form-group input:focus {
+        .db-form-group input:focus,
+        .db-form-group select:focus,
+        .db-form-group textarea:focus {
             border-color: var(--luxury-gold) !important;
             background-color: #ffffff !important;
             outline: none !important;
+            box-shadow: 0 0 0 3px rgba(214, 164, 55, 0.2) !important;
         }
 
         /* Toggle preference switch container */
@@ -473,9 +486,9 @@
 
         /* Refined Dashboard Grid & Card widgets */
         .db-welcome-banner {
-            background: linear-gradient(135deg, rgba(20, 43, 99, 0.95), rgba(16, 32, 70, 0.98));
-            border: 1px solid rgba(214, 164, 55, 0.15);
-            padding: 30px 40px;
+            background: linear-gradient(135deg, rgba(16, 42, 94, 0.85), rgba(10, 20, 45, 0.95)), url('assets/main page image.png') center/cover no-repeat;
+            border: 1px solid rgba(214, 164, 55, 0.2);
+            padding: 50px 40px;
             margin-bottom: 35px;
             color: #ffffff;
             display: flex;
@@ -483,51 +496,59 @@
             align-items: center;
             position: relative;
             overflow: hidden;
+            border-radius: 12px !important;
+            box-shadow: 0 15px 40px rgba(16, 42, 94, 0.15);
         }
 
         .db-welcome-banner::before {
             content: '';
             position: absolute;
             top: 0;
+            left: 0;
             right: 0;
             bottom: 0;
-            left: 0;
-            background: radial-gradient(circle at 80% 50%, rgba(214, 164, 55, 0.08), transparent 70%);
+            background: radial-gradient(circle at 100% 50%, rgba(214, 164, 55, 0.3), transparent 60%);
             pointer-events: none;
         }
 
         .db-welcome-title {
             font-family: 'Cormorant Garamond', serif;
-            font-size: 2rem;
-            font-weight: 300;
-            margin: 0 0 6px;
-            letter-spacing: 0.03em;
+            font-size: 2.8rem;
+            font-weight: 400;
+            margin: 0 0 8px;
+            letter-spacing: 0.02em;
             color: #fff;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
         }
 
         .db-welcome-subtitle {
-            font-size: 0.7rem;
-            color: rgba(255, 255, 255, 0.6);
-            letter-spacing: 0.08em;
+            font-size: 0.85rem;
+            color: var(--luxury-gold);
+            letter-spacing: 0.15em;
             text-transform: uppercase;
+            font-weight: 600;
         }
 
         .db-widget {
-            background: rgba(255, 255, 255, 0.45);
-            border: 1px solid rgba(20, 43, 99, 0.06);
-            padding: 24px;
-            transition: all 0.3s var(--transition-smooth);
+            background: rgba(255, 255, 255, 0.7);
+            border: 1px solid rgba(214, 164, 55, 0.15);
+            box-shadow: 0 10px 40px rgba(16, 42, 94, 0.04);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            padding: 28px;
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
             display: flex;
             flex-direction: column;
             justify-content: space-between;
             min-height: 180px;
+            border-radius: 12px !important;
         }
 
         .db-widget:hover {
-            transform: translateY(-2px);
-            border-color: rgba(214, 164, 55, 0.25);
-            box-shadow: 0 8px 30px rgba(20, 43, 99, 0.02);
-            background: rgba(255, 255, 255, 0.7);
+            transform: translateY(-4px);
+            border-color: rgba(214, 164, 55, 0.4);
+            box-shadow: 0 20px 50px rgba(16, 42, 94, 0.08);
+            background: rgba(255, 255, 255, 0.95);
         }
 
         .db-widget-header {
@@ -546,46 +567,52 @@
         }
 
         .db-widget-icon {
-            color: rgba(20, 43, 99, 0.3);
+            color: var(--luxury-gold);
             display: flex;
             align-items: center;
+            background: rgba(214, 164, 55, 0.08);
+            padding: 8px;
+            border-radius: 8px;
         }
 
         .db-widget-title {
             font-family: 'Cormorant Garamond', serif;
-            font-size: 1.4rem;
-            font-weight: 400;
+            font-size: 1.6rem;
+            font-weight: 500;
             color: var(--primary-navy);
-            margin: 0 0 6px;
+            margin: 0 0 8px;
         }
 
         .db-widget-desc {
-            font-size: 0.76rem;
+            font-size: 0.8rem;
             color: var(--text-muted);
-            line-height: 1.4;
+            line-height: 1.5;
             margin: 0;
         }
 
         .db-widget-btn {
             font-family: 'Outfit', sans-serif;
-            font-size: 0.65rem;
+            font-size: 0.7rem;
             font-weight: 600;
-            letter-spacing: 0.05em;
+            letter-spacing: 0.1em;
             text-transform: uppercase;
-            padding: 8px 16px;
+            padding: 12px 24px;
             background: var(--primary-navy);
             color: #ffffff;
             border: 1px solid var(--primary-navy);
             cursor: pointer;
-            transition: all 0.3s;
-            margin-top: 15px;
+            transition: all 0.3s ease;
+            margin-top: 20px;
             align-self: flex-start;
+            border-radius: 6px !important;
         }
 
         .db-widget-btn:hover {
             background: var(--luxury-gold);
             border-color: var(--luxury-gold);
             color: var(--primary-navy);
+            box-shadow: 0 4px 15px rgba(214, 164, 55, 0.3);
+            transform: translateY(-1px);
         }
 
         .db-widget-btn.secondary {
@@ -595,8 +622,78 @@
         }
 
         .db-widget-btn.secondary:hover {
+            background: rgba(20, 43, 99, 0.05);
+            color: var(--primary-navy);
             border-color: var(--luxury-gold);
-            color: var(--luxury-gold);
+        }
+
+        .db-banner-btn {
+            background: transparent;
+            border: 1px solid var(--luxury-gold);
+            color: #fff;
+            padding: 8px 18px;
+            border-radius: 6px;
+            font-family: 'Outfit', sans-serif;
+            font-size: 0.7rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 8px;
+        }
+
+        .db-banner-btn:hover {
+            background: var(--luxury-gold);
+            color: var(--primary-navy);
+            box-shadow: 0 4px 15px rgba(214, 164, 55, 0.3);
+            transform: translateY(-1px);
+        }
+
+        /* Password Modal Styling */
+        .db-modal-overlay {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(10, 20, 45, 0.5);
+            backdrop-filter: blur(10px);
+            z-index: 9999;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        .db-modal-content {
+            background: rgba(255, 255, 255, 0.9);
+            border: 1px solid rgba(214, 164, 55, 0.4);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.2);
+            border-radius: 12px;
+            padding: 30px;
+            width: 100%;
+            max-width: 400px;
+            transform: translateY(20px);
+            transition: transform 0.3s ease;
+        }
+
+        .db-modal-overlay.active {
+            display: flex;
+            opacity: 1;
+        }
+        
+        .db-modal-overlay.active .db-modal-content {
+            transform: translateY(0);
+        }
+
+        .db-modal-close {
+            background: none;
+            border: none;
+            font-size: 1.2rem;
+            cursor: pointer;
+            color: var(--primary-navy);
+            float: right;
+            margin-top: -10px;
+            margin-right: -10px;
         }
     </style>
 </head>
@@ -606,7 +703,9 @@
     <!-- Canvas Noise Overlay -->
     <div class="noise-overlay"></div>
 
-    <!-- MAIN MEMBER DASHBOARD CONTENT (No Header, No Footer) -->
+    <!-- Header moved to content column -->
+
+    <!-- MAIN MEMBER DASHBOARD CONTENT (Now With Header) -->
     <main class="db-main">
         <div class="db-container">
 
@@ -615,7 +714,8 @@
                 <!-- SIDEBAR: Summary & Navigation -->
                 <aside class="db-sidebar-card">
                     <!-- Profile Avatar upload trigger -->
-                    <div class="db-avatar-wrapper" id="db-avatar" onclick="document.getElementById('profile-avatar-input').click();">
+                    <div class="db-avatar-wrapper" id="db-avatar"
+                        onclick="document.getElementById('profile-avatar-input').click();">
                         <span id="db-avatar-initials">JD</span>
                         <div class="db-avatar-upload">Modifier</div>
                     </div>
@@ -649,11 +749,13 @@
                                 <line x1="16" y1="17" x2="8" y2="17"></line>
                                 <polyline points="10 9 9 9 8 9"></polyline>
                             </svg>
-                            <span>Questionnaire S7</span>
+                            <span>Mon Profil Relationnel</span>
                         </button>
                         <button class="db-nav-item" onclick="switchDbTab('matches')" id="btn-tab-matches">
                             <svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" fill="none">
-                                <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+                                <path
+                                    d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z">
+                                </path>
                             </svg>
                             <span>Mes Compatibilités</span>
                         </button>
@@ -699,902 +801,1281 @@
                 </aside>
 
                 <!-- RIGHT BLOCK: Active Tab Panel -->
-                <section class="db-content-card">
+                <div class="db-right-column" style="display: flex; flex-direction: column; width: 100%;">
+                    <!-- Logged In Header (Moved inside right column) -->
+                    <header class="db-top-header" id="main-header"
+                        style="position: sticky; top: 0; z-index: 1000; background: var(--warm-ivory); display: flex; justify-content: space-between; align-items: center; padding: 15px 40px; border-bottom: 1px solid rgba(20,43,99,0.05);">
+                        <a href="index.html" class="logo-link" id="header-logo">
+                            <img src="assets/7sens.webp" alt="7Sens Logo" class="logo-img"
+                                style="height: 35px; width: auto;">
+                        </a>
 
-                    <!-- TAB 1: Dashboard Home -->
-                    <div id="section-home" class="db-section active">
-                        <!-- Refined Gradient Welcome Banner -->
-                        <div class="db-welcome-banner" style="border-radius: 4px;">
-                            <div>
-                                <span class="db-welcome-subtitle">Bienvenue dans votre espace</span>
-                                <h2 class="db-welcome-title" id="welcome-banner-name">Jean Dupont</h2>
-                            </div>
-                            <div style="text-align: right;">
-                                <span
-                                    style="font-size: 0.65rem; font-weight: 700; color: var(--luxury-gold); letter-spacing: 0.1em; text-transform: uppercase; border: 1px solid rgba(214,164,55,0.4); padding: 6px 12px; background: rgba(214,164,55,0.05); border-radius: 2px;"
-                                    id="welcome-banner-badge">Membre Privilège</span>
-                            </div>
-                        </div>
-
-                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-bottom: 24px;"
-                            class="db-form-row">
-                            <!-- Card 1: Next Event -->
-                            <div class="db-widget" id="dashboard-next-event-card" style="border-radius: 4px;">
-                                <div>
-                                    <div class="db-widget-header">
-                                        <span class="db-widget-tag">Prochain Cercle Privé</span>
-                                        <span class="db-widget-icon">
-                                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                                                style="width: 16px; height: 16px;">
+                        <!-- User Profile Dropdown (Logged In State) -->
+                        <div class="user-profile-dropdown">
+                            <button class="user-profile-btn" aria-haspopup="true" aria-expanded="false">
+                                <img src="assets/pexels-maorattias-5152572.jpg" alt="User Avatar" class="user-avatar"
+                                    id="top-header-avatar"
+                                    style="width: 38px; height: 38px; border-radius: 50%; object-fit: cover; border: 2px solid var(--luxury-gold);">
+                                <span class="user-name" id="top-header-name"
+                                    style="font-family: 'Outfit', sans-serif; font-weight: 500; font-size: 0.95rem; color: var(--primary-navy);">Jean
+                                    D.</span>
+                                <svg class="dropdown-chevron" viewBox="0 0 24 24" width="14" height="14" fill="none"
+                                    stroke="currentColor" stroke-width="2" style="color: var(--primary-navy);">
+                                    <path d="M6 9l6 6 6-6" />
+                                </svg>
+                            </button>
+                            <div class="user-dropdown-menu">
+                                <div class="dropdown-header">
+                                    <span class="dropdown-status">Membre Privilège</span>
+                                </div>
+                                <ul class="dropdown-links">
+                                    <li>
+                                        <a href="profile.html">
+                                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                                stroke-width="1.5">
+                                                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                                                <circle cx="12" cy="7" r="4"></circle>
+                                            </svg>
+                                            Mon Profil
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="events.html">
+                                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                                stroke-width="1.5">
                                                 <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
                                                 <line x1="16" y1="2" x2="16" y2="6"></line>
                                                 <line x1="8" y1="2" x2="8" y2="6"></line>
                                                 <line x1="3" y1="10" x2="21" y2="10"></line>
                                             </svg>
-                                        </span>
-                                    </div>
-                                    <h4 class="db-widget-title">Soirée Dégustation & Échanges</h4>
-                                    <p class="db-widget-desc">Genève &nbsp;•&nbsp; 24 Mai 2026 à 19:00</p>
+                                            Mes Réservations
+                                        </a>
+                                    </li>
+                                    <li class="dropdown-divider"></li>
+                                    <li>
+                                        <a href="index.html" class="logout-link">
+                                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                                stroke-width="1.5">
+                                                <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path>
+                                                <polyline points="16 17 21 12 16 7"></polyline>
+                                                <line x1="21" y1="12" x2="9" y2="12"></line>
+                                            </svg>
+                                            Déconnexion
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </header>
+
+                    <section class="db-content-card">
+
+                        <!-- TAB 1: Dashboard Home -->
+                        <div id="section-home" class="db-section active">
+                            <!-- Refined Gradient Welcome Banner -->
+                            <div class="db-welcome-banner" style="border-radius: 4px;">
+                                <div style="z-index: 2;">
+                                    <span class="db-welcome-subtitle">Bienvenue dans votre espace</span>
+                                    <h2 class="db-welcome-title" id="welcome-banner-name">Jean Dupont</h2>
+                                    <span
+                                        style="display:inline-block; margin-top: 5px; font-size: 0.65rem; font-weight: 700; color: var(--luxury-gold); letter-spacing: 0.1em; text-transform: uppercase; border: 1px solid rgba(214,164,55,0.4); padding: 6px 12px; background: rgba(214,164,55,0.15); border-radius: 4px; backdrop-filter: blur(5px);"
+                                        id="welcome-banner-badge">Membre Privilège</span>
                                 </div>
-                                <button type="button" class="db-widget-btn" onclick="switchDbTab('bookings')"
-                                    style="border-radius: 2px;">Gérer ma réservation</button>
+
+                                <div
+                                    style="display: flex; align-items: center; gap: 20px; background: rgba(10, 20, 45, 0.6); padding: 20px 25px; border-radius: 12px; border: 1px solid rgba(214,164,55,0.3); backdrop-filter: blur(15px); z-index: 2; box-shadow: 0 10px 30px rgba(0,0,0,0.2);">
+                                    <div style="position: relative; width: 60px; height: 60px;">
+                                        <svg class="modern-progress-circle" width="60" height="60" viewBox="0 0 100 100"
+                                            style="transform: rotate(-90deg);">
+                                            <circle cx="50" cy="50" r="45" fill="none" stroke="rgba(255,255,255,0.1)"
+                                                stroke-width="6" />
+                                            <circle cx="50" cy="50" r="45" fill="none" stroke="url(#goldGradient)"
+                                                stroke-width="6" stroke-dasharray="283" stroke-dashoffset="212.25"
+                                                stroke-linecap="round" />
+                                            <defs>
+                                                <linearGradient id="goldGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                                                    <stop offset="0%" stop-color="#D6A437" />
+                                                    <stop offset="100%" stop-color="#F9E596" />
+                                                </linearGradient>
+                                            </defs>
+                                        </svg>
+                                        <div
+                                            style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; font-size: 0.9rem; font-weight: 700; color: #fff;">
+                                            25%
+                                        </div>
+                                    </div>
+                                    <div style="display: flex; flex-direction: column; align-items: flex-start;">
+                                        <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 8px;">
+                                            <svg viewBox="0 0 24 24" fill="none" stroke="var(--luxury-gold)"
+                                                stroke-width="2" style="width: 14px; height: 14px;">
+                                                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                                                <circle cx="12" cy="7" r="4"></circle>
+                                            </svg>
+                                            <span
+                                                style="font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: var(--luxury-gold);">Statut
+                                                du Profil</span>
+                                        </div>
+                                        <button onclick="switchDbTab('questionnaire')"
+                                            class="db-banner-btn">Compléter</button>
+                                    </div>
+                                </div>
                             </div>
 
-                            <!-- Card 2: Waitlist info -->
-                            <div class="db-widget" id="dashboard-waitlist-card" style="border-radius: 4px;">
-                                <div>
-                                    <div class="db-widget-header">
-                                        <span class="db-widget-tag">Place Disponible Concierge</span>
-                                        <span class="db-widget-icon" style="color: var(--luxury-gold);">
-                                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                                                style="width: 16px; height: 16px;">
-                                                <circle cx="12" cy="12" r="10"></circle>
-                                                <polyline points="12 6 12 12 16 14"></polyline>
-                                            </svg>
-                                        </span>
+                            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-bottom: 24px;"
+                                class="db-form-row">
+                                <!-- Card 1: Next Event -->
+                                <div class="db-widget" id="dashboard-next-event-card" style="border-radius: 4px;">
+                                    <div>
+                                        <div class="db-widget-header">
+                                            <span class="db-widget-tag">Prochain Cercle Privé</span>
+                                            <span class="db-widget-icon">
+                                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                                    stroke-width="2" style="width: 16px; height: 16px;">
+                                                    <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                                                    <line x1="16" y1="2" x2="16" y2="6"></line>
+                                                    <line x1="8" y1="2" x2="8" y2="6"></line>
+                                                    <line x1="3" y1="10" x2="21" y2="10"></line>
+                                                </svg>
+                                            </span>
+                                        </div>
+                                        <h4 class="db-widget-title">Soirée Dégustation & Échanges</h4>
+                                        <p class="db-widget-desc">Genève &nbsp;•&nbsp; 24 Mai 2026 à 19:00</p>
                                     </div>
-                                    <h4 class="db-widget-title" id="home-waitlist-title"
-                                        style="color: var(--luxury-gold);">Sunset & Conversations</h4>
-                                    <p class="db-widget-desc" id="home-waitlist-desc">Une place s'est libérée ! Expire
-                                        dans 11h 42m.</p>
+                                    <button type="button" class="db-widget-btn" onclick="switchDbTab('bookings')"
+                                        style="border-radius: 2px;">Gérer ma réservation</button>
                                 </div>
-                                <button type="button" class="db-widget-btn" onclick="switchDbTab('waitlists')"
-                                    style="background-color: var(--luxury-gold); border-color: var(--luxury-gold); color: var(--primary-navy); border-radius: 2px;">Confirmer
-                                    ma place</button>
+
+                                <!-- Card 2: Waitlist info -->
+                                <div class="db-widget" id="dashboard-waitlist-card" style="border-radius: 4px;">
+                                    <div>
+                                        <div class="db-widget-header">
+                                            <span class="db-widget-tag">Place Disponible Concierge</span>
+                                            <span class="db-widget-icon" style="color: var(--luxury-gold);">
+                                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                                    stroke-width="2" style="width: 16px; height: 16px;">
+                                                    <circle cx="12" cy="12" r="10"></circle>
+                                                    <polyline points="12 6 12 12 16 14"></polyline>
+                                                </svg>
+                                            </span>
+                                        </div>
+                                        <h4 class="db-widget-title" id="home-waitlist-title"
+                                            style="color: var(--primary-navy);">Sunset & Conversations</h4>
+                                        <p class="db-widget-desc" id="home-waitlist-desc">Une place s'est libérée !
+                                            Expire dans 11h 42m.</p>
+                                    </div>
+                                    <button type="button" class="db-widget-btn" onclick="switchDbTab('waitlists')"
+                                        style="border-radius: 2px;">Confirmer
+                                        ma place</button>
+                                </div>
+                            </div>
+
+                            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 24px;" class="db-form-row">
+                                <!-- Card 3: Notifications summary -->
+                                <div class="db-widget" style="border-radius: 4px;">
+                                    <div>
+                                        <div class="db-widget-header">
+                                            <span class="db-widget-tag">Dernier Message</span>
+                                            <span class="db-widget-icon">
+                                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                                    stroke-width="2" style="width: 16px; height: 16px;">
+                                                    <path
+                                                        d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z">
+                                                    </path>
+                                                    <polyline points="22,6 12,13 2,6"></polyline>
+                                                </svg>
+                                            </span>
+                                        </div>
+                                        <h4 class="db-widget-title" style="font-size: 1.15rem; font-weight: 500;">
+                                            Invitation Prioritaire</h4>
+                                        <p class="db-widget-desc" id="home-notification-text"
+                                            style="font-size: 0.72rem; font-style: italic;">
+                                            "Une place s'est libérée pour l'expérience Sunset & Conversations. Veuillez
+                                            finaliser votre règlement..."
+                                        </p>
+                                    </div>
+                                    <button type="button" class="db-widget-btn secondary"
+                                        onclick="switchDbTab('notifications')" style="border-radius: 2px;">Historique
+                                        des messages</button>
+                                </div>
+
+                                <!-- Card 4: Verification status -->
+                                <div class="db-widget" style="border-radius: 4px;">
+                                    <div>
+                                        <div class="db-widget-header">
+                                            <span class="db-widget-tag">Statut de Validation</span>
+                                            <span class="db-widget-icon">
+                                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                                    stroke-width="2" style="width: 16px; height: 16px;">
+                                                    <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+                                                    <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+                                                </svg>
+                                            </span>
+                                        </div>
+                                        <div style="display: flex; flex-direction: column; gap: 8px; margin: 5px 0;">
+                                            <div style="display: flex; align-items: center; gap: 8px;">
+                                                <span id="home-email-badge"
+                                                    style="display:inline-block; padding: 4px 8px; font-size: 0.58rem; font-weight: 700; border-radius: 2px; background-color: rgba(43, 138, 62, 0.1); color: #2b8a3e; border: 1px solid rgba(43, 138, 62, 0.2);">E-MAIL
+                                                    VÉRIFIÉ ✓</span>
+                                            </div>
+                                            <div style="display: flex; align-items: center; gap: 8px;">
+                                                <span id="home-phone-badge"
+                                                    style="display:inline-block; padding: 4px 8px; font-size: 0.58rem; font-weight: 700; border-radius: 2px; background-color: rgba(43, 138, 62, 0.1); color: #2b8a3e; border: 1px solid rgba(43, 138, 62, 0.2);">MOBILE
+                                                    VÉRIFIÉ ✓</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <button type="button" class="db-widget-btn secondary"
+                                        onclick="location.href='verify-contact.html'"
+                                        style="border-radius: 2px;">Renforcer
+                                        ma sécurité</button>
+                                </div>
+                            </div>
+
+                            <!-- Event Tracking Widget -->
+                            <div style="margin-top: 24px;" class="db-widget">
+                                <div class="db-widget-header">
+                                    <span class="db-widget-tag">Analyse Comportementale</span>
+                                    <span class="db-widget-icon" style="color: var(--luxury-gold);">
+                                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                            style="width: 16px; height: 16px;">
+                                            <path d="M12 20v-6M6 20V10M18 20V4"></path>
+                                        </svg>
+                                    </span>
+                                </div>
+                                <h4 class="db-widget-title">Historique des Événements</h4>
+                                <p class="db-widget-desc" style="margin-bottom: 12px;">Types d'événements auxquels vous
+                                    avez participé, utilisés pour affiner vos correspondances S7.</p>
+                                <div style="display: flex; gap: 10px; flex-wrap: wrap;">
+                                    <span
+                                        style="background: rgba(214,164,55,0.1); border: 1px solid rgba(214,164,55,0.4); color: var(--luxury-gold); padding: 5px 12px; border-radius: 30px; font-size: 0.75rem; font-family: 'Outfit', sans-serif;">Dégustation
+                                        (3)</span>
+                                    <span
+                                        style="background: rgba(255,255,255,0.5); border: 1px solid rgba(20,43,99,0.2); color: var(--primary-navy); padding: 5px 12px; border-radius: 30px; font-size: 0.75rem; font-family: 'Outfit', sans-serif;">Ateliers
+                                        Créatifs (1)</span>
+                                    <span
+                                        style="background: rgba(255,255,255,0.5); border: 1px solid rgba(20,43,99,0.2); color: var(--primary-navy); padding: 5px 12px; border-radius: 30px; font-size: 0.75rem; font-family: 'Outfit', sans-serif;">Conversations
+                                        Intimes (1)</span>
+                                </div>
+                            </div>
+
+                            <!-- Timeline & Concierge Support Widgets -->
+                            <div
+                                style="margin-top: 30px; background: rgba(255, 255, 255, 0.4); border: 1px solid rgba(20, 43, 99, 0.06); padding: 24px; border-radius: 4px;">
+                                <h3
+                                    style="font-family: 'Cormorant Garamond', serif; font-size: 1.35rem; color: var(--primary-navy); margin: 0 0 20px;">
+                                    Activités Récentes</h3>
+                                <div style="display: flex; flex-direction: column; gap: 15px;">
+                                    <!-- Item 1 -->
+                                    <div style="display: flex; gap: 15px; align-items: flex-start;">
+                                        <div
+                                            style="width: 8px; height: 8px; border-radius: 50%; background-color: var(--luxury-gold); margin-top: 5px; flex-shrink:0;">
+                                        </div>
+                                        <div style="flex-grow: 1;">
+                                            <div
+                                                style="display:flex; justify-content:space-between; align-items:center;">
+                                                <span
+                                                    style="font-size: 0.78rem; font-weight: 600; color: var(--primary-navy);">Inscription
+                                                    Liste d'Attente</span>
+                                                <span style="font-size: 0.65rem; color: var(--text-muted);">Aujourd'hui
+                                                    à
+                                                    11:30</span>
+                                            </div>
+                                            <p style="font-size: 0.72rem; color: var(--text-muted); margin: 2px 0 0;">
+                                                Candidature enregistrée pour l'Atelier Créatif & Rencontres (Lausanne).
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <!-- Item 2 -->
+                                    <div
+                                        style="display: flex; gap: 15px; align-items: flex-start; border-top: 1px solid rgba(20,43,99,0.04); padding-top: 15px;">
+                                        <div
+                                            style="width: 8px; height: 8px; border-radius: 50%; background-color: #2b8a3e; margin-top: 5px; flex-shrink:0;">
+                                        </div>
+                                        <div style="flex-grow: 1;">
+                                            <div
+                                                style="display:flex; justify-content:space-between; align-items:center;">
+                                                <span
+                                                    style="font-size: 0.78rem; font-weight: 600; color: var(--primary-navy);">Paiement
+                                                    Confirmé</span>
+                                                <span style="font-size: 0.65rem; color: var(--text-muted);">18 Avril
+                                                    2026 à
+                                                    14:22</span>
+                                            </div>
+                                            <p style="font-size: 0.72rem; color: var(--text-muted); margin: 2px 0 0;">
+                                                Règlement de CHF 120.00 validé par TWINT pour l'expérience de
+                                                Dégustation
+                                                (Genève).</p>
+                                        </div>
+                                    </div>
+                                    <!-- Item 3 -->
+                                    <div
+                                        style="display: flex; gap: 15px; align-items: flex-start; border-top: 1px solid rgba(20,43,99,0.04); padding-top: 15px;">
+                                        <div
+                                            style="width: 8px; height: 8px; border-radius: 50%; background-color: var(--luxury-gold); margin-top: 5px; flex-shrink:0;">
+                                        </div>
+                                        <div style="flex-grow: 1;">
+                                            <div
+                                                style="display:flex; justify-content:space-between; align-items:center;">
+                                                <span
+                                                    style="font-size: 0.78rem; font-weight: 600; color: var(--primary-navy);">Profil
+                                                    Mis à Jour</span>
+                                                <span style="font-size: 0.65rem; color: var(--text-muted);">15 Avril
+                                                    2026 à
+                                                    17:05</span>
+                                            </div>
+                                            <p style="font-size: 0.72rem; color: var(--text-muted); margin: 2px 0 0;">
+                                                Modification de vos coordonnées de contact et préférences de
+                                                conciergerie.
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Concierge Contact Widget -->
+                            <div
+                                style="margin-top: 24px; display: flex; justify-content: space-between; align-items: center; background: rgba(214, 164, 55, 0.05); border: 1px solid rgba(214, 164, 55, 0.2); padding: 20px 24px; border-radius: 4px;">
+                                <div style="display: flex; align-items: center; gap: 15px;">
+                                    <div
+                                        style="width: 44px; height: 44px; border-radius: 50%; background-color: var(--primary-navy); color: var(--luxury-gold); display: flex; align-items: center; justify-content: center; font-size: 1.2rem; font-family: 'Cormorant Garamond', serif; border: 1px solid rgba(214,164,55,0.3);">
+                                        C
+                                    </div>
+                                    <div>
+                                        <h4
+                                            style="font-family: 'Cormorant Garamond', serif; font-size: 1.15rem; margin: 0; color: var(--primary-navy);">
+                                            Votre Concierge 7Sens Privé</h4>
+                                        <p style="font-size: 0.72rem; color: var(--text-muted); margin: 2px 0 0;">Une
+                                            question sur un cercle ? Contactez notre conciergerie VIP directe.</p>
+                                    </div>
+                                </div>
+                                <div style="display: flex; gap: 10px;">
+                                    <a href="tel:+41225557777" class="db-widget-btn secondary"
+                                        style="margin-top: 0; padding: 8px 16px; font-size: 0.65rem; text-decoration: none; border-radius: 2px;">Appeler</a>
+                                    <a href="https://wa.me/41225557777" class="db-widget-btn"
+                                        style="margin-top: 0; padding: 8px 16px; font-size: 0.65rem; text-decoration: none; background-color: #2b8a3e; border-color: #2b8a3e; border-radius: 2px;">WhatsApp</a>
+                                </div>
                             </div>
                         </div>
 
-                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 24px;" class="db-form-row">
-                            <!-- Card 3: Notifications summary -->
-                            <div class="db-widget" style="border-radius: 4px;">
-                                <div>
-                                    <div class="db-widget-header">
-                                        <span class="db-widget-tag">Dernier Message</span>
-                                        <span class="db-widget-icon">
-                                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                                                style="width: 16px; height: 16px;">
-                                                <path
-                                                    d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z">
-                                                </path>
-                                                <polyline points="22,6 12,13 2,6"></polyline>
-                                            </svg>
-                                        </span>
-                                    </div>
-                                    <h4 class="db-widget-title" style="font-size: 1.15rem; font-weight: 500;">Invitation
-                                        Prioritaire</h4>
-                                    <p class="db-widget-desc" id="home-notification-text"
-                                        style="font-size: 0.72rem; font-style: italic;">
-                                        "Une place s'est libérée pour l'expérience Sunset & Conversations. Veuillez
-                                        finaliser votre règlement..."
-                                    </p>
-                                </div>
-                                <button type="button" class="db-widget-btn secondary"
-                                    onclick="switchDbTab('notifications')" style="border-radius: 2px;">Historique des
-                                    messages</button>
+                        <!-- TAB 2: Edit Profile & Password & Preferences -->
+                        <div id="section-profile" class="db-section">
+                            <div class="db-section-header">
+                                <h3 class="db-section-title">Paramètres du Profil</h3>
+                                <p class="db-section-subtitle">Gérez vos détails d'identification, de sécurité et vos préférences de contact.</p>
                             </div>
 
-                            <!-- Card 4: Verification status -->
-                            <div class="db-widget" style="border-radius: 4px;">
-                                <div>
-                                    <div class="db-widget-header">
-                                        <span class="db-widget-tag">Statut de Validation</span>
-                                        <span class="db-widget-icon">
-                                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                                                style="width: 16px; height: 16px;">
+                            <form id="profile-edit-form">
+                                <!-- Card 1: Informations du Profil -->
+                                <div class="db-widget" style="margin-bottom: 24px;">
+                                    <h4 style="font-family: 'Cormorant Garamond', serif; font-size: 1.3rem; color: var(--primary-navy); margin-bottom: 20px; border-bottom: 1px solid rgba(214,164,55,0.2); padding-bottom: 10px;">Informations du Profil</h4>
+                                    
+                                    <div class="db-form-row" style="margin-bottom: 25px; justify-content: center; display: flex;">
+                                        <div style="display: flex; flex-direction: column; align-items: center; gap: 10px;">
+                                            <!-- Circular Uploader Frame -->
+                                            <div id="form-avatar-circle"
+                                                onclick="document.getElementById('profile-avatar-input').click();"
+                                                style="position: relative; width: 100px; height: 100px; border-radius: 50%; overflow: hidden; border: 2px solid rgba(214, 164, 55, 0.4); cursor: pointer; background-color: var(--primary-navy); background-size: cover; background-position: center; transition: all 0.3s; box-shadow: 0 8px 24px rgba(16,42,94,0.06);">
+                                                
+                                                <!-- Overlay on Hover -->
+                                                <div style="position: absolute; top:0; left:0; width:100%; height:100%; background: rgba(20, 43, 99, 0.7); display:flex; flex-direction:column; align-items:center; justify-content:center; color: var(--warm-ivory); font-size: 0.62rem; font-weight:700; text-transform:uppercase; letter-spacing:0.05em; opacity:0; transition: opacity 0.3s;"
+                                                    id="form-avatar-overlay">
+                                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width: 20px; height: 20px; margin-bottom: 4px;">
+                                                        <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"></path>
+                                                        <circle cx="12" cy="13" r="4"></circle>
+                                                    </svg>
+                                                    Télécharger
+                                                </div>
+                                            </div>
+                                            <span id="profile-file-name" style="font-size: 0.68rem; color: var(--text-muted); text-align: center;">Format JPG ou PNG. Recommandé 1:1.</span>
+                                        </div>
+                                    </div>
+                                    <div class="db-form-row">
+                                        <div class="db-form-group">
+                                            <label for="profile-firstname">Prénom *</label>
+                                            <input type="text" id="profile-firstname" required value="Jean">
+                                        </div>
+                                        <div class="db-form-group">
+                                            <label for="profile-lastname">Nom *</label>
+                                            <input type="text" id="profile-lastname" required value="Dupont">
+                                        </div>
+                                    </div>
+                                    <div class="db-form-row">
+                                        <div class="db-form-group">
+                                            <label for="profile-dob">Date de naissance *</label>
+                                            <input type="date" id="profile-dob" required value="1988-05-14">
+                                        </div>
+                                        <div class="db-form-group">
+                                            <label for="profile-gender">Civilité</label>
+                                            <select id="profile-gender">
+                                                <option value="homme" selected>Homme</option>
+                                                <option value="femme">Femme</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="db-form-row">
+                                        <div class="db-form-group">
+                                            <label for="profile-marital-status">Statut Marital</label>
+                                            <select id="profile-marital-status">
+                                                <option value="" disabled selected>Sélectionnez...</option>
+                                                <option value="celibataire">Célibataire</option>
+                                                <option value="divorce">Divorcé(e)</option>
+                                                <option value="veuf">Veuf / Veuve</option>
+                                                <option value="separe">Séparé(e)</option>
+                                            </select>
+                                        </div>
+                                        <div class="db-form-group">
+                                            <label for="profile-email">Adresse e-mail *</label>
+                                            <input type="email" id="profile-email" required value="jean.dupont@example.ch">
+                                        </div>
+                                    </div>
+                                    <div class="db-form-row" style="align-items: flex-start;">
+                                        <div class="db-form-group">
+                                            <label for="profile-phone">Téléphone mobile *</label>
+                                            <input type="tel" id="profile-phone" required value="+41 79 123 45 67">
+                                        </div>
+                                        <div class="db-form-group">
+                                            <label>Centres d'intérêt & Loisirs (Sélection multiple)</label>
+                                            <style>
+                                                .hobby-chip {
+                                                    display: inline-block;
+                                                    padding: 6px 14px;
+                                                    margin: 0 6px 8px 0;
+                                                    font-size: 0.75rem;
+                                                    font-weight: 500;
+                                                    color: var(--primary-navy);
+                                                    background-color: rgba(20, 43, 99, 0.05);
+                                                    border: 1px solid rgba(20, 43, 99, 0.1);
+                                                    border-radius: 20px;
+                                                    cursor: pointer;
+                                                    transition: all 0.2s ease;
+                                                }
+                                                .hobby-chip:hover {
+                                                    background-color: rgba(214, 164, 55, 0.1);
+                                                    border-color: rgba(214, 164, 55, 0.4);
+                                                }
+                                                .hobby-chip.active {
+                                                    background-color: var(--primary-navy);
+                                                    color: var(--warm-ivory);
+                                                    border-color: var(--primary-navy);
+                                                    box-shadow: 0 4px 10px rgba(16, 42, 94, 0.2);
+                                                }
+                                                .hobbies-scroll-container {
+                                                    max-height: 140px;
+                                                    overflow-y: auto;
+                                                    background-color: rgba(255, 255, 255, 0.6);
+                                                    border: 1px solid rgba(20, 43, 99, 0.15);
+                                                    border-radius: 8px;
+                                                    padding: 10px;
+                                                    box-shadow: inset 0 2px 4px rgba(0,0,0,0.02);
+                                                }
+                                                .hobbies-scroll-container::-webkit-scrollbar {
+                                                    width: 6px;
+                                                }
+                                                .hobbies-scroll-container::-webkit-scrollbar-thumb {
+                                                    background: rgba(20, 43, 99, 0.2);
+                                                    border-radius: 4px;
+                                                }
+                                            </style>
+                                            <div class="hobbies-scroll-container">
+                                                <span class="hobby-chip active" onclick="this.classList.toggle('active')">Voyages</span>
+                                                <span class="hobby-chip active" onclick="this.classList.toggle('active')">Gastronomie</span>
+                                                <span class="hobby-chip" onclick="this.classList.toggle('active')">Art Contemporain</span>
+                                                <span class="hobby-chip" onclick="this.classList.toggle('active')">Photographie</span>
+                                                <span class="hobby-chip" onclick="this.classList.toggle('active')">Oenologie</span>
+                                                <span class="hobby-chip" onclick="this.classList.toggle('active')">Ski</span>
+                                                <span class="hobby-chip" onclick="this.classList.toggle('active')">Voile</span>
+                                                <span class="hobby-chip" onclick="this.classList.toggle('active')">Golf</span>
+                                                <span class="hobby-chip" onclick="this.classList.toggle('active')">Tennis</span>
+                                                <span class="hobby-chip" onclick="this.classList.toggle('active')">Yoga</span>
+                                                <span class="hobby-chip" onclick="this.classList.toggle('active')">Méditation</span>
+                                                <span class="hobby-chip" onclick="this.classList.toggle('active')">Lecture</span>
+                                                <span class="hobby-chip" onclick="this.classList.toggle('active')">Théâtre</span>
+                                                <span class="hobby-chip" onclick="this.classList.toggle('active')">Opéra</span>
+                                                <span class="hobby-chip" onclick="this.classList.toggle('active')">Musique Classique</span>
+                                                <span class="hobby-chip" onclick="this.classList.toggle('active')">Jazz</span>
+                                                <span class="hobby-chip" onclick="this.classList.toggle('active')">Cinéma</span>
+                                                <span class="hobby-chip" onclick="this.classList.toggle('active')">Randonnée</span>
+                                                <span class="hobby-chip" onclick="this.classList.toggle('active')">Plongée</span>
+                                                <span class="hobby-chip" onclick="this.classList.toggle('active')">Équitation</span>
+                                                <span class="hobby-chip" onclick="this.classList.toggle('active')">Mode</span>
+                                                <span class="hobby-chip" onclick="this.classList.toggle('active')">Design</span>
+                                                <span class="hobby-chip" onclick="this.classList.toggle('active')">Architecture</span>
+                                                <span class="hobby-chip" onclick="this.classList.toggle('active')">Histoire</span>
+                                                <span class="hobby-chip" onclick="this.classList.toggle('active')">Philanthropie</span>
+                                                <span class="hobby-chip" onclick="this.classList.toggle('active')">Vins Spiritueux</span>
+                                                <span class="hobby-chip" onclick="this.classList.toggle('active')">Chasse</span>
+                                                <span class="hobby-chip" onclick="this.classList.toggle('active')">Pêche</span>
+                                                <span class="hobby-chip" onclick="this.classList.toggle('active')">Voitures de Collection</span>
+                                                <span class="hobby-chip" onclick="this.classList.toggle('active')">Horlogerie</span>
+                                                <span class="hobby-chip" onclick="this.classList.toggle('active')">Entrepreneuriat</span>
+                                                <span class="hobby-chip" onclick="this.classList.toggle('active')">Investissement</span>
+                                                <span class="hobby-chip" onclick="this.classList.toggle('active')">Bourse</span>
+                                                <span class="hobby-chip" onclick="this.classList.toggle('active')">Bénévolat</span>
+                                                <span class="hobby-chip" onclick="this.classList.toggle('active')">Danse</span>
+                                                <span class="hobby-chip" onclick="this.classList.toggle('active')">Littérature</span>
+                                                <span class="hobby-chip" onclick="this.classList.toggle('active')">Botanique</span>
+                                                <span class="hobby-chip" onclick="this.classList.toggle('active')">Philosophie</span>
+                                                <span class="hobby-chip" onclick="this.classList.toggle('active')">Développement Personnel</span>
+                                                <span class="hobby-chip" onclick="this.classList.toggle('active')">Fitness</span>
+                                                <span class="hobby-chip" onclick="this.classList.toggle('active')">Surf</span>
+                                                <span class="hobby-chip" onclick="this.classList.toggle('active')">Alpinisme</span>
+                                                <span class="hobby-chip" onclick="this.classList.toggle('active')">Cyclisme</span>
+                                                <span class="hobby-chip" onclick="this.classList.toggle('active')">Astronomie</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="db-form-row" style="align-items: stretch;">
+                                        <div class="db-form-group" style="display: flex; flex-direction: column;">
+                                            <label for="profile-description">Description Personnelle</label>
+                                            <textarea id="profile-description" style="flex: 1; resize: vertical; min-height: 120px;"></textarea>
+                                        </div>
+                                        <div class="db-form-group" style="display: flex; flex-direction: column;">
+                                            <label for="profile-looking-for">Ce que je recherche</label>
+                                            <textarea id="profile-looking-for" style="flex: 1; resize: vertical; min-height: 120px;"></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Card 2: Security & Notifications -->
+                                <div class="db-widget" style="margin-bottom: 24px;">
+                                    <h4 style="font-family: 'Cormorant Garamond', serif; font-size: 1.3rem; color: var(--primary-navy); margin-bottom: 20px; border-bottom: 1px solid rgba(214,164,55,0.2); padding-bottom: 10px;">Sécurité & Notifications</h4>
+                                    
+                                    <h5 style="font-family: 'Outfit', sans-serif; font-size: 0.85rem; font-weight: 700; text-transform: uppercase; color: var(--primary-navy); margin-bottom: 15px;">Mot de passe</h5>
+                                    <div class="db-form-row" style="margin-bottom: 25px;">
+                                        <div class="db-form-group" style="width: 100%;">
+                                            <button type="button" class="db-widget-btn secondary" style="width: auto; padding: 10px 20px;" onclick="openPasswordModal()">
+                                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width: 14px; height: 14px; margin-right: 6px; vertical-align: middle; display: inline-block;">
+                                                    <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+                                                    <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+                                                </svg>
+                                                Modifier le mot de passe
+                                            </button>
+                                        </div>
+                                    </div>
+
+                                    <h5 style="font-family: 'Outfit', sans-serif; font-size: 0.85rem; font-weight: 700; text-transform: uppercase; color: var(--primary-navy); margin-bottom: 15px;">Canaux de Notifications</h5>
+                                    <div style="background: rgba(255, 255, 255, 0.4); border: 1px solid rgba(20, 43, 99, 0.05); padding: 5px 20px; border-radius: 8px;">
+                                        <div class="preference-row">
+                                            <div class="preference-info">
+                                                <h4 class="preference-title" style="font-size: 0.8rem;">Notifications par E-mail</h4>
+                                                <p class="preference-desc" style="font-size: 0.7rem;">Confirmations de paiement, invitations privées prioritaires.</p>
+                                            </div>
+                                            <label class="luxury-switch">
+                                                <input type="checkbox" id="pref-email" checked>
+                                                <span class="luxury-slider"></span>
+                                            </label>
+                                        </div>
+                                        <div class="preference-row">
+                                            <div class="preference-info">
+                                                <h4 class="preference-title" style="font-size: 0.8rem;">Notifications par SMS</h4>
+                                                <p class="preference-desc" style="font-size: 0.7rem;">Mises à jour logistiques, rappels d'événements et alertes de désistement.</p>
+                                            </div>
+                                            <label class="luxury-switch">
+                                                <input type="checkbox" id="pref-sms" checked>
+                                                <span class="luxury-slider"></span>
+                                            </label>
+                                        </div>
+                                        <div class="preference-row">
+                                            <div class="preference-info">
+                                                <h4 class="preference-title" style="font-size: 0.8rem;">Conciergerie WhatsApp Directe</h4>
+                                                <p class="preference-desc" style="font-size: 0.7rem;">Échanges privilégiés avec la conciergerie 7Sens et covoiturages.</p>
+                                            </div>
+                                            <label class="luxury-switch">
+                                                <input type="checkbox" id="pref-whatsapp">
+                                                <span class="luxury-slider"></span>
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <button type="submit" class="db-banner-btn" style="background-color: var(--primary-navy); border-color: var(--primary-navy); margin-top: 10px; width: 100%; padding: 14px; font-size: 0.85rem;">
+                                    SAUVEGARDER LES MODIFICATIONS
+                                </button>
+                            </form>
+                        </div>
+
+                        <!-- TAB 3: My Bookings -->
+                        <div id="section-bookings" class="db-section">
+                            <div class="db-section-header">
+                                <h3 class="db-section-title">Mes Réservations</h3>
+                                <p class="db-section-subtitle">Consultez l'agenda de vos expériences validées et
+                                    téléchargez
+                                    vos invitations.</p>
+                            </div>
+
+                            <div class="booking-list" id="my-bookings-list">
+                                <!-- Booking 1 -->
+                                <div class="booking-item-card">
+                                    <div class="booking-item-info">
+                                        <div class="booking-item-thumb"
+                                            style="background-image: url('assets/pexels-stephen-leonardi-587681991-35120679.jpg');">
+                                        </div>
+                                        <div class="booking-item-details">
+                                            <span class="booking-item-ref">REF: #7S-8472 &nbsp;•&nbsp; PAIEMENT:
+                                                TWINT</span>
+                                            <h4 class="booking-item-name">Soirée Dégustation & Échanges</h4>
+                                            <div class="booking-item-meta">
+                                                <span>Genève</span>
+                                                <span class="separator">•</span>
+                                                <span>24 Mai 2026 à 19:00</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="booking-item-status">
+                                        <span class="status-badge confirmed"
+                                            style="background-color: rgba(43, 138, 62, 0.1); color: #2b8a3e; border-color: rgba(43,138,62,0.25);">Payé</span>
+                                        <a href="#" class="booking-action-link"
+                                            onclick="alert('Simulation : Téléchargement de votre billet...')">Billet
+                                            PDF</a>
+                                    </div>
+                                </div>
+
+                                <!-- Booking 2 -->
+                                <div class="booking-item-card">
+                                    <div class="booking-item-info">
+                                        <div class="booking-item-thumb"
+                                            style="background-image: url('assets/pexels-jibarofoto-18482996.jpg');">
+                                        </div>
+                                        <div class="booking-item-details">
+                                            <span class="booking-item-ref">REF: #7S-3958 &nbsp;•&nbsp; PAIEMENT:
+                                                STRIPE</span>
+                                            <h4 class="booking-item-name">Art & Inspiration (Mixology)</h4>
+                                            <div class="booking-item-meta">
+                                                <span>Zurich</span>
+                                                <span class="separator">•</span>
+                                                <span>14 Juin 2026 à 18:30</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="booking-item-status">
+                                        <span class="status-badge confirmed"
+                                            style="background-color: rgba(43, 138, 62, 0.1); color: #2b8a3e; border-color: rgba(43,138,62,0.25);">Payé</span>
+                                        <a href="#" class="booking-action-link"
+                                            onclick="alert('Simulation : Téléchargement de votre billet...')">Billet
+                                            PDF</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- TAB 4: Waiting Lists -->
+                        <div id="section-waitlists" class="db-section">
+                            <div class="db-section-header">
+                                <h3 class="db-section-title">Listes d'Attente actives</h3>
+                                <p class="db-section-subtitle">Consultez l'avancement de vos demandes d'intégration.</p>
+                            </div>
+
+                            <div class="booking-list" id="my-waitlists-list">
+                                <!-- Waitlist 1 -->
+                                <div class="booking-item-card" id="waitlist-card-pottery">
+                                    <div class="booking-item-info">
+                                        <div class="booking-item-thumb"
+                                            style="background-image: url('assets/pexels-jibarofoto-14373426.jpg');">
+                                        </div>
+                                        <div class="booking-item-details">
+                                            <span class="booking-item-ref">REF: #7S-WAIT-01 &nbsp;•&nbsp; INSCRIPTION:
+                                                18
+                                                AVRIL</span>
+                                            <h4 class="booking-item-name">Atelier Créatif & Rencontres</h4>
+                                            <div class="booking-item-meta">
+                                                <span>Lausanne</span>
+                                                <span class="separator">•</span>
+                                                <span>28 Mai 2026</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="booking-item-status">
+                                        <span class="status-badge waiting">Pos. #3 en attente</span>
+                                        <span style="font-size: 0.65rem; color: var(--text-muted);">En attente de
+                                            place</span>
+                                    </div>
+                                </div>
+
+                                <!-- Waitlist 2 (Cleared / Place available!) -->
+                                <div class="booking-item-card"
+                                    style="border-color: rgba(214, 164, 55, 0.5); background-color: rgba(251, 248, 243, 0.8);"
+                                    id="waitlist-card-sunset">
+                                    <div class="booking-item-info">
+                                        <div class="booking-item-thumb"
+                                            style="background-image: url('assets/pexels-seemihaozkan-21413075.jpg');">
+                                        </div>
+                                        <div class="booking-item-details">
+                                            <span class="booking-item-ref"
+                                                style="color: #d6a437; font-weight: 700;">PLACE
+                                                DISPONIBLE ! 🎉</span>
+                                            <h4 class="booking-item-name">Sunset & Conversations</h4>
+                                            <div class="booking-item-meta">
+                                                <span>Montreux</span>
+                                                <span class="separator">•</span>
+                                                <span>7 Juin 2026</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="booking-item-status" style="align-items: flex-end;">
+                                        <span class="status-badge"
+                                            style="background-color: rgba(214, 164, 55, 0.15); color: #d6a437; border: 1px solid rgba(214, 164, 55, 0.4); font-weight: 700;">Libéré</span>
+                                        <span style="font-size: 0.62rem; color: #c92a2a; font-weight: 600;"
+                                            id="waitlist-timer">Expire dans 11h 42m</span>
+                                        <a href="#" class="booking-action-link" onclick="switchDbTab('payments')"
+                                            style="color: #d6a437; font-weight: 700; font-size: 0.65rem;">Finaliser le
+                                            règlement</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- TAB 5: Notifications History -->
+                        <div id="section-notifications" class="db-section">
+                            <div class="db-section-header">
+                                <h3 class="db-section-title">Historique des Messages</h3>
+                                <p class="db-section-subtitle">Consultez l'historique complet de vos alertes,
+                                    invitations et
+                                    confirmations.</p>
+                            </div>
+
+                            <div class="booking-list" style="gap: 12px;">
+                                <!-- Alert 1 -->
+                                <div style="background: rgba(255,255,255,0.4); border: 1px solid rgba(20,43,99,0.05); padding: 18px 24px; display: flex; flex-direction: column; gap: 8px;"
+                                    id="notification-card-invitation">
+                                    <div
+                                        style="display: flex; justify-content: space-between; align-items: center; width: 100%;">
+                                        <span
+                                            style="font-size: 0.6rem; font-weight: 700; color: #d6a437; letter-spacing: 0.08em; text-transform: uppercase;">Invitation
+                                            Prioritaire</span>
+                                        <span style="font-size: 0.65rem; color: var(--text-muted);">Aujourd'hui à
+                                            10:14</span>
+                                    </div>
+                                    <h4
+                                        style="font-family: 'Cormorant Garamond', serif; font-size: 1.15rem; font-weight: 500; margin: 0; color: var(--primary-navy);">
+                                        Cercle Sunset & Conversations</h4>
+                                    <p
+                                        style="font-size: 0.75rem; color: var(--text-muted); margin: 0; line-height: 1.4;">
+                                        Bonne nouvelle ! Une place s'est libérée pour l'expérience du 7 Juin à Montreux.
+                                        En
+                                        tant que membre prioritaire en liste d'attente, vous disposez d'un lien privé de
+                                        règlement temporaire de 24 heures pour confirmer votre participation.
+                                    </p>
+                                    <button type="button" class="showroom-btn" onclick="switchDbTab('payments')"
+                                        style="padding: 6px 12px; font-size: 0.6rem; margin-top: 5px; align-self: flex-start;">Régler
+                                        ma place</button>
+                                </div>
+
+                                <!-- Alert 2 -->
+                                <div
+                                    style="background: rgba(255,255,255,0.4); border: 1px solid rgba(20,43,99,0.05); padding: 18px 24px; display: flex; flex-direction: column; gap: 8px;">
+                                    <div
+                                        style="display: flex; justify-content: space-between; align-items: center; width: 100%;">
+                                        <span
+                                            style="font-size: 0.6rem; font-weight: 700; color: var(--primary-navy); letter-spacing: 0.08em; text-transform: uppercase;">Confirmation
+                                            de place</span>
+                                        <span style="font-size: 0.65rem; color: var(--text-muted);">18 Avril à
+                                            14:22</span>
+                                    </div>
+                                    <h4
+                                        style="font-family: 'Cormorant Garamond', serif; font-size: 1.15rem; font-weight: 500; margin: 0; color: var(--primary-navy);">
+                                        Règlement Validé - Soirée Dégustation</h4>
+                                    <p
+                                        style="font-size: 0.75rem; color: var(--text-muted); margin: 0; line-height: 1.4;">
+                                        Votre transaction de CHF 120.00 pour l'expérience à Genève a été confirmée avec
+                                        succès. Vos invitations PDF et billets sécurisés sont disponibles au
+                                        téléchargement.
+                                    </p>
+                                </div>
+
+                                <!-- Alert 3 -->
+                                <div
+                                    style="background: rgba(255,255,255,0.4); border: 1px solid rgba(20,43,99,0.05); padding: 18px 24px; display: flex; flex-direction: column; gap: 8px;">
+                                    <div
+                                        style="display: flex; justify-content: space-between; align-items: center; width: 100%;">
+                                        <span
+                                            style="font-size: 0.6rem; font-weight: 700; color: var(--primary-navy); letter-spacing: 0.08em; text-transform: uppercase;">Notification
+                                            Liste d'Attente</span>
+                                        <span style="font-size: 0.65rem; color: var(--text-muted);">18 Avril à
+                                            11:30</span>
+                                    </div>
+                                    <h4
+                                        style="font-family: 'Cormorant Garamond', serif; font-size: 1.15rem; font-weight: 500; margin: 0; color: var(--primary-navy);">
+                                        Inscription Liste d'Attente - Atelier Créatif</h4>
+                                    <p
+                                        style="font-size: 0.75rem; color: var(--text-muted); margin: 0; line-height: 1.4;">
+                                        Vous avez été inscrit avec succès en liste d'attente à la position #3. Nous
+                                        étudions
+                                        les équilibres homme/femme et vous avertirons dès qu'une place se libère.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- TAB 5B: Payment History (Billing) -->
+                        <div id="section-billing" class="db-section">
+                            <div class="db-section-header">
+                                <h3 class="db-section-title">Historique des Paiements</h3>
+                                <p class="db-section-subtitle">Consultez vos transactions, reçus et factures
+                                    téléchargeables du club.</p>
+                            </div>
+
+                            <div class="booking-list" id="payment-history-list">
+                                <!-- Transaction 1 -->
+                                <div class="booking-item-card" style="padding: 18px 24px;">
+                                    <div style="display: flex; justify-content: space-between; align-items: center; width: 100%; gap: 20px;"
+                                        class="db-form-row">
+                                        <div>
+                                            <span
+                                                style="font-size: 0.65rem; font-weight: 700; color: var(--luxury-gold); letter-spacing: 0.1em; text-transform: uppercase;">REF:
+                                                #7S-8472-INV</span>
+                                            <h4 class="booking-item-name" style="font-size: 1.15rem; margin-top: 4px;">
+                                                Soirée Dégustation & Échanges</h4>
+                                            <div style="font-size: 0.72rem; color: var(--text-muted); margin-top: 4px;">
+                                                Date : 18 Avril 2026 à 14:22 &nbsp;•&nbsp; Méthode : TWINT
+                                            </div>
+                                        </div>
+                                        <div
+                                            style="text-align: right; display: flex; flex-direction: column; align-items: flex-end; gap: 8px;">
+                                            <span
+                                                style="font-family: 'Outfit', sans-serif; font-size: 1rem; font-weight: 700; color: #2b8a3e;">CHF
+                                                120.00</span>
+                                            <button class="showroom-btn secondary"
+                                                onclick="alert('Simulation : Téléchargement du reçu / facture PDF...')"
+                                                style="padding: 6px 12px; font-size: 0.6rem; margin:0; border-radius:2px;">Reçu
+                                                PDF</button>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Transaction 2 -->
+                                <div class="booking-item-card" style="padding: 18px 24px;">
+                                    <div style="display: flex; justify-content: space-between; align-items: center; width: 100%; gap: 20px;"
+                                        class="db-form-row">
+                                        <div>
+                                            <span
+                                                style="font-size: 0.65rem; font-weight: 700; color: var(--luxury-gold); letter-spacing: 0.1em; text-transform: uppercase;">REF:
+                                                #7S-3958-INV</span>
+                                            <h4 class="booking-item-name" style="font-size: 1.15rem; margin-top: 4px;">
+                                                Art & Inspiration (Mixology)</h4>
+                                            <div style="font-size: 0.72rem; color: var(--text-muted); margin-top: 4px;">
+                                                Date : 15 Avril 2026 à 09:15 &nbsp;•&nbsp; Méthode : Carte de Crédit
+                                                (Stripe)
+                                            </div>
+                                        </div>
+                                        <div
+                                            style="text-align: right; display: flex; flex-direction: column; align-items: flex-end; gap: 8px;">
+                                            <span
+                                                style="font-family: 'Outfit', sans-serif; font-size: 1rem; font-weight: 700; color: #2b8a3e;">CHF
+                                                150.00</span>
+                                            <button class="showroom-btn secondary"
+                                                onclick="alert('Simulation : Téléchargement du reçu / facture PDF...')"
+                                                style="padding: 6px 12px; font-size: 0.6rem; margin:0; border-radius:2px;">Reçu
+                                                PDF</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- TAB 6: Private Link Payments & Checkout Simulation -->
+                        <div id="section-payments" class="db-section">
+                            <div class="db-section-header">
+                                <h3 class="db-section-title">Paiements Conciergerie Privés</h3>
+                                <p class="db-section-subtitle">Réglez vos invitations prioritaires via le système
+                                    sécurisé
+                                    Stripe / TWINT.</p>
+                            </div>
+
+                            <!-- Main Invitation Block -->
+                            <div id="payment-invitation-container"
+                                style="background: #ffffff; border: 1px solid rgba(214, 164, 55, 0.4); padding: 24px; border-radius: 8px; margin-bottom: 30px;">
+                                <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 12px;">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="#d6a437" stroke-width="2"
+                                        style="width: 18px; height: 18px;">
+                                        <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71" />
+                                        <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71" />
+                                    </svg>
+                                    <span
+                                        style="font-size: 0.65rem; font-weight: 700; color: #d6a437; letter-spacing: 0.1em; text-transform: uppercase;">Lien
+                                        de règlement sécurisé à durée limitée</span>
+                                </div>
+                                <h4
+                                    style="font-family: 'Cormorant Garamond', serif; font-size: 1.4rem; color: var(--primary-navy); margin: 0 0 8px;">
+                                    Sunset & Conversations (Montreux)</h4>
+                                <p
+                                    style="font-size: 0.78rem; color: var(--text-muted); line-height: 1.5; margin-bottom: 20px;">
+                                    ℹ️ *Ce lien de paiement privé n'est pas accessible publiquement via URL. Il a été
+                                    généré
+                                    spécifiquement pour votre profil suite à une libération de place en liste
+                                    d'attente.*
+                                </p>
+
+                                <div
+                                    style="display: flex; flex-direction: column; gap: 12px; border: 1px solid rgba(20,43,99,0.05); padding: 15px; background: rgba(20,43,99,0.02); margin-bottom: 20px;">
+                                    <div style="display:flex; justify-content:space-between; font-size: 0.75rem;">
+                                        <span style="font-weight: 600;">Expérience</span>
+                                        <span>Sunset & Conversations (Montreux)</span>
+                                    </div>
+                                    <div style="display:flex; justify-content:space-between; font-size: 0.75rem;">
+                                        <span style="font-weight: 600;">Montant</span>
+                                        <span style="color:#d6a437; font-weight: 700;">CHF 140.00</span>
+                                    </div>
+                                    <div
+                                        style="display:flex; justify-content:space-between; font-size: 0.75rem; color:#c92a2a; font-weight: 600;">
+                                        <span>Expiration du lien</span>
+                                        <span id="invitation-expiry-text">11 heures et 42 minutes</span>
+                                    </div>
+                                </div>
+
+                                <button type="button" class="showroom-btn" id="btn-start-checkout"
+                                    style="width: 100%; justify-content: center; font-weight: 700;">
+                                    <span>SIMULER LE RÈGLEMENT (Stripe / TWINT)</span>
+                                </button>
+                            </div>
+
+                            <!-- Simulated Secure Checkout Form (Stripe/TWINT) -->
+                            <div id="simulated-checkout-form"
+                                style="display: none; background: #ffffff; border: 1px solid rgba(20, 43, 99, 0.08); padding: 30px; border-radius: 8px; margin-bottom: 30px;">
+                                <h3
+                                    style="font-family: 'Cormorant Garamond', serif; font-size: 1.4rem; color: var(--primary-navy); border-bottom: 1px solid rgba(20,43,99,0.05); padding-bottom: 12px; margin-bottom: 20px;">
+                                    Passerelle de Paiement Sécurisée
+                                </h3>
+
+                                <div class="db-form-row" style="margin-bottom: 25px;">
+                                    <div class="db-form-group">
+                                        <label>Méthode de Paiement</label>
+                                        <select id="sim-payment-method" style="background-color: #fff !important;">
+                                            <option value="stripe">Carte bancaire (Stripe)</option>
+                                            <option value="twint">TWINT Suisse</option>
+                                        </select>
+                                    </div>
+                                    <div class="db-form-group">
+                                        <label>Simulation de Résultat</label>
+                                        <select id="sim-payment-result" style="background-color: #fff !important;">
+                                            <option value="success">Simulation Succès (Payment Success)</option>
+                                            <option value="failed">Simulation Échec (Payment Failed)</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <!-- Stripe details box -->
+                                <div id="sim-stripe-details" style="margin-bottom: 25px;">
+                                    <div class="db-form-group" style="margin-bottom: 15px;">
+                                        <label>Nom sur la carte</label>
+                                        <input type="text" value="Jean Dupont" class="form-input"
+                                            style="background:#fff!important; border: 1px solid rgba(20,43,99,0.15)!important; padding: 10px 14px!important;">
+                                    </div>
+                                    <div class="db-form-row" style="margin-bottom: 0;">
+                                        <div class="db-form-group">
+                                            <label>Numéro de carte de crédit</label>
+                                            <input type="text" placeholder="4242 4242 4242 4242" class="form-input"
+                                                style="background:#fff!important; border: 1px solid rgba(20,43,99,0.15)!important; padding: 10px 14px!important;">
+                                        </div>
+                                        <div class="db-form-row" style="margin-bottom: 0; gap: 12px;">
+                                            <div class="db-form-group" style="flex:1;">
+                                                <label>Expiration</label>
+                                                <input type="text" placeholder="12 / 28" class="form-input"
+                                                    style="background:#fff!important; border: 1px solid rgba(20,43,99,0.15)!important; padding: 10px 14px!important;">
+                                            </div>
+                                            <div class="db-form-group" style="flex:1;">
+                                                <label>CVV</label>
+                                                <input type="text" placeholder="123" class="form-input"
+                                                    style="background:#fff!important; border: 1px solid rgba(20,43,99,0.15)!important; padding: 10px 14px!important;">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- TWINT details box -->
+                                <div id="sim-twint-details"
+                                    style="display: none; border: 1px solid rgba(43, 138, 62, 0.2); padding: 18px; background: rgba(43, 138, 62, 0.02); margin-bottom: 25px; text-align: center;">
+                                    <img src="https://upload.wikimedia.org/wikipedia/commons/4/4e/Twint_logo.svg"
+                                        alt="TWINT logo"
+                                        style="height: 35px; margin-bottom: 12px; display: inline-block; filter: drop-shadow(0 2px 5px rgba(0,0,0,0.05));">
+                                    <p style="font-size: 0.78rem; color: var(--text-muted); margin: 0 0 10px;">Scannez
+                                        le
+                                        code QR de paiement TWINT sur votre application mobile ou entrez votre numéro.
+                                    </p>
+                                    <input type="text" value="+41 79 123 45 67"
+                                        style="text-align: center; font-weight: 600; background:#fff!important; border: 1px solid rgba(20,43,99,0.15)!important; padding: 10px 14px!important; max-width: 200px; display: inline-block;">
+                                </div>
+
+                                <div style="display: flex; gap: 12px; justify-content: flex-end;">
+                                    <button type="button" class="showroom-btn secondary" id="btn-cancel-checkout">
+                                        <span>ANNULER</span>
+                                    </button>
+                                    <button type="button" class="showroom-btn" id="btn-submit-checkout"
+                                        style="background-color: #2b8a3e; border-color: #2b8a3e;">
+                                        <span>PAYER CHF 140.00</span>
+                                    </button>
+                                </div>
+                            </div>
+
+                            <!-- Simulated Loading screen (inline) -->
+                            <div id="simulated-payment-loader"
+                                style="display: none; text-align: center; padding: 50px 30px; background: #ffffff; border: 1px solid rgba(20, 43, 99, 0.08); border-radius: 8px;">
+                                <div class="luxury-spinner" style="margin: 0 auto 20px;"></div>
+                                <h3
+                                    style="font-family: 'Cormorant Garamond', serif; font-size: 1.4rem; color: var(--primary-navy); margin-bottom: 8px;">
+                                    Validation de la transaction...</h3>
+                                <p style="font-size: 0.78rem; color: var(--text-muted);">Connexion sécurisée SSL de 256
+                                    bits
+                                    avec l'organisme émetteur.</p>
+                            </div>
+
+                            <!-- Simulated PAYMENT SUCCESS Screen (inline) -->
+                            <div id="simulated-payment-success"
+                                style="display: none; background: #ffffff; border: 1px solid rgba(43, 138, 62, 0.2); padding: 40px 30px; border-radius: 8px; text-align: center;">
+                                <div class="success-checkmark-circle animate"
+                                    style="margin: 0 auto 20px; border-color: #2b8a3e; background: rgba(43, 138, 62, 0.06); display: flex; align-items: center; justify-content: center; width: 60px; height: 60px; border-radius: 50%;">
+                                    <svg viewBox="0 0 52 52"
+                                        style="width: 28px; height: 28px; stroke: #2b8a3e; fill: none;">
+                                        <path d="M14.1 27.2l7.1 7.2 16.7-16.8" stroke-width="4" stroke-linecap="round"
+                                            stroke-linejoin="round" />
+                                    </svg>
+                                </div>
+                                <h2
+                                    style="font-family: 'Cormorant Garamond', serif; font-size: 1.8rem; color: var(--primary-navy); margin: 0 0 10px;">
+                                    Paiement Validé ✓</h2>
+                                <p
+                                    style="font-size: 0.8rem; color: var(--text-muted); max-width: 440px; margin: 0 auto 25px; line-height: 1.5;">
+                                    Votre transaction de **CHF 140.00** a été approuvée avec succès. Votre place pour
+                                    l'expérience **Sunset & Conversations** est désormais confirmée.<br>Vos billets
+                                    d'accès
+                                    ont été envoyés par e-mail et WhatsApp.
+                                </p>
+
+                                <div
+                                    style="border-top: 1px solid rgba(20,43,99,0.05); padding-top: 20px; display: flex; gap: 12px; justify-content: center;">
+                                    <button type="button" class="showroom-btn" onclick="addNewBookingAndReturn()">
+                                        <span>VOIR MES RÉSERVATIONS</span>
+                                    </button>
+                                </div>
+                            </div>
+
+                            <!-- Simulated PAYMENT FAILED Screen (inline) -->
+                            <div id="simulated-payment-failed"
+                                style="display: none; background: #ffffff; border: 1px solid rgba(201, 42, 42, 0.2); padding: 40px 30px; border-radius: 8px; text-align: center;">
+                                <div class="failure-cross-circle animate"
+                                    style="margin: 0 auto 20px; border: 2px solid #c92a2a; background: rgba(201, 42, 42, 0.06); display: flex; align-items: center; justify-content: center; width: 60px; height: 60px; border-radius: 50%;">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                        style="width: 24px; height: 24px; stroke: #c92a2a;">
+                                        <line x1="18" y1="6" x2="6" y2="18"></line>
+                                        <line x1="6" y1="6" x2="18" y2="18"></line>
+                                    </svg>
+                                </div>
+                                <h2
+                                    style="font-family: 'Cormorant Garamond', serif; font-size: 1.8rem; color: var(--primary-navy); margin: 0 0 10px;">
+                                    Règlement Refusé ✕</h2>
+                                <p
+                                    style="font-size: 0.8rem; color: var(--text-muted); max-width: 440px; margin: 0 auto 20px; line-height: 1.5;">
+                                    Désolé, la transaction bancaire a échoué. Votre carte bancaire a été déclinée ou le
+                                    jeton de sécurité TWINT a expiré.<br>
+                                    Veuillez essayer une autre carte ou contacter le support conciergerie 7Sens au **+41
+                                    22
+                                    555 77 77**.
+                                </p>
+
+                                <div
+                                    style="border-top: 1px solid rgba(20,43,99,0.05); padding-top: 20px; display: flex; gap: 12px; justify-content: center;">
+                                    <button type="button" class="showroom-btn secondary" id="btn-retry-checkout">
+                                        <span>RÉESSAYER LE RÈGLEMENT</span>
+                                    </button>
+                                    <a href="mailto:concierge@7sens.ch" class="showroom-btn"
+                                        style="text-decoration: none; align-items: center;">
+                                        <span>CONTACTER LE SUPPORT</span>
+                                    </a>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <!-- TAB: My Relationship Questionnaire -->
+                        <div id="section-questionnaire" class="db-section">
+                            <div class="relational-banner">
+                                <div class="relational-banner-content">
+                                    <div class="relational-icon-top">
+                                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                                            <polyline points="14 2 14 8 20 8"></polyline>
+                                            <line x1="16" y1="13" x2="8" y2="13"></line>
+                                            <line x1="16" y1="17" x2="8" y2="17"></line>
+                                            <polyline points="10 9 9 9 8 9"></polyline>
+                                        </svg>
+                                    </div>
+
+                                    <h2 class="relational-title">Complétez votre<br><span class="highlight">profil
+                                            relationnel</span></h2>
+
+                                    <p class="relational-subtitle">Quelques minutes aujourd'hui,<br>de meilleures
+                                        rencontres demain.</p>
+
+                                    <p class="relational-desc">Répondez à quelques questions en seulement 5 minutes afin
+                                        de nous aider à vous proposer les rencontres les plus compatibles avec vous.</p>
+
+                                    <div class="relational-privacy-box">
+                                        <div class="privacy-icon">
+                                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                                stroke-width="1.5">
                                                 <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
                                                 <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
                                             </svg>
-                                        </span>
-                                    </div>
-                                    <div style="display: flex; flex-direction: column; gap: 8px; margin: 5px 0;">
-                                        <div style="display: flex; align-items: center; gap: 8px;">
-                                            <span id="home-email-badge"
-                                                style="display:inline-block; padding: 4px 8px; font-size: 0.58rem; font-weight: 700; border-radius: 2px; background-color: rgba(43, 138, 62, 0.1); color: #2b8a3e; border: 1px solid rgba(43, 138, 62, 0.2);">E-MAIL
-                                                VÉRIFIÉ ✓</span>
                                         </div>
-                                        <div style="display: flex; align-items: center; gap: 8px;">
-                                            <span id="home-phone-badge"
-                                                style="display:inline-block; padding: 4px 8px; font-size: 0.58rem; font-weight: 700; border-radius: 2px; background-color: rgba(43, 138, 62, 0.1); color: #2b8a3e; border: 1px solid rgba(43, 138, 62, 0.2);">MOBILE
-                                                VÉRIFIÉ ✓</span>
-                                        </div>
+                                        <p>Vos réponses sont strictement privées et servent uniquement à améliorer la
+                                            qualité de vos futures rencontres.</p>
                                     </div>
-                                </div>
-                                <button type="button" class="db-widget-btn secondary"
-                                    onclick="location.href='verify-contact.html'" style="border-radius: 2px;">Renforcer
-                                    ma sécurité</button>
-                            </div>
-                        </div>
-                        
-                        <!-- Event Tracking Widget -->
-                        <div style="margin-top: 24px;" class="db-widget">
-                            <div class="db-widget-header">
-                                <span class="db-widget-tag">Analyse Comportementale</span>
-                                <span class="db-widget-icon" style="color: var(--luxury-gold);">
-                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width: 16px; height: 16px;">
-                                        <path d="M12 20v-6M6 20V10M18 20V4"></path>
-                                    </svg>
-                                </span>
-                            </div>
-                            <h4 class="db-widget-title">Historique des Événements</h4>
-                            <p class="db-widget-desc" style="margin-bottom: 12px;">Types d'événements auxquels vous avez participé, utilisés pour affiner vos correspondances S7.</p>
-                            <div style="display: flex; gap: 10px; flex-wrap: wrap;">
-                                <span style="background: rgba(214,164,55,0.1); border: 1px solid rgba(214,164,55,0.4); color: var(--luxury-gold); padding: 5px 12px; border-radius: 30px; font-size: 0.75rem; font-family: 'Outfit', sans-serif;">Dégustation (3)</span>
-                                <span style="background: rgba(255,255,255,0.5); border: 1px solid rgba(20,43,99,0.2); color: var(--primary-navy); padding: 5px 12px; border-radius: 30px; font-size: 0.75rem; font-family: 'Outfit', sans-serif;">Ateliers Créatifs (1)</span>
-                                <span style="background: rgba(255,255,255,0.5); border: 1px solid rgba(20,43,99,0.2); color: var(--primary-navy); padding: 5px 12px; border-radius: 30px; font-size: 0.75rem; font-family: 'Outfit', sans-serif;">Conversations Intimes (1)</span>
-                            </div>
-                        </div>
 
-                        <!-- Timeline & Concierge Support Widgets -->
-                        <div
-                            style="margin-top: 30px; background: rgba(255, 255, 255, 0.4); border: 1px solid rgba(20, 43, 99, 0.06); padding: 24px; border-radius: 4px;">
-                            <h3
-                                style="font-family: 'Cormorant Garamond', serif; font-size: 1.35rem; color: var(--primary-navy); margin: 0 0 20px;">
-                                Activités Récentes</h3>
-                            <div style="display: flex; flex-direction: column; gap: 15px;">
-                                <!-- Item 1 -->
-                                <div style="display: flex; gap: 15px; align-items: flex-start;">
-                                    <div
-                                        style="width: 8px; height: 8px; border-radius: 50%; background-color: var(--luxury-gold); margin-top: 5px; flex-shrink:0;">
-                                    </div>
-                                    <div style="flex-grow: 1;">
-                                        <div style="display:flex; justify-content:space-between; align-items:center;">
-                                            <span
-                                                style="font-size: 0.78rem; font-weight: 600; color: var(--primary-navy);">Inscription
-                                                Liste d'Attente</span>
-                                            <span style="font-size: 0.65rem; color: var(--text-muted);">Aujourd'hui à
-                                                11:30</span>
-                                        </div>
-                                        <p style="font-size: 0.72rem; color: var(--text-muted); margin: 2px 0 0;">
-                                            Candidature enregistrée pour l'Atelier Créatif & Rencontres (Lausanne).</p>
-                                    </div>
-                                </div>
-                                <!-- Item 2 -->
-                                <div
-                                    style="display: flex; gap: 15px; align-items: flex-start; border-top: 1px solid rgba(20,43,99,0.04); padding-top: 15px;">
-                                    <div
-                                        style="width: 8px; height: 8px; border-radius: 50%; background-color: #2b8a3e; margin-top: 5px; flex-shrink:0;">
-                                    </div>
-                                    <div style="flex-grow: 1;">
-                                        <div style="display:flex; justify-content:space-between; align-items:center;">
-                                            <span
-                                                style="font-size: 0.78rem; font-weight: 600; color: var(--primary-navy);">Paiement
-                                                Confirmé</span>
-                                            <span style="font-size: 0.65rem; color: var(--text-muted);">18 Avril 2026 à
-                                                14:22</span>
-                                        </div>
-                                        <p style="font-size: 0.72rem; color: var(--text-muted); margin: 2px 0 0;">
-                                            Règlement de CHF 120.00 validé par TWINT pour l'expérience de Dégustation
-                                            (Genève).</p>
-                                    </div>
-                                </div>
-                                <!-- Item 3 -->
-                                <div
-                                    style="display: flex; gap: 15px; align-items: flex-start; border-top: 1px solid rgba(20,43,99,0.04); padding-top: 15px;">
-                                    <div
-                                        style="width: 8px; height: 8px; border-radius: 50%; background-color: var(--luxury-gold); margin-top: 5px; flex-shrink:0;">
-                                    </div>
-                                    <div style="flex-grow: 1;">
-                                        <div style="display:flex; justify-content:space-between; align-items:center;">
-                                            <span
-                                                style="font-size: 0.78rem; font-weight: 600; color: var(--primary-navy);">Profil
-                                                Mis à Jour</span>
-                                            <span style="font-size: 0.65rem; color: var(--text-muted);">15 Avril 2026 à
-                                                17:05</span>
-                                        </div>
-                                        <p style="font-size: 0.72rem; color: var(--text-muted); margin: 2px 0 0;">
-                                            Modification de vos coordonnées de contact et préférences de conciergerie.
-                                        </p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                                    <button class="relational-btn" onclick="window.location.href='questionnaire.html'">
+                                        COMMENCER LE QUESTIONNAIRE
+                                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                            <line x1="5" y1="12" x2="19" y2="12"></line>
+                                            <polyline points="12 5 19 12 12 19"></polyline>
+                                        </svg>
+                                    </button>
 
-                        <!-- Concierge Contact Widget -->
-                        <div
-                            style="margin-top: 24px; display: flex; justify-content: space-between; align-items: center; background: rgba(214, 164, 55, 0.05); border: 1px solid rgba(214, 164, 55, 0.2); padding: 20px 24px; border-radius: 4px;">
-                            <div style="display: flex; align-items: center; gap: 15px;">
-                                <div
-                                    style="width: 44px; height: 44px; border-radius: 50%; background-color: var(--primary-navy); color: var(--luxury-gold); display: flex; align-items: center; justify-content: center; font-size: 1.2rem; font-family: 'Cormorant Garamond', serif; border: 1px solid rgba(214,164,55,0.3);">
-                                    C
-                                </div>
-                                <div>
-                                    <h4
-                                        style="font-family: 'Cormorant Garamond', serif; font-size: 1.15rem; margin: 0; color: var(--primary-navy);">
-                                        Votre Concierge 7Sens Privé</h4>
-                                    <p style="font-size: 0.72rem; color: var(--text-muted); margin: 2px 0 0;">Une
-                                        question sur un cercle ? Contactez notre conciergerie VIP directe.</p>
-                                </div>
-                            </div>
-                            <div style="display: flex; gap: 10px;">
-                                <a href="tel:+41225557777" class="db-widget-btn secondary"
-                                    style="margin-top: 0; padding: 8px 16px; font-size: 0.65rem; text-decoration: none; border-radius: 2px;">Appeler</a>
-                                <a href="https://wa.me/41225557777" class="db-widget-btn"
-                                    style="margin-top: 0; padding: 8px 16px; font-size: 0.65rem; text-decoration: none; background-color: #2b8a3e; border-color: #2b8a3e; border-radius: 2px;">WhatsApp</a>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- TAB 2: Edit Profile & Password & Preferences -->
-                    <div id="section-profile" class="db-section">
-                        <div class="db-section-header">
-                            <h3 class="db-section-title">Paramètres du Profil</h3>
-                            <p class="db-section-subtitle">Gérez vos détails d'identification, de sécurité et vos
-                                préférences de contact.</p>
-                        </div>
-
-                        <form id="profile-edit-form">
-                            <!-- Details & Rounded Avatar Uploader -->
-                            <div class="db-form-row" style="margin-bottom: 30px; justify-content: center; display: flex;">
-                                <div style="display: flex; flex-direction: column; align-items: center; gap: 10px;">
-                                    <label style="font-size: 0.75rem; font-weight: 600; text-transform: uppercase; color: var(--primary-navy); letter-spacing: 0.05em; margin-bottom: 4px;">Photo de Profil</label>
-                                    
-                                    <!-- Circular Uploader Frame -->
-                                    <div id="form-avatar-circle" onclick="document.getElementById('profile-avatar-input').click();" style="position: relative; width: 120px; height: 120px; border-radius: 50%; overflow: hidden; border: 2px solid rgba(214, 164, 55, 0.4); cursor: pointer; background-color: var(--primary-navy); background-size: cover; background-position: center; transition: all 0.3s; box-shadow: 0 8px 24px rgba(16,42,94,0.06);">
-                                        
-                                        <!-- Overlay on Hover -->
-                                        <div style="position: absolute; top:0; left:0; width:100%; height:100%; background: rgba(20, 43, 99, 0.7); display:flex; flex-direction:column; align-items:center; justify-content:center; color: var(--warm-ivory); font-size: 0.62rem; font-weight:700; text-transform:uppercase; letter-spacing:0.05em; opacity:0; transition: opacity 0.3s;" id="form-avatar-overlay">
-                                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width: 20px; height: 20px; margin-bottom: 4px;">
-                                                <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"></path>
-                                                <circle cx="12" cy="13" r="4"></circle>
+                                    <div class="relational-meta">
+                                        <div class="meta-item">
+                                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                                stroke-width="1.5">
+                                                <circle cx="12" cy="12" r="10"></circle>
+                                                <polyline points="12 6 12 12 16 14"></polyline>
                                             </svg>
-                                            Télécharger
+                                            Environ 5 minutes
                                         </div>
-                                    </div>
-                                    <span id="profile-file-name" style="font-size: 0.68rem; color: var(--text-muted); text-align: center;">Format JPG ou PNG. Recommandé 1:1.</span>
-                                </div>
-                            </div>
-                            <div class="db-form-row">
-                                <div class="db-form-group">
-                                    <label for="profile-firstname">Prénom *</label>
-                                    <input type="text" id="profile-firstname" required value="Jean">
-                                </div>
-                                <div class="db-form-group">
-                                    <label for="profile-lastname">Nom *</label>
-                                    <input type="text" id="profile-lastname" required value="Dupont">
-                                </div>
-                            </div>
-                            <div class="db-form-row">
-                                <div class="db-form-group">
-                                    <label for="profile-email">Adresse e-mail *</label>
-                                    <input type="email" id="profile-email" required value="jean.dupont@example.ch">
-                                </div>
-                                <div class="db-form-group">
-                                    <label for="profile-phone">Téléphone mobile *</label>
-                                    <input type="tel" id="profile-phone" required value="+41 79 123 45 67">
-                                </div>
-                            </div>
-                            <div class="db-form-row">
-                                <div class="db-form-group">
-                                    <label for="profile-dob">Date de naissance *</label>
-                                    <input type="date" id="profile-dob" required value="1988-05-14">
-                                </div>
-                                <div class="db-form-group">
-                                    <label for="profile-gender">Civilité</label>
-                                    <select id="profile-gender">
-                                        <option value="homme" selected>Homme</option>
-                                        <option value="femme">Femme</option>
-                                    </select>
-                                </div>
-                            </div>
-                            
-                            <!-- Free Text Profile Fields -->
-                            <div class="db-form-row">
-                                <div class="db-form-group" style="width: 100%;">
-                                    <label for="profile-description">Description Personnelle</label>
-                                    <textarea id="profile-description" rows="4" style="width: 100%; border: 1px solid rgba(20, 43, 99, 0.2); padding: 12px; border-radius: 4px; font-family: 'Outfit', sans-serif; resize: vertical;"></textarea>
-                                </div>
-                            </div>
-                            <div class="db-form-row">
-                                <div class="db-form-group" style="width: 100%;">
-                                    <label for="profile-hobbies">Centres d'intérêt & Loisirs</label>
-                                    <textarea id="profile-hobbies" rows="3" style="width: 100%; border: 1px solid rgba(20, 43, 99, 0.2); padding: 12px; border-radius: 4px; font-family: 'Outfit', sans-serif; resize: vertical;"></textarea>
-                                </div>
-                            </div>
-                            <div class="db-form-row">
-                                <div class="db-form-group" style="width: 100%;">
-                                    <label for="profile-looking-for">Ce que je recherche</label>
-                                    <textarea id="profile-looking-for" rows="3" style="width: 100%; border: 1px solid rgba(20, 43, 99, 0.2); padding: 12px; border-radius: 4px; font-family: 'Outfit', sans-serif; resize: vertical;"></textarea>
-                                </div>
-                            </div>
-                            <!-- Password Update -->
-                            <div
-                                style="border-top: 1px solid rgba(20, 43, 99, 0.06); margin-top: 30px; padding-top: 20px;">
-                                <h3
-                                    style="font-family: 'Cormorant Garamond', serif; font-size: 1.3rem; color: var(--primary-navy); margin-bottom: 15px;">
-                                    Sécurité du compte</h3>
-                                <div class="db-form-row">
-                                    <div class="db-form-group">
-                                        <label for="profile-password">Nouveau mot de passe</label>
-                                        <input type="password" id="profile-password"
-                                            placeholder="Laisser vide si inchangé">
-                                    </div>
-                                    <div class="db-form-group">
-                                        <label for="profile-confirm-password">Confirmer le mot de passe</label>
-                                        <input type="password" id="profile-confirm-password"
-                                            placeholder="Laisser vide si inchangé">
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!-- Notifications preference toggles -->
-                            <div
-                                style="border-top: 1px solid rgba(20, 43, 99, 0.06); margin-top: 30px; padding-top: 20px;">
-                                <h3
-                                    style="font-family: 'Cormorant Garamond', serif; font-size: 1.3rem; color: var(--primary-navy); margin-bottom: 15px;">
-                                    Canaux de Notifications</h3>
-                                <div
-                                    style="background: rgba(255, 255, 255, 0.4); border: 1px solid rgba(20, 43, 99, 0.05); padding: 5px 20px; border-radius: 4px;">
-                                    <div class="preference-row">
-                                        <div class="preference-info">
-                                            <h4 class="preference-title" style="font-size: 0.8rem;">Notifications par
-                                                E-mail</h4>
-                                            <p class="preference-desc" style="font-size: 0.7rem;">Confirmations de
-                                                paiement, invitations privées prioritaires.</p>
+                                        <span class="meta-dot">•</span>
+                                        <div class="meta-item">
+                                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                                stroke-width="1.5">
+                                                <rect x="3" y="3" width="7" height="7"></rect>
+                                                <rect x="14" y="3" width="7" height="7"></rect>
+                                                <rect x="14" y="14" width="7" height="7"></rect>
+                                                <rect x="3" y="14" width="7" height="7"></rect>
+                                            </svg>
+                                            8 catégories
                                         </div>
-                                        <label class="luxury-switch">
-                                            <input type="checkbox" id="pref-email" checked>
-                                            <span class="luxury-slider"></span>
-                                        </label>
-                                    </div>
-                                    <div class="preference-row">
-                                        <div class="preference-info">
-                                            <h4 class="preference-title" style="font-size: 0.8rem;">Notifications par
-                                                SMS</h4>
-                                            <p class="preference-desc" style="font-size: 0.7rem;">Mises à jour
-                                                logistiques, rappels d'événements et alertes de désistement.</p>
-                                        </div>
-                                        <label class="luxury-switch">
-                                            <input type="checkbox" id="pref-sms" checked>
-                                            <span class="luxury-slider"></span>
-                                        </label>
-                                    </div>
-                                    <div class="preference-row">
-                                        <div class="preference-info">
-                                            <h4 class="preference-title" style="font-size: 0.8rem;">Conciergerie
-                                                WhatsApp Directe</h4>
-                                            <p class="preference-desc" style="font-size: 0.7rem;">Échanges privilégiés
-                                                avec la conciergerie 7Sens et covoiturages.</p>
-                                        </div>
-                                        <label class="luxury-switch">
-                                            <input type="checkbox" id="pref-whatsapp">
-                                            <span class="luxury-slider"></span>
-                                        </label>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <button type="submit" class="booking-action-btn"
-                                style="margin-top: 25px; max-width: 320px;">
-                                <span>SAUVEGARDER LES MODIFICATIONS</span>
-                            </button>
-                        </form>
-                    </div>
-
-                    <!-- TAB 3: My Bookings -->
-                    <div id="section-bookings" class="db-section">
-                        <div class="db-section-header">
-                            <h3 class="db-section-title">Mes Réservations</h3>
-                            <p class="db-section-subtitle">Consultez l'agenda de vos expériences validées et téléchargez
-                                vos invitations.</p>
-                        </div>
-
-                        <div class="booking-list" id="my-bookings-list">
-                            <!-- Booking 1 -->
-                            <div class="booking-item-card">
-                                <div class="booking-item-info">
-                                    <div class="booking-item-thumb"
-                                        style="background-image: url('assets/pexels-stephen-leonardi-587681991-35120679.jpg');">
-                                    </div>
-                                    <div class="booking-item-details">
-                                        <span class="booking-item-ref">REF: #7S-8472 &nbsp;•&nbsp; PAIEMENT:
-                                            TWINT</span>
-                                        <h4 class="booking-item-name">Soirée Dégustation & Échanges</h4>
-                                        <div class="booking-item-meta">
-                                            <span>Genève</span>
-                                            <span class="separator">•</span>
-                                            <span>24 Mai 2026 à 19:00</span>
+                                        <span class="meta-dot">•</span>
+                                        <div class="meta-item">
+                                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                                stroke-width="1.5">
+                                                <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7">
+                                                </path>
+                                                <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z">
+                                                </path>
+                                            </svg>
+                                            Modifiable à tout moment
                                         </div>
                                     </div>
                                 </div>
-                                <div class="booking-item-status">
-                                    <span class="status-badge confirmed"
-                                        style="background-color: rgba(43, 138, 62, 0.1); color: #2b8a3e; border-color: rgba(43,138,62,0.25);">Payé</span>
-                                    <a href="#" class="booking-action-link"
-                                        onclick="alert('Simulation : Téléchargement de votre billet...')">Billet PDF</a>
-                                </div>
-                            </div>
 
-                            <!-- Booking 2 -->
-                            <div class="booking-item-card">
-                                <div class="booking-item-info">
-                                    <div class="booking-item-thumb"
-                                        style="background-image: url('assets/pexels-jibarofoto-18482996.jpg');"></div>
-                                    <div class="booking-item-details">
-                                        <span class="booking-item-ref">REF: #7S-3958 &nbsp;•&nbsp; PAIEMENT:
-                                            STRIPE</span>
-                                        <h4 class="booking-item-name">Art & Inspiration (Mixology)</h4>
-                                        <div class="booking-item-meta">
-                                            <span>Zurich</span>
-                                            <span class="separator">•</span>
-                                            <span>14 Juin 2026 à 18:30</span>
-                                        </div>
+                                <div class="relational-banner-image">
+                                    <img src="assets/question.png" alt="Questionnaire Graphic" class="banner-bg-img">
+                                    <div class="banner-overlay-gradient"></div>
+                                    <svg class="banner-curves" viewBox="0 0 500 500" fill="none">
+                                        <path d="M -50,150 Q 200,-50 450,250 T 550,600" stroke="rgba(214,164,55,0.4)"
+                                            stroke-width="1" stroke-dasharray="4,4" fill="none" />
+                                        <path d="M 50,-50 Q 350,100 400,350 T 200,600" stroke="rgba(214,164,55,0.2)"
+                                            stroke-width="1" fill="none" />
+                                    </svg>
+                                    <div class="floating-icon icon-heart">
+                                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                            <path
+                                                d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z">
+                                            </path>
+                                        </svg>
                                     </div>
-                                </div>
-                                <div class="booking-item-status">
-                                    <span class="status-badge confirmed"
-                                        style="background-color: rgba(43, 138, 62, 0.1); color: #2b8a3e; border-color: rgba(43,138,62,0.25);">Payé</span>
-                                    <a href="#" class="booking-action-link"
-                                        onclick="alert('Simulation : Téléchargement de votre billet...')">Billet PDF</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- TAB 4: Waiting Lists -->
-                    <div id="section-waitlists" class="db-section">
-                        <div class="db-section-header">
-                            <h3 class="db-section-title">Listes d'Attente actives</h3>
-                            <p class="db-section-subtitle">Consultez l'avancement de vos demandes d'intégration.</p>
-                        </div>
-
-                        <div class="booking-list" id="my-waitlists-list">
-                            <!-- Waitlist 1 -->
-                            <div class="booking-item-card" id="waitlist-card-pottery">
-                                <div class="booking-item-info">
-                                    <div class="booking-item-thumb"
-                                        style="background-image: url('assets/pexels-jibarofoto-14373426.jpg');"></div>
-                                    <div class="booking-item-details">
-                                        <span class="booking-item-ref">REF: #7S-WAIT-01 &nbsp;•&nbsp; INSCRIPTION: 18
-                                            AVRIL</span>
-                                        <h4 class="booking-item-name">Atelier Créatif & Rencontres</h4>
-                                        <div class="booking-item-meta">
-                                            <span>Lausanne</span>
-                                            <span class="separator">•</span>
-                                            <span>28 Mai 2026</span>
-                                        </div>
+                                    <div class="floating-icon icon-people">
+                                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                            <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                                            <circle cx="9" cy="7" r="4"></circle>
+                                            <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                                            <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                                        </svg>
                                     </div>
-                                </div>
-                                <div class="booking-item-status">
-                                    <span class="status-badge waiting">Pos. #3 en attente</span>
-                                    <span style="font-size: 0.65rem; color: var(--text-muted);">En attente de
-                                        place</span>
-                                </div>
-                            </div>
-
-                            <!-- Waitlist 2 (Cleared / Place available!) -->
-                            <div class="booking-item-card"
-                                style="border-color: rgba(214, 164, 55, 0.5); background-color: rgba(251, 248, 243, 0.8);"
-                                id="waitlist-card-sunset">
-                                <div class="booking-item-info">
-                                    <div class="booking-item-thumb"
-                                        style="background-image: url('assets/pexels-seemihaozkan-21413075.jpg');"></div>
-                                    <div class="booking-item-details">
-                                        <span class="booking-item-ref" style="color: #d6a437; font-weight: 700;">PLACE
-                                            DISPONIBLE ! 🎉</span>
-                                        <h4 class="booking-item-name">Sunset & Conversations</h4>
-                                        <div class="booking-item-meta">
-                                            <span>Montreux</span>
-                                            <span class="separator">•</span>
-                                            <span>7 Juin 2026</span>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="booking-item-status" style="align-items: flex-end;">
-                                    <span class="status-badge"
-                                        style="background-color: rgba(214, 164, 55, 0.15); color: #d6a437; border: 1px solid rgba(214, 164, 55, 0.4); font-weight: 700;">Libéré</span>
-                                    <span style="font-size: 0.62rem; color: #c92a2a; font-weight: 600;"
-                                        id="waitlist-timer">Expire dans 11h 42m</span>
-                                    <a href="#" class="booking-action-link" onclick="switchDbTab('payments')"
-                                        style="color: #d6a437; font-weight: 700; font-size: 0.65rem;">Finaliser le
-                                        règlement</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- TAB 5: Notifications History -->
-                    <div id="section-notifications" class="db-section">
-                        <div class="db-section-header">
-                            <h3 class="db-section-title">Historique des Messages</h3>
-                            <p class="db-section-subtitle">Consultez l'historique complet de vos alertes, invitations et
-                                confirmations.</p>
-                        </div>
-
-                        <div class="booking-list" style="gap: 12px;">
-                            <!-- Alert 1 -->
-                            <div style="background: rgba(255,255,255,0.4); border: 1px solid rgba(20,43,99,0.05); padding: 18px 24px; display: flex; flex-direction: column; gap: 8px;"
-                                id="notification-card-invitation">
-                                <div
-                                    style="display: flex; justify-content: space-between; align-items: center; width: 100%;">
-                                    <span
-                                        style="font-size: 0.6rem; font-weight: 700; color: #d6a437; letter-spacing: 0.08em; text-transform: uppercase;">Invitation
-                                        Prioritaire</span>
-                                    <span style="font-size: 0.65rem; color: var(--text-muted);">Aujourd'hui à
-                                        10:14</span>
-                                </div>
-                                <h4
-                                    style="font-family: 'Cormorant Garamond', serif; font-size: 1.15rem; font-weight: 500; margin: 0; color: var(--primary-navy);">
-                                    Cercle Sunset & Conversations</h4>
-                                <p style="font-size: 0.75rem; color: var(--text-muted); margin: 0; line-height: 1.4;">
-                                    Bonne nouvelle ! Une place s'est libérée pour l'expérience du 7 Juin à Montreux. En
-                                    tant que membre prioritaire en liste d'attente, vous disposez d'un lien privé de
-                                    règlement temporaire de 24 heures pour confirmer votre participation.
-                                </p>
-                                <button type="button" class="showroom-btn" onclick="switchDbTab('payments')"
-                                    style="padding: 6px 12px; font-size: 0.6rem; margin-top: 5px; align-self: flex-start;">Régler
-                                    ma place</button>
-                            </div>
-
-                            <!-- Alert 2 -->
-                            <div
-                                style="background: rgba(255,255,255,0.4); border: 1px solid rgba(20,43,99,0.05); padding: 18px 24px; display: flex; flex-direction: column; gap: 8px;">
-                                <div
-                                    style="display: flex; justify-content: space-between; align-items: center; width: 100%;">
-                                    <span
-                                        style="font-size: 0.6rem; font-weight: 700; color: var(--primary-navy); letter-spacing: 0.08em; text-transform: uppercase;">Confirmation
-                                        de place</span>
-                                    <span style="font-size: 0.65rem; color: var(--text-muted);">18 Avril à 14:22</span>
-                                </div>
-                                <h4
-                                    style="font-family: 'Cormorant Garamond', serif; font-size: 1.15rem; font-weight: 500; margin: 0; color: var(--primary-navy);">
-                                    Règlement Validé - Soirée Dégustation</h4>
-                                <p style="font-size: 0.75rem; color: var(--text-muted); margin: 0; line-height: 1.4;">
-                                    Votre transaction de CHF 120.00 pour l'expérience à Genève a été confirmée avec
-                                    succès. Vos invitations PDF et billets sécurisés sont disponibles au téléchargement.
-                                </p>
-                            </div>
-
-                            <!-- Alert 3 -->
-                            <div
-                                style="background: rgba(255,255,255,0.4); border: 1px solid rgba(20,43,99,0.05); padding: 18px 24px; display: flex; flex-direction: column; gap: 8px;">
-                                <div
-                                    style="display: flex; justify-content: space-between; align-items: center; width: 100%;">
-                                    <span
-                                        style="font-size: 0.6rem; font-weight: 700; color: var(--primary-navy); letter-spacing: 0.08em; text-transform: uppercase;">Notification
-                                        Liste d'Attente</span>
-                                    <span style="font-size: 0.65rem; color: var(--text-muted);">18 Avril à 11:30</span>
-                                </div>
-                                <h4
-                                    style="font-family: 'Cormorant Garamond', serif; font-size: 1.15rem; font-weight: 500; margin: 0; color: var(--primary-navy);">
-                                    Inscription Liste d'Attente - Atelier Créatif</h4>
-                                <p style="font-size: 0.75rem; color: var(--text-muted); margin: 0; line-height: 1.4;">
-                                    Vous avez été inscrit avec succès en liste d'attente à la position #3. Nous étudions
-                                    les équilibres homme/femme et vous avertirons dès qu'une place se libère.
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- TAB 5B: Payment History (Billing) -->
-                    <div id="section-billing" class="db-section">
-                        <div class="db-section-header">
-                            <h3 class="db-section-title">Historique des Paiements</h3>
-                            <p class="db-section-subtitle">Consultez vos transactions, reçus et factures téléchargeables du club.</p>
-                        </div>
-
-                        <div class="booking-list" id="payment-history-list">
-                            <!-- Transaction 1 -->
-                            <div class="booking-item-card" style="padding: 18px 24px;">
-                                <div style="display: flex; justify-content: space-between; align-items: center; width: 100%; gap: 20px;" class="db-form-row">
-                                    <div>
-                                        <span style="font-size: 0.65rem; font-weight: 700; color: var(--luxury-gold); letter-spacing: 0.1em; text-transform: uppercase;">REF: #7S-8472-INV</span>
-                                        <h4 class="booking-item-name" style="font-size: 1.15rem; margin-top: 4px;">Soirée Dégustation & Échanges</h4>
-                                        <div style="font-size: 0.72rem; color: var(--text-muted); margin-top: 4px;">
-                                            Date : 18 Avril 2026 à 14:22 &nbsp;•&nbsp; Méthode : TWINT
-                                        </div>
-                                    </div>
-                                    <div style="text-align: right; display: flex; flex-direction: column; align-items: flex-end; gap: 8px;">
-                                        <span style="font-family: 'Outfit', sans-serif; font-size: 1rem; font-weight: 700; color: #2b8a3e;">CHF 120.00</span>
-                                        <button class="showroom-btn secondary" onclick="alert('Simulation : Téléchargement du reçu / facture PDF...')" style="padding: 6px 12px; font-size: 0.6rem; margin:0; border-radius:2px;">Reçu PDF</button>
+                                    <div class="floating-icon icon-star">
+                                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                            <polygon
+                                                points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2">
+                                            </polygon>
+                                        </svg>
                                     </div>
                                 </div>
                             </div>
 
-                            <!-- Transaction 2 -->
-                            <div class="booking-item-card" style="padding: 18px 24px;">
-                                <div style="display: flex; justify-content: space-between; align-items: center; width: 100%; gap: 20px;" class="db-form-row">
-                                    <div>
-                                        <span style="font-size: 0.65rem; font-weight: 700; color: var(--luxury-gold); letter-spacing: 0.1em; text-transform: uppercase;">REF: #7S-3958-INV</span>
-                                        <h4 class="booking-item-name" style="font-size: 1.15rem; margin-top: 4px;">Art & Inspiration (Mixology)</h4>
-                                        <div style="font-size: 0.72rem; color: var(--text-muted); margin-top: 4px;">
-                                            Date : 15 Avril 2026 à 09:15 &nbsp;•&nbsp; Méthode : Carte de Crédit (Stripe)
-                                        </div>
+                            <div class="relational-stats-container">
+                                <div class="stat-block progress-block">
+                                    <div class="circular-progress">
+                                        <span class="progress-value">0%</span>
                                     </div>
-                                    <div style="text-align: right; display: flex; flex-direction: column; align-items: flex-end; gap: 8px;">
-                                        <span style="font-family: 'Outfit', sans-serif; font-size: 1rem; font-weight: 700; color: #2b8a3e;">CHF 150.00</span>
-                                        <button class="showroom-btn secondary" onclick="alert('Simulation : Téléchargement du reçu / facture PDF...')" style="padding: 6px 12px; font-size: 0.6rem; margin:0; border-radius:2px;">Reçu PDF</button>
+                                    <div class="stat-text">
+                                        <h4>Progression de votre profil</h4>
+                                        <p>Votre profil relationnel n'est pas encore complété. Plus votre profil est
+                                            complet, plus vos rencontres seront pertinentes.</p>
+                                    </div>
+                                </div>
+                                <div class="stat-divider"></div>
+                                <div class="stat-block tip-block">
+                                    <div class="tip-icon">
+                                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                            <path d="M9 21h6"></path>
+                                            <path d="M10.5 24h3"></path>
+                                            <path d="M12 2v2"></path>
+                                            <path d="M22 12h-2"></path>
+                                            <path d="M4 12H2"></path>
+                                            <path d="M19.07 4.93l-1.41 1.41"></path>
+                                            <path d="M6.34 17.66l-1.41 1.41"></path>
+                                            <path d="M19.07 19.07l-1.41-1.41"></path>
+                                            <path d="M6.34 6.34L4.93 4.93"></path>
+                                            <circle cx="12" cy="12" r="5"></circle>
+                                        </svg>
+                                    </div>
+                                    <div class="stat-text">
+                                        <h4>Conseil</h4>
+                                        <p>Prenez le temps de répondre avec sincérité. Cela nous permet de mieux
+                                            comprendre vos attentes et de vous proposer des profils qui vous
+                                            correspondent.</p>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
 
-                    <!-- TAB 6: Private Link Payments & Checkout Simulation -->
-                    <div id="section-payments" class="db-section">
-                        <div class="db-section-header">
-                            <h3 class="db-section-title">Paiements Conciergerie Privés</h3>
-                            <p class="db-section-subtitle">Réglez vos invitations prioritaires via le système sécurisé
-                                Stripe / TWINT.</p>
-                        </div>
-
-                        <!-- Main Invitation Block -->
-                        <div id="payment-invitation-container"
-                            style="background: #ffffff; border: 1px solid rgba(214, 164, 55, 0.4); padding: 24px; border-radius: 8px; margin-bottom: 30px;">
-                            <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 12px;">
-                                <svg viewBox="0 0 24 24" fill="none" stroke="#d6a437" stroke-width="2"
-                                    style="width: 18px; height: 18px;">
-                                    <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71" />
-                                    <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71" />
-                                </svg>
-                                <span
-                                    style="font-size: 0.65rem; font-weight: 700; color: #d6a437; letter-spacing: 0.1em; text-transform: uppercase;">Lien
-                                    de règlement sécurisé à durée limitée</span>
+                        <!-- TAB: My Matches -->
+                        <div id="section-matches" class="db-section">
+                            <div class="db-section-header">
+                                <h3 class="db-section-title">Mes Compatibilités</h3>
+                                <p class="db-section-subtitle">Retrouvez l'historique de vos rencontres et vos résultats
+                                    S7 Connection™.</p>
                             </div>
-                            <h4
-                                style="font-family: 'Cormorant Garamond', serif; font-size: 1.4rem; color: var(--primary-navy); margin: 0 0 8px;">
-                                Sunset & Conversations (Montreux)</h4>
-                            <p
-                                style="font-size: 0.78rem; color: var(--text-muted); line-height: 1.5; margin-bottom: 20px;">
-                                ℹ️ *Ce lien de paiement privé n'est pas accessible publiquement via URL. Il a été généré
-                                spécifiquement pour votre profil suite à une libération de place en liste d'attente.*
-                            </p>
-
-                            <div
-                                style="display: flex; flex-direction: column; gap: 12px; border: 1px solid rgba(20,43,99,0.05); padding: 15px; background: rgba(20,43,99,0.02); margin-bottom: 20px;">
-                                <div style="display:flex; justify-content:space-between; font-size: 0.75rem;">
-                                    <span style="font-weight: 600;">Expérience</span>
-                                    <span>Sunset & Conversations (Montreux)</span>
-                                </div>
-                                <div style="display:flex; justify-content:space-between; font-size: 0.75rem;">
-                                    <span style="font-weight: 600;">Montant</span>
-                                    <span style="color:#d6a437; font-weight: 700;">CHF 140.00</span>
-                                </div>
-                                <div
-                                    style="display:flex; justify-content:space-between; font-size: 0.75rem; color:#c92a2a; font-weight: 600;">
-                                    <span>Expiration du lien</span>
-                                    <span id="invitation-expiry-text">11 heures et 42 minutes</span>
-                                </div>
-                            </div>
-
-                            <button type="button" class="showroom-btn" id="btn-start-checkout"
-                                style="width: 100%; justify-content: center; font-weight: 700;">
-                                <span>SIMULER LE RÈGLEMENT (Stripe / TWINT)</span>
-                            </button>
-                        </div>
-
-                        <!-- Simulated Secure Checkout Form (Stripe/TWINT) -->
-                        <div id="simulated-checkout-form"
-                            style="display: none; background: #ffffff; border: 1px solid rgba(20, 43, 99, 0.08); padding: 30px; border-radius: 8px; margin-bottom: 30px;">
-                            <h3
-                                style="font-family: 'Cormorant Garamond', serif; font-size: 1.4rem; color: var(--primary-navy); border-bottom: 1px solid rgba(20,43,99,0.05); padding-bottom: 12px; margin-bottom: 20px;">
-                                Passerelle de Paiement Sécurisée
-                            </h3>
-
-                            <div class="db-form-row" style="margin-bottom: 25px;">
-                                <div class="db-form-group">
-                                    <label>Méthode de Paiement</label>
-                                    <select id="sim-payment-method" style="background-color: #fff !important;">
-                                        <option value="stripe">Carte bancaire (Stripe)</option>
-                                        <option value="twint">TWINT Suisse</option>
-                                    </select>
-                                </div>
-                                <div class="db-form-group">
-                                    <label>Simulation de Résultat</label>
-                                    <select id="sim-payment-result" style="background-color: #fff !important;">
-                                        <option value="success">Simulation Succès (Payment Success)</option>
-                                        <option value="failed">Simulation Échec (Payment Failed)</option>
-                                    </select>
-                                </div>
-                            </div>
-
-                            <!-- Stripe details box -->
-                            <div id="sim-stripe-details" style="margin-bottom: 25px;">
-                                <div class="db-form-group" style="margin-bottom: 15px;">
-                                    <label>Nom sur la carte</label>
-                                    <input type="text" value="Jean Dupont" class="form-input"
-                                        style="background:#fff!important; border: 1px solid rgba(20,43,99,0.15)!important; padding: 10px 14px!important;">
-                                </div>
-                                <div class="db-form-row" style="margin-bottom: 0;">
-                                    <div class="db-form-group">
-                                        <label>Numéro de carte de crédit</label>
-                                        <input type="text" placeholder="4242 4242 4242 4242" class="form-input"
-                                            style="background:#fff!important; border: 1px solid rgba(20,43,99,0.15)!important; padding: 10px 14px!important;">
-                                    </div>
-                                    <div class="db-form-row" style="margin-bottom: 0; gap: 12px;">
-                                        <div class="db-form-group" style="flex:1;">
-                                            <label>Expiration</label>
-                                            <input type="text" placeholder="12 / 28" class="form-input"
-                                                style="background:#fff!important; border: 1px solid rgba(20,43,99,0.15)!important; padding: 10px 14px!important;">
+                            <div class="booking-list">
+                                <div class="booking-item-card">
+                                    <div class="booking-item-info">
+                                        <div class="booking-item-thumb"
+                                            style="background-color: var(--primary-navy); display: flex; align-items: center; justify-content: center; color: var(--luxury-gold); font-size: 1.5rem; font-family: 'Cormorant Garamond', serif; border: none;">
+                                            S
                                         </div>
-                                        <div class="db-form-group" style="flex:1;">
-                                            <label>CVV</label>
-                                            <input type="text" placeholder="123" class="form-input"
-                                                style="background:#fff!important; border: 1px solid rgba(20,43,99,0.15)!important; padding: 10px 14px!important;">
+                                        <div class="booking-item-details">
+                                            <span class="booking-item-ref">S7 CONNECTION™: 89% (Match
+                                                Exceptionnel)</span>
+                                            <h4 class="booking-item-name">Sophie M.</h4>
+                                            <div class="booking-item-meta">
+                                                <span>Soirée Dégustation</span>
+                                                <span class="separator">•</span>
+                                                <span>24 Mai 2026</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="booking-item-status">
+                                        <span class="status-badge"
+                                            style="background-color: rgba(43, 138, 62, 0.1); color: #2b8a3e; border: 1px solid rgba(43, 138, 62, 0.25);">MUTUAL
+                                            YES</span>
+                                        <div
+                                            style="display: flex; flex-direction: column; align-items: flex-end; gap: 8px; margin-top: 5px;">
+                                            <a href="tel:+41790000000" class="booking-action-link"
+                                                style="color: var(--luxury-gold);">Afficher Numéro</a>
+                                            <a href="match-detail.html" class="booking-action-link"
+                                                style="color: var(--primary-navy);">Voir le Rapport S7</a>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-
-                            <!-- TWINT details box -->
-                            <div id="sim-twint-details"
-                                style="display: none; border: 1px solid rgba(43, 138, 62, 0.2); padding: 18px; background: rgba(43, 138, 62, 0.02); margin-bottom: 25px; text-align: center;">
-                                <img src="https://upload.wikimedia.org/wikipedia/commons/4/4e/Twint_logo.svg"
-                                    alt="TWINT logo"
-                                    style="height: 35px; margin-bottom: 12px; display: inline-block; filter: drop-shadow(0 2px 5px rgba(0,0,0,0.05));">
-                                <p style="font-size: 0.78rem; color: var(--text-muted); margin: 0 0 10px;">Scannez le
-                                    code QR de paiement TWINT sur votre application mobile ou entrez votre numéro.</p>
-                                <input type="text" value="+41 79 123 45 67"
-                                    style="text-align: center; font-weight: 600; background:#fff!important; border: 1px solid rgba(20,43,99,0.15)!important; padding: 10px 14px!important; max-width: 200px; display: inline-block;">
-                            </div>
-
-                            <div style="display: flex; gap: 12px; justify-content: flex-end;">
-                                <button type="button" class="showroom-btn secondary" id="btn-cancel-checkout">
-                                    <span>ANNULER</span>
-                                </button>
-                                <button type="button" class="showroom-btn" id="btn-submit-checkout"
-                                    style="background-color: #2b8a3e; border-color: #2b8a3e;">
-                                    <span>PAYER CHF 140.00</span>
-                                </button>
-                            </div>
                         </div>
 
-                        <!-- Simulated Loading screen (inline) -->
-                        <div id="simulated-payment-loader"
-                            style="display: none; text-align: center; padding: 50px 30px; background: #ffffff; border: 1px solid rgba(20, 43, 99, 0.08); border-radius: 8px;">
-                            <div class="luxury-spinner" style="margin: 0 auto 20px;"></div>
-                            <h3
-                                style="font-family: 'Cormorant Garamond', serif; font-size: 1.4rem; color: var(--primary-navy); margin-bottom: 8px;">
-                                Validation de la transaction...</h3>
-                            <p style="font-size: 0.78rem; color: var(--text-muted);">Connexion sécurisée SSL de 256 bits
-                                avec l'organisme émetteur.</p>
-                        </div>
-
-                        <!-- Simulated PAYMENT SUCCESS Screen (inline) -->
-                        <div id="simulated-payment-success"
-                            style="display: none; background: #ffffff; border: 1px solid rgba(43, 138, 62, 0.2); padding: 40px 30px; border-radius: 8px; text-align: center;">
-                            <div class="success-checkmark-circle animate"
-                                style="margin: 0 auto 20px; border-color: #2b8a3e; background: rgba(43, 138, 62, 0.06); display: flex; align-items: center; justify-content: center; width: 60px; height: 60px; border-radius: 50%;">
-                                <svg viewBox="0 0 52 52"
-                                    style="width: 28px; height: 28px; stroke: #2b8a3e; fill: none;">
-                                    <path d="M14.1 27.2l7.1 7.2 16.7-16.8" stroke-width="4" stroke-linecap="round"
-                                        stroke-linejoin="round" />
-                                </svg>
-                            </div>
-                            <h2
-                                style="font-family: 'Cormorant Garamond', serif; font-size: 1.8rem; color: var(--primary-navy); margin: 0 0 10px;">
-                                Paiement Validé ✓</h2>
-                            <p
-                                style="font-size: 0.8rem; color: var(--text-muted); max-width: 440px; margin: 0 auto 25px; line-height: 1.5;">
-                                Votre transaction de **CHF 140.00** a été approuvée avec succès. Votre place pour
-                                l'expérience **Sunset & Conversations** est désormais confirmée.<br>Vos billets d'accès
-                                ont été envoyés par e-mail et WhatsApp.
-                            </p>
-
-                            <div
-                                style="border-top: 1px solid rgba(20,43,99,0.05); padding-top: 20px; display: flex; gap: 12px; justify-content: center;">
-                                <button type="button" class="showroom-btn" onclick="addNewBookingAndReturn()">
-                                    <span>VOIR MES RÉSERVATIONS</span>
-                                </button>
-                            </div>
-                        </div>
-
-                        <!-- Simulated PAYMENT FAILED Screen (inline) -->
-                        <div id="simulated-payment-failed"
-                            style="display: none; background: #ffffff; border: 1px solid rgba(201, 42, 42, 0.2); padding: 40px 30px; border-radius: 8px; text-align: center;">
-                            <div class="failure-cross-circle animate"
-                                style="margin: 0 auto 20px; border: 2px solid #c92a2a; background: rgba(201, 42, 42, 0.06); display: flex; align-items: center; justify-content: center; width: 60px; height: 60px; border-radius: 50%;">
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                                    style="width: 24px; height: 24px; stroke: #c92a2a;">
-                                    <line x1="18" y1="6" x2="6" y2="18"></line>
-                                    <line x1="6" y1="6" x2="18" y2="18"></line>
-                                </svg>
-                            </div>
-                            <h2
-                                style="font-family: 'Cormorant Garamond', serif; font-size: 1.8rem; color: var(--primary-navy); margin: 0 0 10px;">
-                                Règlement Refusé ✕</h2>
-                            <p
-                                style="font-size: 0.8rem; color: var(--text-muted); max-width: 440px; margin: 0 auto 20px; line-height: 1.5;">
-                                Désolé, la transaction bancaire a échoué. Votre carte bancaire a été déclinée ou le
-                                jeton de sécurité TWINT a expiré.<br>
-                                Veuillez essayer une autre carte ou contacter le support conciergerie 7Sens au **+41 22
-                                555 77 77**.
-                            </p>
-
-                            <div
-                                style="border-top: 1px solid rgba(20,43,99,0.05); padding-top: 20px; display: flex; gap: 12px; justify-content: center;">
-                                <button type="button" class="showroom-btn secondary" id="btn-retry-checkout">
-                                    <span>RÉESSAYER LE RÈGLEMENT</span>
-                                </button>
-                                <a href="mailto:concierge@7sens.ch" class="showroom-btn"
-                                    style="text-decoration: none; align-items: center;">
-                                    <span>CONTACTER LE SUPPORT</span>
-                                </a>
-                            </div>
-                        </div>
-
-                    </div>
-
-                    <!-- TAB: My Relationship Questionnaire -->
-                    <div id="section-questionnaire" class="db-section">
-                        <div class="db-section-header" style="display: flex; justify-content: space-between; align-items: flex-end;">
-                            <div>
-                                <h3 class="db-section-title">Mon Questionnaire S7</h3>
-                                <p class="db-section-subtitle">Définissez vos 8 catégories pour le calcul de votre S7 Affinity™ lors des prochains événements.</p>
-                            </div>
-                            <button class="booking-action-btn" id="btn-edit-questionnaire" style="padding: 8px 16px; font-size: 0.7rem; max-width: 200px; display: none;" onclick="window.location.href='questionnaire.html'">
-                                <span>MODIFIER MES CARTES</span>
-                            </button>
-                        </div>
-                        
-                        <div id="questionnaire-results-container" style="display: none; flex-direction: column; gap: 30px; margin-bottom: 30px;">
-                            <!-- Filled by JS -->
-                        </div>
-                        
-                        <div class="booking-list" id="questionnaire-empty-state">
-                            <div class="db-widget" style="border-radius: 4px; border: 1px solid rgba(214, 164, 55, 0.4); background: rgba(255,255,255,0.7);">
-                                <h4 class="db-widget-title" style="font-size: 1.2rem;">Remplir mon profil (8 catégories)</h4>
-                                <p class="db-widget-desc">Complétez vos valeurs, envies et limites pour optimiser vos rencontres. Indispensable avant votre première expérience.</p>
-                                <button class="booking-action-btn" style="margin-top: 15px; max-width: 250px;" onclick="window.location.href='questionnaire.html'">
-                                    <span>COMMENCER LE QUESTIONNAIRE</span>
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- TAB: My Matches -->
-                    <div id="section-matches" class="db-section">
-                        <div class="db-section-header">
-                            <h3 class="db-section-title">Mes Compatibilités</h3>
-                            <p class="db-section-subtitle">Retrouvez l'historique de vos rencontres et vos résultats S7 Connection™.</p>
-                        </div>
-                        <div class="booking-list">
-                            <div class="booking-item-card">
-                                <div class="booking-item-info">
-                                    <div class="booking-item-thumb" style="background-color: var(--primary-navy); display: flex; align-items: center; justify-content: center; color: var(--luxury-gold); font-size: 1.5rem; font-family: 'Cormorant Garamond', serif; border: none;">
-                                        S
-                                    </div>
-                                    <div class="booking-item-details">
-                                        <span class="booking-item-ref">S7 CONNECTION™: 89% (Match Exceptionnel)</span>
-                                        <h4 class="booking-item-name">Sophie M.</h4>
-                                        <div class="booking-item-meta">
-                                            <span>Soirée Dégustation</span>
-                                            <span class="separator">•</span>
-                                            <span>24 Mai 2026</span>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="booking-item-status">
-                                    <span class="status-badge" style="background-color: rgba(43, 138, 62, 0.1); color: #2b8a3e; border: 1px solid rgba(43, 138, 62, 0.25);">MUTUAL YES</span>
-                                    <div style="display: flex; flex-direction: column; align-items: flex-end; gap: 8px; margin-top: 5px;">
-                                        <a href="tel:+41790000000" class="booking-action-link" style="color: var(--luxury-gold);">Afficher Numéro</a>
-                                        <a href="match-detail.html" class="booking-action-link" style="color: var(--primary-navy);">Voir le Rapport S7</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                </section>
+                    </section>
+                </div>
             </div>
         </div>
     </main>
@@ -1652,12 +2133,23 @@
             if (lookingForInput) lookingForInput.value = user.lookingFor || "";
 
             const updateHeaderInfo = (fName, lName) => {
-                if (profileNameHeader) profileNameHeader.textContent = `${fName} ${lName}`;
+                const first = fName || "Jean";
+                const last = lName || "Dupont";
+
+                if (profileNameHeader) profileNameHeader.textContent = `${first} ${last}`;
+
                 const welcomeBannerName = document.getElementById("welcome-banner-name");
-                if (welcomeBannerName) welcomeBannerName.textContent = `${fName} ${lName}`;
+                if (welcomeBannerName) welcomeBannerName.textContent = `${first} ${last}`;
+
+                const topHeaderName = document.getElementById("top-header-name");
+                if (topHeaderName) {
+                    const lastInit = last.charAt(0).toUpperCase();
+                    topHeaderName.textContent = `${first} ${lastInit}.`;
+                }
+
                 if (initialsSpan) {
-                    const firstInit = fName.charAt(0).toUpperCase() || "";
-                    const lastInit = lName.charAt(0).toUpperCase() || "";
+                    const firstInit = first.charAt(0).toUpperCase();
+                    const lastInit = last.charAt(0).toUpperCase();
                     initialsSpan.textContent = `${firstInit}${lastInit}`;
                 }
             };
@@ -1668,13 +2160,13 @@
             const avatarInput = document.getElementById("profile-avatar-input");
             const dbAvatar = document.getElementById("db-avatar");
             const formAvatarCircle = document.getElementById("form-avatar-circle");
-            
+
             // Set high-end placeholder portrait image if none exists
             if (user && !user.avatarDataUrl) {
                 user.avatarDataUrl = "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=facearea&facepad=2.2&w=256&h=256&q=80";
                 try {
                     localStorage.setItem("currentUser", JSON.stringify(user));
-                } catch(e) { console.error(e); }
+                } catch (e) { console.error(e); }
             }
 
             const loadAvatarImage = () => {
@@ -1685,6 +2177,10 @@
                     }
                     if (formAvatarCircle) {
                         formAvatarCircle.style.backgroundImage = `url(${user.avatarDataUrl})`;
+                    }
+                    const topHeaderAvatar = document.getElementById("top-header-avatar");
+                    if (topHeaderAvatar) {
+                        topHeaderAvatar.src = user.avatarDataUrl;
                     }
                 }
             };
@@ -1703,11 +2199,15 @@
                             if (formAvatarCircle) {
                                 formAvatarCircle.style.backgroundImage = `url(${dataUrl})`;
                             }
+                            const topHeaderAvatar = document.getElementById("top-header-avatar");
+                            if (topHeaderAvatar) {
+                                topHeaderAvatar.src = dataUrl;
+                            }
                             if (initialsSpan) initialsSpan.style.display = "none";
                             user.avatarDataUrl = dataUrl;
                             try {
                                 localStorage.setItem("currentUser", JSON.stringify(user));
-                            } catch(err) { console.error(err); }
+                            } catch (err) { console.error(err); }
                         };
                         reader.readAsDataURL(file);
                     }
@@ -1846,12 +2346,12 @@
                 const qResultsContainer = document.getElementById("questionnaire-results-container");
                 const qEmptyState = document.getElementById("questionnaire-empty-state");
                 const btnEdit = document.getElementById("btn-edit-questionnaire");
-                
+
                 if (qResultsContainer && qEmptyState && btnEdit) {
                     qEmptyState.style.display = "none";
                     btnEdit.style.display = "inline-flex";
                     qResultsContainer.style.display = "flex";
-                    
+
                     try {
                         const resultsStr = localStorage.getItem("s7_questionnaire_results");
                         if (resultsStr) {
@@ -1877,7 +2377,7 @@
                                 lifestyle: "placeholder",
                                 vision: "placeholder"
                             };
-                            
+
                             for (const key in results) {
                                 if (results[key] && results[key].length > 0) {
                                     const folder = folders[key] || "placeholder";
@@ -1888,7 +2388,7 @@
                                             return `<div style="border-radius: 4px; overflow: hidden; border: 1px solid rgba(214,164,55,0.4); box-shadow: 0 4px 10px rgba(0,0,0,0.05); aspect-ratio: 2/3;"><img src="../cards7sens/${folder}/${item}" style="width: 100%; height: 100%; object-fit: cover;" alt="${item}"></div>`;
                                         }
                                     }).join("");
-                                    
+
                                     html += `
                                         <div>
                                             <h4 style="font-family: 'Cormorant Garamond', serif; font-size: 1.3rem; color: var(--primary-navy); margin: 0 0 15px 0; padding-bottom: 8px; border-bottom: 1px solid rgba(20,43,99,0.06);">${titles[key] || key}</h4>
@@ -2031,6 +2531,56 @@
 
             // 7. Finally switch to the bookings tab to show the update!
             switchDbTab("bookings");
+        }
+    </script>
+    <!-- Password Change Modal -->
+    <div id="password-modal" class="db-modal-overlay">
+        <div class="db-modal-content">
+            <button class="db-modal-close" onclick="closePasswordModal()">×</button>
+            <h3 style="font-family: 'Cormorant Garamond', serif; font-size: 1.5rem; color: var(--primary-navy); margin-bottom: 20px;">Modifier le mot de passe</h3>
+            
+            <div class="db-form-group" style="margin-bottom: 15px;">
+                <label for="modal-profile-password" style="font-size: 0.65rem; font-weight: 700; letter-spacing: 0.12em; color: var(--primary-navy); text-transform: uppercase; margin-bottom: 8px; display: inline-block;">Nouveau mot de passe</label>
+                <input type="password" id="modal-profile-password" placeholder="Nouveau mot de passe" style="background-color: rgba(255, 255, 255, 0.6); border: 1px solid rgba(20, 43, 99, 0.15); padding: 14px 18px; font-family: 'Outfit', sans-serif; font-size: 0.88rem; border-radius: 8px; color: var(--primary-navy); transition: all 0.3s; width: 100%; box-shadow: inset 0 2px 4px rgba(0,0,0,0.02);">
+            </div>
+            <div class="db-form-group" style="margin-bottom: 25px;">
+                <label for="modal-profile-confirm-password" style="font-size: 0.65rem; font-weight: 700; letter-spacing: 0.12em; color: var(--primary-navy); text-transform: uppercase; margin-bottom: 8px; display: inline-block;">Confirmer le mot de passe</label>
+                <input type="password" id="modal-profile-confirm-password" placeholder="Confirmer le mot de passe" style="background-color: rgba(255, 255, 255, 0.6); border: 1px solid rgba(20, 43, 99, 0.15); padding: 14px 18px; font-family: 'Outfit', sans-serif; font-size: 0.88rem; border-radius: 8px; color: var(--primary-navy); transition: all 0.3s; width: 100%; box-shadow: inset 0 2px 4px rgba(0,0,0,0.02);">
+            </div>
+            <button onclick="savePasswordModal()" class="db-banner-btn" style="background-color: var(--primary-navy); border-color: var(--primary-navy); width: 100%; padding: 14px; font-size: 0.85rem;">SAUVEGARDER</button>
+        </div>
+    </div>
+
+    <script>
+        function openPasswordModal() {
+            const modal = document.getElementById('password-modal');
+            modal.style.display = 'flex';
+            // Slight delay for animation
+            setTimeout(() => {
+                modal.classList.add('active');
+            }, 10);
+        }
+
+        function closePasswordModal() {
+            const modal = document.getElementById('password-modal');
+            modal.classList.remove('active');
+            setTimeout(() => {
+                modal.style.display = 'none';
+            }, 300);
+        }
+
+        function savePasswordModal() {
+            // Note: In a real app this would save the password.
+            // For now, just close it with a tiny delay to simulate save
+            const btn = document.querySelector('#password-modal .db-banner-btn');
+            const originalText = btn.textContent;
+            btn.textContent = 'Enregistré ✓';
+            setTimeout(() => {
+                closePasswordModal();
+                btn.textContent = originalText;
+                document.getElementById('modal-profile-password').value = '';
+                document.getElementById('modal-profile-confirm-password').value = '';
+            }, 800);
         }
     </script>
 </body>

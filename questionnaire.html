@@ -118,6 +118,22 @@
         /* Questionnaire View Styles */
         #questionnaire-view {
             display: none;
+            position: relative;
+            z-index: 1;
+        }
+
+        #questionnaire-view::before {
+            content: "7";
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 80vh;
+            color: var(--luxury-gold);
+            opacity: 0.04;
+            z-index: -1;
+            pointer-events: none;
         }
 
         .q-header {

@@ -109,6 +109,18 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     });
 
+    // Header scroll state toggle
+    const header = document.getElementById('main-header');
+    if (header) {
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+    }
+
     // 4. GSAP Page Entry and Scroll Reveal Animations
     try {
         // Core GSAP Register
@@ -405,3 +417,28 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     });
 });
+
+// Floating Back to Top Logic
+const floatingBtt = document.getElementById('floating-back-to-top');
+if (floatingBtt) {
+    window.addEventListener('scroll', () => {
+        if (window.scrollY > 300) {
+            floatingBtt.classList.add('show');
+        } else {
+            floatingBtt.classList.remove('show');
+        }
+    });
+
+    floatingBtt.addEventListener('click', (e) => {
+        e.preventDefault();
+        // If lenis is available (smooth scroll library used in this template), use it
+        if (typeof lenis !== 'undefined') {
+            lenis.scrollTo(0);
+        } else {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        }
+    });
+}

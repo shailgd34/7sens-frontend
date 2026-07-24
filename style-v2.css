@@ -664,27 +664,27 @@ section {
 }
 
 .v2-status-badge.open {
-    background-color: rgba(240, 248, 244, 0.9);
-    color: #2e7d32;
-    border: 1px solid rgba(46, 125, 50, 0.2);
+    background-color: #2e7d32;
+    color: #ffffff;
+    border: none;
 }
 
 .v2-status-badge.waiting {
-    background-color: rgba(255, 248, 225, 0.9);
-    color: #ef6c00;
-    border: 1px solid rgba(239, 108, 0, 0.2);
+    background-color: #ef6c00;
+    color: #ffffff;
+    border: none;
 }
 
-.v2-status-badge.closed {
-    background-color: rgba(250, 248, 244, 0.9);
-    color: rgba(26, 26, 26, 0.5);
-    border: 1px solid var(--border-color);
+.v2-status-badge.closed, .v2-status-badge.fully-booked {
+    background-color: #c62828;
+    color: #ffffff;
+    border: none;
 }
 
 .v2-status-badge.limited {
-    background-color: rgba(253, 235, 230, 0.9);
-    color: #c62828;
-    border: 1px solid rgba(198, 40, 40, 0.2);
+    background-color: #f57f17;
+    color: #ffffff;
+    border: none;
 }
 
 .v2-card-details {

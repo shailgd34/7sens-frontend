@@ -193,9 +193,9 @@
 }
 
 .v2-status-badge.open {
-    background-color: rgba(20, 43, 99, 0.9);
-    color: var(--warm-ivory);
-    border-left: 2px solid var(--luxury-gold);
+    background-color: #2e7d32;
+    color: #ffffff;
+    border: none;
 }
 
 .v2-status-badge.limited {
@@ -204,15 +204,15 @@
 }
 
 .v2-status-badge.waiting {
-    background-color: rgba(27, 27, 27, 0.85);
-    color: var(--warm-ivory);
-    border: 1px solid rgba(251, 248, 243, 0.2);
+    background-color: #ef6c00;
+    color: #ffffff;
+    border: none;
 }
 
 .v2-status-badge.fully-booked {
-    background-color: #1B1B1B;
-    color: rgba(251, 248, 243, 0.5);
-    border: 1px solid rgba(251, 248, 243, 0.1);
+    background-color: #c62828;
+    color: #ffffff;
+    border: none;
 }
 
 /* Card details */
@@ -307,7 +307,7 @@
 .capacity-label-row {
     display: flex;
     justify-content: space-between;
-    font-size: 0.65rem;
+    font-size: 0.8rem;
     font-weight: 500;
     color: var(--text-muted);
 }

@@ -2612,10 +2612,10 @@ a {
 
 .lang-btn {
     background: transparent;
-    border: 1px solid rgba(16, 42, 94, 0.2);
-    border-radius: 20px;
-    padding: 6px 14px;
-    font-family: \'Outfit\', sans-serif;
+    border: none;
+    border-radius: 0;
+    padding: 6px 10px;
+    font-family: 'Outfit', sans-serif;
     font-size: 0.85rem;
     font-weight: 500;
     color: var(--primary-navy);
@@ -3054,7 +3054,7 @@ a {
 
 .lang-btn {
     background: transparent;
-    border: 1px solid rgba(20, 43, 99, 0.2);
+
     color: var(--primary-navy);
     font-family: 'Outfit', sans-serif;
     font-size: 0.9rem;

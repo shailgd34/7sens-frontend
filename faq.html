@@ -5,14 +5,18 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Conciergerie & FAQ — 7Sens Premium Social Club</title>
-    <meta name="description" content="Découvrez les réponses de notre conciergerie sur les règles du club, la parité et le fonctionnement de nos listes d'attente privées.">
+    <meta name="description"
+        content="Découvrez les réponses de notre conciergerie sur les règles du club, la parité et le fonctionnement de nos listes d'attente privées.">
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Outfit:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
 
     <!-- Stylesheets -->
+    <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="style-v2.css">
     <link rel="stylesheet" href="events-page.css">
 
@@ -53,84 +57,70 @@
             line-height: 1.15;
         }
 
-        /* Split-screen layout */
+        /* Split-screen layout changed to horizontal */
         .faq-split-grid {
-            display: grid;
-            grid-template-columns: 320px 1fr;
-            gap: 60px;
-            align-items: start;
+            display: flex;
+            flex-direction: column;
+            gap: 40px;
             margin-bottom: 80px;
         }
 
         @media (max-width: 991px) {
             .faq-split-grid {
-                grid-template-columns: 1fr;
                 gap: 40px;
             }
         }
 
-        /* Left Side: Category Navigator */
+        /* Top: Category Navigator */
         .faq-nav-card {
             background: rgba(255, 255, 255, 0.4);
             border: 1px solid rgba(20, 43, 99, 0.05);
-            padding: 35px 25px;
-            position: sticky;
-            top: 40px;
+            padding: 20px;
+            border-radius: 12px;
             box-shadow: 0 10px 30px rgba(16, 42, 94, 0.01);
         }
 
         .faq-nav-title {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 1.5rem;
-            color: var(--primary-navy);
-            font-weight: 400;
-            margin-bottom: 25px;
-            border-bottom: 1px solid var(--border-color);
-            padding-bottom: 15px;
+            display: none;
         }
 
         .faq-nav-list {
             display: flex;
-            flex-direction: column;
-            gap: 8px;
+            flex-direction: row;
+            flex-wrap: wrap;
+            gap: 15px;
+            justify-content: center;
         }
 
         .faq-nav-btn {
-            background: none;
-            border: none;
+            background: rgba(255, 255, 255, 0.6);
+            border: 1px solid rgba(20, 43, 99, 0.1);
+            border-radius: 30px;
             font-family: 'Outfit', sans-serif;
             font-size: 0.75rem;
             font-weight: 600;
             letter-spacing: 0.08em;
             color: var(--text-muted);
-            text-align: left;
-            padding: 12px 15px;
+            text-align: center;
+            padding: 12px 25px;
             cursor: pointer;
             text-transform: uppercase;
             transition: all 0.3s;
             display: flex;
             align-items: center;
-            justify-content: space-between;
+            gap: 8px;
+            justify-content: center;
         }
 
-        .faq-nav-btn:hover, .faq-nav-btn.active {
-            color: var(--primary-navy);
-            background-color: rgba(20, 43, 99, 0.03);
-            border-left: 2px solid var(--luxury-gold);
-            padding-left: 18px;
+        .faq-nav-btn:hover,
+        .faq-nav-btn.active {
+            color: var(--warm-ivory);
+            background-color: var(--primary-navy);
+            border-color: var(--primary-navy);
         }
 
         .faq-nav-btn svg {
-            width: 12px;
-            height: 12px;
-            opacity: 0;
-            transition: opacity 0.3s, transform 0.3s;
-            stroke: var(--luxury-gold);
-        }
-
-        .faq-nav-btn.active svg {
-            opacity: 1;
-            transform: translateX(3px);
+            display: none;
         }
 
         /* Right Side: Category Panels & Question Accordions */
@@ -173,7 +163,8 @@
             transition: all 0.3s var(--transition-smooth);
         }
 
-        .faq-card-item:hover, .faq-card-item.active {
+        .faq-card-item:hover,
+        .faq-card-item.active {
             border-color: rgba(214, 164, 55, 0.3);
             background-color: rgba(255, 255, 255, 0.8);
             box-shadow: 0 10px 30px rgba(16, 42, 94, 0.02);
@@ -205,7 +196,8 @@
             transition: transform 0.3s;
         }
 
-        .faq-card-icon::before, .faq-card-icon::after {
+        .faq-card-icon::before,
+        .faq-card-icon::after {
             content: '';
             position: absolute;
             background-color: currentColor;
@@ -285,8 +277,15 @@
         }
 
         @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
         @media (max-width: 768px) {
@@ -294,9 +293,11 @@
                 padding: 18px 20px;
                 font-size: 0.85rem;
             }
+
             .faq-card-inner {
                 padding: 0 20px 20px;
             }
+
             .faq-cta-banner {
                 padding: 30px 20px;
             }
@@ -309,10 +310,58 @@
     <!-- Canvas Noise Overlay -->
     <div class="noise-overlay"></div>
 
-    <!-- MAIN FAQ CONTENT (No Header, No Footer) -->
+    <!-- Header Navigation -->
+    <header class="header" id="main-header">
+        <div class="header-container">
+            <a href="index.html" class="logo-link" id="header-logo">
+                <img src="assets/7sens.webp" alt="7Sens Logo" class="logo-img">
+            </a>
+
+            <nav class="nav-menu" id="nav-menu">
+                <ul>
+                    <li><a href="index.html#accueil" class="nav-link">ACCUEIL</a></li>
+                    <li><a href="index.html#about" class="nav-link">À PROPOS</a></li>
+                    <li><a href="events.html" class="nav-link">ÉVÉNEMENTS</a></li>
+                    <li><a href="index.html#how-it-works" class="nav-link">COMMENT ÇA MARCHE</a></li>
+                    <li><a href="faq.html" class="nav-link active">FAQ</a></li>
+                    <li><a href="index.html#testimonials" class="nav-link">TÉMOIGNAGES</a></li>
+                    <li><a href="index.html#contact" class="nav-link">CONTACT</a></li>
+                </ul>
+            </nav>
+
+            <div class="header-cta" style="display: flex; align-items: center; gap: 20px;">
+                <div class="lang-dropdown">
+                    <button class="lang-btn" aria-haspopup="true" aria-expanded="false">
+                        <img src="https://flagcdn.com/w20/fr.png" width="16" alt="FR" style="border-radius: 2px;"> FR
+                        <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor"
+                            stroke-width="2">
+                            <path d="M6 9l6 6 6-6" />
+                        </svg>
+                    </button>
+                    <ul class="lang-menu">
+                        <li><a href="#" class="active"><img src="https://flagcdn.com/w20/fr.png" width="16" alt="FR"
+                                    style="border-radius: 2px;"> FR</a></li>
+                        <li><a href="#"><img src="https://flagcdn.com/w20/gb.png" width="16" alt="EN"
+                                    style="border-radius: 2px;"> EN</a></li>
+                    </ul>
+                </div>
+                <a href="login.html" class="btn btn-navy btn-magnetic" id="btn-header-login">
+                    <span>CONNEXION</span>
+                </a>
+            </div>
+
+            <!-- Mobile Menu Toggle -->
+            <button class="mobile-nav-toggle" aria-label="Toggle menu" id="mobile-menu-toggle">
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </button>
+        </div>
+    </header>
+
+    <!-- MAIN FAQ CONTENT -->
     <main class="faq-main">
         <div class="faq-container">
-            
+
             <!-- Hero Title -->
             <div class="faq-hero">
                 <span class="faq-tagline">RÉPONSES DE LA CONCIERGERIE</span>
@@ -321,34 +370,44 @@
 
             <!-- Split Grid -->
             <div class="faq-split-grid">
-                
+
                 <!-- LEFT: Categories -->
                 <aside class="faq-nav-card">
                     <h3 class="faq-nav-title">Catégories</h3>
                     <div class="faq-nav-list">
                         <button class="faq-nav-btn active" onclick="switchFaqCategory('club')" id="btn-faq-club">
                             <span>Le Club & Adhésion</span>
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12H19M19 12L13 6M19 12L13 18" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M5 12H19M19 12L13 6M19 12L13 18" stroke-linecap="round"
+                                    stroke-linejoin="round" />
+                            </svg>
                         </button>
                         <button class="faq-nav-btn" onclick="switchFaqCategory('experiences')" id="btn-faq-experiences">
                             <span>Expériences & Parité</span>
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12H19M19 12L13 6M19 12L13 18" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M5 12H19M19 12L13 6M19 12L13 18" stroke-linecap="round"
+                                    stroke-linejoin="round" />
+                            </svg>
                         </button>
                         <button class="faq-nav-btn" onclick="switchFaqCategory('attente')" id="btn-faq-attente">
                             <span>Réservations & Attente</span>
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12H19M19 12L13 6M19 12L13 18" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M5 12H19M19 12L13 6M19 12L13 18" stroke-linecap="round"
+                                    stroke-linejoin="round" />
+                            </svg>
                         </button>
                     </div>
                 </aside>
 
                 <!-- RIGHT: Accordions panels -->
                 <div class="faq-panels-wrapper">
-                    
+
                     <!-- PANEL 1: Club & Adhesion -->
                     <div id="panel-faq-club" class="faq-panel active">
                         <div class="faq-panel-header">
                             <h2 class="faq-panel-title">Le Club & L'Adhésion</h2>
-                            <p class="faq-panel-desc">Questions relatives au processus de sélection et à l'esprit du club social.</p>
+                            <p class="faq-panel-desc">Questions relatives au processus de sélection et à l'esprit du
+                                club social.</p>
                         </div>
 
                         <div class="faq-card-list">
@@ -359,7 +418,11 @@
                                 </button>
                                 <div class="faq-card-content">
                                     <div class="faq-card-inner">
-                                        <p>L'adhésion au club privé 7Sens se fait uniquement sur candidature via notre formulaire en ligne ou par parrainage. Notre comité évalue chaque profil de manière confidentielle afin de réunir des personnes partageant une même ouverture d'esprit, une courtoisie exemplaire et un respect mutuel des dynamiques de groupe.</p>
+                                        <p>L'adhésion au club privé 7Sens se fait uniquement sur candidature via notre
+                                            formulaire en ligne ou par parrainage. Notre comité évalue chaque profil de
+                                            manière confidentielle afin de réunir des personnes partageant une même
+                                            ouverture d'esprit, une courtoisie exemplaire et un respect mutuel des
+                                            dynamiques de groupe.</p>
                                     </div>
                                 </div>
                             </div>
@@ -371,7 +434,11 @@
                                 </button>
                                 <div class="faq-card-content">
                                     <div class="faq-card-inner">
-                                        <p>L'étude de votre dossier de candidature est entièrement gratuite. Une fois admis, le club fonctionne sur un principe de <strong>paiement par expérience</strong> : vous ne réglez que les soirées, dégustations ou masterclasses auxquelles vous choisissez de participer, sans aucune obligation d'abonnement récurrent.</p>
+                                        <p>L'étude de votre dossier de candidature est entièrement gratuite. Une fois
+                                            admis, le club fonctionne sur un principe de <strong>paiement par
+                                                expérience</strong> : vous ne réglez que les soirées, dégustations ou
+                                            masterclasses auxquelles vous choisissez de participer, sans aucune
+                                            obligation d'abonnement récurrent.</p>
                                     </div>
                                 </div>
                             </div>
@@ -383,7 +450,10 @@
                                 </button>
                                 <div class="faq-card-content">
                                     <div class="faq-card-inner">
-                                        <p>Nous prônons la courtoisie, l'authenticité et la bienveillance. Tout membre s'engage à respecter notre charte éthique : pas d'agressivité, aucun comportement intrusif, ponctualité rigoureuse, et respect strict de la confidentialité des autres participants durant et après nos réunions.</p>
+                                        <p>Nous prônons la courtoisie, l'authenticité et la bienveillance. Tout membre
+                                            s'engage à respecter notre charte éthique : pas d'agressivité, aucun
+                                            comportement intrusif, ponctualité rigoureuse, et respect strict de la
+                                            confidentialité des autres participants durant et après nos réunions.</p>
                                     </div>
                                 </div>
                             </div>
@@ -394,7 +464,8 @@
                     <div id="panel-faq-experiences" class="faq-panel">
                         <div class="faq-panel-header">
                             <h2 class="faq-panel-title">Expériences & Parité</h2>
-                            <p class="faq-panel-desc">Comprendre comment se déroulent nos soirées et l'équilibre des participants.</p>
+                            <p class="faq-panel-desc">Comprendre comment se déroulent nos soirées et l'équilibre des
+                                participants.</p>
                         </div>
 
                         <div class="faq-card-list">
@@ -405,7 +476,12 @@
                                 </button>
                                 <div class="faq-card-content">
                                     <div class="faq-card-inner">
-                                        <p>Chaque expérience commence par un verre d'accueil et une introduction décontractée par notre hôte de conciergerie. S'ensuit l'activité thématique (dégustation de vins fins, création de cocktails, ou atelier culinaire) par petits groupes paritaires alternés. Tout au long de la soirée, les participants changent d'interlocuteurs lors de sessions de discussions guidées pour permettre à chacun de faire connaissance naturellement.</p>
+                                        <p>Chaque expérience commence par un verre d'accueil et une introduction
+                                            décontractée par notre hôte de conciergerie. S'ensuit l'activité thématique
+                                            (dégustation de vins fins, création de cocktails, ou atelier culinaire) par
+                                            petits groupes paritaires alternés. Tout au long de la soirée, les
+                                            participants changent d'interlocuteurs lors de sessions de discussions
+                                            guidées pour permettre à chacun de faire connaissance naturellement.</p>
                                     </div>
                                 </div>
                             </div>
@@ -417,7 +493,12 @@
                                 </button>
                                 <div class="faq-card-content">
                                     <div class="faq-card-inner">
-                                        <p>Notre système de réservation suit en temps réel le ratio des genres. Dès qu'un déséquilibre se profile (par exemple, plus de places réservées par des femmes que par des hommes pour une session), le système bloque temporairement les nouvelles inscriptions pour le genre excédentaire. Les réservations suivantes pour ce genre sont placées sur liste d'attente jusqu'à ce que l'équilibre soit rétabli.</p>
+                                        <p>Notre système de réservation suit en temps réel le ratio des genres. Dès
+                                            qu'un déséquilibre se profile (par exemple, plus de places réservées par des
+                                            femmes que par des hommes pour une session), le système bloque
+                                            temporairement les nouvelles inscriptions pour le genre excédentaire. Les
+                                            réservations suivantes pour ce genre sont placées sur liste d'attente
+                                            jusqu'à ce que l'équilibre soit rétabli.</p>
                                     </div>
                                 </div>
                             </div>
@@ -429,7 +510,12 @@
                                 </button>
                                 <div class="faq-card-content">
                                     <div class="faq-card-inner">
-                                        <p>Les tranches d'âges (ex. <em>35 - 50 ans</em>) sont indispensables pour assurer la cohérence et le confort d'échange des cercles. Afin d'éviter les déclarations erronées, la saisie manuelle de votre date de naissance complète est requise lors de la commande. Notre script vérifie automatiquement l'éligibilité calendaire et désactive le paiement si l'âge calculé est hors-tranche.</p>
+                                        <p>Les tranches d'âges (ex. <em>35 - 50 ans</em>) sont indispensables pour
+                                            assurer la cohérence et le confort d'échange des cercles. Afin d'éviter les
+                                            déclarations erronées, la saisie manuelle de votre date de naissance
+                                            complète est requise lors de la commande. Notre script vérifie
+                                            automatiquement l'éligibilité calendaire et désactive le paiement si l'âge
+                                            calculé est hors-tranche.</p>
                                     </div>
                                 </div>
                             </div>
@@ -440,7 +526,8 @@
                     <div id="panel-faq-attente" class="faq-panel">
                         <div class="faq-panel-header">
                             <h2 class="faq-panel-title">Réservations & Attente</h2>
-                            <p class="faq-panel-desc">Gestion de vos commandes, coupons cadeaux, et participation aux listes d'attente simultanées.</p>
+                            <p class="faq-panel-desc">Gestion de vos commandes, coupons cadeaux, et participation aux
+                                listes d'attente simultanées.</p>
                         </div>
 
                         <div class="faq-card-list">
@@ -451,7 +538,11 @@
                                 </button>
                                 <div class="faq-card-content">
                                     <div class="faq-card-inner">
-                                        <p><strong>Oui, absolument.</strong> Si plusieurs expériences de votre catégorie d'âge sont complètes, vous pouvez vous inscrire sur leurs listes d'attente respectives de manière simultanée. Dès qu'une place se libère (par exemple à la suite d'une annulation ou d'un rééquilibrage de parité), notre conciergerie vous alerte immédiatement par SMS ou WhatsApp.</p>
+                                        <p><strong>Oui, absolument.</strong> Si plusieurs expériences de votre catégorie
+                                            d'âge sont complètes, vous pouvez vous inscrire sur leurs listes d'attente
+                                            respectives de manière simultanée. Dès qu'une place se libère (par exemple à
+                                            la suite d'une annulation ou d'un rééquilibrage de parité), notre
+                                            conciergerie vous alerte immédiatement par SMS ou WhatsApp.</p>
                                     </div>
                                 </div>
                             </div>
@@ -463,7 +554,12 @@
                                 </button>
                                 <div class="faq-card-content">
                                     <div class="faq-card-inner">
-                                        <p>Lors de l'étape de confirmation de réservation sur [booking.html](file:///e:/7sens/booking.html), insérez votre code coupon (ex. <em>WELCOME10</em> pour CHF 10.- d'accueil, ou <em>VIP20</em> pour CHF 20.- privilège) dans le champ dédié. Cliquez sur "Appliquer" : la réduction se calcule instantanément et met à jour le récapitulatif financier avant validation finale.</p>
+                                        <p>Lors de l'étape de confirmation de réservation sur
+                                            [booking.html](file:///e:/7sens/booking.html), insérez votre code coupon
+                                            (ex. <em>WELCOME10</em> pour CHF 10.- d'accueil, ou <em>VIP20</em> pour CHF
+                                            20.- privilège) dans le champ dédié. Cliquez sur "Appliquer" : la réduction
+                                            se calcule instantanément et met à jour le récapitulatif financier avant
+                                            validation finale.</p>
                                     </div>
                                 </div>
                             </div>
@@ -475,7 +571,11 @@
                                 </button>
                                 <div class="faq-card-content">
                                     <div class="faq-card-inner">
-                                        <p>Pour des raisons logistiques d'organisation de parité, les annulations signalées plus de 7 jours avant l'événement font l'objet d'un avoir intégral. Entre 3 et 7 jours, nous créditons 50% de la somme. À moins de 72 heures de l'expérience, aucun remboursement n'est effectué, car la place n'a pas pu être réallouée à temps à un membre en attente.</p>
+                                        <p>Pour des raisons logistiques d'organisation de parité, les annulations
+                                            signalées plus de 7 jours avant l'événement font l'objet d'un avoir
+                                            intégral. Entre 3 et 7 jours, nous créditons 50% de la somme. À moins de 72
+                                            heures de l'expérience, aucun remboursement n'est effectué, car la place n'a
+                                            pas pu être réallouée à temps à un membre en attente.</p>
                                     </div>
                                 </div>
                             </div>
@@ -489,8 +589,10 @@
             <!-- Luxury Help Desk Banner -->
             <div class="faq-cta-banner">
                 <h3 class="faq-cta-title">Besoin d'une <span>assistance personnalisée</span> ?</h3>
-                <p class="faq-cta-desc">Nos chargés de relations membres sont à votre entière disposition pour répondre à vos demandes spécifiques d'admissions ou d'organisation d'événements privés.</p>
-                <a href="contact.html" class="booking-action-btn" style="max-width: 280px; background-color: var(--luxury-gold); border-color: var(--luxury-gold); color: var(--primary-navy);">
+                <p class="faq-cta-desc">Nos chargés de relations membres sont à votre entière disposition pour répondre
+                    à vos demandes spécifiques d'admissions ou d'organisation d'événements privés.</p>
+                <a href="contact.html" class="booking-action-btn"
+                    style="max-width: 280px; background-color: var(--luxury-gold); border-color: var(--luxury-gold); color: var(--primary-navy);">
                     <span>ÉCRIRE À LA CONCIERGERIE</span>
                 </a>
             </div>
@@ -498,14 +600,181 @@
         </div>
     </main>
 
+    <!-- Footer -->
+    <footer class="footer cinematic-footer">
+        <!-- Cinematic Background Layers -->
+        <div class="footer-bg-layer image-layer"></div>
+        <div class="footer-bg-layer gradient-layer-1"></div>
+        <div class="footer-bg-layer gradient-layer-2"></div>
+        <div class="footer-bg-layer noise-layer"></div>
+        <div class="footer-bg-layer vignette-layer"></div>
+        <div class="footer-bg-layer particles-layer"></div>
+
+        <div class="footer-container">
+            <!-- Footer Upper: Asymmetric Grid -->
+            <div class="footer-upper asymmetric-grid">
+
+                <!-- Brand Col -->
+                <div class="footer-col brand-col fade-in-up">
+                    <div class="footer-logo" style="margin-bottom: 24px;">
+                        <img src="assets/7sens.webp" alt="7SENS Logo"
+                            style="height: 45px; width: auto; object-fit: contain; filter: brightness(0) invert(1);">
+                    </div>
+                    <p class="footer-brand-story">
+                        Redefining the art of human connection through exclusive, carefully curated experiences in
+                        Switzerland's most breathtaking venues.
+                    </p>
+                    <div class="footer-contact-details">
+                        <p class="contact-line"><strong>Genève HQ:</strong> Rue du Rhône 12, 1204 Genève</p>
+                        <p class="contact-line"><strong>Email:</strong> <a
+                                href="mailto:hello@7sens.ch">hello@7sens.ch</a></p>
+                    </div>
+
+                    <div class="lang-dropdown footer-lang" style="margin-top: 30px;">
+                        <button class="lang-btn" aria-haspopup="true" aria-expanded="false">FR
+                            <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor"
+                                stroke-width="2">
+                                <path d="M6 9l6 6 6-6" />
+                            </svg>
+                        </button>
+                        <ul class="lang-menu">
+                            <li><a href="#" class="active">FR</a></li>
+                            <li><a href="#">EN</a></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Navigation Col -->
+                <div class="footer-col nav-col fade-in-up" data-delay="0.1">
+                    <h5 class="footer-heading">NAVIGATION</h5>
+                    <ul class="footer-links">
+                        <li><a href="index.html#accueil">Home</a></li>
+                        <li><a href="index.html#experiences">Experiences</a></li>
+                        <li><a href="events.html">Events</a></li>
+                        <li><a href="index.html#membership">Membership</a></li>
+                        <li><a href="index.html#about">About Us</a></li>
+                        <li><a href="index.html#contact">Contact</a></li>
+                    </ul>
+                </div>
+
+                <!-- Information Col -->
+                <div class="footer-col info-col fade-in-up" data-delay="0.2">
+                    <h5 class="footer-heading">INFORMATION</h5>
+                    <ul class="footer-links">
+                        <li><a href="faq.html">FAQ</a></li>
+                        <li><a href="#">Terms & Conditions</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Legal Notice</a></li>
+                    </ul>
+                </div>
+
+                <!-- Newsletter Col -->
+                <div class="footer-col newsletter-col fade-in-up" data-delay="0.3">
+                    <h5 class="footer-heading">PRIVATE CIRCLE</h5>
+                    <p class="newsletter-subtext">Receive exclusive invitations and editorial inspiration.</p>
+                    <form id="newsletter-form" class="glass-newsletter-form">
+                        <div class="glass-input-wrapper">
+                            <input type="email" class="glass-input" placeholder="Enter your email" required
+                                id="newsletter-email">
+                            <button type="submit" aria-label="Subscribe" class="btn-glass-submit">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="#D6A84F" stroke-width="2">
+                                    <path d="M5 12H19M19 12L13 6M19 12L13 18" />
+                                </svg>
+                            </button>
+                        </div>
+                        <label class="glass-checkbox-container">
+                            <input type="checkbox" required id="newsletter-agree">
+                            <span class="glass-checkmark"></span>
+                            <span class="glass-checkbox-text">I accept to receive exclusive invitations.</span>
+                        </label>
+                        <button type="button" class="btn btn-gold-solid btn-magnetic w-full mt-20">
+                            <span>JOIN THE PRIVATE CIRCLE</span>
+                        </button>
+                    </form>
+
+                    <div class="social-links-glass">
+                        <a href="#" aria-label="Instagram" target="_blank" class="glass-social">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                <rect x="2" y="2" width="20" height="20" rx="5" ry="5" />
+                                <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
+                                <line x="17.5" y="6.5" x2="17.51" y="6.5" />
+                            </svg>
+                        </a>
+                        <a href="#" aria-label="LinkedIn" target="_blank" class="glass-social">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                <path
+                                    d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" />
+                                <rect x="2" y="9" width="4" height="12" />
+                                <circle cx="4" cy="4" r="2" />
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Gold Divider -->
+            <div class="footer-gold-divider fade-in-up"></div>
+
+            <!-- Footer Lower -->
+            <div class="footer-lower fade-in-up">
+                <div class="footer-lower-left">
+                    <p class="copyright">&copy; 2026 7SENS. All rights reserved.</p>
+                </div>
+                <div class="footer-lower-center">
+                    <p class="footer-crafted-by">Designed in Switzerland for Exceptional Experiences</p>
+                </div>
+                <div class="footer-lower-right">
+                    <button id="cinematic-back-to-top" class="cinematic-btt">
+                        <span>Back to Top</span>
+                        <svg viewBox="0 0 24 24" fill="none" stroke="#D6A84F" stroke-width="1.5">
+                            <path d="M12 19V5M12 5L5 12M12 5L19 12" stroke-linecap="round" stroke-linejoin="round" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Floating Back to Top Button -->
+    <button id="floating-back-to-top" class="floating-btt" aria-label="Retour en haut">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M12 19V5M12 5L5 12M12 5L19 12" stroke-linecap="round" stroke-linejoin="round" />
+        </svg>
+    </button>
+
+    <!-- Fixed Bottom-Left Language Selector -->
+    <div class="lang-dropdown fixed-lang-selector">
+        <button class="lang-btn" aria-haspopup="true" aria-expanded="false">
+            <img src="https://flagcdn.com/w20/fr.png" width="16" alt="FR" style="border-radius: 2px;"> FR
+            <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M18 15l-6-6-6 6" />
+            </svg>
+        </button>
+        <ul class="lang-menu">
+            <li><a href="#" class="active"><img src="https://flagcdn.com/w20/fr.png" width="16" alt="FR"
+                        style="border-radius: 2px;"> FR</a></li>
+            <li><a href="#"><img src="https://flagcdn.com/w20/gb.png" width="16" alt="EN" style="border-radius: 2px;">
+                    EN</a></li>
+        </ul>
+    </div>
+
+    <!-- JS Libraries (GSAP, Lenis Smooth Scroll) -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script src="https://unpkg.com/@studio-freight/lenis@1.0.34/dist/lenis.min.js"></script>
+
+    <!-- Main Logic Script -->
+    <script src="main.js"></script>
+
     <!-- Accordion and Tabs Scripts -->
     <script>
         document.addEventListener("DOMContentLoaded", () => {
-            
+
             // Accordion trigger handler
             const initAccordions = () => {
                 const triggers = document.querySelectorAll(".faq-card-trigger");
-                
+
                 triggers.forEach(trigger => {
                     trigger.addEventListener("click", () => {
                         const item = trigger.closest(".faq-card-item");
@@ -558,7 +827,7 @@
 
             if (targetPanel) {
                 targetPanel.classList.add('active');
-                
+
                 // Reset heights of accordion components in new active panel
                 targetPanel.querySelectorAll('.faq-card-item').forEach(item => {
                     item.classList.remove('active');

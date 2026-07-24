@@ -1292,10 +1292,10 @@
 
 .step-title {
     font-family: 'Cormorant Garamond', serif;
-    font-size: 1.5rem;
-    font-weight: 400;
+    font-size: 2rem;
+    font-weight: 600;
     color: var(--primary-navy);
-    margin-bottom: 25px;
+    margin-bottom: 20px;
     letter-spacing: -0.01em;
 }
 

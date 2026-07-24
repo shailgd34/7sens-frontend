@@ -155,8 +155,12 @@
                     </button>
                 </form>
 
-
-
+                <div class="auth-divider">ou</div>
+                
+                <button type="button" class="social-btn" id="google-signup">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/c/c1/Google_%22G%22_logo.svg" alt="Google Logo">
+                    S'inscrire avec Google
+                </button>
                 <!-- Footer Redirect -->
                 <div class="auth-footer" style="text-align: left; margin-top: 10px;">
                     <span>Déjà membre ? </span>
@@ -289,7 +293,7 @@
                         authOverlayDesc.textContent = `Connecté avec succès via ${platform}. Bienvenue.`;
                         
                         setTimeout(() => {
-                            window.location.href = "events.html";
+                            window.location.href = "profile.html";
                         }, 1200);
                     }, 2000);
                 });

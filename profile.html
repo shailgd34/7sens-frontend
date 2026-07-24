@@ -810,8 +810,24 @@
                                 style="height: 35px; width: auto;">
                         </a>
 
-                        <!-- User Profile Dropdown (Logged In State) -->
-                        <div class="user-profile-dropdown">
+                        <!-- Header Right Section -->
+                        <div style="display: flex; align-items: center; gap: 20px;">
+                            <!-- Language Dropdown -->
+                            <div class="lang-dropdown">
+                                <button class="lang-btn" aria-haspopup="true" aria-expanded="false" style="color: var(--primary-navy); border-color: rgba(20,43,99,0.2);">
+                                    <img src="https://flagcdn.com/w20/fr.png" width="16" alt="FR" style="border-radius: 2px;"> FR
+                                    <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2">
+                                        <path d="M6 9l6 6 6-6" />
+                                    </svg>
+                                </button>
+                                <ul class="lang-menu">
+                                    <li><a href="#" class="active"><img src="https://flagcdn.com/w20/fr.png" width="16" alt="FR" style="border-radius: 2px;"> FR</a></li>
+                                    <li><a href="#"><img src="https://flagcdn.com/w20/gb.png" width="16" alt="EN" style="border-radius: 2px;"> EN</a></li>
+                                </ul>
+                            </div>
+
+                            <!-- User Profile Dropdown (Logged In State) -->
+                            <div class="user-profile-dropdown">
                             <button class="user-profile-btn" aria-haspopup="true" aria-expanded="false">
                                 <img src="assets/pexels-maorattias-5152572.jpg" alt="User Avatar" class="user-avatar"
                                     id="top-header-avatar"
@@ -2079,6 +2095,20 @@
             </div>
         </div>
     </main>
+
+    <!-- Fixed Bottom-Left Language Selector -->
+    <div class="lang-dropdown fixed-lang-selector">
+        <button class="lang-btn" aria-haspopup="true" aria-expanded="false">
+            <img src="https://flagcdn.com/w20/fr.png" width="16" alt="FR" style="border-radius: 2px;"> FR
+            <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M18 15l-6-6-6 6" />
+            </svg>
+        </button>
+        <ul class="lang-menu">
+            <li><a href="#" class="active"><img src="https://flagcdn.com/w20/fr.png" width="16" alt="FR" style="border-radius: 2px;"> FR</a></li>
+            <li><a href="#"><img src="https://flagcdn.com/w20/gb.png" width="16" alt="EN" style="border-radius: 2px;"> EN</a></li>
+        </ul>
+    </div>
 
     <!-- JS Libraries (GSAP) -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>

@@ -247,18 +247,34 @@ function initListingPage() {
                 </div>
                 <div class="v2-card-details">
                     <div class="v2-card-top-row">
-                        <span class="v2-card-city">${event.city}</span>
-                        <span class="v2-card-price">${event.price}</span>
-                    </div>
-                    <h3 class="v2-card-title">${event.title}</h3>
+                                <span class="v2-card-city">${event.city}</span>
+                                <span class="v2-card-price">${event.price}</span>
+                            </div>
+                            <h3 class="v2-card-title">${event.title}</h3>
                     
                     <div class="v2-card-info-grid">
                         <div class="v2-info-item">
-                            <span class="v2-info-label">DATE</span>
+                            <span class="v2-info-label">
+<svg class="meta-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                <rect x="3" y="4" width="18" height="18" rx="2" ry="2" />
+                                <line x1="16" y1="2" x2="16" y2="6" />
+                                <line x1="8" y1="2" x2="8" y2="6" />
+                                <line x1="3" y1="10" x2="21" y2="10" />
+                            </svg>
+                                <span>DATE</span>
+                            </span>
                             <span class="v2-info-value">${event.date}</span>
                         </div>
                         <div class="v2-info-item">
-                            <span class="v2-info-label">TRANCHE D'ÂGE</span>
+                            <span class="v2-info-label">
+<svg class="meta-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
+                                <circle cx="9" cy="7" r="4" />
+                                <path d="M23 21v-2a4 4 0 0 0-3-3.87" />
+                                <path d="M16 3.13a4 4 0 0 1 0 7.75" />
+                            </svg>
+                                <span>TRANCHE D'ÂGE</span>
+                            </span>
                             <span class="v2-info-value">${event.ageGroup}</span>
                         </div>
                     </div>
@@ -285,8 +301,7 @@ function initListingPage() {
                     <div class="v2-card-booking-footer">
                         <span class="v2-booking-btn-text">${actionText}</span>
                         <svg class="v2-booking-arrow" viewBox="0 0 24 24" fill="none">
-                            <path d="M5 12H19M19 12L13 6M19 12L13 18" stroke="currentColor" stroke-width="1.5"
-                                stroke-linecap="round" stroke-linejoin="round" />
+                            <path d="M4 12H20M20 12L14 6M20 12L14 18" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" />
                         </svg>
                     </div>
                 </div>

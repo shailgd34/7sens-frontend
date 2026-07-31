@@ -1,0 +1,1391 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Paramètres —— 7Sens Premium Social Club</title>
+    <meta name="description" content="Gérez la sécurité de votre compte et vos préférences de notification.">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Instrument+Sans:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style-v2.css">
+    <link rel="stylesheet" href="events-page.css">
+    <link rel="stylesheet" href="dashboard-shared.css">
+
+    <style>
+        .settings-grid {
+            display: grid;
+            grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr);
+            gap: 24px;
+            margin-top: 30px;
+            margin-bottom: 30px;
+            width: 100%;
+        }
+
+        @media (max-width: 1200px) {
+            .settings-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .settings-card {
+            background: #ffffff;
+            border: 1.5px solid rgba(20, 43, 99, 0.08);
+            border-radius: 8px;
+            padding: 30px;
+            box-shadow: 0 4px 20px rgba(16, 42, 94, 0.02);
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .settings-card-title {
+            font-family: 'Instrument Sans', sans-serif;
+            font-size: 0.85rem;
+            font-weight: 700;
+            color: var(--primary-navy);
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            margin: 0;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .settings-card-subtitle {
+            font-family: 'Instrument Sans', sans-serif;
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            margin: -10px 0 6px 0;
+            line-height: 1.45;
+        }
+
+        /* Progress Bar */
+        .progress-container {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            margin-bottom: 5px;
+        }
+
+        .progress-label {
+            font-size: 0.72rem;
+            font-weight: 700;
+            color: var(--luxury-gold);
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+        }
+
+        .progress-track {
+            display: flex;
+            gap: 4px;
+            height: 4px;
+            width: 100%;
+        }
+
+        .progress-step {
+            flex: 1;
+            height: 100%;
+            border-radius: 2px;
+            background-color: rgba(20, 43, 99, 0.08);
+        }
+
+        .progress-step.filled {
+            background-color: var(--luxury-gold);
+        }
+
+        /* Settings Rows */
+        .settings-item-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 16px;
+            padding: 16px 0;
+            border-bottom: 1.5px solid rgba(20, 43, 99, 0.04);
+        }
+
+        .settings-item-row:last-child {
+            border-bottom: none;
+            padding-bottom: 0;
+        }
+
+        .settings-item-left {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .settings-item-icon {
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            background-color: rgba(20, 43, 99, 0.04);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary-navy);
+            flex-shrink: 0;
+        }
+
+        .settings-item-info {
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+        }
+
+        .settings-item-title {
+            font-family: 'Instrument Sans', sans-serif;
+            font-size: 0.92rem;
+            font-weight: 600;
+            color: var(--primary-navy);
+        }
+
+        .settings-item-value {
+            font-family: 'Instrument Sans', sans-serif;
+            font-size: 0.8rem;
+            color: var(--text-muted);
+        }
+
+        .settings-item-right {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        /* Badges */
+        .badge-verified {
+            background-color: rgba(43, 138, 62, 0.06);
+            color: #2b8a3e;
+            border: 1px solid rgba(43, 138, 62, 0.15);
+            font-size: 0.65rem;
+            font-weight: 700;
+            padding: 4px 10px;
+            border-radius: 2px;
+            letter-spacing: 0.05em;
+        }
+
+        .badge-to-verify {
+            background-color: rgba(214, 164, 55, 0.06);
+            color: var(--luxury-gold);
+            border: 1px solid rgba(214, 164, 55, 0.15);
+            font-size: 0.65rem;
+            font-weight: 700;
+            padding: 4px 10px;
+            border-radius: 2px;
+            letter-spacing: 0.05em;
+        }
+
+        /* Buttons */
+        .btn-settings-action {
+            border: 1.5px solid var(--primary-navy);
+            background: transparent;
+            color: var(--primary-navy);
+            font-family: 'Instrument Sans', sans-serif;
+            font-size: 0.72rem;
+            font-weight: 700;
+            padding: 8px 18px;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.2s;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            white-space: nowrap;
+        }
+
+        .btn-settings-action:hover {
+            background-color: rgba(20, 43, 99, 0.05);
+        }
+
+        /* Toggle switches styling */
+        .luxury-switch {
+            position: relative;
+            display: inline-block;
+            width: 44px;
+            height: 24px;
+            flex-shrink: 0;
+        }
+
+        .luxury-switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+
+        .luxury-slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(20, 43, 99, 0.12);
+            transition: .25s var(--transition-smooth);
+            border-radius: 24px;
+        }
+
+        .luxury-slider:before {
+            position: absolute;
+            content: "";
+            height: 18px;
+            width: 18px;
+            left: 3px;
+            bottom: 3px;
+            background-color: white;
+            transition: .25s var(--transition-smooth);
+            border-radius: 50%;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.15);
+        }
+
+        input:checked+.luxury-slider {
+            background-color: var(--primary-navy);
+        }
+
+        input:checked+.luxury-slider:before {
+            transform: translateX(20px);
+        }
+
+        /* Table Notification Types Styling */
+        .notif-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .notif-table th {
+            text-align: center;
+            font-family: 'Instrument Sans', sans-serif;
+            font-size: 0.78rem;
+            font-weight: 700;
+            color: var(--primary-navy);
+            padding: 12px 8px;
+            border-bottom: 1.5px solid rgba(20, 43, 99, 0.08);
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+        }
+
+        .notif-table th:first-child {
+            text-align: left;
+            padding-left: 0;
+        }
+
+        .notif-table td {
+            padding: 16px 8px;
+            border-bottom: 1.5px solid rgba(20, 43, 99, 0.04);
+            vertical-align: middle;
+        }
+
+        .notif-table td:first-child {
+            padding-left: 0;
+            font-family: 'Instrument Sans', sans-serif;
+            font-size: 0.85rem;
+            font-weight: 500;
+            color: var(--primary-navy);
+        }
+
+        .notif-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        .notif-table-center-col {
+            text-align: center;
+        }
+
+        /* Notification Feed */
+        .feed-tabs {
+            display: flex;
+            gap: 20px;
+            border-bottom: 1.5px solid rgba(20, 43, 99, 0.08);
+            margin-bottom: 15px;
+            align-items: center;
+        }
+
+        .feed-tab-btn {
+            background: none;
+            border: none;
+            padding: 10px 0;
+            font-family: 'Instrument Sans', sans-serif;
+            font-size: 0.8rem;
+            font-weight: 700;
+            color: var(--text-muted);
+            cursor: pointer;
+            letter-spacing: 0.05em;
+            position: relative;
+            text-transform: uppercase;
+        }
+
+        .feed-tab-btn.active {
+            color: var(--primary-navy);
+        }
+
+        .feed-tab-btn.active::after {
+            content: "";
+            position: absolute;
+            bottom: -1.5px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background-color: var(--luxury-gold);
+        }
+
+        .feed-mark-read {
+            margin-left: auto;
+            background: none;
+            border: none;
+            font-family: 'Instrument Sans', sans-serif;
+            font-size: 0.72rem;
+            font-weight: 700;
+            color: var(--primary-navy);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+        }
+
+        .feed-mark-read:hover {
+            color: var(--luxury-gold);
+        }
+
+        .notif-feed-list {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .feed-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 15px;
+            border-radius: 6px;
+            background-color: rgba(20, 43, 99, 0.02);
+            border: 1px solid rgba(20, 43, 99, 0.04);
+            gap: 12px;
+            position: relative;
+            transition: all 0.3s;
+        }
+
+        .feed-item.read {
+            opacity: 0.6;
+            background-color: transparent;
+            border-color: rgba(20, 43, 99, 0.03);
+        }
+
+        .feed-item-left {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            flex: 1;
+        }
+
+        .unread-dot {
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            flex-shrink: 0;
+            transition: opacity 0.3s;
+        }
+
+        .unread-dot.gold {
+            background-color: var(--luxury-gold);
+        }
+
+        .unread-dot.navy {
+            background-color: var(--primary-navy);
+        }
+
+        .feed-item-icon-circle {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #ffffff;
+            flex-shrink: 0;
+        }
+
+        .feed-item-icon-circle.gold {
+            background-color: var(--luxury-gold);
+        }
+
+        .feed-item-icon-circle.navy {
+            background-color: var(--primary-navy);
+        }
+
+        .feed-item-icon-circle.grey {
+            background-color: #a0aec0;
+        }
+
+        .feed-item-content {
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+        }
+
+        .feed-item-title-row {
+            display: flex;
+            align-items: baseline;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+
+        .feed-item-title {
+            font-family: 'Instrument Sans', sans-serif;
+            font-size: 0.88rem;
+            font-weight: 600;
+            color: var(--primary-navy);
+        }
+
+        .feed-item-time {
+            font-size: 0.72rem;
+            color: var(--text-muted);
+        }
+
+        .feed-item-desc {
+            font-size: 0.78rem;
+            color: var(--text-muted);
+            line-height: 1.4;
+        }
+
+        .btn-outline-gold-sm {
+            border: 1px solid var(--luxury-gold);
+            color: var(--luxury-gold);
+            background: transparent;
+            padding: 6px 14px;
+            font-size: 0.7rem;
+            font-weight: 700;
+            border-radius: 4px;
+            text-transform: uppercase;
+            cursor: pointer;
+            letter-spacing: 0.05em;
+            transition: all 0.2s;
+            white-space: nowrap;
+        }
+
+        .btn-outline-gold-sm:hover {
+            background-color: rgba(214, 164, 55, 0.08);
+        }
+
+        .btn-outline-navy-sm {
+            border: 1px solid var(--primary-navy);
+            color: var(--primary-navy);
+            background: transparent;
+            padding: 6px 14px;
+            font-size: 0.7rem;
+            font-weight: 700;
+            border-radius: 4px;
+            text-transform: uppercase;
+            cursor: pointer;
+            letter-spacing: 0.05em;
+            transition: all 0.2s;
+            white-space: nowrap;
+        }
+
+        .btn-outline-navy-sm:hover {
+            background-color: rgba(20, 43, 99, 0.08);
+        }
+
+        /* Bottom Footer Action buttons */
+        .bottom-actions-row {
+            display: flex;
+            justify-content: flex-end;
+            gap: 16px;
+            margin-top: 10px;
+            width: 100%;
+        }
+
+        .btn-settings-cancel {
+            border: 1.5px solid var(--primary-navy);
+            background-color: transparent;
+            color: var(--primary-navy);
+            font-family: 'Instrument Sans', sans-serif;
+            font-size: 0.8rem;
+            font-weight: 700;
+            letter-spacing: 0.08em;
+            padding: 12px 30px;
+            cursor: pointer;
+            text-transform: uppercase;
+            border-radius: 4px;
+            transition: background-color 0.2s;
+        }
+
+        .btn-settings-cancel:hover {
+            background-color: rgba(20, 43, 99, 0.05);
+        }
+
+        .btn-settings-save {
+            border: none;
+            background-color: var(--primary-navy);
+            color: #ffffff;
+            font-family: 'Instrument Sans', sans-serif;
+            font-size: 0.8rem;
+            font-weight: 700;
+            letter-spacing: 0.08em;
+            padding: 12px 35px;
+            cursor: pointer;
+            text-transform: uppercase;
+            border-radius: 4px;
+            transition: background-color 0.2s;
+        }
+
+        .btn-settings-save:hover {
+            background-color: #0d224e;
+        }
+    </style>
+</head>
+
+<body
+    style="background-color: var(--warm-ivory); margin:0; padding:0; min-height:100vh; font-family:'Instrument Sans',sans-serif;">
+
+    <!-- MAIN MEMBER DASHBOARD CONTENT -->
+    <main class="db-main">
+        <div class="db-container">
+            <div class="db-grid">
+
+                <!-- SIDEBAR: Summary & Navigation -->
+                <aside class="db-sidebar-card">
+                    <!-- Profile Avatar -->
+                    <div class="db-avatar-wrapper" id="db-avatar"
+                        onclick="document.getElementById('profile-avatar-input').click();">
+                        <span id="db-avatar-initials">JD</span>
+                        <div class="db-avatar-upload">Modifier</div>
+                    </div>
+                    <input type="file" id="profile-avatar-input" accept="image/*" style="display: none;">
+
+                    <h4 class="db-user-name" id="db-profile-name">Jean Dupont</h4>
+
+                    <nav class="db-nav-list">
+                        <button class="db-nav-item" onclick="location.href='profile.html?tab=home'" id="btn-tab-home">
+                            <svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                <rect x="3" y="3" width="7" height="9" />
+                                <rect x="14" y="3" width="7" height="5" />
+                                <rect x="14" y="12" width="7" height="9" />
+                                <rect x="3" y="16" width="7" height="5" />
+                            </svg>
+                            <span>TABLEAU DE BORD</span>
+                        </button>
+                        <button class="db-nav-item" onclick="location.href='profile.html?tab=profile'"
+                            id="btn-tab-profile">
+                            <svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
+                                <circle cx="12" cy="7" r="4" />
+                            </svg>
+                            <span>MON PROFIL</span>
+                        </button>
+                        <button class="db-nav-item" onclick="location.href='profile.html?tab=questionnaire'"
+                            id="btn-tab-questionnaire">
+                            <svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" fill="none">
+                                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                                <polyline points="14 2 14 8 20 8"></polyline>
+                                <line x1="16" y1="13" x2="8" y2="13"></line>
+                                <line x1="16" y1="17" x2="8" y2="17"></line>
+                                <polyline points="10 9 9 9 8 9"></polyline>
+                            </svg>
+                            <span>MON PROFIL RELATIONNEL</span>
+                        </button>
+                        <button class="db-nav-item" onclick="location.href='mesCompatibilités.html'"
+                            id="btn-tab-matches">
+                            <svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" fill="none">
+                                <path
+                                    d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z">
+                                </path>
+                            </svg>
+                            <span>MES COMPATIBILITÉS</span>
+                        </button>
+                        <button class="db-nav-item" onclick="location.href='mesRéservations.html'"
+                            id="btn-tab-bookings">
+                            <svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                <rect x="3" y="4" width="18" height="18" rx="2" ry="2" />
+                                <line x1="16" y1="2" x2="16" y2="6" />
+                                <line x1="8" y1="2" x2="8" y2="6" />
+                                <line x1="3" y1="10" x2="21" y2="10" />
+                            </svg>
+                            <span>MES RÉSERVATIONS</span>
+                        </button>
+                        <button class="db-nav-item" onclick="location.href='profile.html?tab=billing'"
+                            id="btn-tab-billing">
+                            <svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                <rect x="1" y="4" width="22" height="16" rx="2" ry="2" />
+                                <line x1="1" y1="10" x2="23" y2="10" />
+                            </svg>
+                            <span>MES PAIEMENTS</span>
+                        </button>
+                        <button class="db-nav-item active" onclick="location.href='settings.html'"
+                            id="btn-tab-settings">
+                            <svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" fill="none">
+                                <path
+                                    d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1-1-1.74v-.5a2 2 0 0 1 1-1.74l.15-.1a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z" />
+                                <circle cx="12" cy="12" r="3" />
+                            </svg>
+                            <span>PARAMÈTRES</span>
+                        </button>
+                        <!-- Back Link -->
+                        <button class="db-nav-item" onclick="location.href='events.html'"
+                            style="margin-top: 25px; border-top: 1px solid rgba(20, 43, 99, 0.05); padding-top: 15px;">
+                            <svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                <path d="M19 12H5M5 12L12 19M5 12L12 5" stroke-linecap="round"
+                                    stroke-linejoin="round" />
+                            </svg>
+                            <span>RETOUR AU SITE</span>
+                        </button>
+                    </nav>
+
+                    <!-- Language Selector bottom of sidebar -->
+                    <div style="margin-top: auto; padding-top: 25px; width: 100%;">
+                        <div class="lang-dropdown" style="width: 100%;">
+                            <button class="lang-btn"
+                                style="width: 100%; justify-content: space-between; border-color: rgba(20,43,99,0.1);">
+                                <span style="display:flex; align-items:center; gap:8px;">
+                                    <img src="https://flagcdn.com/w20/fr.png" width="16" alt="FR"
+                                        style="border-radius: 2px;"> FR
+                                </span>
+                                <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor"
+                                    stroke-width="2">
+                                    <path d="M6 9l6 6 6-6" />
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+                </aside>
+
+                <!-- RIGHT BLOCK: Content Panel -->
+                <div class="db-right-column" style="display: flex; flex-direction: column; width: 100%;">
+                    <!-- Header -->
+                    <header class="db-top-header" id="main-header"
+                        style="position: sticky; top: 0; z-index: 1000; background: var(--warm-ivory); display: flex; justify-content: space-between; align-items: center; padding: 15px 40px; border-bottom: 1px solid rgba(20,43,99,0.05);">
+                        <a href="index.html" class="logo-link">
+                            <img src="assets/7sens.webp" alt="7Sens Logo" style="height: 35px; width: auto;">
+                        </a>
+
+                        <div style="display: flex; align-items: center; gap: 20px;">
+                            <!-- Language Dropdown -->
+                            <div class="lang-dropdown">
+                                <button class="lang-btn"
+                                    style="color: var(--primary-navy); border-color: rgba(20,43,99,0.2);">
+                                    <img src="https://flagcdn.com/w20/fr.png" width="16" alt="FR"
+                                        style="border-radius: 2px;"> FR
+                                    <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor"
+                                        stroke-width="2">
+                                        <path d="M6 9l6 6 6-6" />
+                                    </svg>
+                                </button>
+                            </div>
+
+                            <!-- User Portrait Profile -->
+                            <div class="user-profile-dropdown">
+                                <button class="user-profile-btn">
+                                    <img src="assets/pexels-maorattias-5152572.jpg" alt="User Avatar"
+                                        class="user-avatar" id="top-header-avatar"
+                                        style="width: 38px; height: 38px; border-radius: 50%; object-fit: cover; border: 2px solid var(--luxury-gold);">
+                                    <span class="user-name" id="top-header-name"
+                                        style="font-family: 'Instrument Sans', sans-serif; font-weight: 500; font-size: 0.95rem; color: var(--primary-navy);">Jean
+                                        D.</span>
+                                </button>
+                            </div>
+                        </div>
+                    </header>
+
+                    <!-- Main Section -->
+                    <div class="db-content-card">
+                        <div class="db-section-header">
+                            <h3 class="db-section-title">Sécurité et notifications</h3>
+                            <p class="db-section-subtitle">Protégez votre compte, gérez vos préférences et retrouvez vos alertes importantes.</p>
+                        </div>
+
+                        <!-- 2x2 settings layout -->
+                        <div class="settings-grid">
+
+                            <!-- Card 1: Sécurité du compte -->
+                            <div class="settings-card">
+                                <div class="settings-card-title">Sécurité du compte</div>
+
+                                <div class="progress-container">
+                                    <div class="progress-label">2 étapes sur 3 terminées</div>
+                                    <div class="progress-track">
+                                        <div class="progress-step filled"></div>
+                                        <div class="progress-step filled"></div>
+                                        <div class="progress-step"></div>
+                                    </div>
+                                </div>
+
+                                <div class="settings-list" style="display: flex; flex-direction: column;">
+                                    <!-- Row 1: Email -->
+                                    <div class="settings-item-row">
+                                        <div class="settings-item-left">
+                                            <div class="settings-item-icon">
+                                                <svg viewBox="0 0 24 24" width="16" height="16" fill="none"
+                                                    stroke="currentColor" stroke-width="2">
+                                                    <path
+                                                        d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
+                                                    <polyline points="22,6 12,13 2,6" />
+                                                </svg>
+                                            </div>
+                                            <div class="settings-item-info">
+                                                <div class="settings-item-title">Adresse e-mail</div>
+                                                <div class="settings-item-value" id="settings-email-display">
+                                                    jean.dupont@email.com</div>
+                                            </div>
+                                        </div>
+                                        <div class="settings-item-right">
+                                            <span class="badge-verified">VÉRIFIÉE</span>
+                                        </div>
+                                    </div>
+
+                                    <!-- Row 2: Phone -->
+                                    <div class="settings-item-row">
+                                        <div class="settings-item-left">
+                                            <div class="settings-item-icon">
+                                                <svg viewBox="0 0 24 24" width="16" height="16" fill="none"
+                                                    stroke="currentColor" stroke-width="2">
+                                                    <path
+                                                        d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" />
+                                                </svg>
+                                            </div>
+                                            <div class="settings-item-info">
+                                                <div class="settings-item-title">Numéro de téléphone</div>
+                                                <div class="settings-item-value" id="settings-phone-display">+41 79 000
+                                                    00 00</div>
+                                            </div>
+                                        </div>
+                                        <div class="settings-item-right">
+                                            <span class="badge-to-verify" id="badge-phone-state">À VÉRIFIER</span>
+                                            <button class="btn-settings-action" id="btn-verify-phone"
+                                                onclick="location.href='verify-contact.html'">Vérifier</button>
+                                        </div>
+                                    </div>
+
+                                    <!-- Row 3: Password -->
+                                    <div class="settings-item-row">
+                                        <div class="settings-item-left">
+                                            <div class="settings-item-icon">
+                                                <svg viewBox="0 0 24 24" width="16" height="16" fill="none"
+                                                    stroke="currentColor" stroke-width="2">
+                                                    <rect x="3" y="11" width="18" height="11" rx="2" ry="2" />
+                                                    <path d="M7 11V7a5 5 0 0 1 10 0v4" />
+                                                </svg>
+                                            </div>
+                                            <div class="settings-item-info">
+                                                <div class="settings-item-title">Mot de passe</div>
+                                                <div class="settings-item-value">Dernière modification : 18 juillet 2026
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="settings-item-right">
+                                            <button class="btn-settings-action" onclick="openPasswordModal()">Modifier
+                                                le mot de passe</button>
+                                        </div>
+                                    </div>
+
+                                    <!-- Row 4: Google Link -->
+                                    <div class="settings-item-row">
+                                        <div class="settings-item-left">
+                                            <div class="settings-item-icon">
+                                                <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor">
+                                                    <path
+                                                        d="M12.24 10.285V13.4h6.887c-.275 1.565-1.88 4.604-6.887 4.604-4.33 0-7.859-3.579-7.859-8s3.53-8 7.859-8c2.46 0 4.105 1.025 5.047 1.926l2.427-2.334C17.955 2.192 15.34 1 12.24 1 6.033 1 1 6.033 1 12.24s5.033 11.24 11.24 11.24c6.478 0 10.793-4.537 10.793-10.986 0-.745-.08-1.3-.173-1.854h-10.62z" />
+                                                </svg>
+                                            </div>
+                                            <div class="settings-item-info">
+                                                <div class="settings-item-title">Connexion Google</div>
+                                            </div>
+                                        </div>
+                                        <div class="settings-item-right">
+                                            <span class="badge-verified">CONNECTÉE</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Card 2: Préférences de notification -->
+                            <div class="settings-card">
+                                <div class="settings-card-title">Préférences de notification</div>
+                                <div class="settings-card-subtitle">Choisissez les canaux sur lesquels vous souhaitez
+                                    recevoir vos alertes.</div>
+
+                                <div class="settings-list" style="display: flex; flex-direction: column;">
+                                    <!-- Row 1: Email channel -->
+                                    <div class="settings-item-row">
+                                        <div class="settings-item-left">
+                                            <div class="settings-item-icon">
+                                                <svg viewBox="0 0 24 24" width="16" height="16" fill="none"
+                                                    stroke="currentColor" stroke-width="2">
+                                                    <path
+                                                        d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
+                                                    <polyline points="22,6 12,13 2,6" />
+                                                </svg>
+                                            </div>
+                                            <div class="settings-item-info">
+                                                <div class="settings-item-title">E-mail</div>
+                                                <div class="settings-item-value">Confirmations, paiements et
+                                                    informations essentielles.</div>
+                                                <div
+                                                    style="font-size: 0.72rem; color: #a0aec0; font-style: italic; margin-top: 2px;">
+                                                    Toujours activé pour les alertes importantes</div>
+                                            </div>
+                                        </div>
+                                        <div class="settings-item-right">
+                                            <label class="luxury-switch">
+                                                <input type="checkbox" id="channel-email" checked disabled>
+                                                <span class="luxury-slider"
+                                                    style="cursor: not-allowed; opacity: 0.8;"></span>
+                                            </label>
+                                        </div>
+                                    </div>
+
+                                    <!-- Row 2: SMS channel -->
+                                    <div class="settings-item-row">
+                                        <div class="settings-item-left">
+                                            <div class="settings-item-icon">
+                                                <svg viewBox="0 0 24 24" width="16" height="16" fill="none"
+                                                    stroke="currentColor" stroke-width="2">
+                                                    <path
+                                                        d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
+                                                </svg>
+                                            </div>
+                                            <div class="settings-item-info">
+                                                <div class="settings-item-title">SMS</div>
+                                                <div class="settings-item-value">Places disponibles, délais de paiement
+                                                    et rappels d'événements.</div>
+                                            </div>
+                                        </div>
+                                        <div class="settings-item-right">
+                                            <label class="luxury-switch">
+                                                <input type="checkbox" id="channel-sms" checked>
+                                                <span class="luxury-slider"></span>
+                                            </label>
+                                        </div>
+                                    </div>
+
+                                    <!-- Row 3: WhatsApp channel -->
+                                    <div class="settings-item-row">
+                                        <div class="settings-item-left">
+                                            <div class="settings-item-icon">
+                                                <svg viewBox="0 0 24 24" width="16" height="16" fill="none"
+                                                    stroke="currentColor" stroke-width="2">
+                                                    <path
+                                                        d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z" />
+                                                </svg>
+                                            </div>
+                                            <div class="settings-item-info">
+                                                <div class="settings-item-title">WhatsApp</div>
+                                                <div class="settings-item-value">Alertes prioritaires et rappels
+                                                    pratiques.</div>
+                                            </div>
+                                        </div>
+                                        <div class="settings-item-right">
+                                            <label class="luxury-switch">
+                                                <input type="checkbox" id="channel-whatsapp">
+                                                <span class="luxury-slider"></span>
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Card 3: Types de notifications -->
+                            <div class="settings-card">
+                                <div class="settings-card-title">Types de notifications</div>
+
+                                <table class="notif-table" style="table-layout: fixed; width: 100%;">
+                                    <colgroup>
+                                        <col style="width: 46%;">
+                                        <col style="width: 18%;">
+                                        <col style="width: 18%;">
+                                        <col style="width: 18%;">
+                                    </colgroup>
+                                    <thead>
+                                        <tr>
+                                            <th>Types de notifications</th>
+                                            <th>E-mail</th>
+                                            <th>SMS</th>
+                                            <th>WhatsApp</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <!-- Row 1: Reserv & Pay -->
+                                        <tr>
+                                            <td>Réservations et paiements</td>
+                                            <td class="notif-table-center-col">
+                                                <label class="luxury-switch">
+                                                    <input type="checkbox" checked disabled>
+                                                    <span class="luxury-slider"
+                                                        style="cursor: not-allowed; opacity: 0.8;"></span>
+                                                </label>
+                                            </td>
+                                            <td class="notif-table-center-col">
+                                                <label class="luxury-switch">
+                                                    <input type="checkbox" id="type-res-sms" checked>
+                                                    <span class="luxury-slider"></span>
+                                                </label>
+                                            </td>
+                                            <td class="notif-table-center-col">
+                                                <label class="luxury-switch">
+                                                    <input type="checkbox" id="type-res-wa">
+                                                    <span class="luxury-slider"></span>
+                                                </label>
+                                            </td>
+                                        </tr>
+
+                                        <!-- Row 2: Places dispo -->
+                                        <tr>
+                                            <td>Places disponibles et listes d'attente</td>
+                                            <td class="notif-table-center-col">
+                                                <label class="luxury-switch">
+                                                    <input type="checkbox" id="type-wait-email" checked>
+                                                    <span class="luxury-slider"></span>
+                                                </label>
+                                            </td>
+                                            <td class="notif-table-center-col">
+                                                <label class="luxury-switch">
+                                                    <input type="checkbox" id="type-wait-sms" checked>
+                                                    <span class="luxury-slider"></span>
+                                                </label>
+                                            </td>
+                                            <td class="notif-table-center-col">
+                                                <label class="luxury-switch">
+                                                    <input type="checkbox" id="type-wait-wa">
+                                                    <span class="luxury-slider"></span>
+                                                </label>
+                                            </td>
+                                        </tr>
+
+                                        <!-- Row 3: Rappels -->
+                                        <tr>
+                                            <td>Rappels avant un événement</td>
+                                            <td class="notif-table-center-col">
+                                                <label class="luxury-switch">
+                                                    <input type="checkbox" id="type-rem-email" checked>
+                                                    <span class="luxury-slider"></span>
+                                                </label>
+                                            </td>
+                                            <td class="notif-table-center-col">
+                                                <label class="luxury-switch">
+                                                    <input type="checkbox" id="type-rem-sms" checked>
+                                                    <span class="luxury-slider"></span>
+                                                </label>
+                                            </td>
+                                            <td class="notif-table-center-col">
+                                                <label class="luxury-switch">
+                                                    <input type="checkbox" id="type-rem-wa">
+                                                    <span class="luxury-slider"></span>
+                                                </label>
+                                            </td>
+                                        </tr>
+
+                                        <!-- Row 4: Modifications -->
+                                        <tr>
+                                            <td>Modifications ou annulations</td>
+                                            <td class="notif-table-center-col">
+                                                <label class="luxury-switch">
+                                                    <input type="checkbox" checked disabled>
+                                                    <span class="luxury-slider"
+                                                        style="cursor: not-allowed; opacity: 0.8;"></span>
+                                                </label>
+                                            </td>
+                                            <td class="notif-table-center-col">
+                                                <div style="display: inline-flex; align-items: center; gap: 6px;">
+                                                    <label class="luxury-switch">
+                                                        <input type="checkbox" checked disabled>
+                                                        <span class="luxury-slider"
+                                                            style="cursor: not-allowed; opacity: 0.8;"></span>
+                                                    </label>
+                                                    <svg viewBox="0 0 24 24" width="12" height="12" fill="none"
+                                                        stroke="currentColor" stroke-width="2.5"
+                                                        style="color: var(--text-muted);">
+                                                        <rect x="3" y="11" width="18" height="11" rx="2" ry="2" />
+                                                        <path d="M7 11V7a5 5 0 0 1 10 0v4" />
+                                                    </svg>
+                                                </div>
+                                            </td>
+                                            <td class="notif-table-center-col">
+                                                <label class="luxury-switch">
+                                                    <input type="checkbox" id="type-mod-wa">
+                                                    <span class="luxury-slider"></span>
+                                                </label>
+                                            </td>
+                                        </tr>
+
+                                        <!-- Row 5: Nouveautés -->
+                                        <tr>
+                                            <td>Nouveaux événements 7Sens</td>
+                                            <td class="notif-table-center-col">
+                                                <label class="luxury-switch">
+                                                    <input type="checkbox" id="type-new-email" checked>
+                                                    <span class="luxury-slider"></span>
+                                                </label>
+                                            </td>
+                                            <td class="notif-table-center-col">
+                                                <label class="luxury-switch">
+                                                    <input type="checkbox" id="type-new-sms">
+                                                    <span class="luxury-slider"></span>
+                                                </label>
+                                            </td>
+                                            <td class="notif-table-center-col">
+                                                <label class="luxury-switch">
+                                                    <input type="checkbox" id="type-new-wa">
+                                                    <span class="luxury-slider"></span>
+                                                </label>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+
+                                <div
+                                    style="display: flex; align-items: center; gap: 8px; font-size: 0.72rem; color: var(--text-muted); margin-top: 5px;">
+                                    <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor"
+                                        stroke-width="2" style="color: var(--primary-navy);">
+                                        <circle cx="12" cy="12" r="10" />
+                                        <line x1="12" y1="16" x2="12" y2="12" />
+                                        <line x1="12" y1="8" x2="12.01" y2="8" />
+                                    </svg>
+                                    <span>Les alertes essentielles restent toujours envoyées par e-mail.</span>
+                                </div>
+                            </div>
+
+                            <!-- Card 4: Mes notifications -->
+                            <div class="settings-card">
+                                <div class="settings-card-title">Mes notifications</div>
+
+                                <div class="feed-tabs">
+                                    <button class="feed-tab-btn active" id="tab-unread-btn"
+                                        onclick="filterFeed('unread')">Non lues (2)</button>
+                                    <button class="feed-tab-btn" id="tab-all-btn"
+                                        onclick="filterFeed('all')">Toutes</button>
+                                    <button class="feed-mark-read" onclick="markAllAsRead()">
+                                        <svg viewBox="0 0 24 24" width="14" height="14" fill="none"
+                                            stroke="currentColor" stroke-width="2.5">
+                                            <polyline points="20 6 9 17 4 12" />
+                                        </svg>
+                                        Tout marquer comme lu
+                                    </button>
+                                </div>
+
+                                <div class="notif-feed-list" id="feed-list-container">
+                                    <!-- Notification Item 1 -->
+                                    <div class="feed-item unread-item" id="feed-item-1">
+                                        <div class="feed-item-left">
+                                            <span class="unread-dot gold"></span>
+                                            <div class="feed-item-icon-circle gold">
+                                                <svg viewBox="0 0 24 24" width="16" height="16" fill="none"
+                                                    stroke="currentColor" stroke-width="2.5">
+                                                    <path
+                                                        d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9M13.73 21a2 2 0 0 1-3.46 0" />
+                                                </svg>
+                                            </div>
+                                            <div class="feed-item-content">
+                                                <div class="feed-item-title-row">
+                                                    <span class="feed-item-title">Une place vous est proposée</span>
+                                                    <span class="feed-item-time">Il y a 10 min</span>
+                                                </div>
+                                                <span class="feed-item-desc">Sunset & Conversations - Confirmez votre
+                                                    place avant l'expiration du délai.</span>
+                                            </div>
+                                        </div>
+                                        <button class="btn-outline-gold-sm"
+                                            onclick="location.href='mesRéservations.html?tab=pending'">Réserver ma
+                                            place</button>
+                                    </div>
+
+                                    <!-- Notification Item 2 -->
+                                    <div class="feed-item unread-item" id="feed-item-2">
+                                        <div class="feed-item-left">
+                                            <span class="unread-dot navy"></span>
+                                            <div class="feed-item-icon-circle navy">
+                                                <svg viewBox="0 0 24 24" width="16" height="16" fill="none"
+                                                    stroke="currentColor" stroke-width="2.5">
+                                                    <rect x="3" y="4" width="18" height="18" rx="2" ry="2" />
+                                                    <line x1="16" y1="2" x2="16" y2="6" />
+                                                    <line x1="8" y1="2" x2="8" y2="6" />
+                                                    <line x1="3" y1="10" x2="21" y2="10" />
+                                                </svg>
+                                            </div>
+                                            <div class="feed-item-content">
+                                                <div class="feed-item-title-row">
+                                                    <span class="feed-item-title">Réservation confirmée</span>
+                                                    <span class="feed-item-time">Aujourd'hui à 09:42</span>
+                                                </div>
+                                                <span class="feed-item-desc">Votre place pour Soirée Dégustation &
+                                                    Échanges est confirmée.</span>
+                                            </div>
+                                        </div>
+                                        <button class="btn-outline-navy-sm"
+                                            onclick="location.href='mesRéservations.html?tab=upcoming'">Voir ma
+                                            réservation</button>
+                                    </div>
+
+                                    <!-- Notification Item 3 (Already Read) -->
+                                    <div class="feed-item read" id="feed-item-3">
+                                        <div class="feed-item-left">
+                                            <span class="unread-dot" style="opacity: 0;"></span>
+                                            <div class="feed-item-icon-circle grey">
+                                                <svg viewBox="0 0 24 24" width="16" height="16" fill="none"
+                                                    stroke="currentColor" stroke-width="2.5">
+                                                    <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
+                                                    <circle cx="9" cy="7" r="4" />
+                                                    <path d="M23 21v-2a4 4 0 0 0-3-3.87" />
+                                                    <path d="M16 3.13a4 4 0 0 1 0 7.75" />
+                                                </svg>
+                                            </div>
+                                            <div class="feed-item-content">
+                                                <div class="feed-item-title-row">
+                                                    <span class="feed-item-title"
+                                                        style="color: var(--text-muted);">Liste d'attente active</span>
+                                                    <span class="feed-item-time">24 juillet 2026</span>
+                                                </div>
+                                                <span class="feed-item-desc">Vous êtes inscrit pour Atelier Cuisine &
+                                                    Rencontres.</span>
+                                            </div>
+                                        </div>
+                                        <button class="btn-outline-navy-sm" style="opacity: 0.8;"
+                                            onclick="location.href='events.html'">Voir l'événement</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Footer Actions Row -->
+                        <div class="bottom-actions-row">
+                            <button class="btn-settings-cancel" onclick="location.reload()">Annuler</button>
+                            <button class="btn-settings-save" onclick="saveSettingsSim()">Enregistrer les
+                                modifications</button>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </main>
+
+    <!-- PASSWORD MODAL -->
+    <div id="password-modal" class="db-modal-overlay"
+        style="display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.5); backdrop-filter: blur(4px); z-index: 2000; align-items: center; justify-content: center;">
+        <div class="db-modal-content"
+            style="background: white; padding: 30px; border-radius: 8px; max-width: 400px; width: 100%; position: relative; box-shadow: 0 10px 30px rgba(0,0,0,0.15);">
+            <button class="db-modal-close" onclick="closePasswordModal()"
+                style="position: absolute; top: 15px; right: 15px; border: none; background: none; font-size: 1.2rem; cursor: pointer; color: var(--primary-navy);">✕</button>
+            <h3
+                style="font-family: 'Cormorant Garamond', serif; font-size: 1.6rem; color: var(--primary-navy); margin-top: 0; margin-bottom: 20px; font-weight: 500;">
+                Modifier le mot de passe</h3>
+
+            <div style="display: flex; flex-direction: column; gap: 15px; margin-bottom: 25px;">
+                <div class="db-form-group" style="display:flex; flex-direction:column; gap:6px;">
+                    <label
+                        style="font-size: 0.65rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--primary-navy);">Nouveau
+                        mot de passe</label>
+                    <input type="password" id="new-password-input"
+                        style="padding: 10px 14px; border: 1.5px solid rgba(20,43,99,0.15); border-radius: 4px; font-size: 0.9rem;">
+                </div>
+                <div class="db-form-group" style="display:flex; flex-direction:column; gap:6px;">
+                    <label
+                        style="font-size: 0.65rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--primary-navy);">Confirmer
+                        le mot de passe</label>
+                    <input type="password" id="confirm-password-input"
+                        style="padding: 10px 14px; border: 1.5px solid rgba(20,43,99,0.15); border-radius: 4px; font-size: 0.9rem;">
+                </div>
+            </div>
+
+            <button class="btn-settings-save" style="width: 100%;" onclick="savePasswordSim()">Sauvegarder</button>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            // Load current user from session
+            let user = null;
+            try {
+                const storedUser = localStorage.getItem("currentUser");
+                if (storedUser) {
+                    user = JSON.parse(storedUser);
+                }
+            } catch (e) {
+                console.error("Error loading user", e);
+            }
+
+            // Defaults if no session exists
+            if (!user) {
+                user = {
+                    firstName: "Jean",
+                    lastName: "Dupont",
+                    email: "jean.dupont@email.com",
+                    phone: "+41 79 000 00 00",
+                    avatarDataUrl: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=facearea&facepad=2.2&w=256&h=256&q=80",
+                    isEmailVerified: true,
+                    isPhoneVerified: false
+                };
+            }
+
+            // Set profile data in headers and cards
+            const dbProfileName = document.getElementById("db-profile-name");
+            const dbAvatar = document.getElementById("db-avatar");
+            const initialsSpan = document.getElementById("db-avatar-initials");
+            const topHeaderAvatar = document.getElementById("top-header-avatar");
+            const topHeaderName = document.getElementById("top-header-name");
+            const settingsEmail = document.getElementById("settings-email-display");
+            const settingsPhone = document.getElementById("settings-phone-display");
+            const badgePhoneState = document.getElementById("badge-phone-state");
+            const btnVerifyPhone = document.getElementById("btn-verify-phone");
+
+            if (dbProfileName) dbProfileName.textContent = `${user.firstName} ${user.lastName}`;
+            if (topHeaderName) topHeaderName.textContent = `${user.firstName} ${user.lastName.charAt(0)}.`;
+            if (settingsEmail) settingsEmail.textContent = user.email || "jean.dupont@email.com";
+            if (settingsPhone) settingsPhone.textContent = user.phone || "+41 79 000 00 00";
+
+            if (user.avatarDataUrl) {
+                if (dbAvatar) {
+                    dbAvatar.style.backgroundImage = `url('${user.avatarDataUrl}')`;
+                    if (initialsSpan) initialsSpan.style.display = "none";
+                }
+                if (topHeaderAvatar) {
+                    topHeaderAvatar.src = user.avatarDataUrl;
+                }
+            } else {
+                if (initialsSpan) {
+                    initialsSpan.textContent = `${user.firstName.charAt(0).toUpperCase()}${user.lastName.charAt(0).toUpperCase()}`;
+                }
+            }
+
+            // Modify verify phone badge if user is verified in storage
+            if (user.isPhoneVerified) {
+                if (badgePhoneState) {
+                    badgePhoneState.textContent = "VÉRIFIÉ";
+                    badgePhoneState.className = "badge-verified";
+                }
+                if (btnVerifyPhone) {
+                    btnVerifyPhone.style.display = "none";
+                }
+            }
+
+            // Handle Avatar Upload Simulation
+            const avatarInput = document.getElementById("profile-avatar-input");
+            if (avatarInput && dbAvatar) {
+                avatarInput.addEventListener("change", (e) => {
+                    const file = e.target.files[0];
+                    if (file) {
+                        const reader = new FileReader();
+                        reader.onload = (event) => {
+                            const dataUrl = event.target.result;
+                            dbAvatar.style.backgroundImage = `url(${dataUrl})`;
+                            if (topHeaderAvatar) {
+                                topHeaderAvatar.src = dataUrl;
+                            }
+                            if (initialsSpan) initialsSpan.style.display = "none";
+                            user.avatarDataUrl = dataUrl;
+                            try {
+                                localStorage.setItem("currentUser", JSON.stringify(user));
+                            } catch (err) { console.error(err); }
+                        };
+                        reader.readAsDataURL(file);
+                    }
+                });
+            }
+
+            // Check if notifications are already read from previous simulation
+            if (localStorage.getItem("s7_all_notifications_read") === "true") {
+                applyReadStateToAll();
+            }
+        });
+
+        // Tab Filtering logic
+        let currentFilter = 'unread';
+        function filterFeed(type) {
+            currentFilter = type;
+            const tabUnread = document.getElementById("tab-unread-btn");
+            const tabAll = document.getElementById("tab-all-btn");
+            const items = document.querySelectorAll(".feed-item");
+
+            if (type === 'unread') {
+                tabUnread.classList.add("active");
+                tabAll.classList.remove("active");
+                items.forEach(item => {
+                    if (item.classList.contains("unread-item")) {
+                        item.style.display = "flex";
+                    } else {
+                        item.style.display = "none";
+                    }
+                });
+            } else {
+                tabAll.classList.add("active");
+                tabUnread.classList.remove("active");
+                items.forEach(item => {
+                    item.style.display = "flex";
+                });
+            }
+        }
+
+        // Mark all as read
+        function markAllAsRead() {
+            localStorage.setItem("s7_all_notifications_read", "true");
+            applyReadStateToAll();
+            alert("Toutes les notifications ont été marquées comme lues.");
+        }
+
+        function applyReadStateToAll() {
+            const unreadDots = document.querySelectorAll(".unread-dot");
+            unreadDots.forEach(dot => {
+                dot.style.opacity = "0";
+            });
+
+            const feedItems = document.querySelectorAll(".feed-item");
+            feedItems.forEach(item => {
+                item.classList.add("read");
+                item.classList.remove("unread-item");
+            });
+
+            // Update tab count
+            const tabUnread = document.getElementById("tab-unread-btn");
+            if (tabUnread) {
+                tabUnread.textContent = "Non lues (0)";
+            }
+
+            // Refresh current filter list view
+            filterFeed(currentFilter);
+        }
+
+        // Save Settings Simulation
+        function saveSettingsSim() {
+            alert("Vos modifications de paramètres ont été enregistrées avec succès.");
+        }
+
+        // Password Modal Actions
+        function openPasswordModal() {
+            const modal = document.getElementById("password-modal");
+            modal.style.display = "flex";
+        }
+
+        function closePasswordModal() {
+            const modal = document.getElementById("password-modal");
+            modal.style.display = "none";
+            document.getElementById("new-password-input").value = "";
+            document.getElementById("confirm-password-input").value = "";
+        }
+
+        function savePasswordSim() {
+            const pwd = document.getElementById("new-password-input").value;
+            const confirm = document.getElementById("confirm-password-input").value;
+
+            if (!pwd || !confirm) {
+                alert("Veuillez renseigner les champs de mot de passe.");
+                return;
+            }
+            if (pwd !== confirm) {
+                alert("Les mots de passe ne correspondent pas.");
+                return;
+            }
+
+            alert("Votre mot de passe a été modifié avec succès.");
+            closePasswordModal();
+        }
+    </script>
+</body>
+
+</html>

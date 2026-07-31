@@ -97,37 +97,75 @@ document.addEventListener("DOMContentLoaded", () => {
 function initListingPage() {
     const container = document.getElementById("events-grid-container");
     const paginationContainer = document.getElementById("events-pagination");
-    const cityButtons = document.querySelectorAll("#city-filters .filter-btn");
-    const statusButtons = document.querySelectorAll("#status-filters .filter-btn");
+    const citySelect = document.getElementById("filter-city");
+    const statusSelect = document.getElementById("filter-status");
+    const ageInput = document.getElementById("filter-age");
+    const sortSelect = document.getElementById("filter-sort");
 
     let activeCity = "all";
     let activeStatus = "all";
+    let activeAge = null;
+    let activeSort = "date-asc";
     let currentPage = 1;
     const pageSize = 3;
 
     // Initial render
     renderCards();
 
-    // City filters listeners
-    cityButtons.forEach(btn => {
-        btn.addEventListener("click", () => {
-            cityButtons.forEach(b => b.classList.remove("active"));
-            btn.classList.add("active");
-            activeCity = btn.dataset.city;
+    // Age input listener
+    if (ageInput) {
+        ageInput.addEventListener("input", (e) => {
+            activeAge = parseInt(e.target.value, 10);
+            if (isNaN(activeAge)) {
+                activeAge = null;
+            }
             currentPage = 1; // Reset to page 1
             renderCards();
+        });
+    }
+
+    // Custom Dropdown Logic
+    const customDropdowns = document.querySelectorAll('.custom-dropdown');
+    customDropdowns.forEach(dropdown => {
+        const trigger = dropdown.querySelector('.dropdown-trigger');
+        const options = dropdown.querySelectorAll('.dropdown-option');
+        const selectedText = dropdown.querySelector('.selected-text');
+        const id = dropdown.id; // dropdown-city, dropdown-status, dropdown-sort
+
+        trigger.addEventListener('click', (e) => {
+            // Close others first
+            customDropdowns.forEach(d => {
+                if (d !== dropdown) d.classList.remove('open');
+            });
+            dropdown.classList.toggle('open');
+            e.stopPropagation();
+        });
+
+        options.forEach(option => {
+            option.addEventListener('click', (e) => {
+                // Update UI
+                options.forEach(opt => opt.classList.remove('selected'));
+                option.classList.add('selected');
+                selectedText.textContent = option.textContent;
+                dropdown.dataset.value = option.dataset.value;
+                dropdown.classList.remove('open');
+                
+                // Update active state variables
+                const val = option.dataset.value;
+                if (id === 'dropdown-city') activeCity = val;
+                else if (id === 'dropdown-status') activeStatus = val;
+                else if (id === 'dropdown-sort') activeSort = val;
+
+                currentPage = 1;
+                renderCards();
+                e.stopPropagation();
+            });
         });
     });
 
-    // Status filters listeners
-    statusButtons.forEach(btn => {
-        btn.addEventListener("click", () => {
-            statusButtons.forEach(b => b.classList.remove("active"));
-            btn.classList.add("active");
-            activeStatus = btn.dataset.status;
-            currentPage = 1; // Reset to page 1
-            renderCards();
-        });
+    // Close dropdowns when clicking outside
+    document.addEventListener('click', () => {
+        customDropdowns.forEach(d => d.classList.remove('open'));
     });
 
     function renderPagination(totalItems) {
@@ -193,13 +231,50 @@ function initListingPage() {
         // Filter events
         const filteredEvents = window.eventsData.filter(event => {
             const matchesCity = (activeCity === "all" || event.city === activeCity);
+            
             let matchesStatus = true;
             if (activeStatus === "available") {
                 matchesStatus = (event.status === "booking-open" || event.status === "limited");
             } else if (activeStatus === "full") {
                 matchesStatus = (event.status === "waiting-list" || event.status === "fully-booked");
+            } else if (activeStatus === "pre-registration") {
+                matchesStatus = (event.status === "pre-registration");
+            } else if (activeStatus === "tba") {
+                matchesStatus = (event.status === "tba");
             }
-            return matchesCity && matchesStatus;
+
+            let matchesAge = true;
+            if (activeAge !== null && event.ageGroup) {
+                // Parse event.ageGroup (e.g. "35 - 50 ans")
+                const match = event.ageGroup.match(/(\d+)\s*-\s*(\d+)/);
+                if (match) {
+                    const minAge = parseInt(match[1], 10);
+                    const maxAge = parseInt(match[2], 10);
+                    if (activeAge < minAge || activeAge > maxAge) {
+                        matchesAge = false;
+                    }
+                }
+            }
+
+            return matchesCity && matchesStatus && matchesAge;
+        });
+
+        // Sort events
+        filteredEvents.sort((a, b) => {
+            if (activeSort === "date-asc") {
+                return new Date(a.dateRaw) - new Date(b.dateRaw);
+            } else if (activeSort === "date-desc") {
+                return new Date(b.dateRaw) - new Date(a.dateRaw);
+            } else if (activeSort === "price-asc") {
+                const priceA = parseFloat(a.price.replace(/[^\d.-]/g, ''));
+                const priceB = parseFloat(b.price.replace(/[^\d.-]/g, ''));
+                return priceA - priceB;
+            } else if (activeSort === "price-desc") {
+                const priceA = parseFloat(a.price.replace(/[^\d.-]/g, ''));
+                const priceB = parseFloat(b.price.replace(/[^\d.-]/g, ''));
+                return priceB - priceA;
+            }
+            return 0;
         });
 
         // Clear container
@@ -238,6 +313,12 @@ function initListingPage() {
             } else if (event.status === "fully-booked") {
                 badgeClass = "fully-booked";
                 actionText = "Complet";
+            } else if (event.status === "pre-registration") {
+                badgeClass = "pre-registration";
+                actionText = "S'inscrire";
+            } else if (event.status === "tba") {
+                badgeClass = "tba";
+                actionText = "M'avertir";
             }
 
             card.innerHTML = `

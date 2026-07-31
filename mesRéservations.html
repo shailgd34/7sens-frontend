@@ -1,0 +1,2281 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mes Réservations — 7Sens Premium Social Club</title>
+    <meta name="description"
+        content="Retrouvez vos prochaines expériences, suivez vos réservations et accédez à toutes les informations pratiques.">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Instrument+Sans:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style-v2.css">
+    <link rel="stylesheet" href="events-page.css">
+    <link rel="stylesheet" href="dashboard-shared.css">
+
+    <style>
+        /* Premium custom styles for Reservations Page */
+        .res-tab-container {
+            display: flex;
+            gap: 12px;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+        }
+
+        .res-tab-btn {
+            background-color: #ffffff;
+            border: 1px solid rgba(20, 43, 99, 0.1);
+            border-radius: 4px;
+            color: #0b2240;
+            font-family: 'Instrument Sans', sans-serif;
+            font-size: 0.8rem;
+            font-weight: 600;
+            letter-spacing: 0.05em;
+            padding: 10px 24px;
+            cursor: pointer;
+            text-transform: uppercase;
+            transition: all 0.2s ease;
+            box-shadow: none;
+        }
+
+        .res-tab-btn:hover {
+            border-color: rgba(20, 43, 99, 0.3);
+            color: #0b2240;
+        }
+
+        .res-tab-btn.active {
+            background-color: #0b2240;
+            border-color: #0b2240;
+            color: #ffffff;
+        }
+
+        /* Card styles matching mockups */
+        .featured-card {
+            background: #ffffff;
+            border: 1px solid rgba(20, 43, 99, 0.06);
+            border-radius: 8px;
+            padding: 24px;
+            margin-bottom: 35px;
+            box-shadow: 0 4px 20px rgba(16, 42, 94, 0.01);
+            display: grid;
+            grid-template-columns: 300px 1fr 240px;
+            gap: 30px;
+            align-items: stretch;
+            position: relative;
+            overflow: hidden;
+        }
+
+        @media (max-width: 991px) {
+            .featured-card {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+        }
+
+        .featured-image-wrapper {
+            width: 100%;
+            height: 200px;
+            border-radius: 6px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .featured-image-wrapper img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .featured-info {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            height: 100%;
+        }
+
+        .featured-status-actions {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            justify-content: space-between;
+            text-align: right;
+            height: 100%;
+            min-width: 220px;
+        }
+
+        .card-tag {
+            font-size: 0.72rem;
+            font-weight: 700;
+            padding: 6px 12px;
+            border-radius: 4px;
+            text-transform: uppercase;
+            letter-spacing: 0.03em;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            white-space: nowrap;
+        }
+
+        .tag-status-confirmed {
+            background-color: #e6f4ea;
+            color: #137333;
+            border: none;
+        }
+
+        .tag-status-pending {
+            background-color: #fef3e2;
+            color: #d97706;
+            border: none;
+        }
+
+        .tag-status-cancelled {
+            background-color: rgba(201, 42, 42, 0.08);
+            color: #c92a2a;
+            border: 1px solid rgba(201, 42, 42, 0.15);
+        }
+
+        .tag-gray {
+            background-color: rgba(20, 43, 99, 0.04);
+            color: var(--text-muted);
+            border: 1px solid rgba(20, 43, 99, 0.08);
+        }
+
+        .tag-age {
+            background-color: #e8f0fe;
+            color: #0b2240;
+        }
+
+        .tag-countdown-green {
+            background-color: #e6f4ea;
+            color: #137333;
+            font-size: 0.72rem;
+            font-weight: 700;
+            padding: 6px 12px;
+            border-radius: 4px;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .section-title-icon-row {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-top: 35px;
+            margin-bottom: 20px;
+            color: #5f6368;
+            font-family: 'Instrument Sans', sans-serif;
+            font-size: 0.85rem;
+            font-weight: 700;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+        }
+
+        .card-grid-row {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        /* Compact cards styling */
+        .compact-card {
+            background: #ffffff;
+            border: 1px solid rgba(20, 43, 99, 0.06);
+            border-radius: 8px;
+            padding: 16px 24px;
+            display: grid;
+            grid-template-columns: 120px 1.5fr 1fr 200px;
+            gap: 24px;
+            align-items: center;
+            box-shadow: 0 2px 10px rgba(16, 42, 94, 0.01);
+            transition: all 0.3s;
+        }
+
+        .compact-card.payment-required {
+            border: 1.5px solid #d4a437;
+            background: #ffffff;
+            box-shadow: 0 4px 15px rgba(214, 164, 55, 0.05);
+        }
+
+        @media (max-width: 768px) {
+            .compact-card {
+                grid-template-columns: 1fr;
+                gap: 15px;
+                padding: 20px;
+            }
+        }
+
+        .compact-thumbnail {
+            width: 120px;
+            height: 80px;
+            border-radius: 4px;
+            overflow: hidden;
+        }
+
+        .compact-thumbnail img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .compact-info {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .compact-status {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+            align-items: flex-start;
+        }
+
+        .compact-actions {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            align-items: stretch;
+            width: 100%;
+        }
+
+        /* Buttons styles */
+        .btn-voir-details {
+            background-color: #0b2240;
+            color: #ffffff;
+            border: none;
+            border-radius: 4px;
+            font-family: 'Instrument Sans', sans-serif;
+            font-size: 0.8rem;
+            font-weight: 700;
+            letter-spacing: 0.08em;
+            padding: 12px 28px;
+            cursor: pointer;
+            text-transform: uppercase;
+            display: inline-flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 16px;
+            min-width: 200px;
+            transition: background-color 0.2s;
+        }
+
+        .btn-voir-details:hover {
+            background-color: #031c3c;
+        }
+
+        .btn-luxury {
+            background-color: #0b2240;
+            color: #ffffff;
+            border: none;
+            border-radius: 4px;
+            font-family: 'Instrument Sans', sans-serif;
+            font-size: 0.8rem;
+            font-weight: 700;
+            letter-spacing: 0.08em;
+            padding: 12px 28px;
+            cursor: pointer;
+            text-transform: uppercase;
+            display: inline-flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 16px;
+            transition: background-color 0.2s;
+            text-decoration: none;
+        }
+
+        .btn-luxury:hover {
+            background-color: #031c3c;
+        }
+
+        .btn-finaliser-paiement {
+            background-color: #c68a1c;
+            color: #ffffff;
+            border: none;
+            border-radius: 4px;
+            font-family: 'Instrument Sans', sans-serif;
+            font-size: 0.8rem;
+            font-weight: 700;
+            letter-spacing: 0.05em;
+            padding: 12px 24px;
+            cursor: pointer;
+            text-transform: uppercase;
+            display: inline-flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+            min-width: 200px;
+            transition: background-color 0.2s;
+        }
+
+        .btn-finaliser-paiement:hover {
+            background-color: #aa7a1e;
+        }
+
+        .btn-outline-status {
+            background-color: #ffffff;
+            border: 1px solid #d3d3d3;
+            border-radius: 4px;
+            color: #0b2240;
+            font-family: 'Instrument Sans', sans-serif;
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 0.05em;
+            padding: 10px 16px;
+            cursor: pointer;
+            text-transform: uppercase;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            transition: all 0.2s;
+            width: 100%;
+        }
+
+        .btn-outline-status:hover {
+            background-color: rgba(20, 43, 99, 0.02);
+            border-color: #0b2240;
+        }
+
+        .action-link-btn {
+            background: none;
+            border: none;
+            color: var(--primary-navy);
+            font-family: 'Instrument Sans', sans-serif;
+            font-size: 0.7rem;
+            font-weight: 700;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            cursor: pointer;
+            padding: 6px 12px;
+            transition: all 0.3s;
+            text-decoration: none;
+        }
+
+        .action-link-btn:hover {
+            color: var(--luxury-gold);
+        }
+
+        /* Calendar Dropdown Container */
+        .calendar-dropdown-wrapper {
+            position: relative;
+            display: inline-block;
+        }
+
+        .calendar-menu {
+            display: none;
+            position: absolute;
+            top: 100%;
+            right: 0;
+            background: #ffffff;
+            border: 1px solid rgba(20, 43, 99, 0.1);
+            border-radius: 4px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+            z-index: 100;
+            min-width: 180px;
+            padding: 6px 0;
+            margin-top: 5px;
+        }
+
+        .calendar-menu a {
+            display: block;
+            padding: 10px 16px;
+            font-family: 'Instrument Sans', sans-serif;
+            font-size: 0.8rem;
+            color: var(--primary-navy);
+            text-decoration: none;
+            transition: background 0.2s;
+            text-align: left;
+        }
+
+        .calendar-menu a:hover {
+            background: rgba(20, 43, 99, 0.04);
+            color: var(--luxury-gold);
+        }
+
+        /* Empty states */
+        .empty-state-card {
+            background: #ffffff;
+            border: 1px dashed rgba(20, 43, 99, 0.15);
+            border-radius: 8px;
+            padding: 60px 40px;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .empty-state-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.6rem;
+            color: var(--primary-navy);
+            font-weight: 400;
+            margin: 0;
+        }
+
+        .empty-state-desc {
+            font-family: 'Instrument Sans', sans-serif;
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            max-width: 420px;
+            margin: 0;
+            line-height: 1.5;
+        }
+
+        /* Discovery widget */
+        .discovery-banner {
+            background: #ffffff;
+            border: 1px solid rgba(20, 43, 99, 0.05);
+            border-radius: 8px;
+            padding: 24px 30px;
+            margin-top: 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.01);
+        }
+
+        @media (max-width: 768px) {
+            .discovery-banner {
+                flex-direction: column;
+                gap: 20px;
+                text-align: center;
+            }
+        }
+
+        /* Modals styling (Ticket & Details & Checkout) */
+        .res-modal {
+            position: fixed;
+            inset: 0;
+            background-color: rgba(20, 43, 99, 0.4);
+            backdrop-filter: blur(8px);
+            z-index: 2000;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .res-modal-content {
+            background: var(--warm-ivory);
+            border-radius: 12px;
+            width: 100%;
+            max-width: 580px;
+            max-height: 90vh;
+            overflow-y: auto;
+            position: relative;
+            box-shadow: 0 20px 50px rgba(16, 42, 94, 0.15);
+            border: 1px solid rgba(214, 164, 55, 0.2);
+            padding: 30px;
+            animation: modalSlideUp 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+
+        @keyframes modalSlideUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .res-modal-close {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--primary-navy);
+            transition: color 0.2s;
+        }
+
+        .res-modal-close:hover {
+            color: var(--luxury-gold);
+        }
+
+        /* Digital ticket styling */
+        .ticket-box {
+            background: #ffffff;
+            border-radius: 8px;
+            border: 1px solid rgba(20, 43, 99, 0.08);
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.02);
+            margin-top: 15px;
+        }
+
+        .ticket-header {
+            background: var(--primary-navy);
+            color: #ffffff;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .ticket-body {
+            padding: 25px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+            position: relative;
+        }
+
+        /* Ticket dashed divider line */
+        .ticket-divider {
+            width: 100%;
+            height: 1px;
+            border-top: 2px dashed rgba(20, 43, 99, 0.1);
+            position: relative;
+            margin: 10px 0;
+        }
+
+        .ticket-divider::before,
+        .ticket-divider::after {
+            content: '';
+            position: absolute;
+            top: -10px;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: var(--warm-ivory);
+            border: 1px solid rgba(20, 43, 99, 0.08);
+        }
+
+        .ticket-divider::before {
+            left: -35px;
+            box-shadow: inset -4px 0 6px rgba(0, 0, 0, 0.02);
+        }
+
+        .ticket-divider::after {
+            right: -35px;
+            box-shadow: inset 4px 0 6px rgba(0, 0, 0, 0.02);
+        }
+
+        .qr-placeholder {
+            width: 150px;
+            height: 150px;
+            background: #f8f9fa;
+            border: 1px solid rgba(20, 43, 99, 0.08);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            padding: 10px;
+        }
+
+        .qr-placeholder img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+        /* Details list */
+        .details-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px 15px;
+            width: 100%;
+            margin-top: 10px;
+        }
+
+        @media (max-width: 480px) {
+            .details-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .detail-item {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .detail-label {
+            font-size: 0.65rem;
+            font-weight: 700;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .detail-val {
+            font-family: 'Instrument Sans', sans-serif;
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: var(--primary-navy);
+        }
+
+        .practical-box {
+            background-color: rgba(214, 164, 55, 0.04);
+            border: 1px solid rgba(214, 164, 55, 0.15);
+            border-radius: 6px;
+            padding: 15px;
+            font-size: 0.82rem;
+            color: var(--primary-navy);
+            line-height: 1.5;
+            margin-top: 15px;
+        }
+    </style>
+</head>
+
+<body
+    style="background-color: var(--warm-ivory); margin:0; padding:0; min-height:100vh; font-family:'Instrument Sans',sans-serif;">
+
+    <!-- MAIN MEMBER DASHBOARD CONTENT -->
+    <main class="db-main">
+        <div class="db-container">
+            <div class="db-grid">
+
+                <!-- SIDEBAR: Summary & Navigation -->
+                <aside class="db-sidebar-card">
+                    <!-- Profile Avatar upload trigger -->
+                    <div class="db-avatar-wrapper" id="db-avatar"
+                        onclick="document.getElementById('profile-avatar-input').click();">
+                        <span id="db-avatar-initials">JD</span>
+                        <div class="db-avatar-upload">Modifier</div>
+                    </div>
+                    <input type="file" id="profile-avatar-input" accept="image/*" style="display: none;">
+
+                    <h4 class="db-user-name" id="db-profile-name">Jean Dupont</h4>
+
+                    <nav class="db-nav-list">
+                        <button class="db-nav-item" onclick="location.href='profile.html?tab=home'" id="btn-tab-home">
+                            <svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                <rect x="3" y="3" width="7" height="9" />
+                                <rect x="14" y="3" width="7" height="5" />
+                                <rect x="14" y="12" width="7" height="9" />
+                                <rect x="3" y="16" width="7" height="5" />
+                            </svg>
+                            <span>TABLEAU DE BORD</span>
+                        </button>
+                        <button class="db-nav-item" onclick="location.href='profile.html?tab=profile'"
+                            id="btn-tab-profile">
+                            <svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
+                                <circle cx="12" cy="7" r="4" />
+                            </svg>
+                            <span>MON PROFIL</span>
+                        </button>
+                        <button class="db-nav-item" onclick="location.href='profile.html?tab=questionnaire'"
+                            id="btn-tab-questionnaire">
+                            <svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" fill="none">
+                                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                                <polyline points="14 2 14 8 20 8"></polyline>
+                                <line x1="16" y1="13" x2="8" y2="13"></line>
+                                <line x1="16" y1="17" x2="8" y2="17"></line>
+                                <polyline points="10 9 9 9 8 9"></polyline>
+                            </svg>
+                            <span>MON PROFIL RELATIONNEL</span>
+                        </button>
+                        <button class="db-nav-item" onclick="location.href='mesCompatibilités.html'"
+                            id="btn-tab-matches">
+                            <svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" fill="none">
+                                <path
+                                    d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z">
+                                </path>
+                            </svg>
+                            <span>MES COMPATIBILITÉS</span>
+                        </button>
+                        <button class="db-nav-item active" onclick="location.href='mesRéservations.html'"
+                            id="btn-tab-bookings">
+                            <svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                <rect x="3" y="4" width="18" height="18" rx="2" ry="2" />
+                                <line x1="16" y1="2" x2="16" y2="6" />
+                                <line x1="8" y1="2" x2="8" y2="6" />
+                                <line x1="3" y1="10" x2="21" y2="10" />
+                            </svg>
+                            <span>MES RÉSERVATIONS</span>
+                        </button>
+                        <button class="db-nav-item" onclick="location.href='profile.html?tab=billing'"
+                            id="btn-tab-billing">
+                            <svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                <rect x="1" y="4" width="22" height="16" rx="2" ry="2" />
+                                <line x1="1" y1="10" x2="23" y2="10" />
+                            </svg>
+                            <span>MES PAIEMENTS</span>
+                        </button>
+                        <button class="db-nav-item" onclick="location.href='settings.html'" id="btn-tab-settings">
+                            <svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" fill="none">
+                                <path d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1-1-1.74v-.5a2 2 0 0 1 1-1.74l.15-.1a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z"/>
+                                <circle cx="12" cy="12" r="3"/>
+                            </svg>
+                            <span>PARAMÈTRES</span>
+                        </button>
+                        <!-- Back Link -->
+                        <button class="db-nav-item" onclick="location.href='events.html'"
+                            style="margin-top: 25px; border-top: 1px solid rgba(20, 43, 99, 0.05); padding-top: 15px;">
+                            <svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                <path d="M19 12H5M5 12L12 19M5 12L12 5" stroke-linecap="round"
+                                    stroke-linejoin="round" />
+                            </svg>
+                            <span>RETOUR AU SITE</span>
+                        </button>
+                    </nav>
+
+                    <!-- Language Selector bottom of sidebar -->
+                    <div style="margin-top: auto; padding-top: 25px; width: 100%;">
+                        <div class="lang-dropdown" style="width: 100%;">
+                            <button class="lang-btn"
+                                style="color: var(--primary-navy); border-color: rgba(20,43,99,0.15); width: 100%; display: flex; justify-content: center; gap: 8px;">
+                                <img src="https://flagcdn.com/w20/fr.png" width="16" alt="FR"
+                                    style="border-radius: 2px;"> FR
+                                <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor"
+                                    stroke-width="2">
+                                    <path d="M6 9l6 6 6-6" />
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+                </aside>
+
+                <!-- RIGHT BLOCK: Active Tab Panel -->
+                <div class="db-right-column" style="display: flex; flex-direction: column; width: 100%;">
+                    <header class="db-top-header" id="main-header"
+                        style="position: sticky; top: 0; z-index: 1000; background: var(--warm-ivory); display: flex; justify-content: space-between; align-items: center; padding: 15px 40px; border-bottom: 1px solid rgba(20,43,99,0.05);">
+                        <a href="index.html" class="logo-link" id="header-logo">
+                            <img src="assets/7sens.webp" alt="7Sens Logo" class="logo-img"
+                                style="height: 35px; width: auto;">
+                        </a>
+
+                        <!-- Header Right Section -->
+                        <div style="display: flex; align-items: center; gap: 20px;">
+                            <div class="lang-dropdown">
+                                <button class="lang-btn"
+                                    style="color: var(--primary-navy); border-color: rgba(20,43,99,0.2);">
+                                    <img src="https://flagcdn.com/w20/fr.png" width="16" alt="FR"
+                                        style="border-radius: 2px;"> FR
+                                    <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor"
+                                        stroke-width="2">
+                                        <path d="M6 9l6 6 6-6" />
+                                    </svg>
+                                </button>
+                            </div>
+
+                            <!-- User Profile Info -->
+                            <div style="display: flex; align-items: center; gap: 10px;">
+                                <img src="assets/pexels-maorattias-5152572.jpg" alt="User Avatar" class="user-avatar"
+                                    id="top-header-avatar"
+                                    style="width: 38px; height: 38px; border-radius: 50%; object-fit: cover; border: 2px solid var(--luxury-gold);">
+                                <span class="user-name" id="top-header-name"
+                                    style="font-family: 'Instrument Sans', sans-serif; font-weight: 500; font-size: 0.95rem; color: var(--primary-navy);">Jean
+                                    D.</span>
+                            </div>
+                        </div>
+                    </header>
+
+                    <!-- Reservations Main Section -->
+                    <div id="section-reservations" style="padding: 40px 50px; box-sizing: border-box;">
+                        <div class="db-section-header"
+                            style="margin-bottom: 30px; border-bottom: 1px solid rgba(20, 43, 99, 0.05); padding-bottom: 20px;">
+                            <h3 class="db-section-title"
+                                style="font-family: 'Cormorant Garamond', serif; font-size: 2.2rem; color: var(--primary-navy); font-weight: 300; margin: 0 0 8px 0;">
+                                Mes réservations</h3>
+                            <p class="db-section-subtitle"
+                                style="font-size: 0.95rem; color: var(--text-muted); margin: 0; font-family: 'Instrument Sans', sans-serif;">
+                                Retrouvez vos prochaines expériences, suivez vos réservations et accédez à toutes les
+                                informations pratiques.
+                            </p>
+                        </div>
+
+                        <!-- FILTER TABS -->
+                        <div class="res-tab-container">
+                            <button class="res-tab-btn active" id="tab-btn-upcoming"
+                                onclick="switchResTab('upcoming')">À VENIR (<span id="count-upcoming">0</span>)</button>
+                            <button class="res-tab-btn" id="tab-btn-pending" onclick="switchResTab('pending')">EN
+                                ATTENTE (<span id="count-pending">0</span>)</button>
+                            <button class="res-tab-btn" id="tab-btn-past" onclick="switchResTab('past')">PASSÉES (<span
+                                    id="count-past">0</span>)</button>
+                            <button class="res-tab-btn" id="tab-btn-cancelled"
+                                onclick="switchResTab('cancelled')">ANNULÉES</button>
+                        </div>
+
+                        <!-- TAB CONTENT AREA -->
+                        <div id="tab-content-upcoming" class="res-tab-pane" style="display: block;">
+                            <!-- Featured Upcoming Event -->
+                            <div id="upcoming-featured-area">
+                                <!-- Rendered dynamically -->
+                            </div>
+
+                            <!-- Other Upcoming Events -->
+                            <div id="upcoming-others-area" style="margin-top: 35px;">
+                                <div class="section-title-icon-row">
+                                    <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" style="color: #6c757d; vertical-align: middle; margin-right: 4px; display: inline-block;">
+                                        <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
+                                        <circle cx="9" cy="7" r="4" />
+                                        <path d="M23 21v-2a4 4 0 0 0-3-3.87" />
+                                        <path d="M16 3.13a4 4 0 0 1 0 7.75" />
+                                    </svg>
+                                    <span>Autres réservations</span>
+                                </div>
+                                <div class="card-grid-row" id="upcoming-others-list">
+                                    <!-- Rendered dynamically -->
+                                </div>
+                            </div>
+                        </div>
+
+                        <div id="tab-content-pending" class="res-tab-pane" style="display: none;">
+                            <div id="pending-featured-area">
+                                <!-- Rendered dynamically -->
+                            </div>
+                            <div id="pending-others-area" style="margin-top: 35px;">
+                                <div class="section-title-icon-row" id="pending-others-title">
+                                    <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" style="color: #6c757d; vertical-align: middle; margin-right: 4px; display: inline-block;">
+                                        <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
+                                        <circle cx="9" cy="7" r="4" />
+                                        <path d="M23 21v-2a4 4 0 0 0-3-3.87" />
+                                        <path d="M16 3.13a4 4 0 0 1 0 7.75" />
+                                    </svg>
+                                    <span>Autres demandes</span>
+                                </div>
+                                <div class="card-grid-row" id="pending-others-list">
+                                    <!-- Rendered dynamically -->
+                                </div>
+                            </div>
+                        </div>
+
+                        <div id="tab-content-past" class="res-tab-pane" style="display: none;">
+                            <div class="card-grid-row" id="past-list">
+                                <!-- Rendered dynamically -->
+                            </div>
+                        </div>
+
+                        <div id="tab-content-cancelled" class="res-tab-pane" style="display: none;">
+                            <div class="card-grid-row" id="cancelled-list">
+                                <!-- Rendered dynamically -->
+                            </div>
+                        </div>
+
+                        <!-- Empty State container (fallback) -->
+                        <div id="empty-state-container" style="display: none; margin-top: 20px;">
+                            <div class="empty-state-card">
+                                <div
+                                    style="width: 60px; height: 60px; border-radius: 50%; background-color: rgba(20,43,99,0.03); display: flex; align-items: center; justify-content: center; color: var(--primary-navy); border: 1px solid rgba(20,43,99,0.06);">
+                                    <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor"
+                                        stroke-width="1.5">
+                                        <rect x="3" y="4" width="18" height="18" rx="2" ry="2" />
+                                        <line x1="16" y1="2" x2="16" y2="6" />
+                                        <line x1="8" y1="2" x2="8" y2="6" />
+                                        <line x1="3" y1="10" x2="21" y2="10" />
+                                    </svg>
+                                </div>
+                                <h4 class="empty-state-title" id="empty-state-title">Votre prochaine expérience commence
+                                    ici.</h4>
+                                <p class="empty-state-desc" id="empty-state-desc">Découvrez les événements 7Sens
+                                    organisés près de chez vous.</p>
+                                <button class="btn-luxury-gold" onclick="location.href='events.html'">DÉCOUVRIR LES
+                                    ÉVÉNEMENTS</button>
+                            </div>
+                        </div>
+
+                        <!-- FINAL DISCOVERY SECTION -->
+                        <div class="discovery-banner" id="discovery-footer">
+                            <div style="display: flex; align-items: center; gap: 15px;">
+                                <div
+                                    style="width: 42px; height: 42px; border-radius: 50%; background-color: rgba(20, 43, 99, 0.04); display: flex; align-items: center; justify-content: center; color: var(--primary-navy); border: 1px solid rgba(20, 43, 99, 0.06);">
+                                    <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor"
+                                        stroke-width="2">
+                                        <circle cx="12" cy="12" r="10" />
+                                        <polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76" />
+                                    </svg>
+                                </div>
+                                <span
+                                    style="font-family: 'Instrument Sans', sans-serif; font-size: 1rem; font-weight: 500; color: var(--primary-navy);">Envie
+                                    de vivre une nouvelle expérience ?</span>
+                            </div>
+                            <button class="btn-luxury" onclick="location.href='events.html'">
+                                <span>DÉCOUVRIR LES ÉVÉNEMENTS</span>
+                                <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5">
+                                    <path d="M9 5l7 7-7 7"/>
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- MODAL: EVENT DETAILS VIEW -->
+    <div class="res-modal" id="modal-details">
+        <div class="res-modal-content">
+            <button class="res-modal-close" onclick="closeResModal('details')">✕</button>
+            <span class="section-subtitle-gold" id="modal-detail-subtitle">Détails de l'expérience</span>
+            <h3 id="modal-detail-title"
+                style="font-family: 'Cormorant Garamond', serif; font-size: 1.8rem; color: var(--primary-navy); margin: 10px 0 20px 0; font-weight: 400; border-bottom: 1px solid rgba(20,43,99,0.06); padding-bottom: 12px;">
+                Soirée Dégustation & Échanges</h3>
+
+            <div class="details-grid">
+                <div class="detail-item">
+                    <span class="detail-label">Date & Heure</span>
+                    <span class="detail-val" id="modal-detail-datetime">24 mai 2026 à 19:00</span>
+                </div>
+                <div class="detail-item">
+                    <span class="detail-label">Lieu</span>
+                    <span class="detail-val" id="modal-detail-venue">La Réserve Genève</span>
+                </div>
+                <div class="detail-item">
+                    <span class="detail-label">Adresse</span>
+                    <span class="detail-val" id="modal-detail-address">Route de Lausanne 301, 1293 Bellevue</span>
+                </div>
+                <div class="detail-item">
+                    <span class="detail-label">Tranche d'âge</span>
+                    <span class="detail-val" id="modal-detail-age">35–45 ans</span>
+                </div>
+                <div class="detail-item">
+                    <span class="detail-label">Référence</span>
+                    <span class="detail-val" id="modal-detail-ref">Réf. 875-4827</span>
+                </div>
+                <div class="detail-item">
+                    <span class="detail-label">Statut Réservation</span>
+                    <span class="detail-val" id="modal-detail-resstatus">RÉSERVATION CONFIRMÉE</span>
+                </div>
+                <div class="detail-item">
+                    <span class="detail-label">Statut Paiement</span>
+                    <span class="detail-val" id="modal-detail-paystatus">Paiement reçu</span>
+                </div>
+            </div>
+
+            <div class="practical-box">
+                <span class="detail-label"
+                    style="display:block; margin-bottom: 6px; color: var(--luxury-gold);">Instructions Pratiques</span>
+                <span id="modal-detail-instructions">Veuillez vous présenter 10 minutes avant l'heure d'ouverture. Tenue
+                    correcte exigée (chic décontracté). Présentez votre billet numérique directement à l'accueil pour
+                    validation.</span>
+            </div>
+
+            <div style="margin-top: 20px; font-size: 0.8rem; color: var(--text-muted); line-height: 1.4;">
+                <span class="detail-label" style="display:block; margin-bottom: 4px;">Prestations incluses</span>
+                <p id="modal-detail-services" style="margin:0 0 12px 0;">Cocktail de bienvenue, dégustation de 5 vins
+                    fins commentée par un sommelier, assortiment de bouchées gastronomiques et atelier de mise en
+                    relation 7Sens.</p>
+
+                <span class="detail-label" style="display:block; margin-bottom: 4px;">Conditions d'annulation</span>
+                <p id="modal-detail-cancellation" style="margin:0;">Annulation sans frais possible jusqu'à 48 heures
+                    avant l'événement. Au-delà, aucun remboursement ne sera effectué.</p>
+            </div>
+
+            <div
+                style="margin-top: 25px; display:flex; justify-content: space-between; align-items: center; border-top: 1px solid rgba(20,43,99,0.06); padding-top: 20px;">
+                <span style="font-size: 0.75rem; color: var(--text-muted);">Besoin d'aide ? <a href="contact.html"
+                        style="color:var(--primary-navy); font-weight:600; text-decoration:none;">Contacter le
+                        concierge</a></span>
+                <button class="btn-luxury" onclick="closeResModal('details')">Fermer</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL: DIGITAL TICKET -->
+    <div class="res-modal" id="modal-ticket">
+        <div class="res-modal-content" style="max-width: 440px; padding: 20px;">
+            <button class="res-modal-close" onclick="closeResModal('ticket')">✕</button>
+
+            <div class="ticket-box">
+                <div class="ticket-header">
+                    <span
+                        style="font-family: 'Instrument Sans', sans-serif; font-size: 0.65rem; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: var(--luxury-gold); display: block; margin-bottom: 4px;">7SENS
+                        EXCLUSIVE CLUB</span>
+                    <h3 id="ticket-title"
+                        style="font-family: 'Cormorant Garamond', serif; font-size: 1.45rem; font-weight: 400; margin: 0; color: #ffffff;">
+                        Soirée Dégustation & Échanges</h3>
+                </div>
+
+                <div class="ticket-body">
+                    <div class="qr-placeholder">
+                        <!-- Simulated QR Code -->
+                        <svg viewBox="0 0 100 100" width="130" height="130" style="color: var(--primary-navy);">
+                            <rect width="100" height="100" fill="white" />
+                            <!-- QR corners -->
+                            <rect x="0" y="0" width="25" height="25" fill="currentColor" />
+                            <rect x="3" y="3" width="19" height="19" fill="white" />
+                            <rect x="6" y="6" width="13" height="13" fill="currentColor" />
+
+                            <rect x="75" y="0" width="25" height="25" fill="currentColor" />
+                            <rect x="78" y="3" width="19" height="19" fill="white" />
+                            <rect x="81" y="6" width="13" height="13" fill="currentColor" />
+
+                            <rect x="0" y="75" width="25" height="25" fill="currentColor" />
+                            <rect x="3" y="78" width="19" height="19" fill="white" />
+                            <rect x="6" y="81" width="13" height="13" fill="currentColor" />
+
+                            <!-- QR random pixels -->
+                            <rect x="35" y="5" width="10" height="15" fill="currentColor" />
+                            <rect x="55" y="0" width="15" height="10" fill="currentColor" />
+                            <rect x="30" y="30" width="20" height="20" fill="currentColor" />
+                            <rect x="60" y="35" width="15" height="15" fill="currentColor" />
+                            <rect x="35" y="60" width="10" height="25" fill="currentColor" />
+                            <rect x="60" y="65" width="20" height="10" fill="currentColor" />
+                            <rect x="10" y="35" width="10" height="10" fill="currentColor" />
+                            <rect x="50" y="80" width="25" height="15" fill="currentColor" />
+                            <rect x="80" y="45" width="15" height="25" fill="currentColor" />
+                        </svg>
+                    </div>
+
+                    <span style="font-size: 0.72rem; font-weight: 700; color: var(--text-muted); letter-spacing: 0.1em;"
+                        id="ticket-ref">RÉF. 875-4827</span>
+
+                    <div class="ticket-divider"></div>
+
+                    <div style="display:flex; flex-direction:column; gap: 12px; width: 100%; text-align: left;">
+                        <div style="display:flex; justify-content:space-between;">
+                            <div>
+                                <span class="detail-label">Participant</span>
+                                <span class="detail-val" style="font-size: 0.85rem;" id="ticket-user">Jean Dupont</span>
+                            </div>
+                            <div>
+                                <span class="detail-label">Statut</span>
+                                <span class="detail-val" style="font-size: 0.85rem; color:#2b8a3e;">CONFIRMÉ</span>
+                            </div>
+                        </div>
+                        <div style="display:flex; justify-content:space-between;">
+                            <div>
+                                <span class="detail-label">Date & Heure</span>
+                                <span class="detail-val" style="font-size: 0.85rem;" id="ticket-date">24 mai 2026 à
+                                    19:00</span>
+                            </div>
+                            <div>
+                                <span class="detail-label">Lieu</span>
+                                <span class="detail-val" style="font-size: 0.85rem;" id="ticket-venue">Genève</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div style="margin-top: 20px; display:flex; gap:10px; width: 100%;">
+                <button class="btn-luxury-outline" style="flex:1;" onclick="window.print();">Télécharger PDF</button>
+                <button class="btn-luxury" style="flex:1;" onclick="closeResModal('ticket')">Fermer</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL: CHECKOUT SIMULATOR -->
+    <div class="res-modal" id="modal-checkout">
+        <div class="res-modal-content" style="max-width: 480px;">
+            <button class="res-modal-close" onclick="closeResModal('checkout')">✕</button>
+            <span class="section-subtitle-gold">Finaliser votre inscription</span>
+            <h3 id="checkout-event-title"
+                style="font-family: 'Cormorant Garamond', serif; font-size: 1.6rem; color: var(--primary-navy); margin: 10px 0 20px 0;">
+                Sunset & Conversations</h3>
+
+            <div
+                style="background-color: rgba(20,43,99,0.02); border: 1px solid rgba(20,43,99,0.06); border-radius: 6px; padding: 15px; margin-bottom: 20px;">
+                <div style="display:flex; justify-content:space-between; margin-bottom: 8px;">
+                    <span style="font-size:0.9rem; color:var(--text-muted);">1x Place membre privilège</span>
+                    <span style="font-size:0.9rem; color:var(--primary-navy); font-weight:600;">CHF 120.00</span>
+                </div>
+                <div
+                    style="display:flex; justify-content:space-between; border-top:1px solid rgba(20,43,99,0.06); padding-top:8px; font-weight:700;">
+                    <span style="font-size:0.95rem; color:var(--primary-navy);">Total</span>
+                    <span style="font-size:0.95rem; color:var(--luxury-gold);">CHF 120.00</span>
+                </div>
+            </div>
+
+            <div class="db-form-group" style="margin-bottom: 15px;">
+                <label
+                    style="font-size: 0.65rem; font-weight: 700; color: var(--primary-navy); text-transform: uppercase; margin-bottom: 8px; display: inline-block;">Méthode
+                    de paiement</label>
+                <select id="checkout-payment-method"
+                    style="background-color: #ffffff; border: 1px solid rgba(20, 43, 99, 0.15); padding: 12px; font-family: 'Instrument Sans', sans-serif; font-size: 0.88rem; border-radius: 6px; color: var(--primary-navy); width: 100%;">
+                    <option value="twint">TWINT App</option>
+                    <option value="card">Carte de crédit (Stripe)</option>
+                </select>
+            </div>
+
+            <!-- Twint Display -->
+            <div id="checkout-twint-area" style="display:block; text-align:center; padding: 15px 0;">
+                <div style="margin-bottom: 10px; font-size: 0.85rem; color: var(--text-muted);">Ouvrez votre application
+                    TWINT, scannez le code ou finalisez via mobile.</div>
+                <div
+                    style="display:inline-block; padding: 10px; background:#fff; border:1px solid rgba(20,43,99,0.1); border-radius:6px; margin-bottom: 10px;">
+                    <!-- Simulated Twint QR code -->
+                    <svg viewBox="0 0 100 100" width="120" height="120" style="color: #e30613;">
+                        <rect width="100" height="100" fill="white" />
+                        <rect x="5" y="5" width="20" height="20" fill="currentColor" />
+                        <rect x="75" y="5" width="20" height="20" fill="currentColor" />
+                        <rect x="5" y="75" width="20" height="20" fill="currentColor" />
+                        <rect x="35" y="35" width="30" height="30" fill="currentColor" />
+                        <circle cx="50" cy="50" r="10" fill="white" />
+                        <rect x="47" y="47" width="6" height="6" fill="#e30613" />
+                    </svg>
+                </div>
+            </div>
+
+            <!-- Card Display -->
+            <div id="checkout-card-area" style="display:none; padding: 10px 0;">
+                <div class="db-form-group" style="margin-bottom: 12px;">
+                    <label style="font-size:0.65rem; color:var(--text-muted); text-transform:uppercase;">Numéro de
+                        carte</label>
+                    <input type="text" placeholder="4242 4242 4242 4242"
+                        style="background:#fff; border:1px solid rgba(20, 43, 99, 0.15); padding:10px; border-radius:4px; width:100%; box-sizing:border-box;">
+                </div>
+                <div style="display:grid; grid-template-columns: repeat(2, 1fr); gap: 10px;">
+                    <div class="db-form-group">
+                        <label style="font-size:0.65rem; color:var(--text-muted); text-transform:uppercase;">Date
+                            d'exp.</label>
+                        <input type="text" placeholder="MM/YY"
+                            style="background:#fff; border:1px solid rgba(20, 43, 99, 0.15); padding:10px; border-radius:4px; width:100%; box-sizing:border-box;">
+                    </div>
+                    <div class="db-form-group">
+                        <label style="font-size:0.65rem; color:var(--text-muted); text-transform:uppercase;">CVC</label>
+                        <input type="text" placeholder="123"
+                            style="background:#fff; border:1px solid rgba(20, 43, 99, 0.15); padding:10px; border-radius:4px; width:100%; box-sizing:border-box;">
+                    </div>
+                </div>
+            </div>
+
+            <div id="checkout-loader" style="display:none; text-align:center; padding: 20px 0;">
+                <div
+                    style="display:inline-block; width: 30px; height: 30px; border: 3px solid rgba(20,43,99,0.1); border-radius: 50%; border-top-color: var(--luxury-gold); animation: spin 1s linear infinite;">
+                </div>
+                <p style="margin: 10px 0 0 0; font-size: 0.85rem; color: var(--text-muted);">Validation du paiement en
+                    cours...</p>
+            </div>
+
+            <style>
+                @keyframes spin {
+                    to {
+                        transform: rotate(360deg);
+                    }
+                }
+            </style>
+
+            <div id="checkout-actions"
+                style="margin-top: 20px; display:flex; justify-content: space-between; gap: 10px;">
+                <button class="btn-luxury-outline" style="flex:1;" onclick="closeResModal('checkout')">Annuler</button>
+                <button class="btn-luxury-gold" style="flex:1;" id="btn-submit-payment"
+                    onclick="processCheckoutPayment()">PAYER CHF 120.00</button>
+            </div>
+        </div>
+    </div>
+
+
+    <script>
+        // MOCK RESERVATIONS STATE
+        let reservations = [];
+
+        // Check if there is data in localStorage, else populate defaults
+        function initReservations() {
+            let loaded = false;
+            try {
+                const stored = localStorage.getItem('s7_member_reservations');
+                if (stored) {
+                    const parsed = JSON.parse(stored);
+                    if (Array.isArray(parsed) && parsed.length === 11) {
+                        reservations = parsed;
+                        loaded = true;
+                    }
+                }
+            } catch (e) {
+                console.error("Failed to parse reservations:", e);
+            }
+
+            if (!loaded) {
+                reservations = [
+                    {
+                        id: 1,
+                        name: "Soirée Dégustation & Échanges",
+                        city: "Genève",
+                        venue: "La Réserve Genève",
+                        address: "Route de Lausanne 301, 1293 Bellevue",
+                        datetime: "24 mai 2026 à 19:00",
+                        ageRange: "35–45 ans",
+                        status: "RÉSERVATION CONFIRMÉE",
+                        paymentStatus: "Paiement reçu",
+                        ref: "875-4827",
+                        image: "assets/pexels-jibarofoto-18482996.jpg",
+                        countdownDays: 12,
+                        instructions: "Veuillez vous présenter 10 minutes avant l'heure d'ouverture. Tenue correcte exigée (chic décontracté). Présentez votre billet numérique directement à l'accueil pour validation.",
+                        services: "Cocktail de bienvenue, dégustation de 5 vins fins commentée par un sommelier, assortiment de bouchées gastronomiques et atelier de mise en relation 7Sens.",
+                        cancellation: "Annulation sans frais possible jusqu'à 48 heures avant l'événement. Au-delà, aucun remboursement ne sera effectué."
+                    },
+                    {
+                        id: 2,
+                        name: "Art & Inspiration",
+                        city: "Zurich",
+                        venue: "Kunsthaus Zürich",
+                        address: "Heimplatz 1, 8001 Zürich",
+                        datetime: "14 juin 2026 à 18:30",
+                        ageRange: "30–50 ans",
+                        status: "RÉSERVATION CONFIRMÉE",
+                        paymentStatus: "Paiement reçu",
+                        ref: "419-7562",
+                        image: "assets/pexels-marina-1852469-3958020.jpg",
+                        instructions: "Rendez-vous dans le hall d'entrée principal. Le guide 7Sens vous accueillera avec un badge du club. Tenue élégante suggérée.",
+                        services: "Visite guidée privée de la galerie d'art moderne, accès coupe-file, apéritif dînatoire au bar VIP et carnet artistique souvenir.",
+                        cancellation: "Annulation sans frais possible jusqu'à 72 heures avant l'événement."
+                    },
+                    {
+                        id: 3,
+                        name: "Sunset & Conversations",
+                        city: "Montreux",
+                        venue: "Terrasse du Grand Hôtel Suisse Majestic",
+                        address: "Avenue des Alpes 45, 1820 Montreux",
+                        datetime: "Date à confirmer",
+                        ageRange: "35–45 ans",
+                        status: "PAIEMENT REQUIS",
+                        paymentStatus: "Paiement en attente",
+                        ref: "208-8541",
+                        image: "assets/pexels-visitalmaty-1143302.jpg",
+                        expirationTime: Date.now() + 11.7 * 60 * 60 * 1000, // 11h 42m dynamic from now
+                        instructions: "Le lieu précis sur la terrasse vous sera communiqué après validation du paiement. Tenue estivale chic exigée.",
+                        services: "Entrée réservée, 2 coupes de champagne, planche de spécialités locales et session de conversations guidées face au coucher de soleil.",
+                        cancellation: "Remboursement possible sous forme de crédit club en cas d'annulation 24h avant."
+                    },
+                    {
+                        id: 4,
+                        name: "Sunset & Conversations",
+                        city: "Montreux",
+                        venue: "Terrasse du Grand Hôtel Suisse Majestic",
+                        address: "Avenue des Alpes 45, 1820 Montreux",
+                        datetime: "7 juin 2026 à 19:00",
+                        ageRange: "35–45 ans",
+                        status: "UNE PLACE VOUS EST PROPOSÉE",
+                        paymentStatus: "Paiement en attente",
+                        ref: "208-8542",
+                        image: "assets/pexels-visitalmaty-1143302.jpg",
+                        expirationTime: Date.now() + 11.7 * 60 * 60 * 1000, // 11h 42m dynamic from now
+                        instructions: "Une place s'est libérée sur notre liste ! Confirmez et réservez immédiatement pour participer.",
+                        services: "Entrée réservée, 2 coupes de champagne, planche de spécialités locales et session de conversations guidées face au coucher de soleil.",
+                        cancellation: "Remboursement possible sous forme de crédit club en cas d'annulation 24h avant."
+                    },
+                    {
+                        id: 5,
+                        name: "Atelier Cuisine & Rencontres",
+                        city: "Lausanne",
+                        venue: "Atelier Culinaire Lausanne",
+                        address: "Rue du Tunnel 15, 1005 Lausanne",
+                        datetime: "18 juin 2026 à 18:30",
+                        ageRange: "25–40 ans",
+                        status: "LISTE D'ATTENTE ACTIVE",
+                        paymentStatus: "Paiement en attente",
+                        ref: "994-3251",
+                        image: "assets/pexels-caleboquendo-34516144.jpg",
+                        waitlistPosition: 3,
+                        waitlistDate: "12 mai 2026",
+                        instructions: "Vous êtes actuellement en liste d'attente. Nous vous contacterons par e-mail et notification dès qu'une place se libère.",
+                        services: "Atelier de cuisine gastronomique animé par un chef, dégustation des plats préparés, accord mets-vins et fiches recettes offertes.",
+                        cancellation: "Vous pouvez quitter la liste d'attente à tout moment sans frais."
+                    },
+                    {
+                        id: 6,
+                        name: "Balade & Conversations",
+                        city: "Genève",
+                        venue: "Parc des Eaux-Vives",
+                        address: "Quai Gustave-Ador, 1207 Genève",
+                        datetime: "Date à confirmer",
+                        ageRange: "Tous âges",
+                        status: "PRÉINSCRIPTION ENREGISTRÉE",
+                        paymentStatus: "Paiement en attente",
+                        ref: "772-9104",
+                        image: "assets/pexels-visitalmaty-1143302.jpg",
+                        instructions: "Préinscription validée. Les détails d'organisation et de date vous seront communiqués dès ouverture officielle des réservations.",
+                        services: "Parcours guidé, bouteille d'eau, collation champêtre en fin de balade et échanges thématiques organisés.",
+                        cancellation: "Désinscription libre à tout moment."
+                    },
+                    {
+                        id: 7,
+                        name: "Dégustation Vins & Fromages",
+                        city: "Fribourg",
+                        venue: "Les Caves du Château",
+                        address: "Grand-Rue 14, 1700 Fribourg",
+                        datetime: "10 avril 2026 à 19:30",
+                        ageRange: "30–45 ans",
+                        status: "ÉVÉNEMENT TERMINÉ",
+                        paymentStatus: "Paiement reçu",
+                        ref: "109-8837",
+                        image: "assets/pexels-jibarofoto-14373426.jpg",
+                        instructions: "L'événement est terminé. Retrouvez vos compatibilités révélées dans l'onglet 'Mes Compatibilités'.",
+                        services: "Dégustation guidée, plateau de fromages affinés suisses.",
+                        cancellation: "Non modifiable car passé."
+                    },
+                    {
+                        id: 8,
+                        name: "Dîner gastronomique & Échanges",
+                        city: "Genève",
+                        venue: "Le Chat-Botté",
+                        address: "Quai du Mont-Blanc 13, 1201 Genève",
+                        datetime: "5 mars 2026 à 19:30",
+                        ageRange: "35–50 ans",
+                        status: "ÉVÉNEMENT TERMINÉ",
+                        paymentStatus: "Paiement reçu",
+                        ref: "302-1149",
+                        image: "assets/pexels-caleboquendo-34516144.jpg",
+                        instructions: "L'événement est terminé.",
+                        services: "Dîner gastronomique 3 plats.",
+                        cancellation: "Non modifiable."
+                    },
+                    {
+                        id: 9,
+                        name: "Cocktail Networking",
+                        city: "Lausanne",
+                        venue: "Sky Lounge",
+                        address: "Avenue de la Gare 40, 1003 Lausanne",
+                        datetime: "12 février 2026 à 18:30",
+                        ageRange: "30–45 ans",
+                        status: "ÉVÉNEMENT TERMINÉ",
+                        paymentStatus: "Paiement reçu",
+                        ref: "884-2195",
+                        image: "assets/pexels-marina-1852469-3958020.jpg",
+                        instructions: "L'événement est terminé.",
+                        services: "Cocktails créations et apéritif dînatoire.",
+                        cancellation: "Non modifiable."
+                    },
+                    {
+                        id: 10,
+                        name: "Soirée Conférence & Dégustation",
+                        city: "Montreux",
+                        venue: "Casino Barrière Montreux",
+                        address: "Rue du Théâtre 9, 1820 Montreux",
+                        datetime: "15 janvier 2026 à 19:00",
+                        ageRange: "Tous âges",
+                        status: "ÉVÉNEMENT TERMINÉ",
+                        paymentStatus: "Paiement reçu",
+                        ref: "115-9924",
+                        image: "assets/pexels-visitalmaty-1143302.jpg",
+                        instructions: "L'événement est terminé.",
+                        services: "Conférence privée et dégustation de champagne.",
+                        cancellation: "Non modifiable."
+                    },
+                    {
+                        id: 11,
+                        name: "Atelier Créatif & Rencontres",
+                        city: "Neuchâtel",
+                        venue: "Atelier d'Art Neuchâtel",
+                        address: "Rue du Coq 4, 2000 Neuchâtel",
+                        datetime: "5 mai 2026 à 14:00",
+                        ageRange: "25–45 ans",
+                        status: "RÉSERVATION ANNULÉE",
+                        paymentStatus: "Remboursé",
+                        ref: "643-9821",
+                        image: "assets/pexels-marwen-larafa-2159807713-36606989.jpg",
+                        instructions: "Cette réservation a été annulée. Le remboursement a été effectué sur votre compte bancaire d'origine.",
+                        services: "Atelier d'art plastique guidé, matériel inclus.",
+                        cancellation: "Réservation annulée."
+                    }
+                ];
+                saveReservations();
+            }
+        }
+
+        function saveReservations() {
+            localStorage.setItem('s7_member_reservations', JSON.stringify(reservations));
+        }
+
+        // LOAD CURRENT USER INFORMATION
+        function initUserHeader() {
+            try {
+                const storedUser = localStorage.getItem("currentUser");
+                if (storedUser) {
+                    const user = JSON.parse(storedUser);
+                    const nameHeader = document.getElementById("db-profile-name");
+                    const topNameHeader = document.getElementById("top-header-name");
+                    const avatarWrapper = document.getElementById("db-avatar");
+                    const initialsWrapper = document.getElementById("db-avatar-initials");
+                    const topAvatar = document.getElementById("top-header-avatar");
+
+                    if (user.firstName && user.lastName) {
+                        const fullName = `${user.firstName} ${user.lastName}`;
+                        if (nameHeader) nameHeader.textContent = fullName;
+                        if (topNameHeader) topNameHeader.textContent = `${user.firstName} ${user.lastName.charAt(0).toUpperCase()}.`;
+
+                        const initials = `${user.firstName.charAt(0).toUpperCase()}${user.lastName.charAt(0).toUpperCase()}`;
+                        if (initialsWrapper) initialsWrapper.textContent = initials;
+                    }
+
+                    if (user.avatarDataUrl) {
+                        if (avatarWrapper) {
+                            avatarWrapper.style.backgroundImage = `url(${user.avatarDataUrl})`;
+                            if (initialsWrapper) initialsWrapper.style.display = "none";
+                        }
+                        if (topAvatar) topAvatar.src = user.avatarDataUrl;
+                    }
+                }
+            } catch (e) {
+                console.error("Error loading user info in header", e);
+            }
+        }
+
+        // SWITCH TABS INTERACTIVE VIEW
+        let activeTab = 'upcoming';
+
+        function switchResTab(tabName) {
+            activeTab = tabName;
+
+            // Remove active classes
+            document.querySelectorAll('.res-tab-btn').forEach(btn => btn.classList.remove('active'));
+            document.querySelectorAll('.res-tab-pane').forEach(pane => pane.style.display = 'none');
+
+            // Add active styles
+            const tabBtn = document.getElementById(`tab-btn-${tabName}`);
+            if (tabBtn) tabBtn.classList.add('active');
+
+            const tabPane = document.getElementById(`tab-content-${tabName}`);
+            if (tabPane) tabPane.style.display = 'block';
+
+            renderListings();
+        }
+
+        // RENDER RESERVATIONS DYNAMICALLY
+        function renderListings() {
+            const countUpcomingEl = document.getElementById("count-upcoming");
+            const countPendingEl = document.getElementById("count-pending");
+            const countPastEl = document.getElementById("count-past");
+
+            // Filter sets
+            const upcoming = reservations.filter(r => r.status === "RÉSERVATION CONFIRMÉE" || r.status === "PAIEMENT REQUIS");
+            const pending = reservations.filter(r => r.status === "UNE PLACE VOUS EST PROPOSÉE" || r.status === "LISTE D'ATTENTE ACTIVE" || r.status === "PRÉINSCRIPTION ENREGISTRÉE" || r.status === "INVITATION REÇUE");
+            const past = reservations.filter(r => r.status === "ÉVÉNEMENT TERMINÉ");
+            const cancelled = reservations.filter(r => r.status === "RÉSERVATION ANNULÉE");
+
+            // Update tab counts matching mockup (only count confirmed in À venir, others match dynamic counts)
+            if (countUpcomingEl) countUpcomingEl.textContent = reservations.filter(r => r.status === "RÉSERVATION CONFIRMÉE" && r.datetime !== "Date à confirmer").length;
+            if (countPendingEl) countPendingEl.textContent = pending.length;
+            if (countPastEl) countPastEl.textContent = past.length;
+
+            // Hide/Show Empty State
+            const currentList = activeTab === 'upcoming' ? upcoming :
+                activeTab === 'pending' ? pending :
+                    activeTab === 'past' ? past : cancelled;
+
+            const emptyStateContainer = document.getElementById("empty-state-container");
+            const upcomingFeaturedArea = document.getElementById("upcoming-featured-area");
+            const upcomingOthersArea = document.getElementById("upcoming-others-area");
+            const pendingFeaturedArea = document.getElementById("pending-featured-area");
+            const pendingOthersArea = document.getElementById("pending-others-area");
+
+            // Reset areas
+            if (upcomingFeaturedArea) upcomingFeaturedArea.innerHTML = "";
+            if (upcomingOthersArea) upcomingOthersArea.style.display = "none";
+            const upcomingOthersList = document.getElementById("upcoming-others-list");
+            if (upcomingOthersList) upcomingOthersList.innerHTML = "";
+
+            if (pendingFeaturedArea) pendingFeaturedArea.innerHTML = "";
+            if (pendingOthersArea) pendingOthersArea.style.display = "none";
+            const pendingOthersList = document.getElementById("pending-others-list");
+            if (pendingOthersList) pendingOthersList.innerHTML = "";
+
+            const pastList = document.getElementById("past-list");
+            if (pastList) pastList.innerHTML = "";
+
+            const cancelledList = document.getElementById("cancelled-list");
+            if (cancelledList) cancelledList.innerHTML = "";
+
+            if (currentList.length === 0) {
+                if (emptyStateContainer) {
+                    emptyStateContainer.style.display = "block";
+                    // Custom messages
+                    const titleEl = document.getElementById("empty-state-title");
+                    const descEl = document.getElementById("empty-state-desc");
+                    if (activeTab === 'past') {
+                        titleEl.textContent = "Vous n’avez encore participé à aucune expérience.";
+                        descEl.textContent = "Trouvez votre première aventure sur notre catalogue d'événements exclusifs.";
+                    } else if (activeTab === 'pending') {
+                        titleEl.textContent = "Aucune demande en attente.";
+                        descEl.textContent = "Inscrivez-vous à des listes d'attente ou préinscrivez-vous à de futures expériences.";
+                    } else if (activeTab === 'cancelled') {
+                        titleEl.textContent = "Aucune réservation annulée.";
+                        descEl.textContent = "Toutes vos demandes sont actives ou terminées.";
+                    } else {
+                        titleEl.textContent = "Votre prochaine expérience commence ici.";
+                        descEl.textContent = "Découvrez les événements 7Sens organisés près de chez vous.";
+                    }
+                }
+                return;
+            } else {
+                if (emptyStateContainer) emptyStateContainer.style.display = "none";
+            }
+
+            // RENDERING UPCOMING
+            if (activeTab === 'upcoming') {
+                // Find featured (nearest confirmed)
+                const confirmedEvents = upcoming.filter(r => r.status === "RÉSERVATION CONFIRMÉE" && r.datetime !== "Date à confirmer");
+                // Sort by nearest (mock sort just takes first)
+                let featured = confirmedEvents[0] || upcoming[0];
+
+                if (featured) {
+                    const isConfirmed = featured.status === "RÉSERVATION CONFIRMÉE";
+                    const isPaymentRequired = featured.status === "PAIEMENT REQUIS";
+                    const hasDate = featured.datetime !== "Date à confirmer";
+
+                    let actionHtml = '';
+                    if (isPaymentRequired) {
+                        actionHtml = `
+                            <button class="btn-finaliser-paiement" onclick="openCheckout(${featured.id})">
+                                <span>FINALISER MON PAIEMENT</span>
+                                <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5">
+                                    <path d="M9 5l7 7-7 7"/>
+                                </svg>
+                            </button>
+                        `;
+                    } else {
+                        actionHtml = `
+                            <button class="btn-voir-details" onclick="openDetailsModal(${featured.id})">
+                                <span>VOIR LES DÉTAILS</span>
+                                <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5">
+                                    <path d="M9 5l7 7-7 7"/>
+                                </svg>
+                            </button>
+                        `;
+                    }
+
+                    let statusTag = isConfirmed ?
+                        `<span class="card-tag tag-status-confirmed">
+                            <svg viewBox="0 0 24 24" width="12" height="12" fill="currentColor" style="margin-right: 4px; vertical-align: middle;">
+                                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+                            </svg>
+                            RÉSERVATION CONFIRMÉE
+                        </span>` :
+                        `<span class="card-tag tag-status-pending">
+                            <svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" style="margin-right: 4px; vertical-align: middle;">
+                                <path d="M5 2h14M5 22h14M19 2v6c0 3-3 5-3 5s3 2 3 5v6M5 2v6c0 3 3 5 3 5s-3 2-3 5v6"/>
+                            </svg>
+                            PAIEMENT REQUIS
+                        </span>`;
+
+                    let paymentStatusDot = isConfirmed ?
+                        `<div style="display: flex; align-items: center; justify-content: flex-end; gap: 6px; font-size: 0.85rem; color: #137333; margin-top: 4px;">
+                            <span style="color:#5f6368;">Paiement reçu</span>
+                            <svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor">
+                                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+                            </svg>
+                        </div>` :
+                        `<div style="display: flex; align-items: center; justify-content: flex-end; gap: 6px; font-size: 0.85rem; color: #d97706; margin-top: 4px;">
+                            <span style="color:#5f6368;">Paiement en attente</span>
+                            <svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor">
+                                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9zm0 0" style="fill:#ccc;"/>
+                            </svg>
+                        </div>`;
+
+                    let countdownTagHtml = '';
+                    if (isPaymentRequired && featured.expirationTime) {
+                        const remStr = getCountdownString(featured.expirationTime);
+                        countdownTagHtml = `<span class="card-tag tag-status-pending" style="color:#d97706;" id="timer-feat-${featured.id}">Votre place est réservée pendant encore ${remStr}</span>`;
+                    } else if (featured.countdownDays) {
+                        countdownTagHtml = `
+                            <span class="tag-countdown-green">
+                                <svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2">
+                                    <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/>
+                                    <line x1="16" y1="2" x2="16" y2="6"/>
+                                    <line x1="8" y1="2" x2="8" y2="6"/>
+                                    <line x1="3" y1="10" x2="21" y2="10"/>
+                                </svg>
+                                Dans ${featured.countdownDays} jours
+                            </span>
+                        `;
+                    }
+
+                    upcomingFeaturedArea.innerHTML = `
+                        <h5 class="section-title-icon-row" style="margin-top: 0; margin-bottom: 20px;">
+                            <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" style="color: #6c757d; vertical-align: middle; margin-right: 4px; display: inline-block;">
+                                <path d="M12 2c0 5.523 4.477 10 10 10-5.523 0-10 4.477-10 10 0-5.523-4.477-10-10-10 5.523 0 10-4.477 10-10z" fill="#d4a437" stroke="none"/>
+                            </svg>
+                            <span>VOTRE PROCHAINE EXPÉRIENCE</span>
+                        </h5>
+                        <div class="featured-card ${isPaymentRequired ? 'payment-required' : ''}">
+                            <div class="featured-image-wrapper">
+                                <img src="${featured.image}" alt="${featured.name}">
+                            </div>
+                            <div class="featured-info">
+                                <div>
+                                    <h3 style="font-family: 'Cormorant Garamond', serif; font-size: 2.2rem; color: var(--primary-navy); margin: 0 0 8px 0; font-weight: 400;">${featured.name}</h3>
+                                    <p style="font-size: 0.95rem; color: var(--text-muted); margin: 0 0 16px 0; display: flex; align-items: center; gap: 6px;">
+                                        <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" style="color: #6c757d; display: inline-block;">
+                                            <path d="M12 2a8 8 0 0 0-8 8c0 5.25 8 12 8 12s8-6.75 8-12a8 8 0 0 0-8-8z"/>
+                                            <circle cx="12" cy="10" r="3"/>
+                                        </svg>
+                                        <span><strong>${featured.city}</strong> · ${featured.datetime}</span>
+                                    </p>
+                                    <div class="featured-tags-row" style="margin-top: 12px; margin-bottom: 20px;">
+                                        <span class="card-tag tag-age">${featured.ageRange}</span>
+                                        ${countdownTagHtml}
+                                    </div>
+                                </div>
+
+                                <div style="margin-top: auto;">
+                                    ${actionHtml}
+                                </div>
+                            </div>
+                            <div class="featured-status-actions">
+                                <div style="display: flex; flex-direction: column; align-items: flex-end; gap: 4px; width: 100%;">
+                                    ${statusTag}
+                                    ${paymentStatusDot}
+                                    <span style="font-size: 0.8rem; color: var(--text-muted); font-weight: 500; margin-top: 4px;">Réf. ${featured.ref}</span>
+                                </div>
+                                <div style="display: flex; flex-direction: column; gap: 8px; width: 100%; margin-top: auto;">
+                                    ${!isPaymentRequired && hasDate ? `
+                                    <div class="calendar-dropdown-wrapper" style="width: 100%;">
+                                        <button class="btn-outline-status" onclick="toggleCalendarDropdown(${featured.id}, event)">
+                                            <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2">
+                                                <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/>
+                                                <line x1="16" y1="2" x2="16" y2="6"/>
+                                                <line x1="8" y1="2" x2="8" y2="6"/>
+                                                <line x1="3" y1="10" x2="21" y2="10"/>
+                                            </svg>
+                                            AJOUTER AU CALENDRIER
+                                        </button>
+                                        <div class="calendar-menu" id="cal-drop-${featured.id}">
+                                            <a href="#" onclick="alert('Exportation Google Calendar pour ${featured.name}'); return false;">Google Calendar</a>
+                                            <a href="#" onclick="alert('Exportation Apple Calendar pour ${featured.name}'); return false;">Apple Calendar</a>
+                                            <a href="#" onclick="alert('Téléchargement du fichier standard .ics'); return false;">Télécharger fichier .ics</a>
+                                        </div>
+                                    </div>
+                                    <button class="btn-outline-status" onclick="openTicketModal(${featured.id})">
+                                        <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" style="transform: rotate(-45deg);">
+                                            <path d="M2 9a3 3 0 0 1 0 6v2a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-2a3 3 0 0 1 0-6V7a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2v2z"/>
+                                        </svg>
+                                        AFFICHER MON BILLET
+                                    </button>
+                                    ` : ''}
+                                </div>
+                            </div>
+                        </div>
+                    `;
+                }
+
+                // Render other upcoming events in a compact table/list
+                const otherUpcoming = upcoming.filter(r => r.id !== featured?.id);
+                if (otherUpcoming.length > 0) {
+                    upcomingOthersArea.style.display = "block";
+                    otherUpcoming.forEach(item => {
+                        const isConfirmed = item.status === "RÉSERVATION CONFIRMÉE";
+                        const isPaymentRequired = item.status === "PAIEMENT REQUIS";
+                        const hasDate = item.datetime !== "Date à confirmer";
+
+                        let statusTag = isConfirmed ?
+                            `<span class="card-tag tag-status-confirmed">
+                                <svg viewBox="0 0 24 24" width="12" height="12" fill="currentColor" style="margin-right: 4px; vertical-align: middle;">
+                                    <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+                                </svg>
+                                RÉSERVATION CONFIRMÉE
+                            </span>` :
+                            `<span class="card-tag tag-status-pending">
+                                <svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" style="margin-right: 4px; vertical-align: middle;">
+                                    <path d="M5 2h14M5 22h14M19 2v6c0 3-3 5-3 5s3 2 3 5v6M5 2v6c0 3 3 5 3 5s-3 2-3 5v6"/>
+                                </svg>
+                                PAIEMENT REQUIS
+                            </span>`;
+
+                        let payStatus = isConfirmed ?
+                            `<div style="display: flex; align-items: center; gap: 6px; font-size: 0.85rem; color: #5f6368;">
+                                <span>Paiement reçu</span>
+                                <svg viewBox="0 0 24 24" width="14" height="14" fill="#137333">
+                                    <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+                                </svg>
+                            </div>` :
+                            `<div></div>`;
+
+                        let actionsHtml = '';
+                        if (isPaymentRequired) {
+                            actionsHtml = `
+                                <button class="btn-finaliser-paiement" onclick="openCheckout(${item.id})">
+                                    <span>FINALISER MON PAIEMENT</span>
+                                    <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5">
+                                        <path d="M9 5l7 7-7 7"/>
+                                    </svg>
+                                </button>
+                            `;
+                        } else {
+                            actionsHtml = `
+                                <button class="btn-outline-status" style="justify-content: space-between; padding-right: 12px; width: 100%;" onclick="openDetailsModal(${item.id})">
+                                    <span>VOIR LES DÉTAILS</span>
+                                    <svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.5">
+                                        <path d="M9 5l7 7-7 7"/>
+                                    </svg>
+                                </button>
+                                ${hasDate ? `
+                                <button class="btn-outline-status" style="width: 100%;" onclick="openTicketModal(${item.id})">
+                                    <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" style="transform: rotate(-45deg);">
+                                        <path d="M2 9a3 3 0 0 1 0 6v2a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-2a3 3 0 0 1 0-6V7a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2v2z"/>
+                                    </svg>
+                                    AFFICHER MON BILLET
+                                </button>
+                                ` : ''}
+                            `;
+                        }
+
+                        let countdownText = '';
+                        if (isPaymentRequired && item.expirationTime) {
+                            const remStr = getCountdownString(item.expirationTime);
+                            countdownText = `<div style="font-size:0.85rem; color:#5f6368; margin-top:4px;">Votre place est réservée pendant <span style="color:#d97706; font-weight:700;">encore ${remStr}</span></div>`;
+                        }
+
+                        const el = document.createElement("div");
+                        el.className = `compact-card ${isPaymentRequired ? 'payment-required' : ''}`;
+                        el.innerHTML = `
+                            <div class="compact-thumbnail">
+                                <img src="${item.image}" alt="${item.name}">
+                            </div>
+                            <div class="compact-info">
+                                <h4 style="font-family: 'Cormorant Garamond', serif; font-size: 1.5rem; font-weight: 500; color: var(--primary-navy); margin: 0 0 4px 0;">${item.name}</h4>
+                                <p style="font-size: 0.9rem; color: #5f6368; margin: 0; display: flex; align-items: center; gap: 6px;">
+                                    <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" style="color: #888;">
+                                        <path d="M12 2a8 8 0 0 0-8 8c0 5.25 8 12 8 12s8-6.75 8-12a8 8 0 0 0-8-8z"/>
+                                        <circle cx="12" cy="10" r="3"/>
+                                    </svg>
+                                    <span><strong>${item.city}</strong> · ${item.datetime}</span>
+                                </p>
+                            </div>
+                            <div class="compact-status">
+                                ${statusTag}
+                                ${payStatus}
+                                ${countdownText}
+                            </div>
+                            <div class="compact-actions">
+                                ${actionsHtml}
+                            </div>
+                        `;
+                        upcomingOthersList.appendChild(el);
+                    });
+                }
+            }
+
+            // RENDERING PENDING
+            if (activeTab === 'pending') {
+                // Find featured (proposed place)
+                const proposed = pending.filter(r => r.status === "UNE PLACE VOUS EST PROPOSÉE")[0];
+                let featured = proposed || pending[0];
+
+                if (featured) {
+                    const isProposed = featured.status === "UNE PLACE VOUS EST PROPOSÉE";
+                    const isWaitlist = featured.status === "LISTE D'ATTENTE ACTIVE";
+                    const isPreInsc = featured.status === "PRÉINSCRIPTION ENREGISTRÉE";
+
+                    let actionHtml = '';
+                    let statusTag = '';
+                    let metaTextHtml = '';
+
+                    if (isProposed) {
+                        statusTag = `
+                            <span class="card-tag tag-status-pending">
+                                <svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" style="margin-right: 4px; vertical-align: middle;">
+                                    <path d="M5 2h14M5 22h14M19 2v6c0 3-3 5-3 5s3 2 3 5v6M5 2v6c0 3 3 5 3 5s-3 2-3 5v6"/>
+                                </svg>
+                                UNE PLACE VOUS EST PROPOSÉE
+                            </span>
+                        `;
+                        const remStr = getCountdownString(featured.expirationTime);
+                        metaTextHtml = `
+                            <div style="font-size:0.85rem; color:#5f6368; margin-top:6px; line-height: 1.4; text-align: right;">
+                                Confirmez votre réservation avant<br>l'expiration du délai.
+                            </div>
+                            <div style="color:#d97706; font-weight:700; font-size: 0.95rem; margin-top: 6px; text-align: right;" id="timer-feat-${featured.id}">
+                                Encore ${remStr}
+                            </div>
+                        `;
+                        actionHtml = `
+                            <button class="btn-finaliser-paiement" onclick="acceptProposedPlace(${featured.id})">
+                                <span>RÉSERVER MA PLACE</span>
+                                <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5">
+                                    <path d="M9 5l7 7-7 7"/>
+                                </svg>
+                            </button>
+                            <button class="btn-outline-status" onclick="openDetailsModal(${featured.id})">VOIR L'ÉVÉNEMENT</button>
+                        `;
+                    } else if (isWaitlist) {
+                        statusTag = `<span class="card-tag tag-gray" style="color:var(--primary-navy); border-color:rgba(20,43,99,0.15); background-color:rgba(20,43,99,0.05);">LISTE D'ATTENTE ACTIVE</span>`;
+                        metaTextHtml = `
+                            <div style="font-size:0.85rem; color:var(--text-muted); text-align: right; margin-top: 6px; line-height: 1.4;">
+                                Position actuelle : <strong>${featured.waitlistPosition}</strong><br>
+                                Inscrit depuis le ${featured.waitlistDate}
+                            </div>
+                        `;
+                        actionHtml = `
+                            <button class="btn-outline-status" onclick="openDetailsModal(${featured.id})">VOIR L'ÉVÉNEMENT</button>
+                            <button class="pending-action-link" style="margin-top: 8px; text-align: center; border: none; background: none; color: #0b2240; font-weight: 700; font-size: 0.75rem; letter-spacing: 0.05em; text-transform: uppercase; cursor: pointer; display: inline-block;" onclick="leaveWaitlist(${featured.id})">QUITTER LA LISTE</button>
+                        `;
+                    } else if (isPreInsc) {
+                        statusTag = `<span class="card-tag tag-status-confirmed" style="background-color:rgba(43,138,62,0.04); color:#2b8a3e; border-color:rgba(43,138,62,0.12);">PRÉINSCRIPTION ENREGISTRÉE</span>`;
+                        metaTextHtml = `
+                            <div style="font-size:0.85rem; color:var(--text-muted); text-align: right; margin-top: 6px;">
+                                Vous serez informé dès l'ouverture des dates.
+                            </div>
+                        `;
+                        actionHtml = `
+                            <button class="btn-outline-status" onclick="openDetailsModal(${featured.id})">VOIR L'ÉVÉNEMENT</button>
+                            <button class="pending-action-link" style="margin-top: 8px; text-align: center; border: none; background: none; color: #0b2240; font-weight: 700; font-size: 0.75rem; letter-spacing: 0.05em; text-transform: uppercase; cursor: pointer; display: inline-block;" onclick="leaveWaitlist(${featured.id})">ANNULER MA PRÉINSCRIPTION</button>
+                        `;
+                    }
+
+                    pendingFeaturedArea.innerHTML = `
+                        <h5 class="section-title-icon-row" style="margin-top: 0; margin-bottom: 20px;">
+                            <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" style="color: #d4a437; vertical-align: middle; margin-right: 6px; display: inline-block;">
+                                <path d="M5 2h14M5 22h14M19 2v6c0 3-3 5-3 5s3 2 3 5v6M5 2v6c0 3 3 5 3 5s-3 2-3 5v6"/>
+                            </svg>
+                            <span>DEMANDES EN ATTENTE</span>
+                        </h5>
+                        <div class="featured-card payment-required" style="border: 1.5px solid #d4a437;">
+                            <div class="featured-image-wrapper">
+                                <img src="${featured.image}" alt="${featured.name}">
+                            </div>
+                            <div class="featured-info">
+                                <div>
+                                    <h3 style="font-family: 'Cormorant Garamond', serif; font-size: 2.2rem; color: var(--primary-navy); margin: 0 0 8px 0; font-weight: 400;">${featured.name}</h3>
+                                    <p style="font-size: 0.95rem; color: var(--text-muted); margin: 0 0 16px 0; display: flex; align-items: center; gap: 6px;">
+                                        <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" style="color: #6c757d; display: inline-block;">
+                                            <path d="M12 2a8 8 0 0 0-8 8c0 5.25 8 12 8 12s8-6.75 8-12a8 8 0 0 0-8-8z"/>
+                                            <circle cx="12" cy="10" r="3"/>
+                                        </svg>
+                                        <span><strong>${featured.city}</strong> · ${featured.datetime}</span>
+                                    </p>
+                                    <div class="featured-tags-row" style="margin-top: 12px; margin-bottom: 20px;">
+                                        <span class="card-tag tag-age">${featured.ageRange}</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="featured-status-actions">
+                                <div style="display: flex; flex-direction: column; align-items: flex-end; gap: 4px; width: 100%;">
+                                    ${statusTag}
+                                    ${metaTextHtml}
+                                </div>
+                                <div style="display: flex; flex-direction: column; gap: 8px; width: 100%; margin-top: auto;">
+                                    ${actionHtml}
+                                </div>
+                            </div>
+                        </div>
+                    `;
+                }
+
+                // Render other pending requests
+                const otherPending = pending.filter(r => r.id !== featured?.id);
+                if (otherPending.length > 0) {
+                    pendingOthersArea.style.display = "block";
+                    // Hide the header text as in the mockup
+                    const pendingOthersTitle = document.getElementById("pending-others-title");
+                    if (pendingOthersTitle) {
+                        pendingOthersTitle.style.display = "none";
+                    }
+
+                    otherPending.forEach(item => {
+                        const isProposed = item.status === "UNE PLACE VOUS EST PROPOSÉE";
+                        const isWaitlist = item.status === "LISTE D'ATTENTE ACTIVE";
+                        const isPreInsc = item.status === "PRÉINSCRIPTION ENREGISTRÉE";
+
+                        let statusTag = '';
+                        let infoHtml = '';
+                        let actionsHtml = '';
+
+                        if (isProposed) {
+                            statusTag = `<span class="card-tag tag-status-pending">PLACE PROPOSÉE</span>`;
+                            const remStr = getCountdownString(item.expirationTime);
+                            infoHtml = `<div style="font-size:0.85rem; color:#5f6368;" id="timer-comp-${item.id}">Temps restant : <span style="color:#d97706; font-weight:700;">${remStr}</span></div>`;
+                            actionsHtml = `
+                                <button class="btn-finaliser-paiement" onclick="acceptProposedPlace(${item.id})">
+                                    <span>RÉSERVER</span>
+                                    <svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.5">
+                                        <path d="M9 5l7 7-7 7"/>
+                                    </svg>
+                                </button>
+                                <button class="btn-outline-status" onclick="openDetailsModal(${item.id})">VOIR</button>
+                            `;
+                        } else if (isWaitlist) {
+                            statusTag = `
+                                <span class="card-tag" style="background-color: #f3f0ff; color: #6f2db8; font-weight: 700;">
+                                    <svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" style="margin-right: 4px; vertical-align: middle;">
+                                        <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+                                        <circle cx="9" cy="7" r="4"/>
+                                    </svg>
+                                    LISTE D'ATTENTE ACTIVE
+                                </span>
+                            `;
+                            infoHtml = `
+                                <div style="font-size:0.85rem; color:#5f6368; line-height: 1.4; margin-top: 4px;">
+                                    Position actuelle : 3<br>
+                                    Inscrit depuis le 12 mai 2026
+                                </div>
+                                <div style="font-size:0.75rem; color:#5f6368; opacity: 0.8; margin-top: 4px;">
+                                    Votre position peut évoluer selon les<br>disponibilités et l'équilibre du groupe.
+                                </div>
+                            `;
+                            actionsHtml = `
+                                <button class="btn-outline-status" style="justify-content: space-between; padding-right: 12px; width: 100%;" onclick="openDetailsModal(${item.id})">
+                                    <span>VOIR L'ÉVÉNEMENT</span>
+                                    <svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.5">
+                                        <path d="M9 5l7 7-7 7"/>
+                                    </svg>
+                                </button>
+                                <button class="pending-action-link" style="margin-top: 8px; text-align: center; border: none; background: none; color: #0b2240; font-weight: 700; font-size: 0.75rem; letter-spacing: 0.05em; text-transform: uppercase; cursor: pointer; display: inline-block;" onclick="leaveWaitlist(${item.id})">QUITTER LA LISTE</button>
+                            `;
+                        } else if (isPreInsc) {
+                            statusTag = `
+                                <span class="card-tag tag-status-confirmed" style="background-color: #e6f4ea; color: #137333; font-weight: 700;">
+                                    <svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.5" style="margin-right: 4px; vertical-align: middle;">
+                                        <polyline points="20 6 9 17 4 12"/>
+                                    </svg>
+                                    PRÉINSCRIPTION ENREGISTRÉE
+                                </span>
+                            `;
+                            infoHtml = `
+                                <div style="font-size:0.85rem; color:#5f6368; line-height: 1.4; margin-top: 4px;">
+                                    Vous serez informé dès que la date<br>et les réservations seront ouvertes.
+                                </div>
+                            `;
+                            actionsHtml = `
+                                <button class="btn-outline-status" style="justify-content: space-between; padding-right: 12px; width: 100%;" onclick="openDetailsModal(${item.id})">
+                                    <span>VOIR L'ÉVÉNEMENT</span>
+                                    <svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.5">
+                                        <path d="M9 5l7 7-7 7"/>
+                                    </svg>
+                                </button>
+                                <button class="pending-action-link" style="margin-top: 8px; text-align: center; border: none; background: none; color: #0b2240; font-weight: 700; font-size: 0.75rem; letter-spacing: 0.05em; text-transform: uppercase; cursor: pointer; display: inline-block;" onclick="leaveWaitlist(${item.id})">ANNULER MA PRÉINSCRIPTION</button>
+                            `;
+                        }
+
+                        const el = document.createElement("div");
+                        el.className = `compact-card ${isProposed ? 'payment-required' : ''}`;
+                        el.innerHTML = `
+                            <div class="compact-thumbnail">
+                                <img src="${item.image}" alt="${item.name}">
+                            </div>
+                            <div class="compact-info">
+                                <h4 style="font-family: 'Cormorant Garamond', serif; font-size: 1.5rem; font-weight: 500; color: var(--primary-navy); margin: 0 0 4px 0;">${item.name}</h4>
+                                <p style="font-size: 0.9rem; color: #5f6368; margin: 0; display: flex; align-items: center; gap: 6px;">
+                                    <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" style="color: #888;">
+                                        <path d="M12 2a8 8 0 0 0-8 8c0 5.25 8 12 8 12s8-6.75 8-12a8 8 0 0 0-8-8z"/>
+                                        <circle cx="12" cy="10" r="3"/>
+                                    </svg>
+                                    <span><strong>${item.city}</strong> · ${item.datetime}</span>
+                                </p>
+                            </div>
+                            <div class="compact-status">
+                                ${statusTag}
+                                ${infoHtml}
+                            </div>
+                            <div class="compact-actions">
+                                ${actionsHtml}
+                            </div>
+                        `;
+                        pendingOthersList.appendChild(el);
+                    });
+                }
+            }
+
+            // RENDERING PAST
+            if (activeTab === 'past') {
+                past.forEach(item => {
+                    const el = document.createElement("div");
+                    el.className = "compact-card";
+                    el.innerHTML = `
+                        <div class="compact-thumbnail">
+                            <img src="${item.image}" alt="${item.name}">
+                        </div>
+                        <div class="compact-info">
+                            <h4 style="font-family: 'Cormorant Garamond', serif; font-size: 1.5rem; font-weight: 500; color: var(--primary-navy); margin: 0 0 4px 0;">${item.name}</h4>
+                            <p style="font-size: 0.9rem; color: #5f6368; margin: 0; display: flex; align-items: center; gap: 6px;">
+                                <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" style="color: #888;">
+                                    <path d="M12 2a8 8 0 0 0-8 8c0 5.25 8 12 8 12s8-6.75 8-12a8 8 0 0 0-8-8z"/>
+                                    <circle cx="12" cy="10" r="3"/>
+                                </svg>
+                                <span><strong>${item.city}</strong> · ${item.datetime}</span>
+                            </p>
+                        </div>
+                        <div class="compact-status">
+                            <span class="card-tag tag-gray" style="border: none; background-color: #f1f3f5; color: #495057;">ÉVÉNEMENT TERMINÉ</span>
+                            <div style="display: flex; align-items: center; gap: 6px; font-size: 0.85rem; color: #5f6368;">
+                                <span>Paiement reçu</span>
+                                <svg viewBox="0 0 24 24" width="14" height="14" fill="#137333">
+                                    <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+                                </svg>
+                            </div>
+                        </div>
+                        <div class="compact-actions">
+                            <button class="btn-outline-status" style="justify-content: space-between; padding-right: 12px;" onclick="openDetailsModal(${item.id})">
+                                <span>VOIR LES DÉTAILS</span>
+                                <svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.5">
+                                    <path d="M9 5l7 7-7 7"/>
+                                </svg>
+                            </button>
+                            <button class="btn-outline-status" onclick="location.href='mesCompatibilités.html'">
+                                <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+                                </svg>
+                                COMPATIBILITÉS
+                            </button>
+                        </div>
+                    `;
+                    pastList.appendChild(el);
+                });
+            }
+
+            // RENDERING CANCELLED
+            if (activeTab === 'cancelled') {
+                cancelled.forEach(item => {
+                    const el = document.createElement("div");
+                    el.className = "compact-card";
+                    el.innerHTML = `
+                        <div class="compact-thumbnail">
+                            <img src="${item.image}" alt="${item.name}">
+                        </div>
+                        <div class="compact-info">
+                            <h4 style="font-family: 'Cormorant Garamond', serif; font-size: 1.5rem; font-weight: 500; color: var(--primary-navy); margin: 0 0 4px 0;">${item.name}</h4>
+                            <p style="font-size: 0.9rem; color: #5f6368; margin: 0; display: flex; align-items: center; gap: 6px;">
+                                <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" style="color: #888;">
+                                    <path d="M12 2a8 8 0 0 0-8 8c0 5.25 8 12 8 12s8-6.75 8-12a8 8 0 0 0-8-8z"/>
+                                    <circle cx="12" cy="10" r="3"/>
+                                </svg>
+                                <span><strong>${item.city}</strong> · ${item.datetime}</span>
+                            </p>
+                        </div>
+                        <div class="compact-status">
+                            <span class="card-tag tag-status-cancelled">RÉSERVATION ANNULÉE</span>
+                            <div style="display: flex; align-items: center; gap: 6px; font-size: 0.85rem; color: #5f6368;">
+                                <span>Remboursé</span>
+                                <svg viewBox="0 0 24 24" width="14" height="14" fill="#3498db" style="transform: rotate(45deg);">
+                                    <path d="M2 9a3 3 0 0 1 0 6v2a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-2a3 3 0 0 1 0-6V7a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2v2z" fill="none" stroke="currentColor" stroke-width="2"/>
+                                </svg>
+                            </div>
+                        </div>
+                        <div class="compact-actions">
+                            <button class="btn-outline-status" style="justify-content: space-between; padding-right: 12px;" onclick="openDetailsModal(${item.id})">
+                                <span>VOIR LES DÉTAILS</span>
+                                <svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.5">
+                                    <path d="M9 5l7 7-7 7"/>
+                                </svg>
+                            </button>
+                        </div>
+                    `;
+                    cancelledList.appendChild(el);
+                });
+            }
+        }
+
+        // TIMER HELPERS
+        function getCountdownString(endTime) {
+            const diff = endTime - Date.now();
+            if (diff <= 0) return "00 h 00 min";
+            const hours = Math.floor(diff / (1000 * 60 * 60));
+            const mins = Math.floor((diff / (1000 * 60)) % 60);
+            return `${hours} h ${mins.toString().padStart(2, '0')} min`;
+        }
+
+        // Run countdown timer loop
+        setInterval(() => {
+            reservations.forEach(r => {
+                if (r.expirationTime) {
+                    const featTimer = document.getElementById(`timer-feat-${r.id}`);
+                    const compTimer = document.getElementById(`timer-comp-${r.id}`);
+                    const diff = r.expirationTime - Date.now();
+
+                    if (diff <= 0) {
+                        // Handle Expiry
+                        r.status = "RÉSERVATION ANNULÉE";
+                        r.paymentStatus = "Paiement expiré";
+                        delete r.expirationTime;
+                        saveReservations();
+                        renderListings();
+                    } else {
+                        const remStr = getCountdownString(r.expirationTime);
+                        if (featTimer) {
+                            if (r.status === "PAIEMENT REQUIS") {
+                                featTimer.textContent = `Votre place est réservée pendant encore ${remStr}`;
+                            } else {
+                                featTimer.textContent = `Encore ${remStr}`;
+                            }
+                        }
+                        if (compTimer) {
+                            compTimer.textContent = `Temps restant : ${remStr}`;
+                        }
+                    }
+                }
+            });
+        }, 10000); // update every 10 seconds to save performance, and update on load
+
+        // MODAL TOGGLES
+        function openDetailsModal(id) {
+            const item = reservations.find(r => r.id === id);
+            if (!item) return;
+
+            document.getElementById("modal-detail-title").textContent = item.name;
+            document.getElementById("modal-detail-datetime").textContent = item.datetime;
+            document.getElementById("modal-detail-venue").textContent = item.venue || "Lieu exclusif";
+            document.getElementById("modal-detail-address").textContent = item.address || "Adresse privée (confirmée après réservation)";
+            document.getElementById("modal-detail-age").textContent = item.ageRange || "Tous âges";
+            document.getElementById("modal-detail-ref").textContent = `Réf. ${item.ref}`;
+            document.getElementById("modal-detail-resstatus").textContent = item.status;
+            document.getElementById("modal-detail-paystatus").textContent = item.paymentStatus;
+
+            if (item.instructions) document.getElementById("modal-detail-instructions").textContent = item.instructions;
+            if (item.services) document.getElementById("modal-detail-services").textContent = item.services;
+            if (item.cancellation) document.getElementById("modal-detail-cancellation").textContent = item.cancellation;
+
+            // Apply tag status classes in modal status indicator
+            const resStatusEl = document.getElementById("modal-detail-resstatus");
+            resStatusEl.className = "detail-val";
+            if (item.status === "RÉSERVATION CONFIRMÉE") resStatusEl.style.color = "#2b8a3e";
+            else if (item.status === "PAIEMENT REQUIS") resStatusEl.style.color = "var(--luxury-gold)";
+            else if (item.status === "RÉSERVATION ANNULÉE") resStatusEl.style.color = "#c92a2a";
+            else resStatusEl.style.color = "var(--primary-navy)";
+
+            document.getElementById("modal-details").style.display = "flex";
+        }
+
+        function openTicketModal(id) {
+            const item = reservations.find(r => r.id === id);
+            if (!item || item.status !== "RÉSERVATION CONFIRMÉE") return;
+
+            document.getElementById("ticket-title").textContent = item.name;
+            document.getElementById("ticket-ref").textContent = `RÉF. ${item.ref}`;
+            document.getElementById("ticket-date").textContent = item.datetime;
+            document.getElementById("ticket-venue").textContent = item.city;
+
+            try {
+                const storedUser = localStorage.getItem("currentUser");
+                if (storedUser) {
+                    const user = JSON.parse(storedUser);
+                    document.getElementById("ticket-user").textContent = `${user.firstName} ${user.lastName}`;
+                }
+            } catch (e) { }
+
+            document.getElementById("modal-ticket").style.display = "flex";
+        }
+
+        let currentCheckoutId = null;
+
+        function openCheckout(id) {
+            const item = reservations.find(r => r.id === id);
+            if (!item) return;
+
+            currentCheckoutId = id;
+            document.getElementById("checkout-event-title").textContent = item.name;
+
+            // Reset checkout state
+            document.getElementById("checkout-loader").style.display = "none";
+            document.getElementById("checkout-actions").style.display = "flex";
+            document.getElementById("checkout-twint-area").style.display = "block";
+            document.getElementById("checkout-card-area").style.display = "none";
+            document.getElementById("checkout-payment-method").value = "twint";
+
+            document.getElementById("modal-checkout").style.display = "flex";
+        }
+
+        function closeResModal(type) {
+            document.getElementById(`modal-${type}`).style.display = "none";
+        }
+
+        // Dropdown toggle for calendar export
+        let activeCalDropdownId = null;
+
+        function toggleCalendarDropdown(id, event) {
+            event.stopPropagation();
+            const drop = document.getElementById(`cal-drop-${id}`);
+            if (activeCalDropdownId && activeCalDropdownId !== id) {
+                const oldDrop = document.getElementById(`cal-drop-${activeCalDropdownId}`);
+                if (oldDrop) oldDrop.style.display = "none";
+            }
+
+            if (drop.style.display === "block") {
+                drop.style.display = "none";
+                activeCalDropdownId = null;
+            } else {
+                drop.style.display = "block";
+                activeCalDropdownId = id;
+            }
+        }
+
+        // Close dropdown when clicking outside
+        window.addEventListener("click", () => {
+            if (activeCalDropdownId) {
+                const drop = document.getElementById(`cal-drop-${activeCalDropdownId}`);
+                if (drop) drop.style.display = "none";
+                activeCalDropdownId = null;
+            }
+        });
+
+        // PAYMENT FLOWSIMULATION
+        function processCheckoutPayment() {
+            document.getElementById("checkout-twint-area").style.display = "none";
+            document.getElementById("checkout-card-area").style.display = "none";
+            document.getElementById("checkout-loader").style.display = "block";
+            document.getElementById("checkout-actions").style.display = "none";
+
+            setTimeout(() => {
+                const item = reservations.find(r => r.id === currentCheckoutId);
+                if (item) {
+                    item.status = "RÉSERVATION CONFIRMÉE";
+                    item.paymentStatus = "Paiement reçu";
+                    delete item.expirationTime;
+                    item.datetime = "7 juin 2026 à 19:00"; // give it a date on payment complete if it was date à confirmer
+                    item.countdownDays = 12;
+
+                    saveReservations();
+                    renderListings();
+                }
+                closeResModal('checkout');
+                alert("Votre paiement de CHF 120.00 a été validé ! Votre réservation est désormais confirmée.");
+            }, 2000);
+        }
+
+        // ACCEPT PROPOSED PLACE FROM WAITING LIST
+        function acceptProposedPlace(id) {
+            const item = reservations.find(r => r.id === id);
+            if (!item) return;
+
+            // When a place becomes available, user confirms and goes to payment required state or gets confirmed directly
+            item.status = "RÉSERVATION CONFIRMÉE";
+            item.paymentStatus = "Paiement reçu";
+            delete item.expirationTime;
+
+            saveReservations();
+            renderListings();
+            alert("Félicitations ! Vous avez accepté la place proposée. Votre réservation est maintenant confirmée.");
+        }
+
+        // LEAVE WAITING LIST OR CANCEL PRE-REGISTRATION
+        function leaveWaitlist(id) {
+            const item = reservations.find(r => r.id === id);
+            if (!item) return;
+
+            const isPreInsc = item.status === "PRÉINSCRIPTION ENREGISTRÉE";
+            const confirmMsg = isPreInsc ?
+                "Êtes-vous sûr de vouloir annuler votre préinscription pour cette expérience ?" :
+                "Êtes-vous sûr de vouloir quitter la liste d'attente pour cette expérience ?";
+
+            if (confirm(confirmMsg)) {
+                // Change status to cancelled
+                item.status = "RÉSERVATION ANNULÉE";
+                item.paymentStatus = "Remboursé";
+
+                saveReservations();
+                renderListings();
+            }
+        }
+
+        // Payment method display toggle
+        const paymentSelector = document.getElementById("checkout-payment-method");
+        if (paymentSelector) {
+            paymentSelector.addEventListener("change", () => {
+                if (paymentSelector.value === "twint") {
+                    document.getElementById("checkout-twint-area").style.display = "block";
+                    document.getElementById("checkout-card-area").style.display = "none";
+                } else {
+                    document.getElementById("checkout-twint-area").style.display = "none";
+                    document.getElementById("checkout-card-area").style.display = "block";
+                }
+            });
+        }
+
+        // INITIALIZATION
+        document.addEventListener("DOMContentLoaded", () => {
+            initReservations();
+            initUserHeader();
+            renderListings();
+        });
+    </script>
+</body>
+
+</html>

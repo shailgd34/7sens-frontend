@@ -12,7 +12,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
-        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Outfit:wght@300;400;500;600;700&display=swap"
+        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Instrument+Sans:wght@300;400;500;600;700&display=swap"
         rel="stylesheet">
 
     <!-- Stylesheets -->
@@ -20,682 +20,7 @@
     <link rel="stylesheet" href="style-v2.css">
     <link rel="stylesheet" href="events-page.css">
 
-    <style>
-        /* Scoped style definitions for user dashboard */
-        .db-main {
-            padding: 0 !important;
-            margin: 0 !important;
-            background-color: var(--warm-ivory);
-            min-height: 100vh;
-        }
-
-        .db-container {
-            max-width: 100% !important;
-            margin: 0 !important;
-            padding: 0 !important;
-        }
-
-        .db-grid {
-            display: grid;
-            grid-template-columns: 280px 1fr;
-            gap: 0;
-            align-items: stretch;
-            margin: 0 !important;
-            padding: 0 !important;
-        }
-
-        @media (max-width: 991px) {
-            .db-grid {
-                grid-template-columns: 1fr;
-            }
-        }
-
-        /* Sidebar Column styling */
-        .db-sidebar-card {
-            background: rgba(255, 255, 255, 0.95);
-            border-right: 1px solid rgba(20, 43, 99, 0.08);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            padding: 35px 25px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            text-align: center;
-            box-shadow: 2px 0 20px rgba(16, 42, 94, 0.03);
-            position: sticky;
-            top: 0 !important;
-            height: 100vh !important;
-            overflow-y: auto;
-            border-radius: 0;
-        }
-
-        .db-avatar-wrapper {
-            position: relative;
-            width: 100px;
-            height: 100px;
-            border-radius: 50%;
-            margin-bottom: 20px;
-            overflow: hidden;
-            border: 1px solid rgba(214, 164, 55, 0.3);
-            background-color: var(--primary-navy);
-            background-size: cover;
-            background-position: center;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--warm-ivory);
-            font-size: 1.8rem;
-            font-family: 'Cormorant Garamond', serif;
-            cursor: pointer;
-        }
-
-        .db-avatar-upload {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            height: 30px;
-            background: rgba(20, 43, 99, 0.8);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 0.8rem;
-            font-weight: 600;
-            letter-spacing: 0.05em;
-            color: var(--warm-ivory);
-            cursor: pointer;
-            text-transform: uppercase;
-            opacity: 0;
-            transition: opacity 0.3s;
-        }
-
-        .db-avatar-wrapper:hover .db-avatar-upload {
-            opacity: 1;
-        }
-
-        #form-avatar-circle:hover #form-avatar-overlay {
-            opacity: 1 !important;
-        }
-
-        #form-avatar-circle:hover {
-            border-color: var(--luxury-gold) !important;
-            transform: scale(1.02);
-        }
-
-        .db-user-name {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 1.45rem;
-            color: var(--primary-navy);
-            margin-bottom: 5px;
-            font-weight: 400;
-        }
-
-        .db-user-badge {
-            font-size: 0.8rem;
-            font-weight: 600;
-            letter-spacing: 0.15em;
-            color: var(--luxury-gold);
-            text-transform: uppercase;
-            border: 1px solid rgba(214, 164, 55, 0.3);
-            padding: 4px 10px;
-            margin-bottom: 30px;
-            display: inline-block;
-        }
-
-        .db-nav-list {
-            width: 100%;
-            display: flex;
-            flex-direction: column;
-            gap: 5px;
-            border-top: 1px solid rgba(20, 43, 99, 0.06);
-            padding-top: 25px;
-        }
-
-        .db-nav-item {
-            width: 100%;
-            background: none;
-            border: none;
-            font-family: 'Outfit', sans-serif;
-            font-size: 0.75rem;
-            font-weight: 600;
-            letter-spacing: 0.1M;
-            color: var(--text-muted);
-            text-align: left;
-            padding: 12px 15px;
-            cursor: pointer;
-            text-transform: uppercase;
-            transition: all 0.3s var(--transition-smooth);
-            display: flex;
-            align-items: center;
-            gap: 12px;
-        }
-
-        .db-nav-item:hover,
-        .db-nav-item.active {
-            color: var(--primary-navy);
-            background-color: rgba(20, 43, 99, 0.03);
-            border-left: 2px solid var(--luxury-gold);
-            padding-left: 18px;
-        }
-
-        .db-nav-item svg {
-            width: 16px;
-            height: 16px;
-            stroke: currentColor;
-            fill: none;
-        }
-
-        /* Content Panel styling */
-        .db-content-card {
-            background: transparent;
-            border: none;
-            padding: 25px 60px;
-            min-height: calc(100vh - 75px);
-        }
-
-        @media (max-width: 768px) {
-            .db-content-card {
-                padding: 24px;
-            }
-        }
-
-        .db-section {
-            display: none;
-        }
-
-        .db-section.active {
-            display: block;
-        }
-
-        .db-section-header {
-            border-bottom: 1px solid var(--border-color);
-            padding-bottom: 20px;
-            margin-bottom: 30px;
-        }
-
-        .db-section-title {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 1.8rem;
-            color: var(--primary-navy);
-            font-weight: 300;
-            margin-bottom: 5px;
-        }
-
-        .db-section-subtitle {
-            font-size: 0.8rem;
-            color: var(--text-muted);
-        }
-
-        /* Form design grid overrides */
-        .db-form-row {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 24px;
-            margin-bottom: 20px;
-        }
-
-        @media (max-width: 576px) {
-            .db-form-row {
-                grid-template-columns: 1fr;
-                gap: 20px;
-            }
-        }
-
-        .db-form-group {
-            display: flex;
-            flex-direction: column;
-            gap: 8px;
-        }
-
-        .db-form-group label {
-            font-size: 0.65rem;
-            font-weight: 700;
-            letter-spacing: 0.12em;
-            color: var(--primary-navy);
-            text-transform: uppercase;
-            margin-bottom: 8px;
-            display: inline-block;
-        }
-
-        .db-form-group input,
-        .db-form-group select,
-        .db-form-group textarea {
-            background-color: rgba(255, 255, 255, 0.6) !important;
-            border: 1px solid rgba(20, 43, 99, 0.15) !important;
-            padding: 14px 18px !important;
-            font-family: 'Outfit', sans-serif !important;
-            font-size: 0.88rem !important;
-            border-radius: 8px !important;
-            color: var(--primary-navy) !important;
-            transition: all 0.3s var(--transition-smooth) !important;
-            width: 100%;
-            box-shadow: inset 0 2px 4px rgba(0,0,0,0.02);
-        }
-
-        .db-form-group input:focus,
-        .db-form-group select:focus,
-        .db-form-group textarea:focus {
-            border-color: var(--luxury-gold) !important;
-            background-color: #ffffff !important;
-            outline: none !important;
-            box-shadow: 0 0 0 3px rgba(214, 164, 55, 0.2) !important;
-        }
-
-        /* Toggle preference switch container */
-        .preference-row {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 20px 0;
-            border-bottom: 1px solid rgba(20, 43, 99, 0.05);
-        }
-
-        .preference-row:last-child {
-            border-bottom: none;
-        }
-
-        .preference-info {
-            max-width: 75%;
-        }
-
-        .preference-title {
-            font-size: 0.9rem;
-            font-weight: 600;
-            color: var(--primary-navy);
-            margin-bottom: 4px;
-            text-transform: uppercase;
-            letter-spacing: 0.03em;
-        }
-
-        .preference-desc {
-            font-size: 0.78rem;
-            color: var(--text-muted);
-            line-height: 1.4;
-        }
-
-        /* Luxury custom slide switch */
-        .luxury-switch {
-            position: relative;
-            display: inline-block;
-            width: 46px;
-            height: 24px;
-        }
-
-        .luxury-switch input {
-            opacity: 0;
-            width: 0;
-            height: 0;
-        }
-
-        .luxury-slider {
-            position: absolute;
-            cursor: pointer;
-            inset: 0;
-            background-color: rgba(20, 43, 99, 0.1);
-            transition: .4s;
-            border: 1px solid rgba(20, 43, 99, 0.05);
-        }
-
-        .luxury-slider:before {
-            position: absolute;
-            content: "";
-            height: 16px;
-            width: 16px;
-            left: 3px;
-            bottom: 3px;
-            background-color: var(--primary-navy);
-            transition: .4s;
-        }
-
-        input:checked+.luxury-slider {
-            background-color: rgba(214, 164, 55, 0.15);
-            border-color: rgba(214, 164, 55, 0.3);
-        }
-
-        input:checked+.luxury-slider:before {
-            transform: translateX(22px);
-            background-color: var(--luxury-gold);
-        }
-
-        /* Experiences/Waitlist item cards styling */
-        .booking-list {
-            display: flex;
-            flex-direction: column;
-            gap: 20px;
-        }
-
-        .booking-item-card {
-            background: rgba(255, 255, 255, 0.5);
-            border: 1px solid rgba(20, 43, 99, 0.06);
-            padding: 24px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 20px;
-            transition: border-color 0.3s;
-        }
-
-        .booking-item-card:hover {
-            border-color: rgba(214, 164, 55, 0.4);
-        }
-
-        .booking-item-info {
-            display: flex;
-            align-items: center;
-            gap: 20px;
-        }
-
-        .booking-item-thumb {
-            width: 65px;
-            height: 65px;
-            background-size: cover;
-            background-position: center;
-            border: 1px solid rgba(20, 43, 99, 0.08);
-        }
-
-        .booking-item-details {
-            display: flex;
-            flex-direction: column;
-            gap: 4px;
-        }
-
-        .booking-item-ref {
-            font-size: 0.65rem;
-            font-weight: 600;
-            color: var(--luxury-gold);
-            letter-spacing: 0.1em;
-        }
-
-        .booking-item-name {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 1.25rem;
-            font-weight: 500;
-            color: var(--primary-navy);
-        }
-
-        .booking-item-meta {
-            font-size: 0.78rem;
-            color: var(--text-muted);
-            display: flex;
-            align-items: center;
-            gap: 12px;
-        }
-
-        .booking-item-meta span.separator {
-            opacity: 0.4;
-        }
-
-        .booking-item-status {
-            text-align: right;
-            display: flex;
-            flex-direction: column;
-            align-items: flex-end;
-            gap: 6px;
-        }
-
-        .status-badge {
-            font-size: 0.8rem;
-            font-weight: 600;
-            letter-spacing: 0.1em;
-            padding: 4px 10px;
-            text-transform: uppercase;
-        }
-
-        .status-badge.confirmed {
-            background-color: rgba(20, 43, 99, 0.05);
-            color: var(--primary-navy);
-            border: 1px solid rgba(20, 43, 99, 0.15);
-        }
-
-        .status-badge.waiting {
-            background-color: rgba(214, 164, 55, 0.08);
-            color: var(--luxury-gold);
-            border: 1px solid rgba(214, 164, 55, 0.25);
-        }
-
-        .booking-action-link {
-            font-size: 0.72rem;
-            font-weight: 600;
-            color: var(--primary-navy);
-            text-decoration: none;
-            letter-spacing: 0.05em;
-            text-transform: uppercase;
-            transition: color 0.3s;
-        }
-
-        .booking-action-link:hover {
-            color: var(--luxury-gold);
-        }
-
-        @media (max-width: 768px) {
-            .booking-item-card {
-                flex-direction: column;
-                align-items: flex-start;
-                gap: 15px;
-            }
-
-            .booking-item-status {
-                width: 100%;
-                flex-direction: row;
-                justify-content: space-between;
-                align-items: center;
-                border-top: 1px solid rgba(20, 43, 99, 0.05);
-                padding-top: 15px;
-            }
-        }
-
-        /* Refined Dashboard Grid & Card widgets */
-        .db-welcome-banner {
-            background: linear-gradient(135deg, rgba(16, 42, 94, 0.85), rgba(10, 20, 45, 0.95)), url('assets/main page image.png') center/cover no-repeat;
-            border: 1px solid rgba(214, 164, 55, 0.2);
-            padding: 50px 40px;
-            margin-bottom: 35px;
-            color: #ffffff;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            position: relative;
-            overflow: hidden;
-            border-radius: 12px !important;
-            box-shadow: 0 15px 40px rgba(16, 42, 94, 0.15);
-        }
-
-        .db-welcome-banner::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: radial-gradient(circle at 100% 50%, rgba(214, 164, 55, 0.3), transparent 60%);
-            pointer-events: none;
-        }
-
-        .db-welcome-title {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 2.8rem;
-            font-weight: 400;
-            margin: 0 0 8px;
-            letter-spacing: 0.02em;
-            color: #fff;
-            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
-        }
-
-        .db-welcome-subtitle {
-            font-size: 0.85rem;
-            color: var(--luxury-gold);
-            letter-spacing: 0.15em;
-            text-transform: uppercase;
-            font-weight: 600;
-        }
-
-        .db-widget {
-            background: rgba(255, 255, 255, 0.7);
-            border: 1px solid rgba(214, 164, 55, 0.15);
-            box-shadow: 0 10px 40px rgba(16, 42, 94, 0.04);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            padding: 28px;
-            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            min-height: 180px;
-            border-radius: 12px !important;
-        }
-
-        .db-widget:hover {
-            transform: translateY(-4px);
-            border-color: rgba(214, 164, 55, 0.4);
-            box-shadow: 0 20px 50px rgba(16, 42, 94, 0.08);
-            background: rgba(255, 255, 255, 0.95);
-        }
-
-        .db-widget-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 12px;
-        }
-
-        .db-widget-tag {
-            font-size: 0.62rem;
-            font-weight: 700;
-            letter-spacing: 0.1em;
-            text-transform: uppercase;
-            color: var(--luxury-gold);
-        }
-
-        .db-widget-icon {
-            color: var(--luxury-gold);
-            display: flex;
-            align-items: center;
-            background: rgba(214, 164, 55, 0.08);
-            padding: 8px;
-            border-radius: 8px;
-        }
-
-        .db-widget-title {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 1.6rem;
-            font-weight: 500;
-            color: var(--primary-navy);
-            margin: 0 0 8px;
-        }
-
-        .db-widget-desc {
-            font-size: 0.8rem;
-            color: var(--text-muted);
-            line-height: 1.5;
-            margin: 0;
-        }
-
-        .db-widget-btn {
-            font-family: 'Outfit', sans-serif;
-            font-size: 0.7rem;
-            font-weight: 600;
-            letter-spacing: 0.1em;
-            text-transform: uppercase;
-            padding: 12px 24px;
-            background: var(--primary-navy);
-            color: #ffffff;
-            border: 1px solid var(--primary-navy);
-            cursor: pointer;
-            transition: all 0.3s ease;
-            margin-top: 20px;
-            align-self: flex-start;
-            border-radius: 6px !important;
-        }
-
-        .db-widget-btn:hover {
-            background: var(--luxury-gold);
-            border-color: var(--luxury-gold);
-            color: var(--primary-navy);
-            box-shadow: 0 4px 15px rgba(214, 164, 55, 0.3);
-            transform: translateY(-1px);
-        }
-
-        .db-widget-btn.secondary {
-            background: transparent;
-            color: var(--primary-navy);
-            border-color: rgba(20, 43, 99, 0.15);
-        }
-
-        .db-widget-btn.secondary:hover {
-            background: rgba(20, 43, 99, 0.05);
-            color: var(--primary-navy);
-            border-color: var(--luxury-gold);
-        }
-
-        .db-banner-btn {
-            background: transparent;
-            border: 1px solid var(--luxury-gold);
-            color: #fff;
-            padding: 8px 18px;
-            border-radius: 6px;
-            font-family: 'Outfit', sans-serif;
-            font-size: 0.7rem;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            margin-top: 8px;
-        }
-
-        .db-banner-btn:hover {
-            background: var(--luxury-gold);
-            color: var(--primary-navy);
-            box-shadow: 0 4px 15px rgba(214, 164, 55, 0.3);
-            transform: translateY(-1px);
-        }
-
-        /* Password Modal Styling */
-        .db-modal-overlay {
-            position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(10, 20, 45, 0.5);
-            backdrop-filter: blur(10px);
-            z-index: 9999;
-            display: none;
-            align-items: center;
-            justify-content: center;
-            opacity: 0;
-            transition: opacity 0.3s ease;
-        }
-        
-        .db-modal-content {
-            background: rgba(255, 255, 255, 0.9);
-            border: 1px solid rgba(214, 164, 55, 0.4);
-            box-shadow: 0 15px 40px rgba(0,0,0,0.2);
-            border-radius: 12px;
-            padding: 30px;
-            width: 100%;
-            max-width: 400px;
-            transform: translateY(20px);
-            transition: transform 0.3s ease;
-        }
-
-        .db-modal-overlay.active {
-            display: flex;
-            opacity: 1;
-        }
-        
-        .db-modal-overlay.active .db-modal-content {
-            transform: translateY(0);
-        }
-
-        .db-modal-close {
-            background: none;
-            border: none;
-            font-size: 1.2rem;
-            cursor: pointer;
-            color: var(--primary-navy);
-            float: right;
-            margin-top: -10px;
-            margin-right: -10px;
-        }
-    </style>
+    <link rel="stylesheet" href="dashboard-shared.css">
 </head>
 
 <body>
@@ -722,7 +47,7 @@
                     <input type="file" id="profile-avatar-input" accept="image/*" style="display: none;">
 
                     <h4 class="db-user-name" id="db-profile-name">Jean Dupont</h4>
-                    <span class="db-user-badge">Membre Privilège</span>
+
 
                     <nav class="db-nav-list">
                         <button class="db-nav-item active" onclick="switchDbTab('home')" id="btn-tab-home">
@@ -732,14 +57,14 @@
                                 <rect x="14" y="12" width="7" height="9" />
                                 <rect x="3" y="16" width="7" height="5" />
                             </svg>
-                            <span>Tableau de Bord</span>
+                            <span>TABLEAU DE BORD</span>
                         </button>
                         <button class="db-nav-item" onclick="switchDbTab('profile')" id="btn-tab-profile">
                             <svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                                 <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
                                 <circle cx="12" cy="7" r="4" />
                             </svg>
-                            <span>Mon Profil</span>
+                            <span>MON PROFIL</span>
                         </button>
                         <button class="db-nav-item" onclick="switchDbTab('questionnaire')" id="btn-tab-questionnaire">
                             <svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" fill="none">
@@ -749,44 +74,39 @@
                                 <line x1="16" y1="17" x2="8" y2="17"></line>
                                 <polyline points="10 9 9 9 8 9"></polyline>
                             </svg>
-                            <span>Mon Profil Relationnel</span>
+                            <span>MON PROFIL RELATIONNEL</span>
                         </button>
-                        <button class="db-nav-item" onclick="switchDbTab('matches')" id="btn-tab-matches">
+                        <button class="db-nav-item" onclick="location.href='mesCompatibilités.html'"
+                            id="btn-tab-matches">
                             <svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" fill="none">
                                 <path
                                     d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z">
                                 </path>
                             </svg>
-                            <span>Mes Compatibilités</span>
+                            <span>MES COMPATIBILITÉS</span>
                         </button>
-                        <button class="db-nav-item" onclick="switchDbTab('bookings')" id="btn-tab-bookings">
+                        <button class="db-nav-item" onclick="location.href='mesRéservations.html'" id="btn-tab-bookings">
                             <svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                                 <rect x="3" y="4" width="18" height="18" rx="2" ry="2" />
                                 <line x1="16" y1="2" x2="16" y2="6" />
                                 <line x1="8" y1="2" x2="8" y2="6" />
                                 <line x1="3" y1="10" x2="21" y2="10" />
                             </svg>
-                            <span>Mes Réservations</span>
-                        </button>
-                        <button class="db-nav-item" onclick="switchDbTab('waitlists')" id="btn-tab-waitlists">
-                            <svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                                <circle cx="12" cy="12" r="10" />
-                                <polyline points="12 6 12 12 16 14" />
-                            </svg>
-                            <span>Listes d'Attente</span>
-                        </button>
-                        <button class="db-nav-item" onclick="switchDbTab('notifications')" id="btn-tab-notifications">
-                            <svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                                <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9M13.73 21a2 2 0 0 1-3.46 0" />
-                            </svg>
-                            <span>Notifications</span>
+                            <span>MES RÉSERVATIONS</span>
                         </button>
                         <button class="db-nav-item" onclick="switchDbTab('billing')" id="btn-tab-billing">
                             <svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                                 <rect x="1" y="4" width="22" height="16" rx="2" ry="2" />
                                 <line x1="1" y1="10" x2="23" y2="10" />
                             </svg>
-                            <span>Historique des Paiements</span>
+                            <span>MES PAIEMENTS</span>
+                        </button>
+                        <button class="db-nav-item" onclick="location.href='settings.html'" id="btn-tab-settings">
+                            <svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" fill="none">
+                                <path d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1-1-1.74v-.5a2 2 0 0 1 1-1.74l.15-.1a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z"/>
+                                <circle cx="12" cy="12" r="3"/>
+                            </svg>
+                            <span>PARAMÈTRES</span>
                         </button>
                         <!-- Back Link -->
                         <button class="db-nav-item" onclick="location.href='events.html'"
@@ -795,7 +115,7 @@
                                 <path d="M19 12H5M5 12L12 19M5 12L12 5" stroke-linecap="round"
                                     stroke-linejoin="round" />
                             </svg>
-                            <span>Retour au Club</span>
+                            <span>RETOUR AU SITE</span>
                         </button>
                     </nav>
                 </aside>
@@ -814,74 +134,79 @@
                         <div style="display: flex; align-items: center; gap: 20px;">
                             <!-- Language Dropdown -->
                             <div class="lang-dropdown">
-                                <button class="lang-btn" aria-haspopup="true" aria-expanded="false" style="color: var(--primary-navy); border-color: rgba(20,43,99,0.2);">
-                                    <img src="https://flagcdn.com/w20/fr.png" width="16" alt="FR" style="border-radius: 2px;"> FR
-                                    <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2">
+                                <button class="lang-btn" aria-haspopup="true" aria-expanded="false"
+                                    style="color: var(--primary-navy); border-color: rgba(20,43,99,0.2);">
+                                    <img src="https://flagcdn.com/w20/fr.png" width="16" alt="FR"
+                                        style="border-radius: 2px;"> FR
+                                    <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor"
+                                        stroke-width="2">
                                         <path d="M6 9l6 6 6-6" />
                                     </svg>
                                 </button>
                                 <ul class="lang-menu">
-                                    <li><a href="#" class="active"><img src="https://flagcdn.com/w20/fr.png" width="16" alt="FR" style="border-radius: 2px;"> FR</a></li>
-                                    <li><a href="#"><img src="https://flagcdn.com/w20/gb.png" width="16" alt="EN" style="border-radius: 2px;"> EN</a></li>
+                                    <li><a href="#" class="active"><img src="https://flagcdn.com/w20/fr.png" width="16"
+                                                alt="FR" style="border-radius: 2px;"> FR</a></li>
+                                    <li><a href="#"><img src="https://flagcdn.com/w20/gb.png" width="16" alt="EN"
+                                                style="border-radius: 2px;"> EN</a></li>
                                 </ul>
                             </div>
 
                             <!-- User Profile Dropdown (Logged In State) -->
                             <div class="user-profile-dropdown">
-                            <button class="user-profile-btn" aria-haspopup="true" aria-expanded="false">
-                                <img src="assets/pexels-maorattias-5152572.jpg" alt="User Avatar" class="user-avatar"
-                                    id="top-header-avatar"
-                                    style="width: 38px; height: 38px; border-radius: 50%; object-fit: cover; border: 2px solid var(--luxury-gold);">
-                                <span class="user-name" id="top-header-name"
-                                    style="font-family: 'Outfit', sans-serif; font-weight: 500; font-size: 0.95rem; color: var(--primary-navy);">Jean
-                                    D.</span>
-                                <svg class="dropdown-chevron" viewBox="0 0 24 24" width="14" height="14" fill="none"
-                                    stroke="currentColor" stroke-width="2" style="color: var(--primary-navy);">
-                                    <path d="M6 9l6 6 6-6" />
-                                </svg>
-                            </button>
-                            <div class="user-dropdown-menu">
-                                <div class="dropdown-header">
-                                    <span class="dropdown-status">Membre Privilège</span>
+                                <button class="user-profile-btn" aria-haspopup="true" aria-expanded="false">
+                                    <img src="assets/pexels-maorattias-5152572.jpg" alt="User Avatar"
+                                        class="user-avatar" id="top-header-avatar"
+                                        style="width: 38px; height: 38px; border-radius: 50%; object-fit: cover; border: 2px solid var(--luxury-gold);">
+                                    <span class="user-name" id="top-header-name"
+                                        style="font-family: 'Instrument Sans', sans-serif; font-weight: 500; font-size: 0.95rem; color: var(--primary-navy);">Jean
+                                        D.</span>
+                                    <svg class="dropdown-chevron" viewBox="0 0 24 24" width="14" height="14" fill="none"
+                                        stroke="currentColor" stroke-width="2" style="color: var(--primary-navy);">
+                                        <path d="M6 9l6 6 6-6" />
+                                    </svg>
+                                </button>
+                                <div class="user-dropdown-menu">
+                                    <div class="dropdown-header">
+                                        <span class="dropdown-status"></span>
+                                    </div>
+                                    <ul class="dropdown-links">
+                                        <li>
+                                            <a href="profile.html?tab=profile">
+                                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                                    stroke-width="1.5">
+                                                    <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                                                    <circle cx="12" cy="7" r="4"></circle>
+                                                </svg>
+                                                Mon Profil
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="events.html">
+                                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                                    stroke-width="1.5">
+                                                    <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                                                    <line x1="16" y1="2" x2="16" y2="6"></line>
+                                                    <line x1="8" y1="2" x2="8" y2="6"></line>
+                                                    <line x1="3" y1="10" x2="21" y2="10"></line>
+                                                </svg>
+                                                Mes Réservations
+                                            </a>
+                                        </li>
+                                        <li class="dropdown-divider"></li>
+                                        <li>
+                                            <a href="index.html" class="logout-link">
+                                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                                    stroke-width="1.5">
+                                                    <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path>
+                                                    <polyline points="16 17 21 12 16 7"></polyline>
+                                                    <line x1="21" y1="12" x2="9" y2="12"></line>
+                                                </svg>
+                                                Déconnexion
+                                            </a>
+                                        </li>
+                                    </ul>
                                 </div>
-                                <ul class="dropdown-links">
-                                    <li>
-                                        <a href="profile.html">
-                                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                                stroke-width="1.5">
-                                                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
-                                                <circle cx="12" cy="7" r="4"></circle>
-                                            </svg>
-                                            Mon Profil
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="events.html">
-                                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                                stroke-width="1.5">
-                                                <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
-                                                <line x1="16" y1="2" x2="16" y2="6"></line>
-                                                <line x1="8" y1="2" x2="8" y2="6"></line>
-                                                <line x1="3" y1="10" x2="21" y2="10"></line>
-                                            </svg>
-                                            Mes Réservations
-                                        </a>
-                                    </li>
-                                    <li class="dropdown-divider"></li>
-                                    <li>
-                                        <a href="index.html" class="logout-link">
-                                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                                stroke-width="1.5">
-                                                <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path>
-                                                <polyline points="16 17 21 12 16 7"></polyline>
-                                                <line x1="21" y1="12" x2="9" y2="12"></line>
-                                            </svg>
-                                            Déconnexion
-                                        </a>
-                                    </li>
-                                </ul>
                             </div>
-                        </div>
                     </header>
 
                     <section class="db-content-card">
@@ -889,50 +214,116 @@
                         <!-- TAB 1: Dashboard Home -->
                         <div id="section-home" class="db-section active">
                             <!-- Refined Gradient Welcome Banner -->
-                            <div class="db-welcome-banner" style="border-radius: 4px;">
-                                <div style="z-index: 2;">
-                                    <span class="db-welcome-subtitle">Bienvenue dans votre espace</span>
-                                    <h2 class="db-welcome-title" id="welcome-banner-name">Jean Dupont</h2>
-                                    <span
-                                        style="display:inline-block; margin-top: 5px; font-size: 0.65rem; font-weight: 700; color: var(--luxury-gold); letter-spacing: 0.1em; text-transform: uppercase; border: 1px solid rgba(214,164,55,0.4); padding: 6px 12px; background: rgba(214,164,55,0.15); border-radius: 4px; backdrop-filter: blur(5px);"
-                                        id="welcome-banner-badge">Membre Privilège</span>
+                            <div class="db-welcome-banner">
+                                <div style="z-index: 2; flex: 1; padding-right: 20px;">
+                                    <span id="welcome-banner-name"
+                                        style="font-family: 'Instrument Sans', sans-serif; font-size: 0.95rem; font-weight: 500; color: var(--luxury-gold); display: block; margin-bottom: 12px; letter-spacing: 0.02em;">Bonjour
+                                        Jean,</span>
+                                    <h2
+                                        style="font-family: 'Cormorant Garamond', serif; font-size: 2.3rem; font-weight: 400; color: #ffffff; line-height: 1.25; margin: 0 0 15px 0; letter-spacing: 0.01em;">
+                                        Prêt à vivre votre prochaine expérience ?</h2>
+                                    <p
+                                        style="font-family: 'Instrument Sans', sans-serif; font-size: 0.88rem; line-height: 1.5; color: rgba(255, 255, 255, 0.7); max-width: 460px; margin: 0;">
+                                        Complétez votre profil pour découvrir les événements et les personnes qui
+                                        pourraient réellement vous correspondre.</p>
                                 </div>
 
-                                <div
-                                    style="display: flex; align-items: center; gap: 20px; background: rgba(10, 20, 45, 0.6); padding: 20px 25px; border-radius: 12px; border: 1px solid rgba(214,164,55,0.3); backdrop-filter: blur(15px); z-index: 2; box-shadow: 0 10px 30px rgba(0,0,0,0.2);">
-                                    <div style="position: relative; width: 60px; height: 60px;">
-                                        <svg class="modern-progress-circle" width="60" height="60" viewBox="0 0 100 100"
-                                            style="transform: rotate(-90deg);">
-                                            <circle cx="50" cy="50" r="45" fill="none" stroke="rgba(255,255,255,0.1)"
-                                                stroke-width="6" />
-                                            <circle cx="50" cy="50" r="45" fill="none" stroke="url(#goldGradient)"
-                                                stroke-width="6" stroke-dasharray="283" stroke-dashoffset="212.25"
+                                <div style="display: flex; align-items: center; gap: 30px; z-index: 2; flex-shrink: 0;">
+                                    <div
+                                        style="position: relative; width: 76px; height: 76px; display: flex; align-items: center; justify-content: center;">
+                                        <svg width="76" height="76" viewBox="0 0 100 100"
+                                            style="transform: rotate(-90deg); position: absolute; top: 0; left: 0;">
+                                            <circle cx="50" cy="50" r="42" fill="none"
+                                                stroke="rgba(255, 255, 255, 0.08)" stroke-width="5" />
+                                            <circle cx="50" cy="50" r="42" fill="none" stroke="#D6A437" stroke-width="5"
+                                                stroke-dasharray="263.89" stroke-dashoffset="197.92"
                                                 stroke-linecap="round" />
-                                            <defs>
-                                                <linearGradient id="goldGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                                                    <stop offset="0%" stop-color="#D6A437" />
-                                                    <stop offset="100%" stop-color="#F9E596" />
-                                                </linearGradient>
-                                            </defs>
                                         </svg>
                                         <div
-                                            style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; font-size: 0.9rem; font-weight: 700; color: #fff;">
-                                            25%
-                                        </div>
+                                            style="font-family: 'Instrument Sans', sans-serif; font-size: 1.25rem; font-weight: 600; color: #ffffff; z-index: 2;">
+                                            25%</div>
                                     </div>
-                                    <div style="display: flex; flex-direction: column; align-items: flex-start;">
-                                        <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 8px;">
-                                            <svg viewBox="0 0 24 24" fill="none" stroke="var(--luxury-gold)"
-                                                stroke-width="2" style="width: 14px; height: 14px;">
-                                                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
-                                                <circle cx="12" cy="7" r="4"></circle>
-                                            </svg>
-                                            <span
-                                                style="font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: var(--luxury-gold);">Statut
-                                                du Profil</span>
+                                    <button onclick="switchDbTab('profile')" class="db-welcome-banner-btn">COMPLÉTER MON
+                                        PROFIL</button>
+                                </div>
+                            </div>
+
+                            <!-- 3-Step Onboarding -->
+                            <div style="margin-top: 35px; margin-bottom: 35px;">
+                                <h3
+                                    style="font-family: 'Instrument Sans', sans-serif; font-size: 0.85rem; font-weight: 700; color: var(--primary-navy); margin: 0 0 20px 0; text-transform: uppercase; letter-spacing: 0.1em;">
+                                    PRÊT À COMMENCER ?
+                                </h3>
+
+                                <div
+                                    style="display: flex; align-items: stretch; gap: 10px; flex-wrap: wrap; justify-content: space-between;">
+                                    <!-- Step 1 -->
+                                    <div class="onboarding-card">
+                                        <div style="display: flex; flex-direction: column;">
+                                            <div
+                                                style="display: flex; align-items: flex-start; gap: 16px; margin-bottom: 12px;">
+                                                <div class="step-number-circle">1</div>
+                                                <div>
+                                                    <h4 class="step-card-title">Complétez votre profil</h4>
+                                                    <p class="step-card-desc">Ajoutez les informations nécessaires pour
+                                                        participer aux expériences 7Sens.</p>
+                                                </div>
+                                            </div>
+                                            <span class="step-badge badge-success">Terminé</span>
                                         </div>
-                                        <button onclick="switchDbTab('questionnaire')"
-                                            class="db-banner-btn">Compléter</button>
+                                        <button onclick="switchDbTab('profile')" class="step-card-btn">COMPLÉTER MON
+                                            PROFIL</button>
+                                    </div>
+
+                                    <!-- Arrow 1 -->
+                                    <div class="step-arrow-container">
+                                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                            <path d="M9 5l7 7-7 7" stroke-linecap="round" stroke-linejoin="round" />
+                                        </svg>
+                                    </div>
+
+                                    <!-- Step 2 -->
+                                    <div class="onboarding-card">
+                                        <div style="display: flex; flex-direction: column;">
+                                            <div
+                                                style="display: flex; align-items: flex-start; gap: 16px; margin-bottom: 12px;">
+                                                <div class="step-number-circle">2</div>
+                                                <div>
+                                                    <h4 class="step-card-title">Définissez votre profil relationnel</h4>
+                                                    <p class="step-card-desc">Répondez au questionnaire S7 Affinity pour
+                                                        identifier vos affinités et vos complémentarités.</p>
+                                                </div>
+                                            </div>
+                                            <span class="step-badge badge-warning">En cours</span>
+                                        </div>
+                                        <button onclick="switchDbTab('questionnaire')" class="step-card-btn">COMMENCER
+                                            LE QUESTIONNAIRE</button>
+                                    </div>
+
+                                    <!-- Arrow 2 -->
+                                    <div class="step-arrow-container">
+                                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                            <path d="M9 5l7 7-7 7" stroke-linecap="round" stroke-linejoin="round" />
+                                        </svg>
+                                    </div>
+
+                                    <!-- Step 3 -->
+                                    <div class="onboarding-card">
+                                        <div style="display: flex; flex-direction: column;">
+                                            <div
+                                                style="display: flex; align-items: flex-start; gap: 16px; margin-bottom: 12px;">
+                                                <div class="step-number-circle">3</div>
+                                                <div>
+                                                    <h4 class="step-card-title">Choisissez votre prochaine expérience
+                                                    </h4>
+                                                    <p class="step-card-desc">Découvrez les événements disponibles dans
+                                                        votre ville et votre tranche d'âge.</p>
+                                                </div>
+                                            </div>
+                                            <span class="step-badge badge-muted">À venir</span>
+                                        </div>
+                                        <button onclick="location.href='events.html'" class="step-card-btn">DÉCOUVRIR
+                                            LES ÉVÉNEMENTS</button>
                                     </div>
                                 </div>
                             </div>
@@ -943,7 +334,7 @@
                                 <div class="db-widget" id="dashboard-next-event-card" style="border-radius: 4px;">
                                     <div>
                                         <div class="db-widget-header">
-                                            <span class="db-widget-tag">Prochain Cercle Privé</span>
+                                            <span class="db-widget-tag">PROCHAINE EXPÉRIENCE</span>
                                             <span class="db-widget-icon">
                                                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
                                                     stroke-width="2" style="width: 16px; height: 16px;">
@@ -955,17 +346,21 @@
                                             </span>
                                         </div>
                                         <h4 class="db-widget-title">Soirée Dégustation & Échanges</h4>
-                                        <p class="db-widget-desc">Genève &nbsp;•&nbsp; 24 Mai 2026 à 19:00</p>
+                                        <p class="db-widget-desc">Genève &nbsp;⬢&nbsp; 24 Mai 2026 à 19:00</p>
+                                        <div style="margin-top: 10px;"><span
+                                                style="display:inline-block; padding: 4px 8px; font-size: 0.65rem; font-weight: 700; border-radius: 2px; background-color: rgba(43, 138, 62, 0.1); color: #2b8a3e; border: 1px solid rgba(43, 138, 62, 0.2); text-transform: uppercase;">Réservation
+                                                confirmée</span></div>
                                     </div>
                                     <button type="button" class="db-widget-btn" onclick="switchDbTab('bookings')"
-                                        style="border-radius: 2px;">Gérer ma réservation</button>
+                                        style="border-radius: 2px;">VOIR MA RÉSERVATION</button>
                                 </div>
 
                                 <!-- Card 2: Waitlist info -->
-                                <div class="db-widget" id="dashboard-waitlist-card" style="border-radius: 4px;">
+                                <div class="db-widget" id="dashboard-waitlist-card"
+                                    style="border-radius: 4px; background-color: rgba(214, 164, 55, 0.04); border: 1px solid rgba(214, 164, 55, 0.4);">
                                     <div>
                                         <div class="db-widget-header">
-                                            <span class="db-widget-tag">Place Disponible Concierge</span>
+                                            <span class="db-widget-tag">VOTRE PLACE VOUS ATTEND</span>
                                             <span class="db-widget-icon" style="color: var(--luxury-gold);">
                                                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
                                                     stroke-width="2" style="width: 16px; height: 16px;">
@@ -976,12 +371,18 @@
                                         </div>
                                         <h4 class="db-widget-title" id="home-waitlist-title"
                                             style="color: var(--primary-navy);">Sunset & Conversations</h4>
-                                        <p class="db-widget-desc" id="home-waitlist-desc">Une place s'est libérée !
-                                            Expire dans 11h 42m.</p>
+                                        <p class="db-widget-desc" id="home-waitlist-desc">Une place est disponible pour
+                                            Sunset & Conversations. Confirmez votre réservation avant l'expiration du
+                                            délai.<br><br><span
+                                                style="display: flex; align-items: center; gap: 6px; color: var(--luxury-gold);"><svg
+                                                    viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                                    stroke-width="2" style="width: 14px; height: 14px;">
+                                                    <circle cx="12" cy="12" r="10"></circle>
+                                                    <polyline points="12 6 12 12 16 14"></polyline>
+                                                </svg> <strong>Expire dans 11 h 42 min</strong></span></p>
                                     </div>
                                     <button type="button" class="db-widget-btn" onclick="switchDbTab('waitlists')"
-                                        style="border-radius: 2px;">Confirmer
-                                        ma place</button>
+                                        style="background-color: #b78a3a; color: #ffffff;">CONFIRMER MA PLACE</button>
                                 </div>
                             </div>
 
@@ -990,7 +391,7 @@
                                 <div class="db-widget" style="border-radius: 4px;">
                                     <div>
                                         <div class="db-widget-header">
-                                            <span class="db-widget-tag">Dernier Message</span>
+                                            <span class="db-widget-tag">DERNIÈRE NOTIFICATION</span>
                                             <span class="db-widget-icon">
                                                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
                                                     stroke-width="2" style="width: 16px; height: 16px;">
@@ -1010,15 +411,15 @@
                                         </p>
                                     </div>
                                     <button type="button" class="db-widget-btn secondary"
-                                        onclick="switchDbTab('notifications')" style="border-radius: 2px;">Historique
-                                        des messages</button>
+                                        onclick="switchDbTab('notifications')" style="border-radius: 2px;">VOIR TOUTES
+                                        LES NOTIFICATIONS</button>
                                 </div>
 
                                 <!-- Card 4: Verification status -->
                                 <div class="db-widget" style="border-radius: 4px;">
                                     <div>
                                         <div class="db-widget-header">
-                                            <span class="db-widget-tag">Statut de Validation</span>
+                                            <span class="db-widget-tag">SÉCURITÉ DU COMPTE</span>
                                             <span class="db-widget-icon">
                                                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
                                                     stroke-width="2" style="width: 16px; height: 16px;">
@@ -1031,26 +432,25 @@
                                             <div style="display: flex; align-items: center; gap: 8px;">
                                                 <span id="home-email-badge"
                                                     style="display:inline-block; padding: 4px 8px; font-size: 0.58rem; font-weight: 700; border-radius: 2px; background-color: rgba(43, 138, 62, 0.1); color: #2b8a3e; border: 1px solid rgba(43, 138, 62, 0.2);">E-MAIL
-                                                    VÉRIFIÉ ✓</span>
+                                                    VÉRIFIÉ</span>
                                             </div>
                                             <div style="display: flex; align-items: center; gap: 8px;">
                                                 <span id="home-phone-badge"
                                                     style="display:inline-block; padding: 4px 8px; font-size: 0.58rem; font-weight: 700; border-radius: 2px; background-color: rgba(43, 138, 62, 0.1); color: #2b8a3e; border: 1px solid rgba(43, 138, 62, 0.2);">MOBILE
-                                                    VÉRIFIÉ ✓</span>
+                                                    VÉRIFIÉ</span>
                                             </div>
                                         </div>
                                     </div>
                                     <button type="button" class="db-widget-btn secondary"
                                         onclick="location.href='verify-contact.html'"
-                                        style="border-radius: 2px;">Renforcer
-                                        ma sécurité</button>
+                                        style="border-radius: 2px;">VÉRIFIER MON NUMÉRO</button>
                                 </div>
                             </div>
 
                             <!-- Event Tracking Widget -->
                             <div style="margin-top: 24px;" class="db-widget">
                                 <div class="db-widget-header">
-                                    <span class="db-widget-tag">Analyse Comportementale</span>
+
                                     <span class="db-widget-icon" style="color: var(--luxury-gold);">
                                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
                                             style="width: 16px; height: 16px;">
@@ -1058,20 +458,22 @@
                                         </svg>
                                     </span>
                                 </div>
-                                <h4 class="db-widget-title">Historique des Événements</h4>
-                                <p class="db-widget-desc" style="margin-bottom: 12px;">Types d'événements auxquels vous
-                                    avez participé, utilisés pour affiner vos correspondances S7.</p>
+                                <h4 class="db-widget-title">MES EXPÉRIENCES</h4>
+                                <p class="db-widget-desc" style="margin-bottom: 12px;">Retrouvez les événements auxquels
+                                    vous avez participé et les expériences qui vous ont le plus marqué.</p>
                                 <div style="display: flex; gap: 10px; flex-wrap: wrap;">
                                     <span
-                                        style="background: rgba(214,164,55,0.1); border: 1px solid rgba(214,164,55,0.4); color: var(--luxury-gold); padding: 5px 12px; border-radius: 30px; font-size: 0.75rem; font-family: 'Outfit', sans-serif;">Dégustation
+                                        style="background: rgba(214,164,55,0.1); border: 1px solid rgba(214,164,55,0.4); color: var(--luxury-gold); padding: 5px 12px; border-radius: 30px; font-size: 0.75rem; font-family: 'Instrument Sans', sans-serif;">Dégustation
                                         (3)</span>
                                     <span
-                                        style="background: rgba(255,255,255,0.5); border: 1px solid rgba(20,43,99,0.2); color: var(--primary-navy); padding: 5px 12px; border-radius: 30px; font-size: 0.75rem; font-family: 'Outfit', sans-serif;">Ateliers
+                                        style="background: rgba(255,255,255,0.5); border: 1px solid rgba(20,43,99,0.2); color: var(--primary-navy); padding: 5px 12px; border-radius: 30px; font-size: 0.75rem; font-family: 'Instrument Sans', sans-serif;">Ateliers
                                         Créatifs (1)</span>
                                     <span
-                                        style="background: rgba(255,255,255,0.5); border: 1px solid rgba(20,43,99,0.2); color: var(--primary-navy); padding: 5px 12px; border-radius: 30px; font-size: 0.75rem; font-family: 'Outfit', sans-serif;">Conversations
+                                        style="background: rgba(255,255,255,0.5); border: 1px solid rgba(20,43,99,0.2); color: var(--primary-navy); padding: 5px 12px; border-radius: 30px; font-size: 0.75rem; font-family: 'Instrument Sans', sans-serif;">Conversations
                                         Intimes (1)</span>
                                 </div>
+                                <button type="button" class="db-widget-btn secondary"
+                                    onclick="switchDbTab('bookings')">VOIR MES EXPÉRIENCES</button>
                             </div>
 
                             <!-- Timeline & Concierge Support Widgets -->
@@ -1177,32 +579,43 @@
                         <div id="section-profile" class="db-section">
                             <div class="db-section-header">
                                 <h3 class="db-section-title">Paramètres du Profil</h3>
-                                <p class="db-section-subtitle">Gérez vos détails d'identification, de sécurité et vos préférences de contact.</p>
+                                <p class="db-section-subtitle">Gérez vos détails d'identification, de sécurité et vos
+                                    préférences de contact.</p>
                             </div>
 
                             <form id="profile-edit-form">
                                 <!-- Card 1: Informations du Profil -->
                                 <div class="db-widget" style="margin-bottom: 24px;">
-                                    <h4 style="font-family: 'Cormorant Garamond', serif; font-size: 1.3rem; color: var(--primary-navy); margin-bottom: 20px; border-bottom: 1px solid rgba(214,164,55,0.2); padding-bottom: 10px;">Informations du Profil</h4>
-                                    
-                                    <div class="db-form-row" style="margin-bottom: 25px; justify-content: center; display: flex;">
-                                        <div style="display: flex; flex-direction: column; align-items: center; gap: 10px;">
+                                    <h4
+                                        style="font-family: 'Cormorant Garamond', serif; font-size: 1.3rem; color: var(--primary-navy); margin-bottom: 20px; border-bottom: 1px solid rgba(214,164,55,0.2); padding-bottom: 10px;">
+                                        Informations du Profil</h4>
+
+                                    <div class="db-form-row"
+                                        style="margin-bottom: 25px; justify-content: center; display: flex;">
+                                        <div
+                                            style="display: flex; flex-direction: column; align-items: center; gap: 10px;">
                                             <!-- Circular Uploader Frame -->
                                             <div id="form-avatar-circle"
                                                 onclick="document.getElementById('profile-avatar-input').click();"
                                                 style="position: relative; width: 100px; height: 100px; border-radius: 50%; overflow: hidden; border: 2px solid rgba(214, 164, 55, 0.4); cursor: pointer; background-color: var(--primary-navy); background-size: cover; background-position: center; transition: all 0.3s; box-shadow: 0 8px 24px rgba(16,42,94,0.06);">
-                                                
+
                                                 <!-- Overlay on Hover -->
                                                 <div style="position: absolute; top:0; left:0; width:100%; height:100%; background: rgba(20, 43, 99, 0.7); display:flex; flex-direction:column; align-items:center; justify-content:center; color: var(--warm-ivory); font-size: 0.62rem; font-weight:700; text-transform:uppercase; letter-spacing:0.05em; opacity:0; transition: opacity 0.3s;"
                                                     id="form-avatar-overlay">
-                                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width: 20px; height: 20px; margin-bottom: 4px;">
-                                                        <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"></path>
+                                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                                        stroke-width="2"
+                                                        style="width: 20px; height: 20px; margin-bottom: 4px;">
+                                                        <path
+                                                            d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z">
+                                                        </path>
                                                         <circle cx="12" cy="13" r="4"></circle>
                                                     </svg>
                                                     Télécharger
                                                 </div>
                                             </div>
-                                            <span id="profile-file-name" style="font-size: 0.68rem; color: var(--text-muted); text-align: center;">Format JPG ou PNG. Recommandé 1:1.</span>
+                                            <span id="profile-file-name"
+                                                style="font-size: 0.68rem; color: var(--text-muted); text-align: center;">Format
+                                                JPG ou PNG. Recommandé 1:1.</span>
                                         </div>
                                     </div>
                                     <div class="db-form-row">
@@ -1241,7 +654,8 @@
                                         </div>
                                         <div class="db-form-group">
                                             <label for="profile-email">Adresse e-mail *</label>
-                                            <input type="email" id="profile-email" required value="jean.dupont@example.ch">
+                                            <input type="email" id="profile-email" required
+                                                value="jean.dupont@example.ch">
                                         </div>
                                     </div>
                                     <div class="db-form-row" style="align-items: flex-start;">
@@ -1265,16 +679,19 @@
                                                     cursor: pointer;
                                                     transition: all 0.2s ease;
                                                 }
+
                                                 .hobby-chip:hover {
                                                     background-color: rgba(214, 164, 55, 0.1);
                                                     border-color: rgba(214, 164, 55, 0.4);
                                                 }
+
                                                 .hobby-chip.active {
                                                     background-color: var(--primary-navy);
                                                     color: var(--warm-ivory);
                                                     border-color: var(--primary-navy);
                                                     box-shadow: 0 4px 10px rgba(16, 42, 94, 0.2);
                                                 }
+
                                                 .hobbies-scroll-container {
                                                     max-height: 140px;
                                                     overflow-y: auto;
@@ -1282,85 +699,142 @@
                                                     border: 1px solid rgba(20, 43, 99, 0.15);
                                                     border-radius: 8px;
                                                     padding: 10px;
-                                                    box-shadow: inset 0 2px 4px rgba(0,0,0,0.02);
+                                                    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.02);
                                                 }
+
                                                 .hobbies-scroll-container::-webkit-scrollbar {
                                                     width: 6px;
                                                 }
+
                                                 .hobbies-scroll-container::-webkit-scrollbar-thumb {
                                                     background: rgba(20, 43, 99, 0.2);
                                                     border-radius: 4px;
                                                 }
                                             </style>
                                             <div class="hobbies-scroll-container">
-                                                <span class="hobby-chip active" onclick="this.classList.toggle('active')">Voyages</span>
-                                                <span class="hobby-chip active" onclick="this.classList.toggle('active')">Gastronomie</span>
-                                                <span class="hobby-chip" onclick="this.classList.toggle('active')">Art Contemporain</span>
-                                                <span class="hobby-chip" onclick="this.classList.toggle('active')">Photographie</span>
-                                                <span class="hobby-chip" onclick="this.classList.toggle('active')">Oenologie</span>
-                                                <span class="hobby-chip" onclick="this.classList.toggle('active')">Ski</span>
-                                                <span class="hobby-chip" onclick="this.classList.toggle('active')">Voile</span>
-                                                <span class="hobby-chip" onclick="this.classList.toggle('active')">Golf</span>
-                                                <span class="hobby-chip" onclick="this.classList.toggle('active')">Tennis</span>
-                                                <span class="hobby-chip" onclick="this.classList.toggle('active')">Yoga</span>
-                                                <span class="hobby-chip" onclick="this.classList.toggle('active')">Méditation</span>
-                                                <span class="hobby-chip" onclick="this.classList.toggle('active')">Lecture</span>
-                                                <span class="hobby-chip" onclick="this.classList.toggle('active')">Théâtre</span>
-                                                <span class="hobby-chip" onclick="this.classList.toggle('active')">Opéra</span>
-                                                <span class="hobby-chip" onclick="this.classList.toggle('active')">Musique Classique</span>
-                                                <span class="hobby-chip" onclick="this.classList.toggle('active')">Jazz</span>
-                                                <span class="hobby-chip" onclick="this.classList.toggle('active')">Cinéma</span>
-                                                <span class="hobby-chip" onclick="this.classList.toggle('active')">Randonnée</span>
-                                                <span class="hobby-chip" onclick="this.classList.toggle('active')">Plongée</span>
-                                                <span class="hobby-chip" onclick="this.classList.toggle('active')">Équitation</span>
-                                                <span class="hobby-chip" onclick="this.classList.toggle('active')">Mode</span>
-                                                <span class="hobby-chip" onclick="this.classList.toggle('active')">Design</span>
-                                                <span class="hobby-chip" onclick="this.classList.toggle('active')">Architecture</span>
-                                                <span class="hobby-chip" onclick="this.classList.toggle('active')">Histoire</span>
-                                                <span class="hobby-chip" onclick="this.classList.toggle('active')">Philanthropie</span>
-                                                <span class="hobby-chip" onclick="this.classList.toggle('active')">Vins Spiritueux</span>
-                                                <span class="hobby-chip" onclick="this.classList.toggle('active')">Chasse</span>
-                                                <span class="hobby-chip" onclick="this.classList.toggle('active')">Pêche</span>
-                                                <span class="hobby-chip" onclick="this.classList.toggle('active')">Voitures de Collection</span>
-                                                <span class="hobby-chip" onclick="this.classList.toggle('active')">Horlogerie</span>
-                                                <span class="hobby-chip" onclick="this.classList.toggle('active')">Entrepreneuriat</span>
-                                                <span class="hobby-chip" onclick="this.classList.toggle('active')">Investissement</span>
-                                                <span class="hobby-chip" onclick="this.classList.toggle('active')">Bourse</span>
-                                                <span class="hobby-chip" onclick="this.classList.toggle('active')">Bénévolat</span>
-                                                <span class="hobby-chip" onclick="this.classList.toggle('active')">Danse</span>
-                                                <span class="hobby-chip" onclick="this.classList.toggle('active')">Littérature</span>
-                                                <span class="hobby-chip" onclick="this.classList.toggle('active')">Botanique</span>
-                                                <span class="hobby-chip" onclick="this.classList.toggle('active')">Philosophie</span>
-                                                <span class="hobby-chip" onclick="this.classList.toggle('active')">Développement Personnel</span>
-                                                <span class="hobby-chip" onclick="this.classList.toggle('active')">Fitness</span>
-                                                <span class="hobby-chip" onclick="this.classList.toggle('active')">Surf</span>
-                                                <span class="hobby-chip" onclick="this.classList.toggle('active')">Alpinisme</span>
-                                                <span class="hobby-chip" onclick="this.classList.toggle('active')">Cyclisme</span>
-                                                <span class="hobby-chip" onclick="this.classList.toggle('active')">Astronomie</span>
+                                                <span class="hobby-chip active"
+                                                    onclick="this.classList.toggle('active')">Voyages</span>
+                                                <span class="hobby-chip active"
+                                                    onclick="this.classList.toggle('active')">Gastronomie</span>
+                                                <span class="hobby-chip" onclick="this.classList.toggle('active')">Art
+                                                    Contemporain</span>
+                                                <span class="hobby-chip"
+                                                    onclick="this.classList.toggle('active')">Photographie</span>
+                                                <span class="hobby-chip"
+                                                    onclick="this.classList.toggle('active')">Oenologie</span>
+                                                <span class="hobby-chip"
+                                                    onclick="this.classList.toggle('active')">Ski</span>
+                                                <span class="hobby-chip"
+                                                    onclick="this.classList.toggle('active')">Voile</span>
+                                                <span class="hobby-chip"
+                                                    onclick="this.classList.toggle('active')">Golf</span>
+                                                <span class="hobby-chip"
+                                                    onclick="this.classList.toggle('active')">Tennis</span>
+                                                <span class="hobby-chip"
+                                                    onclick="this.classList.toggle('active')">Yoga</span>
+                                                <span class="hobby-chip"
+                                                    onclick="this.classList.toggle('active')">Méditation</span>
+                                                <span class="hobby-chip"
+                                                    onclick="this.classList.toggle('active')">Lecture</span>
+                                                <span class="hobby-chip"
+                                                    onclick="this.classList.toggle('active')">Théâtre</span>
+                                                <span class="hobby-chip"
+                                                    onclick="this.classList.toggle('active')">Opéra</span>
+                                                <span class="hobby-chip"
+                                                    onclick="this.classList.toggle('active')">Musique Classique</span>
+                                                <span class="hobby-chip"
+                                                    onclick="this.classList.toggle('active')">Jazz</span>
+                                                <span class="hobby-chip"
+                                                    onclick="this.classList.toggle('active')">Cinéma</span>
+                                                <span class="hobby-chip"
+                                                    onclick="this.classList.toggle('active')">Randonnée</span>
+                                                <span class="hobby-chip"
+                                                    onclick="this.classList.toggle('active')">Plongée</span>
+                                                <span class="hobby-chip"
+                                                    onclick="this.classList.toggle('active')">Équitation</span>
+                                                <span class="hobby-chip"
+                                                    onclick="this.classList.toggle('active')">Mode</span>
+                                                <span class="hobby-chip"
+                                                    onclick="this.classList.toggle('active')">Design</span>
+                                                <span class="hobby-chip"
+                                                    onclick="this.classList.toggle('active')">Architecture</span>
+                                                <span class="hobby-chip"
+                                                    onclick="this.classList.toggle('active')">Histoire</span>
+                                                <span class="hobby-chip"
+                                                    onclick="this.classList.toggle('active')">Philanthropie</span>
+                                                <span class="hobby-chip" onclick="this.classList.toggle('active')">Vins
+                                                    Spiritueux</span>
+                                                <span class="hobby-chip"
+                                                    onclick="this.classList.toggle('active')">Chasse</span>
+                                                <span class="hobby-chip"
+                                                    onclick="this.classList.toggle('active')">Pêche</span>
+                                                <span class="hobby-chip"
+                                                    onclick="this.classList.toggle('active')">Voitures de
+                                                    Collection</span>
+                                                <span class="hobby-chip"
+                                                    onclick="this.classList.toggle('active')">Horlogerie</span>
+                                                <span class="hobby-chip"
+                                                    onclick="this.classList.toggle('active')">Entrepreneuriat</span>
+                                                <span class="hobby-chip"
+                                                    onclick="this.classList.toggle('active')">Investissement</span>
+                                                <span class="hobby-chip"
+                                                    onclick="this.classList.toggle('active')">Bourse</span>
+                                                <span class="hobby-chip"
+                                                    onclick="this.classList.toggle('active')">Bénévolat</span>
+                                                <span class="hobby-chip"
+                                                    onclick="this.classList.toggle('active')">Danse</span>
+                                                <span class="hobby-chip"
+                                                    onclick="this.classList.toggle('active')">Littérature</span>
+                                                <span class="hobby-chip"
+                                                    onclick="this.classList.toggle('active')">Botanique</span>
+                                                <span class="hobby-chip"
+                                                    onclick="this.classList.toggle('active')">Philosophie</span>
+                                                <span class="hobby-chip"
+                                                    onclick="this.classList.toggle('active')">Développement
+                                                    Personnel</span>
+                                                <span class="hobby-chip"
+                                                    onclick="this.classList.toggle('active')">Fitness</span>
+                                                <span class="hobby-chip"
+                                                    onclick="this.classList.toggle('active')">Surf</span>
+                                                <span class="hobby-chip"
+                                                    onclick="this.classList.toggle('active')">Alpinisme</span>
+                                                <span class="hobby-chip"
+                                                    onclick="this.classList.toggle('active')">Cyclisme</span>
+                                                <span class="hobby-chip"
+                                                    onclick="this.classList.toggle('active')">Astronomie</span>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="db-form-row" style="align-items: stretch;">
                                         <div class="db-form-group" style="display: flex; flex-direction: column;">
                                             <label for="profile-description">Description Personnelle</label>
-                                            <textarea id="profile-description" style="flex: 1; resize: vertical; min-height: 120px;"></textarea>
+                                            <textarea id="profile-description"
+                                                style="flex: 1; resize: vertical; min-height: 120px;"></textarea>
                                         </div>
                                         <div class="db-form-group" style="display: flex; flex-direction: column;">
                                             <label for="profile-looking-for">Ce que je recherche</label>
-                                            <textarea id="profile-looking-for" style="flex: 1; resize: vertical; min-height: 120px;"></textarea>
+                                            <textarea id="profile-looking-for"
+                                                style="flex: 1; resize: vertical; min-height: 120px;"></textarea>
                                         </div>
                                     </div>
                                 </div>
 
                                 <!-- Card 2: Security & Notifications -->
                                 <div class="db-widget" style="margin-bottom: 24px;">
-                                    <h4 style="font-family: 'Cormorant Garamond', serif; font-size: 1.3rem; color: var(--primary-navy); margin-bottom: 20px; border-bottom: 1px solid rgba(214,164,55,0.2); padding-bottom: 10px;">Sécurité & Notifications</h4>
-                                    
-                                    <h5 style="font-family: 'Outfit', sans-serif; font-size: 0.85rem; font-weight: 700; text-transform: uppercase; color: var(--primary-navy); margin-bottom: 15px;">Mot de passe</h5>
+                                    <h4
+                                        style="font-family: 'Cormorant Garamond', serif; font-size: 1.3rem; color: var(--primary-navy); margin-bottom: 20px; border-bottom: 1px solid rgba(214,164,55,0.2); padding-bottom: 10px;">
+                                        Sécurité & Notifications</h4>
+
+                                    <h5
+                                        style="font-family: 'Instrument Sans', sans-serif; font-size: 0.85rem; font-weight: 700; text-transform: uppercase; color: var(--primary-navy); margin-bottom: 15px;">
+                                        Mot de passe</h5>
                                     <div class="db-form-row" style="margin-bottom: 25px;">
                                         <div class="db-form-group" style="width: 100%;">
-                                            <button type="button" class="db-widget-btn secondary" style="width: auto; padding: 10px 20px;" onclick="openPasswordModal()">
-                                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width: 14px; height: 14px; margin-right: 6px; vertical-align: middle; display: inline-block;">
+                                            <button type="button" class="db-widget-btn secondary"
+                                                style="width: auto; padding: 10px 20px;" onclick="openPasswordModal()">
+                                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                                    stroke-width="2"
+                                                    style="width: 14px; height: 14px; margin-right: 6px; vertical-align: middle; display: inline-block;">
                                                     <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
                                                     <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
                                                 </svg>
@@ -1369,12 +843,17 @@
                                         </div>
                                     </div>
 
-                                    <h5 style="font-family: 'Outfit', sans-serif; font-size: 0.85rem; font-weight: 700; text-transform: uppercase; color: var(--primary-navy); margin-bottom: 15px;">Canaux de Notifications</h5>
-                                    <div style="background: rgba(255, 255, 255, 0.4); border: 1px solid rgba(20, 43, 99, 0.05); padding: 5px 20px; border-radius: 8px;">
+                                    <h5
+                                        style="font-family: 'Instrument Sans', sans-serif; font-size: 0.85rem; font-weight: 700; text-transform: uppercase; color: var(--primary-navy); margin-bottom: 15px;">
+                                        Canaux de Notifications</h5>
+                                    <div
+                                        style="background: rgba(255, 255, 255, 0.4); border: 1px solid rgba(20, 43, 99, 0.05); padding: 5px 20px; border-radius: 8px;">
                                         <div class="preference-row">
                                             <div class="preference-info">
-                                                <h4 class="preference-title" style="font-size: 0.8rem;">Notifications par E-mail</h4>
-                                                <p class="preference-desc" style="font-size: 0.7rem;">Confirmations de paiement, invitations privées prioritaires.</p>
+                                                <h4 class="preference-title" style="font-size: 0.8rem;">Notifications
+                                                    par E-mail</h4>
+                                                <p class="preference-desc" style="font-size: 0.7rem;">Confirmations de
+                                                    paiement, invitations privées prioritaires.</p>
                                             </div>
                                             <label class="luxury-switch">
                                                 <input type="checkbox" id="pref-email" checked>
@@ -1383,8 +862,10 @@
                                         </div>
                                         <div class="preference-row">
                                             <div class="preference-info">
-                                                <h4 class="preference-title" style="font-size: 0.8rem;">Notifications par SMS</h4>
-                                                <p class="preference-desc" style="font-size: 0.7rem;">Mises à jour logistiques, rappels d'événements et alertes de désistement.</p>
+                                                <h4 class="preference-title" style="font-size: 0.8rem;">Notifications
+                                                    par SMS</h4>
+                                                <p class="preference-desc" style="font-size: 0.7rem;">Mises à jour
+                                                    logistiques, rappels d'événements et alertes de désistement.</p>
                                             </div>
                                             <label class="luxury-switch">
                                                 <input type="checkbox" id="pref-sms" checked>
@@ -1393,8 +874,10 @@
                                         </div>
                                         <div class="preference-row">
                                             <div class="preference-info">
-                                                <h4 class="preference-title" style="font-size: 0.8rem;">Conciergerie WhatsApp Directe</h4>
-                                                <p class="preference-desc" style="font-size: 0.7rem;">Échanges privilégiés avec la conciergerie 7Sens et covoiturages.</p>
+                                                <h4 class="preference-title" style="font-size: 0.8rem;">Conciergerie
+                                                    WhatsApp Directe</h4>
+                                                <p class="preference-desc" style="font-size: 0.7rem;">Échanges
+                                                    privilégiés avec la conciergerie 7Sens et covoiturages.</p>
                                             </div>
                                             <label class="luxury-switch">
                                                 <input type="checkbox" id="pref-whatsapp">
@@ -1404,7 +887,8 @@
                                     </div>
                                 </div>
 
-                                <button type="submit" class="db-banner-btn" style="background-color: var(--primary-navy); border-color: var(--primary-navy); margin-top: 10px; width: 100%; padding: 14px; font-size: 0.85rem;">
+                                <button type="submit" class="db-banner-btn"
+                                    style="background-color: var(--primary-navy); border-color: var(--primary-navy); margin-top: 10px; width: 100%; padding: 14px; font-size: 0.85rem;">
                                     SAUVEGARDER LES MODIFICATIONS
                                 </button>
                             </form>
@@ -1427,12 +911,12 @@
                                             style="background-image: url('assets/pexels-stephen-leonardi-587681991-35120679.jpg');">
                                         </div>
                                         <div class="booking-item-details">
-                                            <span class="booking-item-ref">REF: #7S-8472 &nbsp;•&nbsp; PAIEMENT:
+                                            <span class="booking-item-ref">REF: #7S-8472 &nbsp;⬢&nbsp; PAIEMENT:
                                                 TWINT</span>
                                             <h4 class="booking-item-name">Soirée Dégustation & Échanges</h4>
                                             <div class="booking-item-meta">
                                                 <span>Genève</span>
-                                                <span class="separator">•</span>
+                                                <span class="separator">⬢</span>
                                                 <span>24 Mai 2026 à 19:00</span>
                                             </div>
                                         </div>
@@ -1453,12 +937,12 @@
                                             style="background-image: url('assets/pexels-jibarofoto-18482996.jpg');">
                                         </div>
                                         <div class="booking-item-details">
-                                            <span class="booking-item-ref">REF: #7S-3958 &nbsp;•&nbsp; PAIEMENT:
+                                            <span class="booking-item-ref">REF: #7S-3958 &nbsp;⬢&nbsp; PAIEMENT:
                                                 STRIPE</span>
                                             <h4 class="booking-item-name">Art & Inspiration (Mixology)</h4>
                                             <div class="booking-item-meta">
                                                 <span>Zurich</span>
-                                                <span class="separator">•</span>
+                                                <span class="separator">⬢</span>
                                                 <span>14 Juin 2026 à 18:30</span>
                                             </div>
                                         </div>
@@ -1489,13 +973,13 @@
                                             style="background-image: url('assets/pexels-jibarofoto-14373426.jpg');">
                                         </div>
                                         <div class="booking-item-details">
-                                            <span class="booking-item-ref">REF: #7S-WAIT-01 &nbsp;•&nbsp; INSCRIPTION:
+                                            <span class="booking-item-ref">REF: #7S-WAIT-01 &nbsp;⬢&nbsp; INSCRIPTION:
                                                 18
                                                 AVRIL</span>
                                             <h4 class="booking-item-name">Atelier Créatif & Rencontres</h4>
                                             <div class="booking-item-meta">
                                                 <span>Lausanne</span>
-                                                <span class="separator">•</span>
+                                                <span class="separator">⬢</span>
                                                 <span>28 Mai 2026</span>
                                             </div>
                                         </div>
@@ -1518,11 +1002,11 @@
                                         <div class="booking-item-details">
                                             <span class="booking-item-ref"
                                                 style="color: #d6a437; font-weight: 700;">PLACE
-                                                DISPONIBLE ! 🎉</span>
+                                                DISPONIBLE ! —x}0</span>
                                             <h4 class="booking-item-name">Sunset & Conversations</h4>
                                             <div class="booking-item-meta">
                                                 <span>Montreux</span>
-                                                <span class="separator">•</span>
+                                                <span class="separator">⬢</span>
                                                 <span>7 Juin 2026</span>
                                             </div>
                                         </div>
@@ -1642,13 +1126,13 @@
                                             <h4 class="booking-item-name" style="font-size: 1.15rem; margin-top: 4px;">
                                                 Soirée Dégustation & Échanges</h4>
                                             <div style="font-size: 0.72rem; color: var(--text-muted); margin-top: 4px;">
-                                                Date : 18 Avril 2026 à 14:22 &nbsp;•&nbsp; Méthode : TWINT
+                                                Date : 18 Avril 2026 à 14:22 &nbsp;⬢&nbsp; Méthode : TWINT
                                             </div>
                                         </div>
                                         <div
                                             style="text-align: right; display: flex; flex-direction: column; align-items: flex-end; gap: 8px;">
                                             <span
-                                                style="font-family: 'Outfit', sans-serif; font-size: 1rem; font-weight: 700; color: #2b8a3e;">CHF
+                                                style="font-family: 'Instrument Sans', sans-serif; font-size: 1rem; font-weight: 700; color: #2b8a3e;">CHF
                                                 120.00</span>
                                             <button class="showroom-btn secondary"
                                                 onclick="alert('Simulation : Téléchargement du reçu / facture PDF...')"
@@ -1669,14 +1153,14 @@
                                             <h4 class="booking-item-name" style="font-size: 1.15rem; margin-top: 4px;">
                                                 Art & Inspiration (Mixology)</h4>
                                             <div style="font-size: 0.72rem; color: var(--text-muted); margin-top: 4px;">
-                                                Date : 15 Avril 2026 à 09:15 &nbsp;•&nbsp; Méthode : Carte de Crédit
+                                                Date : 15 Avril 2026 à 09:15 &nbsp;⬢&nbsp; Méthode : Carte de Crédit
                                                 (Stripe)
                                             </div>
                                         </div>
                                         <div
                                             style="text-align: right; display: flex; flex-direction: column; align-items: flex-end; gap: 8px;">
                                             <span
-                                                style="font-family: 'Outfit', sans-serif; font-size: 1rem; font-weight: 700; color: #2b8a3e;">CHF
+                                                style="font-family: 'Instrument Sans', sans-serif; font-size: 1rem; font-weight: 700; color: #2b8a3e;">CHF
                                                 150.00</span>
                                             <button class="showroom-btn secondary"
                                                 onclick="alert('Simulation : Téléchargement du reçu / facture PDF...')"
@@ -1715,7 +1199,7 @@
                                     Sunset & Conversations (Montreux)</h4>
                                 <p
                                     style="font-size: 0.78rem; color: var(--text-muted); line-height: 1.5; margin-bottom: 20px;">
-                                    ℹ️ *Ce lien de paiement privé n'est pas accessible publiquement via URL. Il a été
+                                    ——️ *Ce lien de paiement privé n'est pas accessible publiquement via URL. Il a été
                                     généré
                                     spécifiquement pour votre profil suite à une libération de place en liste
                                     d'attente.*
@@ -1847,7 +1331,7 @@
                                 </div>
                                 <h2
                                     style="font-family: 'Cormorant Garamond', serif; font-size: 1.8rem; color: var(--primary-navy); margin: 0 0 10px;">
-                                    Paiement Validé ✓</h2>
+                                    Paiement Validé —S</h2>
                                 <p
                                     style="font-size: 0.8rem; color: var(--text-muted); max-width: 440px; margin: 0 auto 25px; line-height: 1.5;">
                                     Votre transaction de **CHF 140.00** a été approuvée avec succès. Votre place pour
@@ -1877,7 +1361,7 @@
                                 </div>
                                 <h2
                                     style="font-family: 'Cormorant Garamond', serif; font-size: 1.8rem; color: var(--primary-navy); margin: 0 0 10px;">
-                                    Règlement Refusé ✕</h2>
+                                    Règlement Refusé —S"</h2>
                                 <p
                                     style="font-size: 0.8rem; color: var(--text-muted); max-width: 440px; margin: 0 auto 20px; line-height: 1.5;">
                                     Désolé, la transaction bancaire a échoué. Votre carte bancaire a été déclinée ou le
@@ -1953,7 +1437,7 @@
                                             </svg>
                                             Environ 5 minutes
                                         </div>
-                                        <span class="meta-dot">•</span>
+                                        <span class="meta-dot">⬢</span>
                                         <div class="meta-item">
                                             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
                                                 stroke-width="1.5">
@@ -1964,7 +1448,7 @@
                                             </svg>
                                             8 catégories
                                         </div>
-                                        <span class="meta-dot">•</span>
+                                        <span class="meta-dot">⬢</span>
                                         <div class="meta-item">
                                             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
                                                 stroke-width="1.5">
@@ -2054,7 +1538,7 @@
                             <div class="db-section-header">
                                 <h3 class="db-section-title">Mes Compatibilités</h3>
                                 <p class="db-section-subtitle">Retrouvez l'historique de vos rencontres et vos résultats
-                                    S7 Connection™.</p>
+                                    S7 Connection——.</p>
                             </div>
                             <div class="booking-list">
                                 <div class="booking-item-card">
@@ -2064,12 +1548,12 @@
                                             S
                                         </div>
                                         <div class="booking-item-details">
-                                            <span class="booking-item-ref">S7 CONNECTION™: 89% (Match
+                                            <span class="booking-item-ref">S7 CONNECTION——: 89% (Match
                                                 Exceptionnel)</span>
                                             <h4 class="booking-item-name">Sophie M.</h4>
                                             <div class="booking-item-meta">
                                                 <span>Soirée Dégustation</span>
-                                                <span class="separator">•</span>
+                                                <span class="separator">⬢</span>
                                                 <span>24 Mai 2026</span>
                                             </div>
                                         </div>
@@ -2105,8 +1589,10 @@
             </svg>
         </button>
         <ul class="lang-menu">
-            <li><a href="#" class="active"><img src="https://flagcdn.com/w20/fr.png" width="16" alt="FR" style="border-radius: 2px;"> FR</a></li>
-            <li><a href="#"><img src="https://flagcdn.com/w20/gb.png" width="16" alt="EN" style="border-radius: 2px;"> EN</a></li>
+            <li><a href="#" class="active"><img src="https://flagcdn.com/w20/fr.png" width="16" alt="FR"
+                        style="border-radius: 2px;"> FR</a></li>
+            <li><a href="#"><img src="https://flagcdn.com/w20/gb.png" width="16" alt="EN" style="border-radius: 2px;">
+                    EN</a></li>
         </ul>
     </div>
 
@@ -2249,7 +1735,7 @@
             const phoneBadge = document.getElementById("home-phone-badge");
             if (emailBadge) {
                 if (user.isEmailVerified) {
-                    emailBadge.textContent = "E-MAIL VÉRIFIÉ ✓";
+                    emailBadge.textContent = "E-MAIL VÉRIFIÉ";
                     emailBadge.style.backgroundColor = "rgba(43, 138, 62, 0.1)";
                     emailBadge.style.color = "#2b8a3e";
                     emailBadge.style.borderColor = "rgba(43, 138, 62, 0.25)";
@@ -2262,7 +1748,7 @@
             }
             if (phoneBadge) {
                 if (user.isPhoneVerified) {
-                    phoneBadge.textContent = "MOBILE VÉRIFIÉ ✓";
+                    phoneBadge.textContent = "MOBILE VÉRIFIÉ";
                     phoneBadge.style.backgroundColor = "rgba(43, 138, 62, 0.1)";
                     phoneBadge.style.color = "#2b8a3e";
                     phoneBadge.style.borderColor = "rgba(43, 138, 62, 0.25)";
@@ -2388,32 +1874,47 @@
                             const results = JSON.parse(resultsStr);
                             let html = "";
                             const titles = {
-                                valeurs: "My Core Values",
-                                craquer: "What Makes Me Fall for Someone",
-                                fuir: "My Deal Breakers",
-                                defauts: "My Flaws",
-                                reves: "My Dreams",
-                                besoins: "My Love Language",
-                                lifestyle: "My Lifestyle",
-                                vision: "Relationship Vision"
+                                q1: "Que recherchez-vous aujourd’hui ?",
+                                q2: "Vos principaux défauts",
+                                q3: "Expression des émotions",
+                                q4: "Souhait d’avoir des enfants",
+                                q5: "Besoins relationnels",
+                                q6: "Valeurs essentielles",
+                                q7: "Expression de l’affection",
+                                q8: "Importance de la famille",
+                                q9: "Vision de la relation",
+                                q10: "Description personnelle",
+                                q11: "Qualités attirantes",
+                                q12: "Gestion des conflits",
+                                q13: "Rapport à l’argent",
+                                q14: "Crainte en amour",
+                                q15: "Passions et centres d’intérêt",
+                                q16: "Critères incompatibles",
+                                q17: "Mode de vie",
+                                q18: "Type de vacances",
+                                q19: "Aspect à améliorer",
+                                q20: "Personne recherchée",
+                                q21: "Rêves et aspirations",
+                                q22: "Prise de décision",
+                                q23: "Spontanéité",
+                                q24: "Type d’humour"
                             };
                             const folders = {
-                                valeurs: "valeurs",
-                                craquer: "craquer",
-                                fuir: "Fuir",
-                                defauts: "Default",
-                                reves: "dream",
-                                besoins: "Besoin",
-                                lifestyle: "placeholder",
-                                vision: "placeholder"
+                                q6: "valeurs",
+                                q11: "craquer",
+                                q16: "Fuir",
+                                q2: "Default",
+                                q21: "dream",
+                                q7: "Besoin"
                             };
 
                             for (const key in results) {
                                 if (results[key] && results[key].length > 0) {
                                     const folder = folders[key] || "placeholder";
-                                    const cardsHtml = results[key].map(item => {
+                                    const itemsArray = Array.isArray(results[key]) ? results[key] : [results[key]];
+                                    const cardsHtml = itemsArray.map(item => {
                                         if (folder === "placeholder") {
-                                            return `<div style="background: rgba(214,164,55,0.05); padding: 15px; border-radius: 4px; font-family: 'Outfit', sans-serif; font-size: 0.8rem; font-weight: 600; color: var(--primary-navy); border: 1px solid rgba(214,164,55,0.2); text-align: center; display: flex; align-items: center; justify-content: center;">${item}</div>`;
+                                            return `<div style="background: rgba(214,164,55,0.05); padding: 15px; border-radius: 4px; font-family: 'Instrument Sans', sans-serif; font-size: 0.8rem; font-weight: 600; color: var(--primary-navy); border: 1px solid rgba(214,164,55,0.2); text-align: center; display: flex; align-items: center; justify-content: center;">${item}</div>`;
                                         } else {
                                             return `<div style="border-radius: 4px; overflow: hidden; border: 1px solid rgba(214,164,55,0.4); box-shadow: 0 4px 10px rgba(0,0,0,0.05); aspect-ratio: 2/3;"><img src="../cards7sens/${folder}/${item}" style="width: 100%; height: 100%; object-fit: cover;" alt="${item}"></div>`;
                                         }
@@ -2436,10 +1937,28 @@
                     }
                 }
             }
+
+            // Handle URL parameter for initial tab
+            const urlParams = new URLSearchParams(window.location.search);
+            const initialTab = urlParams.get('tab');
+            if (initialTab) {
+                if (initialTab === 'bookings' || initialTab === 'waitlists') {
+                    window.location.href = 'mesRéservations.html';
+                } else {
+                    switchDbTabInstant(initialTab);
+                }
+            }
         });
 
         // Tab switches logic using GSAP transition fades
         function switchDbTab(tabName) {
+            const targetSection = document.getElementById(`section-${tabName}`);
+            if (!targetSection || targetSection.classList.contains('active')) return;
+
+            // Update URL search parameter
+            const newUrl = window.location.protocol + "//" + window.location.host + window.location.pathname + "?tab=" + tabName;
+            window.history.replaceState({ path: newUrl }, '', newUrl);
+
             // Remove active tags on aside buttons
             document.querySelectorAll('.db-nav-item').forEach(btn => btn.classList.remove('active'));
 
@@ -2449,27 +1968,66 @@
 
             // Fade out current section and fade in new section
             const sections = document.querySelectorAll('.db-section');
-            const targetSection = document.getElementById(`section-${tabName}`);
 
             sections.forEach(sec => {
                 if (sec.classList.contains('active')) {
-                    gsap.to(sec, {
-                        opacity: 0,
-                        y: 10,
-                        duration: 0.25,
-                        onComplete: () => {
-                            sec.classList.remove('active');
+                    if (window.gsap) {
+                        gsap.to(sec, {
+                            opacity: 0,
+                            y: 10,
+                            duration: 0.25,
+                            onComplete: () => {
+                                sec.classList.remove('active');
 
-                            // Initialize new active section style and fade in
-                            targetSection.classList.add('active');
-                            gsap.fromTo(targetSection,
-                                { opacity: 0, y: 10 },
-                                { opacity: 1, y: 0, duration: 0.35, ease: "power2.out" }
-                            );
-                        }
-                    });
+                                // Initialize new active section style and fade in
+                                targetSection.classList.add('active');
+                                gsap.fromTo(targetSection,
+                                    { opacity: 0, y: 10 },
+                                    { opacity: 1, y: 0, duration: 0.35, ease: "power2.out" }
+                                );
+                            }
+                        });
+                    } else {
+                        sec.classList.remove('active');
+                        targetSection.classList.add('active');
+                        targetSection.style.opacity = '1';
+                        targetSection.style.transform = 'translateY(0px)';
+                    }
                 }
             });
+        }
+
+        // Instant tab switch on load without visual transition delays
+        function switchDbTabInstant(tabName) {
+            const targetSection = document.getElementById(`section-${tabName}`);
+            if (!targetSection) return;
+
+            // Remove active tags on aside buttons
+            document.querySelectorAll('.db-nav-item').forEach(btn => btn.classList.remove('active'));
+
+            // Set active tag on clicked button
+            const activeBtn = document.getElementById(`btn-tab-${tabName}`);
+            if (activeBtn) activeBtn.classList.add('active');
+
+            // Set active classes immediately
+            const sections = document.querySelectorAll('.db-section');
+            sections.forEach(sec => {
+                sec.classList.remove('active');
+                if (window.gsap) {
+                    gsap.set(sec, { opacity: 0, y: 10 });
+                } else {
+                    sec.style.opacity = '0';
+                    sec.style.transform = 'translateY(10px)';
+                }
+            });
+
+            targetSection.classList.add('active');
+            if (window.gsap) {
+                gsap.set(targetSection, { opacity: 1, y: 0 });
+            } else {
+                targetSection.style.opacity = '1';
+                targetSection.style.transform = 'translateY(0px)';
+            }
         }
 
         // Action when payment success is completed to update UI states dynamically
@@ -2505,11 +2063,11 @@
                     <div class="booking-item-info">
                         <div class="booking-item-thumb" style="background-image: url('assets/pexels-seemihaozkan-21413075.jpg');"></div>
                         <div class="booking-item-details">
-                            <span class="booking-item-ref">REF: #7S-5529 &nbsp;•&nbsp; PAIEMENT: STRIPE/TWINT</span>
+                            <span class="booking-item-ref">REF: #7S-5529 &nbsp;⬢&nbsp; PAIEMENT: STRIPE/TWINT</span>
                             <h4 class="booking-item-name">Sunset & Conversations</h4>
                             <div class="booking-item-meta">
                                 <span>Montreux</span>
-                                <span class="separator">•</span>
+                                <span class="separator">⬢</span>
                                 <span>7 Juin 2026 à 18:30</span>
                             </div>
                         </div>
@@ -2536,11 +2094,11 @@
                             <span style="font-size: 0.65rem; font-weight: 700; color: var(--luxury-gold); letter-spacing: 0.1em; text-transform: uppercase;">REF: #7S-5529-INV</span>
                             <h4 class="booking-item-name" style="font-size: 1.15rem; margin-top: 4px;">Sunset & Conversations</h4>
                             <div style="font-size: 0.72rem; color: var(--text-muted); margin-top: 4px;">
-                                Date : Aujourd'hui &nbsp;•&nbsp; Méthode : STRIPE/TWINT
+                                Date : Aujourd'hui &nbsp;⬢&nbsp; Méthode : STRIPE/TWINT
                             </div>
                         </div>
                         <div style="text-align: right; display: flex; flex-direction: column; align-items: flex-end; gap: 8px;">
-                            <span style="font-family: 'Outfit', sans-serif; font-size: 1rem; font-weight: 700; color: #2b8a3e;">CHF 140.00</span>
+                            <span style="font-family: 'Instrument Sans', sans-serif; font-size: 1rem; font-weight: 700; color: #2b8a3e;">CHF 140.00</span>
                             <button class="showroom-btn secondary" onclick="alert('Simulation : Téléchargement du reçu / facture PDF...')" style="padding: 6px 12px; font-size: 0.8rem; margin:0; border-radius:2px;">Reçu PDF</button>
                         </div>
                     </div>
@@ -2554,7 +2112,7 @@
                 dashboardNextEventCard.innerHTML = `
                     <div style="font-size: 0.65rem; font-weight: 700; color: var(--luxury-gold); letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 8px;">Prochain Cercle Privé</div>
                     <h4 style="font-family: 'Cormorant Garamond', serif; font-size: 1.3rem; margin: 0 0 4px; color: var(--primary-navy);">Sunset & Conversations</h4>
-                    <div style="font-size: 0.75rem; color: var(--text-muted); margin-bottom: 12px;">Montreux &nbsp;•&nbsp; 7 Juin 2026 à 18:30</div>
+                    <div style="font-size: 0.75rem; color: var(--text-muted); margin-bottom: 12px;">Montreux &nbsp;⬢&nbsp; 7 Juin 2026 à 18:30</div>
                     <button type="button" class="showroom-btn" onclick="switchDbTab('bookings')" style="padding: 6px 12px; font-size: 0.8rem;">Gérer ma place</button>
                 `;
             }
@@ -2566,18 +2124,27 @@
     <!-- Password Change Modal -->
     <div id="password-modal" class="db-modal-overlay">
         <div class="db-modal-content">
-            <button class="db-modal-close" onclick="closePasswordModal()">×</button>
-            <h3 style="font-family: 'Cormorant Garamond', serif; font-size: 1.5rem; color: var(--primary-navy); margin-bottom: 20px;">Modifier le mot de passe</h3>
-            
+            <button class="db-modal-close" onclick="closePasswordModal()">—</button>
+            <h3
+                style="font-family: 'Cormorant Garamond', serif; font-size: 1.5rem; color: var(--primary-navy); margin-bottom: 20px;">
+                Modifier le mot de passe</h3>
+
             <div class="db-form-group" style="margin-bottom: 15px;">
-                <label for="modal-profile-password" style="font-size: 0.65rem; font-weight: 700; letter-spacing: 0.12em; color: var(--primary-navy); text-transform: uppercase; margin-bottom: 8px; display: inline-block;">Nouveau mot de passe</label>
-                <input type="password" id="modal-profile-password" placeholder="Nouveau mot de passe" style="background-color: rgba(255, 255, 255, 0.6); border: 1px solid rgba(20, 43, 99, 0.15); padding: 14px 18px; font-family: 'Outfit', sans-serif; font-size: 0.88rem; border-radius: 8px; color: var(--primary-navy); transition: all 0.3s; width: 100%; box-shadow: inset 0 2px 4px rgba(0,0,0,0.02);">
+                <label for="modal-profile-password"
+                    style="font-size: 0.65rem; font-weight: 700; letter-spacing: 0.12em; color: var(--primary-navy); text-transform: uppercase; margin-bottom: 8px; display: inline-block;">Nouveau
+                    mot de passe</label>
+                <input type="password" id="modal-profile-password" placeholder="Nouveau mot de passe"
+                    style="background-color: rgba(255, 255, 255, 0.6); border: 1px solid rgba(20, 43, 99, 0.15); padding: 14px 18px; font-family: 'Instrument Sans', sans-serif; font-size: 0.88rem; border-radius: 8px; color: var(--primary-navy); transition: all 0.3s; width: 100%; box-shadow: inset 0 2px 4px rgba(0,0,0,0.02);">
             </div>
             <div class="db-form-group" style="margin-bottom: 25px;">
-                <label for="modal-profile-confirm-password" style="font-size: 0.65rem; font-weight: 700; letter-spacing: 0.12em; color: var(--primary-navy); text-transform: uppercase; margin-bottom: 8px; display: inline-block;">Confirmer le mot de passe</label>
-                <input type="password" id="modal-profile-confirm-password" placeholder="Confirmer le mot de passe" style="background-color: rgba(255, 255, 255, 0.6); border: 1px solid rgba(20, 43, 99, 0.15); padding: 14px 18px; font-family: 'Outfit', sans-serif; font-size: 0.88rem; border-radius: 8px; color: var(--primary-navy); transition: all 0.3s; width: 100%; box-shadow: inset 0 2px 4px rgba(0,0,0,0.02);">
+                <label for="modal-profile-confirm-password"
+                    style="font-size: 0.65rem; font-weight: 700; letter-spacing: 0.12em; color: var(--primary-navy); text-transform: uppercase; margin-bottom: 8px; display: inline-block;">Confirmer
+                    le mot de passe</label>
+                <input type="password" id="modal-profile-confirm-password" placeholder="Confirmer le mot de passe"
+                    style="background-color: rgba(255, 255, 255, 0.6); border: 1px solid rgba(20, 43, 99, 0.15); padding: 14px 18px; font-family: 'Instrument Sans', sans-serif; font-size: 0.88rem; border-radius: 8px; color: var(--primary-navy); transition: all 0.3s; width: 100%; box-shadow: inset 0 2px 4px rgba(0,0,0,0.02);">
             </div>
-            <button onclick="savePasswordModal()" class="db-banner-btn" style="background-color: var(--primary-navy); border-color: var(--primary-navy); width: 100%; padding: 14px; font-size: 0.85rem;">SAUVEGARDER</button>
+            <button onclick="savePasswordModal()" class="db-banner-btn"
+                style="background-color: var(--primary-navy); border-color: var(--primary-navy); width: 100%; padding: 14px; font-size: 0.85rem;">SAUVEGARDER</button>
         </div>
     </div>
 
@@ -2604,7 +2171,7 @@
             // For now, just close it with a tiny delay to simulate save
             const btn = document.querySelector('#password-modal .db-banner-btn');
             const originalText = btn.textContent;
-            btn.textContent = 'Enregistré ✓';
+            btn.textContent = 'Enregistré—S';
             setTimeout(() => {
                 closePasswordModal();
                 btn.textContent = originalText;

@@ -11,7 +11,7 @@
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Instrument+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
     <!-- Stylesheets -->
     <link rel="stylesheet" href="style.css">
@@ -27,7 +27,7 @@
     <!-- Header Navigation -->
     <header class="header" id="main-header">
         <div class="header-container">
-            <a href="index.html" class="logo-link" id="header-logo">
+            <a href="index.html#accueil" class="logo-link" id="header-logo">
                 <img src="assets/7sens.webp" alt="7Sens Logo" class="logo-img">
             </a>
 
@@ -61,7 +61,7 @@
                 <div class="user-profile-dropdown">
                     <button class="user-profile-btn" aria-haspopup="true" aria-expanded="false">
                         <img src="assets/pexels-maorattias-5152572.jpg" alt="User Avatar" class="user-avatar" id="top-header-avatar" style="width: 38px; height: 38px; border-radius: 50%; object-fit: cover; border: 2px solid var(--luxury-gold);">
-                        <span class="user-name" id="top-header-name" style="font-family: 'Outfit', sans-serif; font-weight: 500; font-size: 0.95rem; color: var(--primary-navy);">Jean D.</span>
+                        <span class="user-name" id="top-header-name" style="font-family: 'Instrument Sans', sans-serif; font-weight: 500; font-size: 0.95rem; color: var(--primary-navy);">Jean D.</span>
                         <svg class="dropdown-chevron" viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" style="color: var(--primary-navy);">
                             <path d="M6 9l6 6 6-6" />
                         </svg>
@@ -319,179 +319,140 @@
     </main>
 
     <!-- Footer -->
-    <footer class="v2-footer">
+    <footer class="footer cinematic-footer">
+        <!-- Cinematic Background Layers -->
+        <div class="footer-bg-layer image-layer"></div>
+        <div class="footer-bg-layer gradient-layer-1"></div>
+        <div class="footer-bg-layer gradient-layer-2"></div>
+        <div class="footer-bg-layer noise-layer"></div>
+        <div class="footer-bg-layer vignette-layer"></div>
+        <div class="footer-bg-layer particles-layer"></div>
+
         <div class="footer-container">
-            <!-- Footer Upper -->
-            <div class="footer-upper">
-                
-                <!-- Col 1: Brand Info -->
-                <div class="footer-col brand-col">
-                    <a href="index.html#accueil" class="logo-link">
-                        <img src="assets/7sens.webp" alt="7Sens Logo" class="logo-img">
-                    </a>
-                    <p class="footer-tagline">Redefining offline human connections through exclusive curated experiences in Switzerland.</p>
-                    
-                    <div class="v2-footer-socials">
-                        <a href="https://instagram.com" aria-label="Instagram" target="_blank" class="v2-social-link btn-magnetic">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                                <rect x="2" y="2" width="20" height="20" rx="5" ry="5" />
-                                <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
-                                <line x1="17.5" y1="6.5" x2="17.51" y2="6.5" />
-                            </svg>
-                        </a>
-                        <a href="https://facebook.com" aria-label="Facebook" target="_blank" class="v2-social-link btn-magnetic">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                                <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z" />
-                            </svg>
-                        </a>
-                        <a href="https://linkedin.com" aria-label="LinkedIn" target="_blank" class="v2-social-link btn-magnetic">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                                <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" />
-                                <rect x="2" y="9" width="4" height="12" />
-                                <circle cx="4" cy="4" r="2" />
-                            </svg>
-                        </a>
-                    </div>
-                </div>
+            <div class="footer-upper asymmetric-grid" style="grid-template-columns: 1fr 1fr; gap: 40px;">
 
-                <!-- Col 2: Navigation -->
-                <div class="footer-col">
-                    <h5 class="v2-footer-heading">NAVIGATION</h5>
-                    <ul class="v2-footer-links">
-                        <li><a href="index.html#accueil">Accueil</a></li>
-                        <li><a href="index.html#about">À propos</a></li>
-                        <li><a href="events.html">Événements</a></li>
-                        <li><a href="index.html#how-it-works">Comment ça marche</a></li>
-                        <li><a href="index.html#testimonials">Témoignages</a></li>
-                        <li><a href="index.html#contact">Contact</a></li>
-                    </ul>
-                </div>
-
-                <!-- Col 3: Information -->
-                <div class="footer-col">
-                    <h5 class="v2-footer-heading">INFORMATIONS</h5>
-                    <ul class="v2-footer-links">
-                        <li><a href="index.html#faq">FAQ Accordion</a></li>
-                        <li><a href="index.html#accueil">Terms of Service</a></li>
-                        <li><a href="index.html#accueil">Privacy Policy</a></li>
-                        <li><a href="index.html#accueil">Legal Mentions</a></li>
-                    </ul>
-                </div>
-
-                <!-- Col 4: Newsletter -->
-                <div class="footer-col newsletter-col">
-                    <h5 class="v2-footer-heading">NEWSLETTER</h5>
-                    <p class="v2-newsletter-desc">Receive exclusive invitations and updates on upcoming Swiss events.</p>
-                    <form id="newsletter-form" class="v2-newsletter-form">
-                        <div class="v2-newsletter-input-wrap">
-                            <input type="email" placeholder="Your email address" required id="newsletter-email">
-                            <button type="submit" aria-label="Subscribe" class="v2-newsletter-btn">
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                    <path d="M5 12H19M19 12L13 6M19 12L13 18" />
-                                </svg>
-                            </button>
+                <!-- Left Side: Brand & Quote -->
+                <div class="footer-col brand-col fade-in-up"
+                    style="display: flex; flex-direction: column; justify-content: space-between; height: 100%;">
+                    <div>
+                        <div class="footer-logo-row"
+                            style="display: flex; align-items: center; gap: 15px; margin-bottom: 24px;">
+                            <div class="footer-logo">
+                                <img src="assets/7sens 1.webp" alt="7SENS Logo"
+                                    style="height: 65px; width: auto; object-fit: contain;">
+                            </div>
                         </div>
-                        <label class="v2-checkbox-label">
-                            <input type="checkbox" required id="newsletter-agree">
-                            <span class="v2-checkbox-box"></span>
-                            <span class="v2-checkbox-text">I agree to receive private circle invitations.</span>
-                        </label>
-                        <div class="form-status-msg" id="newsletter-form-status"></div>
-                    </form>
+                        <p class="footer-brand-story"
+                            style="font-size: 0.95rem; line-height: 1.6; max-width: 400px; font-weight: 500; font-style: italic;">
+                            « Certaines rencontres deviennent une histoire. D'autres une amitié. Toutes peuvent avoir du
+                            sens. »
+                        </p>
+                    </div>
+
                 </div>
+
+                <!-- Right Side: Links Grid -->
+                <div class="footer-links-grid fade-in-up"
+                    style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; text-align: left;">
+
+                    <!-- Navigation Col -->
+                    <div class="footer-col nav-col">
+                        <h5 class="footer-heading"
+                            style="color: var(--luxury-gold); font-size: 1.2rem; letter-spacing: 0.1em; margin-bottom: 8px;">
+                            NAVIGATION</h5>
+                        <div style="display: flex; flex-direction: column; gap: 8px; margin-bottom: 30px;">
+                            <div style="height: 1px; width: 30px; background-color: var(--luxury-gold);"></div>
+                            <div style="height: 1px; width: 50px; background-color: var(--luxury-gold);"></div>
+                        </div>
+                        <ul class="footer-links"
+                            style="list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 12px;">
+                            <li><a href="#accueil"
+                                    style="color: #fff; text-decoration: none; font-size: 0.9rem;">Accueil</a></li>
+                            <li><a href="events.html"
+                                    style="color: #fff; text-decoration: none; font-size: 0.9rem;">Evénements</a></li>
+                            <li><a href="#how-it-works"
+                                    style="color: #fff; text-decoration: none; font-size: 0.9rem;">Comment ca marche</a>
+                            </li>
+                            <li><a href="faq.html"
+                                    style="color: #fff; text-decoration: none; font-size: 0.9rem;">FAQ</a></li>
+                        </ul>
+                    </div>
+
+                    <!-- Information Col -->
+                    <div class="footer-col info-col">
+                        <h5 class="footer-heading"
+                            style="color: var(--luxury-gold); font-size: 1.2rem; letter-spacing: 0.1em; margin-bottom: 8px;">
+                            INFORMATION</h5>
+                        <div style="display: flex; flex-direction: column; gap: 8px; margin-bottom: 30px;">
+                            <div style="height: 1px; width: 30px; background-color: var(--luxury-gold);"></div>
+                            <div style="height: 1px; width: 50px; background-color: var(--luxury-gold);"></div>
+                        </div>
+                        <ul class="footer-links"
+                            style="list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 12px;">
+                            <li><a href="#" style="color: #fff; text-decoration: none; font-size: 0.9rem;">Conditions
+                                    d'utilisation</a></li>
+                            <li><a href="#" style="color: #fff; text-decoration: none; font-size: 0.9rem;">Politique de
+                                    confidentialité</a></li>
+                        </ul>
+                    </div>
+
+                    <!-- Entreprise Col -->
+                    <div class="footer-col enterprise-col">
+                        <h5 class="footer-heading"
+                            style="color: var(--luxury-gold); font-size: 1.2rem; letter-spacing: 0.1em; margin-bottom: 8px;">
+                            ENTREPRISE</h5>
+                        <div style="display: flex; flex-direction: column; gap: 8px; margin-bottom: 30px;">
+                            <div style="height: 1px; width: 30px; background-color: var(--luxury-gold);"></div>
+                            <div style="height: 1px; width: 50px; background-color: var(--luxury-gold);"></div>
+                        </div>
+                        <ul class="footer-links"
+                            style="list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 12px;">
+                            <li><a href="#" style="color: #fff; text-decoration: none; font-size: 0.9rem;">Notre
+                                    vision</a></li>
+                            <li><a href="#" style="color: #fff; text-decoration: none; font-size: 0.9rem;">Emploi</a>
+                            </li>
+                            <li><a href="#"
+                                    style="color: #fff; text-decoration: none; font-size: 0.9rem;">Investisseurs</a>
+                            </li>
+                            <li><a href="#contact"
+                                    style="color: #fff; text-decoration: none; font-size: 0.9rem;">Contact</a></li>
+                        </ul>
+                    </div>
+
+                </div>
+
             </div>
 
-            <!-- Footer Middle: City Badges Running Line -->
-            <div class="v2-footer-cities-line">
-                <span>GENÈVE &nbsp;•&nbsp; LAUSANNE &nbsp;•&nbsp; ZURICH &nbsp;•&nbsp; MONTREUX &nbsp;•&nbsp; NEUCHÂTEL</span>
-            </div>
-
-            <!-- Footer Lower -->
-            <div class="footer-lower">
-                <p class="copyright">&copy; 2026 7Sens. All rights reserved.</p>
-                <p class="footer-crafted-by">Conçu en Suisse. <a href="index-v1.html" class="v2-version-link">← RETOUR VERSION I</a></p>
-                <a href="#accueil" class="v2-back-to-top btn-magnetic" id="back-to-top-btn">
-                    <span>BACK TO TOP</span>
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                        <path d="M12 19V5M12 5L5 12M12 5L19 12" stroke-linecap="round" stroke-linejoin="round" />
-                    </svg>
-                </a>
+            <!-- Concept Made Text below the main row -->
+            <div class="footer-lower-left fade-in-up" style="margin-top: 60px; padding-top: 24px; border-top: 1px solid rgba(216, 164, 49, 0.2); display: flex; justify-content: flex-start;">
+                <p style="font-size: 0.85rem; color: rgba(255,255,255,0.9); font-weight: 500;">
+                    ♦ Concept made with <span style="color: #ff3333;">&hearts;</span> in Switzerland
+                </p>
             </div>
         </div>
     </footer>
 
-    <!-- Fullscreen Luxury Loading & Success Overlay -->
-    <div class="checkout-overlay" id="checkout-overlay">
-        <div class="checkout-overlay-content">
-            <!-- Loading Stage -->
-            <div class="overlay-stage" id="stage-loading" style="display: none;">
-                <div class="luxury-spinner"></div>
-                <h3 class="overlay-title">Traitement de votre règlement...</h3>
-                <p class="overlay-desc">Veuillez patienter pendant la validation sécurisée de vos coordonnées bancaires et de votre place.</p>
-            </div>
+    <!-- Floating Back to Top Button -->
+    <button id="floating-back-to-top" class="floating-btt" aria-label="Retour en haut">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M12 19V5M12 5L5 12M12 5L19 12" stroke-linecap="round" stroke-linejoin="round" />
+        </svg>
+    </button>
 
-            <!-- Email Verification Stage -->
-            <div class="overlay-stage" id="stage-email-verify" style="display: none; max-width: 440px; margin: 0 auto; text-align: center; padding: 20px;">
-                <h3 class="overlay-title" style="font-family: 'Cormorant Garamond', serif; font-size: 1.8rem; font-weight: 300;">Vérification de l'e-mail</h3>
-                <p class="overlay-desc" style="font-size: 0.82rem; line-height: 1.5; color: rgba(251, 248, 243, 0.85); margin-bottom: 20px;">
-                    Pour finaliser votre réservation ou rejoindre la liste d'attente, vous devez valider votre adresse e-mail. Un code OTP a été envoyé à <strong id="verify-email-text" style="color: var(--luxury-gold);">votre e-mail</strong>.
-                </p>
-                
-                <div class="otp-wrapper" id="booking-email-otp-wrapper" style="display: flex; gap: 10px; justify-content: center; margin: 15px 0;">
-                    <input type="text" class="otp-digit" maxlength="1" data-index="1" required autocomplete="off" inputmode="numeric" pattern="[0-9]*" style="width: 44px; height: 46px; text-align: center; font-size: 1.3rem; border: 1px solid rgba(255,255,255,0.3); background: rgba(255,255,255,0.1); color: #fff;">
-                    <input type="text" class="otp-digit" maxlength="1" data-index="2" required autocomplete="off" inputmode="numeric" pattern="[0-9]*" style="width: 44px; height: 46px; text-align: center; font-size: 1.3rem; border: 1px solid rgba(255,255,255,0.3); background: rgba(255,255,255,0.1); color: #fff;">
-                    <input type="text" class="otp-digit" maxlength="1" data-index="3" required autocomplete="off" inputmode="numeric" pattern="[0-9]*" style="width: 44px; height: 46px; text-align: center; font-size: 1.3rem; border: 1px solid rgba(255,255,255,0.3); background: rgba(255,255,255,0.1); color: #fff;">
-                    <input type="text" class="otp-digit" maxlength="1" data-index="4" required autocomplete="off" inputmode="numeric" pattern="[0-9]*" style="width: 44px; height: 46px; text-align: center; font-size: 1.3rem; border: 1px solid rgba(255,255,255,0.3); background: rgba(255,255,255,0.1); color: #fff;">
-                </div>
-
-                <div id="booking-email-error" style="color: var(--luxury-gold); font-size: 0.75rem; margin-bottom: 15px; display: none; font-weight: 500;">Code incorrect. Veuillez réessayer.</div>
-
-                <button type="button" class="btn btn-navy btn-magnetic" id="btn-confirm-email-otp" style="width: 100%; max-width: 250px; justify-content: center; margin: 0 auto 15px; border: 1px solid var(--luxury-gold); background: transparent; color: var(--warm-ivory);">
-                    <span>VÉRIFIER & REPRENDRE</span>
-                </button>
-                <div style="font-size: 0.7rem; color: rgba(251, 248, 243, 0.6); margin-top: 10px;">[ Saisissez 1234 pour valider la simulation ]</div>
-            </div>
-
-            <!-- Phone Verification Stage -->
-            <div class="overlay-stage" id="stage-phone-verify" style="display: none; max-width: 440px; margin: 0 auto; text-align: center; padding: 20px;">
-                <h3 class="overlay-title" style="font-family: 'Cormorant Garamond', serif; font-size: 1.8rem; font-weight: 300;">Vérification du mobile</h3>
-                <p class="overlay-desc" style="font-size: 0.82rem; line-height: 1.5; color: rgba(251, 248, 243, 0.85); margin-bottom: 20px;">
-                    Vous avez activé les notifications par WhatsApp & SMS. Veuillez vérifier votre mobile <strong id="verify-phone-text" style="color: var(--luxury-gold);">votre mobile</strong> pour valider l'option.
-                </p>
-                
-                <div class="otp-wrapper" id="booking-phone-otp-wrapper" style="display: flex; gap: 10px; justify-content: center; margin: 15px 0;">
-                    <input type="text" class="otp-digit" maxlength="1" data-index="1" required autocomplete="off" inputmode="numeric" pattern="[0-9]*" style="width: 44px; height: 46px; text-align: center; font-size: 1.3rem; border: 1px solid rgba(255,255,255,0.3); background: rgba(255,255,255,0.1); color: #fff;">
-                    <input type="text" class="otp-digit" maxlength="1" data-index="2" required autocomplete="off" inputmode="numeric" pattern="[0-9]*" style="width: 44px; height: 46px; text-align: center; font-size: 1.3rem; border: 1px solid rgba(255,255,255,0.3); background: rgba(255,255,255,0.1); color: #fff;">
-                    <input type="text" class="otp-digit" maxlength="1" data-index="3" required autocomplete="off" inputmode="numeric" pattern="[0-9]*" style="width: 44px; height: 46px; text-align: center; font-size: 1.3rem; border: 1px solid rgba(255,255,255,0.3); background: rgba(255,255,255,0.1); color: #fff;">
-                    <input type="text" class="otp-digit" maxlength="1" data-index="4" required autocomplete="off" inputmode="numeric" pattern="[0-9]*" style="width: 44px; height: 46px; text-align: center; font-size: 1.3rem; border: 1px solid rgba(255,255,255,0.3); background: rgba(255,255,255,0.1); color: #fff;">
-                </div>
-
-                <div id="booking-phone-error" style="color: var(--luxury-gold); font-size: 0.75rem; margin-bottom: 15px; display: none; font-weight: 500;">Code incorrect. Veuillez réessayer.</div>
-
-                <button type="button" class="btn btn-navy btn-magnetic" id="btn-confirm-phone-otp" style="width: 100%; max-width: 250px; justify-content: center; margin: 0 auto 15px; border: 1px solid var(--luxury-gold); background: transparent; color: var(--warm-ivory);">
-                    <span>VÉRIFIER & REPRENDRE</span>
-                </button>
-                <div style="font-size: 0.7rem; color: rgba(251, 248, 243, 0.6); margin-top: 10px;">[ Saisissez 1234 pour valider la simulation ]</div>
-            </div>
-            
-            <!-- Success Stage -->
-            <div class="overlay-stage" id="stage-success" style="display: none;">
-                <div class="success-checkmark-circle animate">
-                    <svg viewBox="0 0 52 52" class="checkmark">
-                        <circle class="checkmark__circle" cx="26" cy="26" r="25" fill="none"/>
-                        <path class="checkmark__check" fill="none" d="M14.1 27.2l7.1 7.2 16.7-16.8"/>
-                    </svg>
-                </div>
-                <h2 class="overlay-title success-headline">Paiement Validé</h2>
-                <h3 class="overlay-subtitle-event" id="success-event-title">Soirée Dégustation & Échanges</h3>
-                <p class="overlay-desc" style="max-width: 500px; margin: 0 auto 30px;">
-                    Votre candidature et votre transaction ont été validées avec succès. L'équipe 7Sens étudie votre demande de parité. Un e-mail de confirmation ainsi que vos billets ont été envoyés à votre adresse.
-                </p>
-                <a href="events.html" class="btn btn-navy btn-magnetic">
-                    <span>RETOURNER AUX ÉVÉNEMENTS</span>
-                </a>
-            </div>
-        </div>
+    <!-- Fixed Bottom-Left Language Selector -->
+    <div class="lang-dropdown fixed-lang-selector">
+        <button class="lang-btn" aria-haspopup="true" aria-expanded="false">
+            <img src="https://flagcdn.com/w20/fr.png" width="16" alt="FR" style="border-radius: 2px;"> FR
+            <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M18 15l-6-6-6 6" />
+            </svg>
+        </button>
+        <ul class="lang-menu">
+            <li><a href="#" class="active"><img src="https://flagcdn.com/w20/fr.png" width="16" alt="FR"
+                        style="border-radius: 2px;"> FR</a></li>
+            <li><a href="#"><img src="https://flagcdn.com/w20/gb.png" width="16" alt="EN" style="border-radius: 2px;">
+                    EN</a></li>
+        </ul>
     </div>
 
     <!-- JS Libraries (GSAP, Unified Events Database) -->

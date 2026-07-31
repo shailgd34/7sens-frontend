@@ -5,13 +5,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Créer un Compte Membre — 7Sens Premium Social Club</title>
-    <meta name="description" content="Inscrivez-vous pour rejoindre le club privé 7Sens et réserver nos expériences exclusives.">
+    <meta name="description"
+        content="Inscrivez-vous pour rejoindre le club privé 7Sens et réserver nos expériences exclusives.">
     <meta name="robots" content="noindex, nofollow">
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Instrument+Sans:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
 
     <!-- Stylesheets -->
     <link rel="stylesheet" href="style-v2.css">
@@ -23,20 +26,21 @@
     <!-- Canvas Noise Overlay -->
     <div class="noise-overlay"></div>
 
-    <div class="auth-wrapper" style="background-image: url('assets/pexels-jibarofoto-18482996.jpg');">
-        
+    <div class="auth-wrapper">
+
         <!-- LEFT COLUMN: Image Banner Side -->
-        <div class="auth-image-side">
+        <div class="auth-image-side"
+            style="background-image: url('assets/pexels-jibarofoto-18482996.jpg'); background-size: cover; background-position: center;">
             <div class="auth-image-overlay"></div>
             <div class="auth-image-content">
                 <a href="index.html">
-                    <img src="assets/7sens.webp" alt="7Sens Premium Logo" class="auth-image-logo">
+                    <img src="assets/7sens 1.webp" alt="7Sens Premium Logo" class="auth-image-logo">
                 </a>
                 <div class="auth-image-quote-block">
-                    <span class="auth-image-tagline">EXPÉRIENCES HAUT DE GAMME</span>
-                    <h2 class="auth-image-title">Créateur de souvenirs précieux</h2>
+                    <span class="auth-image-tagline">L'EXPÉRIENCE COMMENCE ICI</span>
+                    <h2 class="auth-image-title">Laissez parler<br>votre intuition.</h2>
                     <p class="auth-image-desc">
-                        Accédez à un agenda d'expériences de groupe exclusives : dégustations privées, dîners au coucher du soleil et ateliers créatifs.
+                        Créez votre profil et découvrez les prochaines expériences 7Sens organisées près de chez vous.
                     </p>
                 </div>
                 <div style="font-size: 0.65rem; letter-spacing: 0.1em; opacity: 0.6; text-transform: uppercase;">
@@ -61,15 +65,34 @@
                     <img src="assets/7sens.webp" alt="7Sens Logo" style="height: 100%;">
                 </a>
 
+
+                <!-- Tabs -->
+                <div class="auth-tabs"
+                    style="display: flex; gap: 30px; border-bottom: 1px solid rgba(20, 43, 99, 0.1); margin-bottom: 0px;">
+                    <a href="login.html" class="auth-tab"
+                        style="background: none; border: none; padding: 10px 0; font-family: 'Instrument Sans', sans-serif; font-size: 0.95rem; font-weight: 500; color: rgba(20, 43, 99, 0.5); border-bottom: 2px solid transparent; cursor: pointer; text-transform: uppercase; letter-spacing: 0.05em; text-decoration: none; transition: all 0.3s ease;">SE
+                        CONNECTER</a>
+                    <button class="auth-tab active"
+                        style="background: none; border: none; padding: 10px 0; font-family: 'Instrument Sans', sans-serif; font-size: 0.95rem; font-weight: 600; color: var(--primary-navy); border-bottom: 2px solid var(--luxury-gold); cursor: default; text-transform: uppercase; letter-spacing: 0.05em;">S'INSCRIRE</button>
+                </div>
                 <!-- Header -->
                 <div class="auth-header">
                     <h1 class="auth-title">Créer un compte</h1>
-                    <p class="auth-subtitle">Rejoignez le club et accédez à nos cercles privés</p>
+                    <p class="auth-subtitle">Quelques informations suffisent pour commencer.</p>
                 </div>
 
                 <!-- Form -->
                 <form id="signup-form" class="auth-form">
-                    <div class="form-row grid-2">
+                    <div class="form-row" style="display: grid; grid-template-columns: 85px 1fr 1fr; gap: 15px;">
+                        <div class="form-group">
+                            <label for="signup-title">Titre</label>
+                            <select id="signup-title" required
+                                style="width: 100%; padding: 12px 10px; background-color: rgba(255, 255, 255, 0.7); border: 1px solid rgba(20, 43, 99, 0.12); font-family: 'Instrument Sans', sans-serif; font-size: 0.88rem; color: var(--primary-navy); border-radius: 0; outline: none; cursor: pointer;">
+                                <option value="mr">M.</option>
+                                <option value="mrs">Mme</option>
+                                <option value="miss">Mlle</option>
+                            </select>
+                        </div>
                         <div class="form-group">
                             <label for="signup-firstname">Prénom</label>
                             <input type="text" id="signup-firstname" required placeholder="Jean">
@@ -96,8 +119,9 @@
                             <input type="date" id="signup-dob" required>
                         </div>
                         <div class="form-group">
-                            <label for="signup-gender">Civilité</label>
-                            <select id="signup-gender" required style="width: 100%; padding: 12px 16px; background-color: rgba(255, 255, 255, 0.7); border: 1px solid rgba(20, 43, 99, 0.12); font-family: 'Outfit', sans-serif; font-size: 0.88rem; color: var(--primary-navy); border-radius: 0; outline: none;">
+                            <label for="signup-gender">Genre</label>
+                            <select id="signup-gender" required
+                                style="width: 100%; padding: 12px 16px; background-color: rgba(255, 255, 255, 0.7); border: 1px solid rgba(20, 43, 99, 0.12); font-family: 'Instrument Sans', sans-serif; font-size: 0.88rem; color: var(--primary-navy); border-radius: 0; outline: none;">
                                 <option value="" disabled selected>Sélectionnez...</option>
                                 <option value="homme">Homme</option>
                                 <option value="femme">Femme</option>
@@ -114,8 +138,10 @@
                         <label for="signup-password">Mot de passe</label>
                         <div class="password-toggle-wrapper">
                             <input type="password" id="signup-password" required placeholder="••••••••">
-                            <button type="button" class="password-toggle-btn" id="password-toggle" aria-label="Afficher le mot de passe">
-                                <svg viewBox="0 0 24 24" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="eye-icon">
+                            <button type="button" class="password-toggle-btn" id="password-toggle"
+                                aria-label="Afficher le mot de passe">
+                                <svg viewBox="0 0 24 24" stroke-width="1.5" stroke-linecap="round"
+                                    stroke-linejoin="round" class="eye-icon">
                                     <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" />
                                     <circle cx="12" cy="12" r="3" />
                                 </svg>
@@ -123,32 +149,24 @@
                         </div>
                     </div>
 
-                    <div class="form-group">
-                        <label for="signup-confirm-password">Confirmer le mot de passe</label>
-                        <div class="password-toggle-wrapper">
-                            <input type="password" id="signup-confirm-password" required placeholder="••••••••">
-                            <button type="button" class="password-toggle-btn" id="password-confirm-toggle" aria-label="Afficher le mot de passe">
-                                <svg viewBox="0 0 24 24" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="eye-icon">
-                                    <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" />
-                                    <circle cx="12" cy="12" r="3" />
-                                </svg>
-                            </button>
-                        </div>
-                    </div>
 
                     <!-- Utilities -->
                     <div class="auth-utilities" style="justify-content: flex-start; margin-top: 5px;">
                         <label style="align-items: flex-start;">
-                            <input type="checkbox" id="agree-terms" required style="width: auto; margin-right: 8px; margin-top: 3px; accent-color: var(--primary-navy);">
-                            <span style="line-height: 1.3;">J'accepte la charte d'éthique et les <a href="#" class="auth-link">conditions d'adhésion</a> du club.</span>
+                            <input type="checkbox" id="agree-terms" required
+                                style="width: auto; margin-right: 8px; margin-top: 3px; accent-color: var(--primary-navy);">
+                            <span style="line-height: 1.3;">J'accepte la charte d'éthique et les <a href="#"
+                                    class="auth-link">conditions d'adhésion</a> du club.</span>
                         </label>
                     </div>
 
-                    <div id="signup-error-msg" style="color: var(--primary-navy); opacity: 0.85; font-size: 0.72rem; display: none; text-align: center; font-weight: 500;"></div>
+                    <div id="signup-error-msg"
+                        style="color: var(--primary-navy); opacity: 0.85; font-size: 0.72rem; display: none; text-align: center; font-weight: 500;">
+                    </div>
 
                     <!-- Submit Button -->
                     <button type="submit" class="booking-action-btn" id="signup-submit-btn" style="margin-top: 10px;">
-                        <span>CRÉER MON COMPTE</span>
+                        <span>S'INSCRIRE</span>
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                             <path d="M5 12H19M19 12L13 6M19 12L13 18" stroke-linecap="round" stroke-linejoin="round" />
                         </svg>
@@ -156,16 +174,13 @@
                 </form>
 
                 <div class="auth-divider">ou</div>
-                
+
                 <button type="button" class="social-btn" id="google-signup">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/c/c1/Google_%22G%22_logo.svg" alt="Google Logo">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/c/c1/Google_%22G%22_logo.svg"
+                        alt="Google Logo">
                     S'inscrire avec Google
                 </button>
-                <!-- Footer Redirect -->
-                <div class="auth-footer" style="text-align: left; margin-top: 10px;">
-                    <span>Déjà membre ? </span>
-                    <a href="login.html" class="auth-link">Se connecter</a>
-                </div>
+
             </div>
         </div>
     </div>
@@ -175,7 +190,8 @@
         <div class="checkout-overlay-content">
             <div class="luxury-spinner"></div>
             <h3 class="overlay-title" id="auth-overlay-title">Création de votre compte...</h3>
-            <p class="overlay-desc" id="auth-overlay-desc">Validation de vos informations et génération de vos identifiants membres.</p>
+            <p class="overlay-desc" id="auth-overlay-desc">Validation de vos informations et génération de vos
+                identifiants membres.</p>
         </div>
     </div>
 
@@ -185,11 +201,8 @@
         document.addEventListener("DOMContentLoaded", () => {
             const signupForm = document.getElementById("signup-form");
             const signupPassword = document.getElementById("signup-password");
-            const signupConfirmPassword = document.getElementById("signup-confirm-password");
-            
-            const passwordToggle = document.getElementById("password-toggle");
-            const passwordConfirmToggle = document.getElementById("password-confirm-toggle");
 
+            const passwordToggle = document.getElementById("password-toggle");
             const errorMsg = document.getElementById("signup-error-msg");
             const authOverlay = document.getElementById("auth-overlay");
             const authOverlayTitle = document.getElementById("auth-overlay-title");
@@ -200,7 +213,7 @@
                 btn.addEventListener("click", () => {
                     const type = inputField.getAttribute("type") === "password" ? "text" : "password";
                     inputField.setAttribute("type", type);
-                    
+
                     const svg = btn.querySelector("svg");
                     if (type === "text") {
                         svg.innerHTML = `
@@ -219,19 +232,12 @@
             };
 
             setupPasswordToggle(passwordToggle, signupPassword);
-            setupPasswordToggle(passwordConfirmToggle, signupConfirmPassword);
 
             // Form Submit Logic
             signupForm.addEventListener("submit", (e) => {
                 e.preventDefault();
                 errorMsg.style.display = "none";
 
-                // Check passwords match
-                if (signupPassword.value !== signupConfirmPassword.value) {
-                    errorMsg.textContent = "Les mots de passe ne correspondent pas.";
-                    errorMsg.style.display = "block";
-                    return;
-                }
 
                 const email = document.getElementById("signup-email").value;
                 const firstname = document.getElementById("signup-firstname").value;
@@ -272,7 +278,7 @@
                 setTimeout(() => {
                     authOverlayTitle.textContent = "Compte créé !";
                     authOverlayDesc.textContent = "Votre compte membre 7Sens est en cours d'initialisation. Redirection vers la vérification...";
-                    
+
                     setTimeout(() => {
                         window.location.href = "verify-contact.html";
                     }, 1200);
@@ -291,7 +297,7 @@
                     setTimeout(() => {
                         authOverlayTitle.textContent = "Compte créé !";
                         authOverlayDesc.textContent = `Connecté avec succès via ${platform}. Bienvenue.`;
-                        
+
                         setTimeout(() => {
                             window.location.href = "profile.html";
                         }, 1200);
@@ -308,7 +314,7 @@
                     const y = e.clientY - rect.top - rect.height / 2;
                     gsap.to(backLink, { x: x * 0.3, y: y * 0.3, duration: 0.3, ease: "power2.out" });
                 });
-                
+
                 backLink.addEventListener("mouseleave", () => {
                     gsap.to(backLink, { x: 0, y: 0, duration: 0.6, ease: "elastic.out(1.1, 0.4)" });
                 });

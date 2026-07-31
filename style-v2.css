@@ -31,7 +31,7 @@ html {
     scroll-behavior: initial;
     background-color: var(--warm-ivory);
     color: var(--text-primary);
-    font-family: 'Outfit', sans-serif;
+    font-family: 'Instrument Sans', sans-serif;
     font-weight: 400;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
@@ -675,7 +675,8 @@ section {
     border: none;
 }
 
-.v2-status-badge.closed, .v2-status-badge.fully-booked {
+.v2-status-badge.closed,
+.v2-status-badge.fully-booked {
     background-color: #c62828;
     color: #ffffff;
     border: none;
@@ -3340,7 +3341,7 @@ section {
 }
 
 .faq-inner p {
-    font-family: 'Outfit', sans-serif;
+    font-family: 'Instrument Sans', sans-serif;
     font-size: 0.95rem;
     line-height: 1.7;
     color: var(--text-muted);
@@ -3483,11 +3484,8 @@ h3,
     min-height: 100vh;
     width: 100%;
     display: flex;
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
     position: relative;
-    overflow-x: hidden;
+    background-color: #fbf8f3;
 }
 
 /* Split Column: Image Side */
@@ -3495,14 +3493,15 @@ h3,
     width: 45%;
     max-width: 45%;
     flex: 0 0 auto;
-    position: relative;
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     padding: 60px;
     color: var(--warm-ivory);
-    background: rgba(20, 43, 99, 0.05);
-    /* Light overlay behind text */
 }
 
 @media (max-width: 991px) {
@@ -3541,7 +3540,8 @@ h3,
 
 .auth-image-quote-block {
     max-width: 480px;
-    margin-bottom: 20px;
+    margin-top: auto;
+    margin-bottom: 30px;
 }
 
 .auth-image-tagline {
@@ -3572,6 +3572,8 @@ h3,
 /* Split Column: Form Side (Frosted Glassmorphism) */
 .auth-form-side {
     flex: 1;
+    margin-left: 45%;
+    min-height: 100vh;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -3586,6 +3588,7 @@ h3,
 @media (max-width: 991px) {
     .auth-form-side {
         flex: 1;
+        margin-left: 0;
         padding: 85px 24px 40px;
         background: rgba(251, 248, 243, 0.98);
         /* More opaque on mobile for readability */
@@ -3676,13 +3679,13 @@ h3,
 .auth-form {
     display: flex;
     flex-direction: column;
-    gap: 18px;
+    gap: 12px;
 }
 
 .auth-form .form-group {
     display: flex;
     flex-direction: column;
-    gap: 8px;
+    gap: 4px;
 }
 
 .auth-form .form-group label {
@@ -3697,7 +3700,7 @@ h3,
     background-color: rgba(255, 255, 255, 0.72) !important;
     border: 1px solid rgba(20, 43, 99, 0.18) !important;
     padding: 14px 18px !important;
-    font-family: 'Outfit', sans-serif !important;
+    font-family: 'Instrument Sans', sans-serif !important;
     font-size: 0.88rem !important;
     border-radius: 0 !important;
     color: var(--primary-navy) !important;
@@ -3807,11 +3810,11 @@ h3,
 }
 
 .social-btn {
-    background: var(--warm-ivory);
+    background: #ffffff;
     border: 1px solid var(--border-color);
     color: var(--primary-navy);
     padding: 12px 16px;
-    font-family: 'Outfit', sans-serif;
+    font-family: 'Instrument Sans', sans-serif;
     font-size: 0.72rem;
     font-weight: 600;
     letter-spacing: 0.05em;
@@ -3960,7 +3963,7 @@ h3,
     color: #fff;
     border: none;
     padding: 16px 24px;
-    font-family: 'Outfit', sans-serif;
+    font-family: 'Instrument Sans', sans-serif;
     font-size: 0.75rem;
     font-weight: 600;
     letter-spacing: 0.1em;
@@ -4201,4 +4204,33 @@ h3,
         height: 1px;
         margin: 0;
     }
+}
+
+/* Auth Divider & Social Buttons */
+.auth-divider {
+    display: flex;
+    align-items: center;
+    text-align: center;
+    margin: 0px 0;
+    color: var(--primary-navy);
+    opacity: 0.6;
+    font-size: 0.75rem;
+    font-family: 'Instrument Sans', sans-serif;
+    font-weight: 500;
+    text-transform: uppercase;
+}
+
+.auth-divider::before,
+.auth-divider::after {
+    content: '';
+    flex: 1;
+    border-bottom: 1px solid rgba(20, 43, 99, 0.2);
+}
+
+.auth-divider:not(:empty)::before {
+    margin-right: .5em;
+}
+
+.auth-divider:not(:empty)::after {
+    margin-left: .5em;
 }

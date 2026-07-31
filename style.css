@@ -38,7 +38,7 @@ html {
     /* Lenis handles smooth scrolling */
     background-color: var(--warm-ivory);
     color: var(--text-primary);
-    font-family: 'Outfit', sans-serif;
+    font-family: 'Instrument Sans', sans-serif;
     font-weight: 400;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
@@ -1582,7 +1582,7 @@ a {
 }
 
 /* --- Typography & Headings --- */
-.footer-heading {
+.cinematic-footer .footer-heading {
     font-family: 'Cormorant Garamond', serif;
     font-size: 1.2rem;
     font-weight: 500;
@@ -1593,14 +1593,14 @@ a {
 }
 
 /* --- Navigation Links --- */
-.footer-links {
+.cinematic-footer .footer-links {
     list-style: none;
     display: flex;
     flex-direction: column;
     gap: 16px;
 }
 
-.footer-links li a {
+.cinematic-footer .footer-links li a {
     font-family: 'Inter', sans-serif;
     font-size: 0.85rem;
     color: #BFC8D9;
@@ -1609,7 +1609,7 @@ a {
     transition: color 0.3s ease, transform 0.3s ease;
 }
 
-.footer-links li a::after {
+.cinematic-footer .footer-links li a::after {
     content: '';
     position: absolute;
     bottom: -4px;
@@ -1620,12 +1620,12 @@ a {
     transition: width 0.4s cubic-bezier(0.25, 1, 0.5, 1);
 }
 
-.footer-links li a:hover {
+.cinematic-footer .footer-links li a:hover {
     color: #FFFFFF;
     transform: translateX(4px);
 }
 
-.footer-links li a:hover::after {
+.cinematic-footer .footer-links li a:hover::after {
     width: 100%;
 }
 
@@ -1963,11 +1963,11 @@ a {
     font-weight: 500;
     color: var(--primary-navy);
     letter-spacing: -0.01em;
-    font-family: 'Outfit', sans-serif;
+    font-family: 'Instrument Sans', sans-serif;
 }
 
 .city-thumb-count {
-    font-family: 'Outfit', sans-serif;
+    font-family: 'Instrument Sans', sans-serif;
     font-size: 0.7rem;
     font-weight: 400;
     color: var(--text-muted);
@@ -2065,7 +2065,7 @@ a {
 }
 
 .faq-inner p {
-    font-family: 'Outfit', sans-serif;
+    font-family: 'Instrument Sans', sans-serif;
     font-size: 0.95rem;
     line-height: 1.7;
     color: var(--text-muted);
@@ -2615,7 +2615,7 @@ a {
     border: none;
     border-radius: 0;
     padding: 6px 10px;
-    font-family: 'Outfit', sans-serif;
+    font-family: 'Instrument Sans', sans-serif;
     font-size: 0.85rem;
     font-weight: 500;
     color: var(--primary-navy);
@@ -2660,7 +2660,7 @@ a {
 .lang-menu li a {
     display: block;
     padding: 8px 20px;
-    font-family: \'Outfit\', sans-serif;
+    font-family: \'Instrument Sans\', sans-serif;
     font-size: 0.85rem;
     color: var(--primary-navy);
     text-decoration: none;
@@ -3056,7 +3056,7 @@ a {
     background: transparent;
 
     color: var(--primary-navy);
-    font-family: 'Outfit', sans-serif;
+    font-family: 'Instrument Sans', sans-serif;
     font-size: 0.9rem;
     font-weight: 500;
     padding: 6px 14px;
@@ -3112,7 +3112,7 @@ header.scrolled .lang-btn,
     padding: 8px 16px;
     color: var(--primary-navy);
     text-decoration: none;
-    font-family: 'Outfit', sans-serif;
+    font-family: 'Instrument Sans', sans-serif;
     font-size: 0.9rem;
     transition: background 0.3s ease;
 }
@@ -3156,7 +3156,7 @@ header.scrolled .lang-btn,
     color: var(--primary-navy);
     opacity: 0.6;
     font-size: 0.75rem;
-    font-family: 'Outfit', sans-serif;
+    font-family: 'Instrument Sans', sans-serif;
     font-weight: 500;
     text-transform: uppercase;
 }
@@ -3186,7 +3186,7 @@ header.scrolled .lang-btn,
     border: 1px solid rgba(20, 43, 99, 0.2);
     border-radius: 8px;
     color: var(--primary-navy);
-    font-family: 'Outfit', sans-serif;
+    font-family: 'Instrument Sans', sans-serif;
     font-weight: 500;
     font-size: 0.9rem;
     cursor: pointer;

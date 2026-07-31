@@ -81,8 +81,8 @@ window.eventsData = [
         dateRaw: "2025-06-07",
         price: "CHF 60",
         ageGroup: "25 - 38 ans",
-        status: "fully-booked",
-        statusText: "FULLY BOOKED",
+        status: "pre-registration",
+        statusText: "PRE-REGISTRATION",
         image: "assets/pexels-seemihaozkan-21413075.jpg",
         capacity: 40,
         preRegistered: {
@@ -153,8 +153,8 @@ window.eventsData = [
         dateRaw: "2025-06-21",
         price: "CHF 40",
         ageGroup: "25 - 40 ans",
-        status: "booking-open",
-        statusText: "BOOKING OPEN",
+        status: "tba",
+        statusText: "DATE TO BE ANNOUNCED",
         image: "assets/pexels-caleboquendo-34516144.jpg",
         capacity: 20,
         preRegistered: {

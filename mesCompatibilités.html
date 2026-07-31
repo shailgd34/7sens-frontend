@@ -1,0 +1,1119 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mes Compatibilités 7Sens Premium Social Club</title>
+    <meta name="description"
+        content="Découvrez vos compatibilités et connexions révélées lors de vos expériences 7Sens.">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Instrument+Sans:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style-v2.css">
+    <link rel="stylesheet" href="events-page.css">
+
+    <link rel="stylesheet" href="dashboard-shared.css">
+</head>
+
+<body
+    style="background-color: var(--warm-ivory); margin:0; padding:0; min-height:100vh; font-family:'Instrument Sans',sans-serif;">
+
+    <!-- MAIN MEMBER DASHBOARD CONTENT -->
+    <main class="db-main">
+        <div class="db-container">
+            <div class="db-grid">
+
+                <!-- SIDEBAR: Summary & Navigation -->
+                <aside class="db-sidebar-card">
+                    <!-- Profile Avatar upload trigger -->
+                    <div class="db-avatar-wrapper" id="db-avatar"
+                        onclick="document.getElementById('profile-avatar-input').click();">
+                        <span id="db-avatar-initials">JD</span>
+                        <div class="db-avatar-upload">Modifier</div>
+                    </div>
+                    <input type="file" id="profile-avatar-input" accept="image/*" style="display: none;">
+
+                    <h4 class="db-user-name" id="db-profile-name">Jean Dupont</h4>
+
+
+                    <nav class="db-nav-list">
+                        <button class="db-nav-item" onclick="location.href='profile.html?tab=home'" id="btn-tab-home">
+                            <svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                <rect x="3" y="3" width="7" height="9" />
+                                <rect x="14" y="3" width="7" height="5" />
+                                <rect x="14" y="12" width="7" height="9" />
+                                <rect x="3" y="16" width="7" height="5" />
+                            </svg>
+                            <span>TABLEAU DE BORD</span>
+                        </button>
+                        <button class="db-nav-item" onclick="location.href='profile.html?tab=profile'" id="btn-tab-profile">
+                            <svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
+                                <circle cx="12" cy="7" r="4" />
+                            </svg>
+                            <span>MON PROFIL</span>
+                        </button>
+                        <button class="db-nav-item" onclick="location.href='profile.html?tab=questionnaire'" id="btn-tab-questionnaire">
+                            <svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" fill="none">
+                                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                                <polyline points="14 2 14 8 20 8"></polyline>
+                                <line x1="16" y1="13" x2="8" y2="13"></line>
+                                <line x1="16" y1="17" x2="8" y2="17"></line>
+                                <polyline points="10 9 9 9 8 9"></polyline>
+                            </svg>
+                            <span>MON PROFIL RELATIONNEL</span>
+                        </button>
+                        <button class="db-nav-item active" onclick="location.href='mesCompatibilités.html'"
+                            id="btn-tab-matches">
+                            <svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" fill="none">
+                                <path
+                                    d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z">
+                                </path>
+                            </svg>
+                            <span>MES COMPATIBILITÉS</span>
+                        </button>
+                        <button class="db-nav-item" onclick="location.href='mesRéservations.html'" id="btn-tab-bookings">
+                            <svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                <rect x="3" y="4" width="18" height="18" rx="2" ry="2" />
+                                <line x1="16" y1="2" x2="16" y2="6" />
+                                <line x1="8" y1="2" x2="8" y2="6" />
+                                <line x1="3" y1="10" x2="21" y2="10" />
+                            </svg>
+                            <span>MES RÉSERVATIONS</span>
+                        </button>
+                        <button class="db-nav-item" onclick="location.href='profile.html?tab=billing'" id="btn-tab-billing">
+                            <svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                <rect x="1" y="4" width="22" height="16" rx="2" ry="2" />
+                                <line x1="1" y1="10" x2="23" y2="10" />
+                            </svg>
+                            <span>MES PAIEMENTS</span>
+                        </button>
+                        <button class="db-nav-item" onclick="location.href='settings.html'" id="btn-tab-settings">
+                            <svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" fill="none">
+                                <path d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1-1-1.74v-.5a2 2 0 0 1 1-1.74l.15-.1a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z"/>
+                                <circle cx="12" cy="12" r="3"/>
+                            </svg>
+                            <span>PARAMÈTRES</span>
+                        </button>
+                        <!-- Back Link -->
+                        <button class="db-nav-item" onclick="location.href='events.html'"
+                            style="margin-top: 25px; border-top: 1px solid rgba(20, 43, 99, 0.05); padding-top: 15px;">
+                            <svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                <path d="M19 12H5M5 12L12 19M5 12L12 5" stroke-linecap="round"
+                                    stroke-linejoin="round" />
+                            </svg>
+                            <span>RETOUR AU SITE</span>
+                        </button>
+                    </nav>
+                </aside>
+
+                <!-- RIGHT BLOCK: Active Tab Panel -->
+                <div class="db-right-column" style="display: flex; flex-direction: column; width: 100%;">
+                    <header class="db-top-header" id="main-header"
+                        style="position: sticky; top: 0; z-index: 1000; background: var(--warm-ivory); display: flex; justify-content: space-between; align-items: center; padding: 15px 40px; border-bottom: 1px solid rgba(20,43,99,0.05);">
+                        <a href="index.html" class="logo-link" id="header-logo">
+                            <img src="assets/7sens.webp" alt="7Sens Logo" class="logo-img"
+                                style="height: 35px; width: auto;">
+                        </a>
+
+                        <!-- Header Right Section -->
+                        <div style="display: flex; align-items: center; gap: 20px;">
+                            <!-- Language Dropdown -->
+                            <div class="lang-dropdown">
+                                <button class="lang-btn" aria-haspopup="true" aria-expanded="false"
+                                    style="color: var(--primary-navy); border-color: rgba(20,43,99,0.2);">
+                                    <img src="https://flagcdn.com/w20/fr.png" width="16" alt="FR"
+                                        style="border-radius: 2px;"> FR
+                                    <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor"
+                                        stroke-width="2">
+                                        <path d="M6 9l6 6 6-6" />
+                                    </svg>
+                                </button>
+                                <ul class="lang-menu">
+                                    <li><a href="#" class="active"><img src="https://flagcdn.com/w20/fr.png" width="16"
+                                                alt="FR" style="border-radius: 2px;"> FR</a></li>
+                                    <li><a href="#"><img src="https://flagcdn.com/w20/gb.png" width="16" alt="EN"
+                                                style="border-radius: 2px;"> EN</a></li>
+                                </ul>
+                            </div>
+
+                            <!-- User Profile Dropdown (Logged In State) -->
+                            <div class="user-profile-dropdown">
+                                <button class="user-profile-btn" aria-haspopup="true" aria-expanded="false">
+                                    <img src="assets/pexels-maorattias-5152572.jpg" alt="User Avatar"
+                                        class="user-avatar" id="top-header-avatar"
+                                        style="width: 38px; height: 38px; border-radius: 50%; object-fit: cover; border: 2px solid var(--luxury-gold);">
+                                    <span class="user-name" id="top-header-name"
+                                        style="font-family: 'Instrument Sans', sans-serif; font-weight: 500; font-size: 0.95rem; color: var(--primary-navy);">Jean
+                                        D.</span>
+                                    <svg class="dropdown-chevron" viewBox="0 0 24 24" width="14" height="14" fill="none"
+                                        stroke="currentColor" stroke-width="2" style="color: var(--primary-navy);">
+                                        <path d="M6 9l6 6 6-6" />
+                                    </svg>
+                                </button>
+                                <div class="user-dropdown-menu">
+                                    <div class="dropdown-header">
+                                        <span class="dropdown-status"></span>
+                                    </div>
+                                    <ul class="dropdown-links">
+                                        <li>
+                                            <a href="profile.html?tab=profile">
+                                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                                    stroke-width="1.5">
+                                                    <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                                                    <circle cx="12" cy="7" r="4"></circle>
+                                                </svg>
+                                                Mon Profil
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="events.html">
+                                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                                    stroke-width="1.5">
+                                                    <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                                                    <line x1="16" y1="2" x2="16" y2="6"></line>
+                                                    <line x1="8" y1="2" x2="8" y2="6"></line>
+                                                    <line x1="3" y1="10" x2="21" y2="10"></line>
+                                                </svg>
+                                                Mes Réservations
+                                            </a>
+                                        </li>
+                                        <li class="dropdown-divider"></li>
+                                        <li>
+                                            <a href="index.html" class="logout-link">
+                                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                                    stroke-width="1.5">
+                                                    <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path>
+                                                    <polyline points="16 17 21 12 16 7"></polyline>
+                                                    <line x1="21" y1="12" x2="9" y2="12"></line>
+                                                </svg>
+                                                Déconnexion
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                    </header>
+
+                    <!-- TAB: My Matches -->
+                    <div id="section-matches" class="db-section active"
+                        style="opacity: 1; display: block; padding: 40px 50px; box-sizing: border-box;">
+                        <div class="db-section-header" style="margin-bottom: 20px;">
+                            <h3 class="db-section-title">Mes compatibilités</h3>
+                            <p class="db-section-subtitle">
+                                Retrouvez les personnes rencontrées lors de vos expériences 7Sens et découvrez les
+                                connexions qui se sont révélées.
+                            </p>
+                        </div>
+
+                        <!-- Summary Section -->
+                        <div class="compat-summary-container">
+                            <div class="compat-summary-segment">
+                                <div class="compat-summary-icon">
+                                    <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor"
+                                        stroke-width="2">
+                                        <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                                        <circle cx="9" cy="7" r="4"></circle>
+                                        <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                                        <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                                    </svg>
+                                </div>
+                                <h4 class="compat-summary-number" id="compat-stat-mutual">0</h4>
+                                <span class="compat-summary-text">Connexion mutuelle</span>
+                            </div>
+                            <div class="compat-summary-segment">
+                                <div class="compat-summary-icon">
+                                    <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor"
+                                        stroke-width="2">
+                                        <polygon
+                                            points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2">
+                                        </polygon>
+                                    </svg>
+                                </div>
+                                <h4 class="compat-summary-number" id="compat-stat-total">0</h4>
+                                <span class="compat-summary-text">Compatibilités révélées</span>
+                            </div>
+                            <div class="compat-summary-segment">
+                                <div class="compat-summary-icon">
+                                    <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor"
+                                        stroke-width="2">
+                                        <path d="M12 22a10 10 0 1 0 0-20 10 10 0 0 0 0 20z"></path>
+                                        <path d="M12 6v6l4 2"></path>
+                                    </svg>
+                                </div>
+                                <h4 class="compat-summary-number" id="compat-stat-experiences">1</h4>
+                                <span class="compat-summary-text">Expérience réalisée</span>
+                            </div>
+                        </div>
+
+                        <!-- Filters -->
+                        <div class="compat-filters-wrap">
+                            <button type="button" class="compat-filter-btn active"
+                                onclick="filterCompatibilities('toutes')" id="btn-compat-filter-toutes">TOUTES</button>
+                            <button type="button" class="compat-filter-btn" onclick="filterCompatibilities('mutual')"
+                                id="btn-compat-filter-mutual">CONNEXIONS MUTUELLES</button>
+                            <button type="button" class="compat-filter-btn" onclick="filterCompatibilities('pending')"
+                                id="btn-compat-filter-pending">EN ATTENTE</button>
+                            <button type="button" class="compat-filter-btn" onclick="filterCompatibilities('no_match')"
+                                id="btn-compat-filter-no_match">SANS SUITE</button>
+                        </div>
+
+                        <!-- Compatibility Cards Container -->
+                        <div id="compatibility-cards-list">
+                            <!-- Rendered dynamically -->
+                        </div>
+
+                        <!-- Empty State -->
+                        <div id="compatibility-empty-state"
+                            style="display: none; text-align: center; padding: 60px 40px; background: #ffffff; border: 1px solid rgba(20,43,99,0.06); border-radius: 12px; margin-bottom: 30px;">
+                            <div style="color: var(--luxury-gold); margin-bottom: 20px;">
+                                <svg viewBox="0 0 24 24" width="48" height="48" fill="none" stroke="currentColor"
+                                    stroke-width="1.5" style="display: inline-block;">
+                                    <path
+                                        d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z">
+                                    </path>
+                                </svg>
+                            </div>
+                            <h3
+                                style="font-family: 'Cormorant Garamond', serif; font-size: 1.6rem; color: var(--primary-navy); margin: 0 0 10px 0;">
+                                Vos prochaines compatibilités commenceront ici</h3>
+                            <p
+                                style="font-size: 0.85rem; color: var(--text-muted); max-width: 460px; margin: 0 auto 25px; line-height: 1.5;">
+                                Participez à une expérience 7Sens, partagez votre ressenti et découvrez les connexions
+                                qui se révèlent.
+                            </p>
+                            <button type="button" class="db-widget-btn" onclick="location.href='events.html'"
+                                style="margin-top: 0; align-self: center;">DCOUVRIR LES VNEMENTS</button>
+                        </div>
+
+                        <!-- How It Works Section -->
+                        <div class="how-container">
+                            <div class="how-header">Comment ça fonctionne ?</div>
+                            <div class="how-grid">
+                                <div class="how-col">
+                                    <div class="how-icon-wrap">
+                                        <div class="how-icon">
+                                            <svg viewBox="0 0 24 24" width="24" height="24" fill="none"
+                                                stroke="currentColor" stroke-width="2">
+                                                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                                                <circle cx="9" cy="7" r="4"></circle>
+                                                <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                                                <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                                            </svg>
+                                        </div>
+                                        <div class="how-badge">1</div>
+                                    </div>
+                                    <div class="how-text">
+                                        <h4>Vous rencontrez</h4>
+                                        <p>Participez à nos expériences 7Sens et rencontrez des membres partageant vos
+                                            valeurs.</p>
+                                    </div>
+                                </div>
+                                <div class="how-col">
+                                    <div class="how-icon-wrap">
+                                        <div class="how-icon">
+                                            <svg viewBox="0 0 24 24" width="22" height="22" fill="none"
+                                                stroke="currentColor" stroke-width="2">
+                                                <path d="M12 20h9"></path>
+                                                <path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z">
+                                                </path>
+                                            </svg>
+                                        </div>
+                                        <div class="how-badge">2</div>
+                                    </div>
+                                    <div class="how-text">
+                                        <h4>Vous partagez votre ressenti</h4>
+                                        <p>Après l'expérience, partagez en toute confidentialité votre ressenti sur les
+                                            personnes rencontrées.</p>
+                                    </div>
+                                </div>
+                                <div class="how-col">
+                                    <div class="how-icon-wrap">
+                                        <div class="how-icon">
+                                            <svg viewBox="0 0 24 24" width="22" height="22" fill="none"
+                                                stroke="currentColor" stroke-width="2">
+                                                <path
+                                                    d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z">
+                                                </path>
+                                            </svg>
+                                        </div>
+                                        <div class="how-badge">3</div>
+                                    </div>
+                                    <div class="how-text">
+                                        <h4>Une connexion mutuelle révèle les coordonnées</h4>
+                                        <p>Si l'intérêt est réciproque, vous accédez aux coordonnées pour poursuivre
+                                            l'échange en dehors de 7Sens.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Language Selector -->
+    <div class="lang-dropdown fixed-lang-selector">
+        <button class="lang-btn" aria-haspopup="true" aria-expanded="false">
+            <img src="https://flagcdn.com/w20/fr.png" width="16" alt="FR" style="border-radius: 2px;"> FR
+            <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M18 15l-6-6-6 6" />
+            </svg>
+        </button>
+        <ul class="lang-menu">
+            <li><a href="#" class="active"><img src="https://flagcdn.com/w20/fr.png" width="16" alt="FR"
+                        style="border-radius: 2px;"> FR</a></li>
+            <li><a href="#"><img src="https://flagcdn.com/w20/gb.png" width="16" alt="EN" style="border-radius: 2px;">
+                    EN</a></li>
+        </ul>
+    </div>
+
+    <!-- Compatibility Detailed Report Modal -->
+    <div id="compat-report-modal" class="db-modal-overlay"
+        style="display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.7); backdrop-filter: blur(8px); z-index: 1000; align-items: center; justify-content: center; padding: 20px;">
+        <style>
+            #compat-report-modal .db-modal-close::before,
+            #compat-report-modal .db-modal-close::after {
+                background: var(--primary-navy);
+            }
+
+            #compat-report-modal .db-modal-close:hover {
+                background: rgba(20, 43, 99, 0.7);
+            }
+
+            .report-card {
+                background: #ffffff;
+                border: 1px solid rgba(214, 164, 55, 0.15);
+                border-radius: 12px;
+                padding: 25px;
+                box-shadow: 0 10px 30px rgba(0, 0, 0, 0.04);
+                margin-bottom: 25px;
+                transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            }
+
+            .report-card:hover {
+                transform: translateY(-4px);
+                box-shadow: 0 15px 40px rgba(214, 164, 55, 0.12);
+                border-color: rgba(214, 164, 55, 0.3);
+            }
+
+            .report-list-item {
+                display: flex;
+                align-items: flex-start;
+                gap: 15px;
+                margin-bottom: 14px;
+                font-size: 0.9rem;
+                color: var(--text-muted);
+                line-height: 1.6;
+                font-family: 'Instrument Sans', sans-serif;
+            }
+
+            .report-list-item::before {
+                content: '';
+                display: block;
+                width: 6px;
+                height: 6px;
+                border-radius: 50%;
+                background: var(--luxury-gold);
+                margin-top: 8px;
+                flex-shrink: 0;
+                box-shadow: 0 0 6px rgba(214, 164, 55, 0.4);
+            }
+
+            .report-list-item.warning::before {
+                background: #e74c3c;
+                box-shadow: 0 0 6px rgba(231, 76, 60, 0.4);
+            }
+        </style>
+        <div class="db-modal-content"
+            style="max-width: 700px; width: 100%; padding: 0; overflow: hidden; border: 1px solid rgba(255,255,255,0.8); box-shadow: 0 30px 80px rgba(0,0,0,0.2); background: #fafafa; position: relative;">
+            <button class="db-modal-close" onclick="closeCompatReportModal()"
+                style="background: rgba(20,43,99,0.05); top: 20px; right: 20px; z-index: 10;"></button>
+
+            <div
+                style="padding: 50px 35px 30px 35px; text-align: center; border-bottom: 1px solid rgba(20,43,99,0.05); background: #ffffff;">
+                <div
+                    style="display: inline-flex; align-items: center; justify-content: center; width: 70px; height: 70px; border-radius: 50%; background: rgba(214,164,55,0.05); border: 1px solid rgba(214,164,55,0.4); color: var(--luxury-gold); margin-bottom: 20px; box-shadow: 0 4px 15px rgba(214,164,55,0.1);">
+                    <svg viewBox="0 0 24 24" width="32" height="32" fill="none" stroke="currentColor"
+                        stroke-width="1.5">
+                        <path
+                            d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z">
+                        </path>
+                    </svg>
+                </div>
+                <h3 id="report-modal-name"
+                    style="font-family: 'Cormorant Garamond', serif; font-size: 2.6rem; color: var(--primary-navy); margin: 0 0 8px 0;">
+                    Rapport de Compatibilité</h3>
+                <p
+                    style="font-family: 'Instrument Sans', sans-serif; font-size: 0.9rem; color: var(--text-muted); margin: 0; letter-spacing: 0.15em; text-transform: uppercase; font-weight: 600;">
+                    Analyse S7 Exclusive</p>
+            </div>
+
+            <div class="report-modal-body"
+                style="padding: 40px 35px 35px 35px; position: relative; max-height: 60vh; overflow-y: auto;">
+
+                <div style="display: flex; justify-content: center; margin-bottom: 40px;">
+                    <div
+                        style="background: #ffffff; border-radius: 20px; padding: 20px 40px; display: flex; align-items: center; gap: 25px; box-shadow: 0 10px 30px rgba(0,0,0,0.05); border: 1px solid rgba(214,164,55,0.2);">
+                        <div
+                            style="position: relative; width: 75px; height: 75px; border-radius: 50%; background: linear-gradient(135deg, var(--luxury-gold), #b38221); display: flex; align-items: center; justify-content: center; color: #ffffff; box-shadow: 0 8px 25px rgba(214,164,55,0.3);">
+                            <div
+                                style="position: absolute; inset: 3px; border-radius: 50%; border: 1px dashed rgba(255,255,255,0.6);">
+                            </div>
+                            <span id="report-modal-score"
+                                style="font-family: 'Cormorant Garamond', serif; font-size: 2.2rem; font-weight: 700; position: relative; z-index: 2;">89%</span>
+                        </div>
+                        <div style="display: flex; flex-direction: column;">
+                            <h4 id="report-modal-level"
+                                style="font-family: 'Instrument Sans', sans-serif; font-size: 0.95rem; font-weight: 700; color: var(--primary-navy); text-transform: uppercase; margin: 0 0 6px 0; letter-spacing: 0.08em;">
+                                COMPATIBILITÉ EXCEPTIONNELLE</h4>
+                            <p id="report-modal-event"
+                                style="font-size: 0.85rem; color: var(--text-muted); margin: 0; font-style: italic;">
+                                Soirée Dégustation & Échanges</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 25px; margin-bottom: 35px;">
+                    <div
+                        style="background: #ffffff; border: 1px solid rgba(20,43,99,0.06); padding: 25px; border-radius: 12px; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 8px 30px rgba(0,0,0,0.03);">
+                        <div style="display: flex; flex-direction: column;">
+                            <span
+                                style="font-size: 0.75rem; font-weight: 700; color: var(--luxury-gold); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 6px;">Affinité
+                                S7</span>
+                            <span style="font-size: 0.8rem; color: var(--text-muted);">Connexion intellectuelle</span>
+                        </div>
+                        <div id="report-modal-affinity"
+                            style="font-family: 'Cormorant Garamond', serif; font-size: 2.2rem; color: var(--primary-navy); font-weight: 600;">
+                            88%</div>
+                    </div>
+                    <div
+                        style="background: #ffffff; border: 1px solid rgba(20,43,99,0.06); padding: 25px; border-radius: 12px; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 8px 30px rgba(0,0,0,0.03);">
+                        <div style="display: flex; flex-direction: column;">
+                            <span
+                                style="font-size: 0.75rem; font-weight: 700; color: var(--luxury-gold); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 6px;">Résonance
+                                S7</span>
+                            <span style="font-size: 0.8rem; color: var(--text-muted);">Harmonie émotionnelle</span>
+                        </div>
+                        <div id="report-modal-resonance"
+                            style="font-family: 'Cormorant Garamond', serif; font-size: 2.2rem; color: var(--primary-navy); font-weight: 600;">
+                            90%</div>
+                    </div>
+                </div>
+
+                <div class="report-card">
+                    <h4
+                        style="font-size: 0.9rem; color: var(--primary-navy); text-transform: uppercase; letter-spacing: 0.08em; margin: 0 0 20px 0; display: flex; align-items: center; gap: 10px;">
+                        <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="var(--luxury-gold)"
+                            stroke-width="2">
+                            <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+                        </svg>
+                        Description de l'Analyse
+                    </h4>
+                    <p id="report-modal-explanation"
+                        style="font-size: 0.95rem; color: var(--text-muted); line-height: 1.7; margin: 0; font-style: italic; border-left: 3px solid rgba(214,164,55,0.4); padding-left: 20px;">
+                    </p>
+                </div>
+
+                <div class="report-card">
+                    <h4
+                        style="font-size: 0.9rem; color: var(--primary-navy); text-transform: uppercase; letter-spacing: 0.08em; margin: 0 0 20px 0; display: flex; align-items: center; gap: 10px;">
+                        <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="var(--luxury-gold)"
+                            stroke-width="2">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <polyline points="12 16 16 12 12 8"></polyline>
+                            <line x1="8" y1="12" x2="16" y2="12"></line>
+                        </svg>
+                        Points Forts d'Affinité
+                    </h4>
+                    <div id="report-modal-affinity-list"></div>
+                </div>
+
+                <div class="report-card">
+                    <h4
+                        style="font-size: 0.9rem; color: var(--primary-navy); text-transform: uppercase; letter-spacing: 0.08em; margin: 0 0 20px 0; display: flex; align-items: center; gap: 10px;">
+                        <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="var(--luxury-gold)"
+                            stroke-width="2">
+                            <path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path>
+                        </svg>
+                        Complémentarités Révélées
+                    </h4>
+                    <div id="report-modal-complementarity-list"></div>
+                </div>
+
+                <div class="report-card">
+                    <h4
+                        style="font-size: 0.9rem; color: var(--primary-navy); text-transform: uppercase; letter-spacing: 0.08em; margin: 0 0 20px 0; display: flex; align-items: center; gap: 10px;">
+                        <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="var(--luxury-gold)"
+                            stroke-width="2">
+                            <path d="M12 21a9 9 0 1 0 0-18 9 9 0 0 0 0 18z"></path>
+                            <path d="M12 7v5l3 3"></path>
+                        </svg>
+                        Valeurs Partagées
+                    </h4>
+                    <div id="report-modal-values-list"></div>
+                </div>
+
+                <div class="report-card"
+                    style="border-color: rgba(231,76,60,0.3); background: rgba(231,76,60,0.02); box-shadow: 0 10px 30px rgba(231,76,60,0.05);">
+                    <h4
+                        style="font-size: 0.9rem; color: #e74c3c; text-transform: uppercase; letter-spacing: 0.08em; margin: 0 0 20px 0; display: flex; align-items: center; gap: 10px;">
+                        <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor"
+                            stroke-width="2">
+                            <path
+                                d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z">
+                            </path>
+                            <line x1="12" y1="9" x2="12" y2="13"></line>
+                            <line x1="12" y1="17" x2="12.01" y2="17"></line>
+                        </svg>
+                        Points d'Attention Potentiels
+                    </h4>
+                    <div id="report-modal-attention-list"></div>
+                </div>
+
+                <div style="display: flex; justify-content: center; margin-top: 40px; padding-bottom: 20px;">
+                    <button onclick="closeCompatReportModal()"
+                        style="background: linear-gradient(135deg, var(--luxury-gold), #b38221); color: #ffffff; padding: 16px 40px; border-radius: 30px; font-family: 'Instrument Sans', sans-serif; font-size: 0.9rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; border: none; cursor: pointer; box-shadow: 0 8px 25px rgba(214,164,55,0.4); transition: all 0.3s ease;">FERMER
+                        L'ANALYSE</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Contact Details Modal -->
+    <div id="compat-coords-modal" class="db-modal-overlay"
+        style="display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.7); backdrop-filter: blur(8px); z-index: 1000; align-items: center; justify-content: center; padding: 20px;">
+        <style>
+            #compat-coords-modal .db-modal-close::before,
+            #compat-coords-modal .db-modal-close::after {
+                background: #ffffff;
+            }
+
+            #compat-coords-modal .db-modal-close:hover {
+                background: rgba(255, 255, 255, 0.2);
+            }
+
+            .cinematic-btn-call {
+                width: 44px;
+                height: 44px;
+                border-radius: 50%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                background: linear-gradient(135deg, #2ecc71, #27ae60);
+                color: white;
+                box-shadow: 0 5px 15px rgba(46, 204, 113, 0.4), inset 0 2px 4px rgba(255, 255, 255, 0.4), inset 0 -2px 4px rgba(0, 0, 0, 0.1);
+                transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+                flex-shrink: 0;
+                text-decoration: none;
+            }
+
+            .cinematic-btn-call:hover {
+                transform: translateY(-3px) scale(1.05);
+                box-shadow: 0 8px 20px rgba(46, 204, 113, 0.6), inset 0 2px 4px rgba(255, 255, 255, 0.4), inset 0 -2px 4px rgba(0, 0, 0, 0.1);
+            }
+
+            .cinematic-btn-mail {
+                width: 44px;
+                height: 44px;
+                border-radius: 50%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                background: linear-gradient(135deg, #3498db, #2980b9);
+                color: white;
+                box-shadow: 0 5px 15px rgba(52, 152, 219, 0.4), inset 0 2px 4px rgba(255, 255, 255, 0.4), inset 0 -2px 4px rgba(0, 0, 0, 0.1);
+                transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+                flex-shrink: 0;
+                text-decoration: none;
+            }
+
+            .cinematic-btn-mail:hover {
+                transform: translateY(-3px) scale(1.05);
+                box-shadow: 0 8px 20px rgba(52, 152, 219, 0.6), inset 0 2px 4px rgba(255, 255, 255, 0.4), inset 0 -2px 4px rgba(0, 0, 0, 0.1);
+            }
+        </style>
+        <div class="db-modal-content"
+            style="max-width: 420px; width: 100%; padding: 0; overflow: hidden; border: 1px solid rgba(255,255,255,0.1); box-shadow: 0 30px 60px rgba(0,0,0,0.5);">
+            <div
+                style="background: linear-gradient(135deg, #111a30 0%, #1a2f6c 100%); padding: 40px 20px 40px 20px; text-align: center; position: relative;">
+                <button class="db-modal-close" onclick="closeCompatCoordsModal()"
+                    style="background: rgba(255,255,255,0.1); top: 15px; right: 15px;"></button>
+                <div id="coords-modal-avatar-container"
+                    style="display: flex; justify-content: center; margin-bottom: 15px;">
+                    <!-- Avatar injected here -->
+                </div>
+                <h3 id="coords-modal-name"
+                    style="font-family: 'Cormorant Garamond', serif; font-size: 2.2rem; color: #ffffff; margin: 0 0 5px 0;">
+                    Sophie</h3>
+                <p id="coords-modal-demographics"
+                    style="font-family: 'Instrument Sans', sans-serif; font-size: 0.95rem; font-weight: 500; color: rgba(255,255,255,0.9); margin: 0 0 5px 0;">
+                    29 ans, Femme</p>
+                <p style="font-size: 0.85rem; color: rgba(255,255,255,0.7); margin: 0; font-style: italic;">Pour
+                    prolonger l'expérience 7Sens.</p>
+            </div>
+
+            <div
+                style="padding: 30px; background: #fafafa; position: relative; border-top: 2px solid var(--luxury-gold);">
+                <div
+                    style="display: flex; justify-content: center; margin-top: -45px; margin-bottom: 25px; position: relative; z-index: 10;">
+                    <div
+                        style="display: flex; align-items: stretch; border-radius: 30px; overflow: hidden; box-shadow: 0 10px 25px rgba(0,0,0,0.15); border: 1px solid rgba(255,255,255,0.5);">
+                        <div
+                            style="background: linear-gradient(135deg, var(--primary-navy), #1a2f6c); color: #ffffff; padding: 8px 16px; display: flex; align-items: center; justify-content: center;">
+                            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor"
+                                stroke-width="2.5">
+                                <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                                <polyline points="22 4 12 14.01 9 11.01"></polyline>
+                            </svg>
+                        </div>
+                        <div
+                            style="background: #ffffff; color: var(--primary-navy); padding: 8px 20px; font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; display: flex; align-items: center;">
+                            Consentement Mutuel Validé
+                        </div>
+                    </div>
+                </div>
+
+                <div style="display: flex; flex-direction: column; gap: 20px;" id="coords-modal-details">
+                    <!-- Dynamic Details Injected Here -->
+                </div>
+
+                <button onclick="closeCompatCoordsModal()" class="compat-btn-solid"
+                    style="margin-top: 30px; margin-bottom: 0;">FERMER</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- JS Logic -->
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            // Load current user from session if available
+            let user = {
+                firstName: "Jean",
+                lastName: "Dupont",
+                photo: "assets/pexels-maorattias-5152572.jpg"
+            };
+            try {
+                const storedUser = localStorage.getItem("currentUser");
+                if (storedUser) {
+                    const parsed = JSON.parse(storedUser);
+                    user = { ...user, ...parsed };
+                }
+            } catch (e) {
+                console.error("Error loading user", e);
+            }
+
+            // Update sidebar avatar & name
+            const dbProfileName = document.getElementById("db-profile-name");
+            if (dbProfileName) dbProfileName.textContent = user.firstName + " " + user.lastName;
+
+            const dbAvatar = document.getElementById("db-avatar");
+            if (dbAvatar) {
+                if (user.photo) {
+                    dbAvatar.style.backgroundImage = `url('${user.photo}')`;
+                    dbAvatar.innerHTML = "";
+                } else {
+                    dbAvatar.style.backgroundImage = "none";
+                    dbAvatar.innerHTML = `<span id="db-avatar-initials">${(user.firstName.charAt(0) + user.lastName.charAt(0)).toUpperCase()}</span>`;
+                }
+            }
+
+            // --- COMPATIBILITY DATA ---
+            window.compatibilityData = [
+                {
+                    id: 1,
+                    firstName: "Sophie",
+                    lastName: "M.",
+                    photo: "assets/pexels-maorattias-5152572.jpg",
+                    age: 29,
+                    gender: "Femme",
+                    hobbies: ["Art Contemporain", "Gastronomie", "Voyages"],
+                    eventName: "Soirée Dégustation & changes",
+                    eventDate: "24 mai 2026",
+                    score: 89,
+                    status: "mutual",
+                    strengths: ["Valeurs communes", "Vision de la relation", "Style de vie"],
+                    phone: "+41 79 987 65 43",
+                    email: "sophie.m@example.com",
+                    affinityResult: "88%",
+                    resonanceResult: "90%",
+                    affinityPoints: ["Goût commun pour la gastronomie et l'nologie", "Recherche d'une relation authentique et durable"],
+                    complementarities: ["Sophie apporte une structure rassurante, tandis que vous apportez de la spontanéité", "quilibre entre extraversion et introversion"],
+                    sharedValues: ["Respect mutuel", "Liberté d'expression", "Développement personnel"],
+                    attentionPoints: ["Prendre le temps d'approfondir les discussions avant de s'engager", "Gérer les rythmes de vie professionnelle"],
+                    explanation: "Votre profil montre une harmonie exceptionnelle dans vos valeurs fondamentales et vos visions d'avenir. Ce rapport S7 met en avant une résonance émotionnelle élevée."
+                },
+                {
+                    id: 2,
+                    firstName: "lodie",
+                    lastName: "R.",
+                    photo: "",
+                    age: 32,
+                    gender: "Femme",
+                    hobbies: ["Oenologie", "Lecture", "Nature"],
+                    eventName: "Soirée Dégustation & changes",
+                    eventDate: "18 avril 2026",
+                    score: 76,
+                    status: "pending",
+                    strengths: ["Communication", "Complémentarité", "Aspirations communes"],
+                    phone: "",
+                    email: "",
+                    affinityResult: "74%",
+                    resonanceResult: "78%",
+                    affinityPoints: ["Curiosité partagée pour les arts", "Importance accordée à la communication ouverte"],
+                    complementarities: ["Différence enrichissante dans vos parcours de vie", "Soutien mutuel dans les moments de doute"],
+                    sharedValues: ["Honnêteté", "Famille", "Partage"],
+                    attentionPoints: ["Des attentes initiales légèrement différentes à clarifier"],
+                    explanation: "Une très forte compatibilité qui repose sur une excellente communication. Bien que les réponses complètes soient en attente, le potentiel de connexion reste élevé."
+                },
+                {
+                    id: 3,
+                    firstName: "Claire",
+                    lastName: "B.",
+                    photo: "",
+                    age: 27,
+                    gender: "Femme",
+                    hobbies: ["Peinture", "Design", "Musique Classique"],
+                    photo: "",
+                    eventName: "Atelier Art & Sens",
+                    eventDate: "2 mars 2026",
+                    score: 68,
+                    status: "no_match",
+                    strengths: ["Complémentarité", "Style de vie"],
+                    phone: "",
+                    email: "",
+                    affinityResult: "65%",
+                    resonanceResult: "70%",
+                    affinityPoints: ["Intérêt commun pour la création artistique"],
+                    complementarities: ["Rythmes de vie complémentaires"],
+                    sharedValues: ["Créativité", "Indépendance"],
+                    attentionPoints: ["Visions différentes de l'engagement à moyen terme"],
+                    explanation: "Une compatibilité intéressante mais plus modérée. Les points de connexion créatifs sont réels, bien qu'il n'y ait pas eu de suite réciproque."
+                }
+            ];
+
+            window.renderCompatibilities = function (filter = 'toutes') {
+                const listContainer = document.getElementById("compatibility-cards-list");
+                const emptyState = document.getElementById("compatibility-empty-state");
+                if (!listContainer) return;
+
+                // Calculate summary counts
+                const mutualCount = window.compatibilityData.filter(c => c.status === 'mutual').length;
+                const totalCount = window.compatibilityData.length;
+                const uniqueEvents = [...new Set(window.compatibilityData.map(c => c.eventName))].length;
+
+                const mutualStat = document.getElementById("compat-stat-mutual");
+                const totalStat = document.getElementById("compat-stat-total");
+                const expStat = document.getElementById("compat-stat-experiences");
+
+                if (mutualStat) {
+                    mutualStat.textContent = mutualCount;
+                    mutualStat.nextElementSibling.textContent = "Connexion" + (mutualCount > 1 ? "s" : "") + " mutuelle" + (mutualCount > 1 ? "s" : "");
+                }
+                if (totalStat) {
+                    totalStat.textContent = totalCount;
+                    totalStat.nextElementSibling.textContent = "Compatibilité" + (totalCount > 1 ? "s" : "") + " révélée" + (totalCount > 1 ? "s" : "");
+                }
+                if (expStat) {
+                    expStat.textContent = uniqueEvents;
+                    expStat.nextElementSibling.textContent = "Expérience" + (uniqueEvents > 1 ? "s" : "") + " réalisée" + (uniqueEvents > 1 ? "s" : "");
+                }
+
+                // Filter items
+                let filtered = window.compatibilityData;
+                if (filter !== 'toutes') {
+                    filtered = window.compatibilityData.filter(c => c.status === filter);
+                }
+
+                if (filtered.length === 0) {
+                    listContainer.style.display = "none";
+                    if (emptyState) emptyState.style.display = "block";
+                    return;
+                }
+
+                listContainer.style.display = "block";
+                if (emptyState) emptyState.style.display = "none";
+
+                let html = "";
+                filtered.forEach(item => {
+                    // Profile Photo or Initials fallback
+                    // Profile Photo or Initials fallback
+                    const initials = (item.firstName.charAt(0) + item.lastName.charAt(0)).toUpperCase();
+                    let mutualBg = 'var(--primary-navy)';
+                    // Use a more colorful background for the other listings instead of grey
+                    let compactBg = item.status === 'pending' ? 'var(--primary-navy)' : 'var(--primary-navy)';
+
+                    let avatarHtmlMutual = `
+                        <div class="compat-avatar" style="position: relative; overflow: hidden; border-radius: 50%; width: 85px; height: 85px; font-size: 2rem; display: flex; align-items: center; justify-content: center; flex-shrink: 0; background-color: ${mutualBg}; color: #ffffff; box-shadow: 0 4px 15px rgba(20,43,99,0.15);">
+                            <span style="position: relative; z-index: 1;">${initials}</span>
+                            ${item.photo ? `<div style="position: absolute; inset: 0; background-image: url('${item.photo}'); background-size: cover; background-position: center; z-index: 2;"></div>` : ''}
+                        </div>
+                    `;
+
+                    let avatarHtmlCompact = `
+                        <div class="compat-avatar" style="position: relative; overflow: hidden; border-radius: 50%; width: 50px; height: 50px; font-size: 1.1rem; display: flex; align-items: center; justify-content: center; flex-shrink: 0; background-color: ${compactBg}; color: #ffffff; opacity: ${item.status === 'pending' ? '0.9' : '0.7'};">
+                            <span style="position: relative; z-index: 1;">${initials}</span>
+                            ${item.photo ? `<div style="position: absolute; inset: 0; background-image: url('${item.photo}'); background-size: cover; background-position: center; z-index: 2;"></div>` : ''}
+                        </div>
+                    `;
+
+                    // Score label
+                    let levelLabel = "Compatibilité intéressante";
+                    if (item.score >= 85) levelLabel = "Compatibilité exceptionnelle";
+                    else if (item.score >= 75) levelLabel = "Très forte compatibilité";
+                    else if (item.score >= 65) levelLabel = "Forte compatibilité";
+                    else if (item.score >= 50) levelLabel = "Compatibilité intéressante";
+                    else levelLabel = "Compatibilité modérée";
+
+                    if (item.status === 'mutual') {
+                        html += `
+                            <div class="compat-card-mutual">
+                                <div class="compat-card-mutual-main">
+                                    <div class="compat-card-mutual-col left">
+                                        ${avatarHtmlMutual}
+                                        <div>
+                                            <h3 style="font-family: 'Cormorant Garamond', serif; font-size: 1.6rem; color: var(--primary-navy); margin: 0 0 5px 0;">${item.firstName} ${item.lastName.charAt(0)}.</h3>
+                                            <p style="font-family: 'Instrument Sans', sans-serif; font-size: 0.8rem; color: var(--text-muted); margin: 0 0 5px 0;">${item.eventName}</p>
+                                            <p style="font-size: 0.75rem; color: var(--text-muted); margin: 0; display: flex; align-items: center; gap: 6px;">
+                                                <svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2">
+                                                    <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line>
+                                                </svg>
+                                                ${item.eventDate}
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <div class="compat-card-mutual-col center">
+                                        <span style="font-size: 0.65rem; color: var(--luxury-gold); font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 5px;">S7 Connection</span>
+                                        <div style="position: relative; width: 60px; height: 60px; display: flex; align-items: center; justify-content: center;">
+                                            <svg width="60" height="60" viewBox="0 0 100 100" style="position: absolute; top: 0; left: 0; transform: rotate(-90deg);">
+                                                <circle cx="50" cy="50" r="42" fill="none" stroke="rgba(214,164,55,0.15)" stroke-width="4" />
+                                                <circle cx="50" cy="50" r="42" fill="none" stroke="var(--luxury-gold)" stroke-width="4" stroke-dasharray="263.89" stroke-dashoffset="${263.89 - (263.89 * item.score / 100)}" stroke-linecap="round" />
+                                            </svg>
+                                            <span style="font-family: 'Cormorant Garamond', serif; font-size: 1.4rem; font-weight: 700; color: var(--primary-navy); position: relative; z-index: 2;">${item.score}%</span>
+                                        </div>
+                                        <div class="compat-badge-gold">${levelLabel}</div>
+                                    </div>
+                                    <div class="compat-card-mutual-col right">
+                                        <div class="compat-badge-green">
+                                            <svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2">
+                                                <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline>
+                                            </svg>
+                                            INTÉRÊT RÉCIPROQUE
+                                        </div>
+                                        <button class="compat-btn-solid" onclick="openCompatReport(${item.id})">VOIR LA COMPATIBILITÉ</button>
+                                        <button class="compat-btn-outline" onclick="openCompatCoords(${item.id})">VOIR LES COORDONNÉES</button>
+                                    </div>
+                                </div>
+                            </div>
+                        `;
+                    } else {
+                        let statusText = item.status === 'pending' ? 'En attente de réponse' : 'Sans suite';
+                        html += `
+                            <div class="compat-card-compact">
+                                <div class="compat-compact-left">
+                                    ${avatarHtmlCompact}
+                                    <div>
+                                        <h3 style="font-family: 'Cormorant Garamond', serif; font-size: 1.2rem; color: var(--primary-navy); margin: 0 0 2px 0;">${item.firstName} ${item.lastName.charAt(0)}.</h3>
+                                        <p style="font-family: 'Instrument Sans', sans-serif; font-size: 0.75rem; color: var(--text-muted); margin: 0 0 2px 0;">${item.eventName}</p>
+                                        <p style="font-size: 0.7rem; color: var(--text-muted); margin: 0; display: flex; align-items: center; gap: 6px;">
+                                            <svg viewBox="0 0 24 24" width="10" height="10" fill="none" stroke="currentColor" stroke-width="2">
+                                                <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line>
+                                            </svg>
+                                            ${item.eventDate}
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="compat-compact-center">
+                                    <div style="position: relative; width: 45px; height: 45px; display: flex; align-items: center; justify-content: center; opacity: ${item.status === 'pending' ? '1' : '0.6'};">
+                                        <svg width="45" height="45" viewBox="0 0 100 100" style="position: absolute; top: 0; left: 0; transform: rotate(-90deg);">
+                                            <circle cx="50" cy="50" r="42" fill="none" stroke="rgba(214,164,55,0.15)" stroke-width="4" />
+                                            <circle cx="50" cy="50" r="42" fill="none" stroke="var(--luxury-gold)" stroke-width="4" stroke-dasharray="263.89" stroke-dashoffset="${263.89 - (263.89 * item.score / 100)}" stroke-linecap="round" />
+                                        </svg>
+                                        <span style="font-family: 'Cormorant Garamond', serif; font-size: 1rem; font-weight: 700; color: var(--primary-navy); position: relative; z-index: 2;">${item.score}%</span>
+                                    </div>
+                                    <div>
+                                        <span style="font-size: 0.6rem; color: var(--luxury-gold); font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; display: block; margin-bottom: 2px;">S7 Connection</span>
+                                        <span style="font-size: 0.8rem; color: var(--primary-navy); font-weight: 500;">${statusText}</span>
+                                    </div>
+                                </div>
+                                <div class="compat-compact-right">
+                                    <button class="compat-btn-compact" onclick="openCompatReport(${item.id})">VOIR LA COMPATIBILITÉ</button>
+                                </div>
+                            </div>
+                        `;
+                    }
+                });
+                listContainer.innerHTML = html;
+            };
+
+            window.filterCompatibilities = function (filter) {
+                const filterBtns = document.querySelectorAll('.compat-filter-btn');
+                filterBtns.forEach(btn => btn.classList.remove('active'));
+
+                const activeBtn = document.getElementById(`btn-compat-filter-${filter}`);
+                if (activeBtn) activeBtn.classList.add('active');
+
+                window.renderCompatibilities(filter);
+            };
+
+            window.openCompatReport = function (id) {
+                const item = window.compatibilityData.find(c => c.id === id);
+                if (!item) return;
+
+                document.getElementById("report-modal-name").textContent = "Rapport S7  " + item.firstName + " " + item.lastName.charAt(0) + ".";
+                document.getElementById("report-modal-score").textContent = item.score + "%";
+                document.getElementById("report-modal-event").textContent = item.eventName + "  " + item.eventDate;
+
+                let levelLabel = "Compatibilité intéressante";
+                if (item.score >= 85) levelLabel = "Compatibilité exceptionnelle";
+                else if (item.score >= 75) levelLabel = "Très forte compatibilité";
+                else if (item.score >= 65) levelLabel = "Forte compatibilité";
+                else if (item.score >= 50) levelLabel = "Compatibilité intéressante";
+                else levelLabel = "Compatibilité modérée";
+                document.getElementById("report-modal-level").textContent = levelLabel;
+
+                document.getElementById("report-modal-affinity").textContent = item.affinityResult;
+                document.getElementById("report-modal-resonance").textContent = item.resonanceResult;
+                document.getElementById("report-modal-explanation").innerHTML = item.explanation + "<br><br><em>Veuillez noter que l'indice de compatibilité S7 est une évaluation de résonance et d'intérêts partagés. Ce score n'est pas une garantie de réussite relationnelle mais une mise en valeur de forces et de complémentarités naturelles. La rencontre demeure un chemin d'échange libre et authentique.</em>";
+
+                const affinityList = document.getElementById("report-modal-affinity-list");
+                affinityList.innerHTML = "";
+                item.affinityPoints.forEach(point => {
+                    const el = document.createElement("div");
+                    el.className = "report-list-item";
+                    el.textContent = point;
+                    affinityList.appendChild(el);
+                });
+
+                const complementarityList = document.getElementById("report-modal-complementarity-list");
+                complementarityList.innerHTML = "";
+                item.complementarities.forEach(point => {
+                    const el = document.createElement("div");
+                    el.className = "report-list-item";
+                    el.textContent = point;
+                    complementarityList.appendChild(el);
+                });
+
+                const valuesList = document.getElementById("report-modal-values-list");
+                valuesList.innerHTML = "";
+                item.sharedValues.forEach(point => {
+                    const el = document.createElement("div");
+                    el.className = "report-list-item";
+                    el.textContent = point;
+                    valuesList.appendChild(el);
+                });
+
+                const attentionList = document.getElementById("report-modal-attention-list");
+                attentionList.innerHTML = "";
+                item.attentionPoints.forEach(point => {
+                    const el = document.createElement("div");
+                    el.className = "report-list-item warning";
+                    el.textContent = point;
+                    attentionList.appendChild(el);
+                });
+
+                const modal = document.getElementById('compat-report-modal');
+                modal.style.display = 'flex';
+                setTimeout(() => {
+                    modal.classList.add('active');
+                }, 10);
+            };
+
+            window.closeCompatReportModal = function () {
+                const modal = document.getElementById('compat-report-modal');
+                modal.classList.remove('active');
+                setTimeout(() => {
+                    modal.style.display = 'none';
+                }, 300);
+            };
+
+            window.openCompatCoords = function (id) {
+                const item = window.compatibilityData.find(c => c.id === id);
+                if (!item || item.status !== 'mutual') return;
+
+                document.getElementById("coords-modal-name").textContent = item.firstName + " " + item.lastName;
+                const demoEl = document.getElementById("coords-modal-demographics");
+                if (demoEl) demoEl.textContent = item.age + " ans, " + item.gender;
+
+                const initials = (item.firstName.charAt(0) + item.lastName.charAt(0)).toUpperCase();
+                const avatarHtml = `
+                    <div style="position: relative; overflow: hidden; border-radius: 50%; width: 90px; height: 90px; font-size: 2.5rem; display: flex; align-items: center; justify-content: center; flex-shrink: 0; background-color: rgba(255,255,255,0.1); color: #ffffff; border: 3px solid rgba(214,164,55,0.5); box-shadow: 0 10px 30px rgba(0,0,0,0.2);">
+                        <span style="position: relative; z-index: 1;">${initials}</span>
+                        ${item.photo ? `<div style="position: absolute; inset: 0; background-image: url('${item.photo}'); background-size: cover; background-position: center; z-index: 2;"></div>` : ''}
+                    </div>
+                `;
+                const avatarContainer = document.getElementById("coords-modal-avatar-container");
+                if (avatarContainer) avatarContainer.innerHTML = avatarHtml;
+
+                const detailsContainer = document.getElementById("coords-modal-details");
+                if (detailsContainer) {
+                    detailsContainer.innerHTML = `
+                        <div style="display: flex; align-items: center; gap: 15px; padding-bottom: 15px; border-bottom: 1px solid rgba(20,43,99,0.05);">
+                            <div style="width: 40px; height: 40px; border-radius: 50%; background: rgba(46, 204, 113, 0.1); color: #2ecc71; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+                                <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+                            </div>
+                            <div style="display: flex; flex-direction: column; min-width: 0; flex: 1;">
+                                <span style="font-size: 0.65rem; font-weight: 700; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.05em;">Téléphone</span>
+                                <span style="font-family: 'Instrument Sans', sans-serif; font-size: 1rem; font-weight: 600; color: var(--primary-navy); white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">${item.phone}</span>
+                            </div>
+                            <a href="tel:${item.phone.replace(/\s+/g, '')}" class="cinematic-btn-call">
+                                <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+                            </a>
+                        </div>
+                        <div style="display: flex; align-items: center; gap: 15px; padding-bottom: 15px; border-bottom: 1px solid rgba(20,43,99,0.05);">
+                            <div style="width: 40px; height: 40px; border-radius: 50%; background: rgba(52, 152, 219, 0.1); color: #3498db; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+                                <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+                            </div>
+                            <div style="display: flex; flex-direction: column; min-width: 0; flex: 1;">
+                                <span style="font-size: 0.65rem; font-weight: 700; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.05em;">E-mail</span>
+                                <span style="font-family: 'Instrument Sans', sans-serif; font-size: 1rem; font-weight: 600; color: var(--primary-navy); white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">${item.email}</span>
+                            </div>
+                            <a href="mailto:${item.email}" class="cinematic-btn-mail">
+                                <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+                            </a>
+                        </div>
+                        <div style="display: flex; align-items: flex-start; gap: 15px;">
+                            <div style="width: 40px; height: 40px; border-radius: 50%; background: rgba(243, 156, 18, 0.1); color: #f39c12; display: flex; align-items: center; justify-content: center;">
+                                <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="14.31" y1="8" x2="20.05" y2="17.94"></line><line x1="9.69" y1="8" x2="21.17" y2="8"></line><line x1="7.38" y1="12" x2="13.12" y2="2.06"></line><line x1="9.69" y1="16" x2="3.95" y2="6.06"></line><line x1="14.31" y1="16" x2="2.83" y2="16"></line><line x1="16.62" y1="12" x2="10.88" y2="21.94"></line></svg>
+                            </div>
+                            <div style="display: flex; flex-direction: column;">
+                                <span style="font-size: 0.65rem; font-weight: 700; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.05em;">Centres d'intérêt</span>
+                                <div style="display: flex; flex-wrap: wrap; gap: 8px; margin-top: 6px;">
+                                    ${item.hobbies.map(hobby => `<span style="background: rgba(20,43,99,0.05); color: var(--primary-navy); padding: 4px 12px; font-size: 0.75rem; border-radius: 4px; border: 1px solid rgba(20,43,99,0.1);">${hobby}</span>`).join("")}
+                                </div>
+                            </div>
+                        </div>
+                    `;
+                }
+
+                const modal = document.getElementById('compat-coords-modal');
+                modal.style.display = 'flex';
+                setTimeout(() => {
+                    modal.classList.add('active');
+                }, 10);
+            };
+
+            window.closeCompatCoordsModal = function () {
+                const modal = document.getElementById('compat-coords-modal');
+                modal.classList.remove('active');
+                setTimeout(() => {
+                    modal.style.display = 'none';
+                }, 300);
+            };
+
+            window.renderCompatibilities();
+        });
+    </script>
+</body>
+
+</html>

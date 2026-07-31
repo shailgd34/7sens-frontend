@@ -12,7 +12,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
-        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Outfit:wght@300;400;500;600;700&display=swap"
+        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Instrument+Sans:wght@300;400;500;600;700&display=swap"
         rel="stylesheet">
 
     <!-- Stylesheets -->
@@ -96,7 +96,7 @@
             background: rgba(255, 255, 255, 0.6);
             border: 1px solid rgba(20, 43, 99, 0.1);
             border-radius: 30px;
-            font-family: 'Outfit', sans-serif;
+            font-family: 'Instrument Sans', sans-serif;
             font-size: 0.75rem;
             font-weight: 600;
             letter-spacing: 0.08em;
@@ -174,7 +174,7 @@
             width: 100%;
             background: none;
             border: none;
-            font-family: 'Outfit', sans-serif;
+            font-family: 'Instrument Sans', sans-serif;
             font-size: 0.9rem;
             font-weight: 600;
             color: var(--primary-navy);
@@ -313,7 +313,7 @@
     <!-- Header Navigation -->
     <header class="header" id="main-header">
         <div class="header-container">
-            <a href="index.html" class="logo-link" id="header-logo">
+            <a href="index.html#accueil" class="logo-link" id="header-logo">
                 <img src="assets/7sens.webp" alt="7Sens Logo" class="logo-img">
             </a>
 
@@ -611,127 +611,105 @@
         <div class="footer-bg-layer particles-layer"></div>
 
         <div class="footer-container">
-            <!-- Footer Upper: Asymmetric Grid -->
-            <div class="footer-upper asymmetric-grid">
+            <div class="footer-upper asymmetric-grid" style="grid-template-columns: 1fr 1fr; gap: 40px;">
 
-                <!-- Brand Col -->
-                <div class="footer-col brand-col fade-in-up">
-                    <div class="footer-logo" style="margin-bottom: 24px;">
-                        <img src="assets/7sens.webp" alt="7SENS Logo"
-                            style="height: 45px; width: auto; object-fit: contain; filter: brightness(0) invert(1);">
-                    </div>
-                    <p class="footer-brand-story">
-                        Redefining the art of human connection through exclusive, carefully curated experiences in
-                        Switzerland's most breathtaking venues.
-                    </p>
-                    <div class="footer-contact-details">
-                        <p class="contact-line"><strong>Genève HQ:</strong> Rue du Rhône 12, 1204 Genève</p>
-                        <p class="contact-line"><strong>Email:</strong> <a
-                                href="mailto:hello@7sens.ch">hello@7sens.ch</a></p>
+                <!-- Left Side: Brand & Quote -->
+                <div class="footer-col brand-col fade-in-up"
+                    style="display: flex; flex-direction: column; justify-content: space-between; height: 100%;">
+                    <div>
+                        <div class="footer-logo-row"
+                            style="display: flex; align-items: center; gap: 15px; margin-bottom: 24px;">
+                            <div class="footer-logo">
+                                <img src="assets/7sens 1.webp" alt="7SENS Logo"
+                                    style="height: 65px; width: auto; object-fit: contain;">
+                            </div>
+                        </div>
+                        <p class="footer-brand-story"
+                            style="font-size: 0.95rem; line-height: 1.6; max-width: 400px; font-weight: 500; font-style: italic;">
+                            « Certaines rencontres deviennent une histoire. D'autres une amitié. Toutes peuvent avoir du
+                            sens. »
+                        </p>
                     </div>
 
-                    <div class="lang-dropdown footer-lang" style="margin-top: 30px;">
-                        <button class="lang-btn" aria-haspopup="true" aria-expanded="false">FR
-                            <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor"
-                                stroke-width="2">
-                                <path d="M6 9l6 6 6-6" />
-                            </svg>
-                        </button>
-                        <ul class="lang-menu">
-                            <li><a href="#" class="active">FR</a></li>
-                            <li><a href="#">EN</a></li>
+                </div>
+
+                <!-- Right Side: Links Grid -->
+                <div class="footer-links-grid fade-in-up"
+                    style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; text-align: left;">
+
+                    <!-- Navigation Col -->
+                    <div class="footer-col nav-col">
+                        <h5 class="footer-heading"
+                            style="color: var(--luxury-gold); font-size: 1.2rem; letter-spacing: 0.1em; margin-bottom: 8px;">
+                            NAVIGATION</h5>
+                        <div style="display: flex; flex-direction: column; gap: 8px; margin-bottom: 30px;">
+                            <div style="height: 1px; width: 30px; background-color: var(--luxury-gold);"></div>
+                            <div style="height: 1px; width: 50px; background-color: var(--luxury-gold);"></div>
+                        </div>
+                        <ul class="footer-links"
+                            style="list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 12px;">
+                            <li><a href="#accueil"
+                                    style="color: #fff; text-decoration: none; font-size: 0.9rem;">Accueil</a></li>
+                            <li><a href="events.html"
+                                    style="color: #fff; text-decoration: none; font-size: 0.9rem;">Evénements</a></li>
+                            <li><a href="#how-it-works"
+                                    style="color: #fff; text-decoration: none; font-size: 0.9rem;">Comment ca marche</a>
+                            </li>
+                            <li><a href="faq.html"
+                                    style="color: #fff; text-decoration: none; font-size: 0.9rem;">FAQ</a></li>
                         </ul>
                     </div>
-                </div>
 
-                <!-- Navigation Col -->
-                <div class="footer-col nav-col fade-in-up" data-delay="0.1">
-                    <h5 class="footer-heading">NAVIGATION</h5>
-                    <ul class="footer-links">
-                        <li><a href="index.html#accueil">Home</a></li>
-                        <li><a href="index.html#experiences">Experiences</a></li>
-                        <li><a href="events.html">Events</a></li>
-                        <li><a href="index.html#membership">Membership</a></li>
-                        <li><a href="index.html#about">About Us</a></li>
-                        <li><a href="index.html#contact">Contact</a></li>
-                    </ul>
-                </div>
-
-                <!-- Information Col -->
-                <div class="footer-col info-col fade-in-up" data-delay="0.2">
-                    <h5 class="footer-heading">INFORMATION</h5>
-                    <ul class="footer-links">
-                        <li><a href="faq.html">FAQ</a></li>
-                        <li><a href="#">Terms & Conditions</a></li>
-                        <li><a href="#">Privacy Policy</a></li>
-                        <li><a href="#">Legal Notice</a></li>
-                    </ul>
-                </div>
-
-                <!-- Newsletter Col -->
-                <div class="footer-col newsletter-col fade-in-up" data-delay="0.3">
-                    <h5 class="footer-heading">PRIVATE CIRCLE</h5>
-                    <p class="newsletter-subtext">Receive exclusive invitations and editorial inspiration.</p>
-                    <form id="newsletter-form" class="glass-newsletter-form">
-                        <div class="glass-input-wrapper">
-                            <input type="email" class="glass-input" placeholder="Enter your email" required
-                                id="newsletter-email">
-                            <button type="submit" aria-label="Subscribe" class="btn-glass-submit">
-                                <svg viewBox="0 0 24 24" fill="none" stroke="#D6A84F" stroke-width="2">
-                                    <path d="M5 12H19M19 12L13 6M19 12L13 18" />
-                                </svg>
-                            </button>
+                    <!-- Information Col -->
+                    <div class="footer-col info-col">
+                        <h5 class="footer-heading"
+                            style="color: var(--luxury-gold); font-size: 1.2rem; letter-spacing: 0.1em; margin-bottom: 8px;">
+                            INFORMATION</h5>
+                        <div style="display: flex; flex-direction: column; gap: 8px; margin-bottom: 30px;">
+                            <div style="height: 1px; width: 30px; background-color: var(--luxury-gold);"></div>
+                            <div style="height: 1px; width: 50px; background-color: var(--luxury-gold);"></div>
                         </div>
-                        <label class="glass-checkbox-container">
-                            <input type="checkbox" required id="newsletter-agree">
-                            <span class="glass-checkmark"></span>
-                            <span class="glass-checkbox-text">I accept to receive exclusive invitations.</span>
-                        </label>
-                        <button type="button" class="btn btn-gold-solid btn-magnetic w-full mt-20">
-                            <span>JOIN THE PRIVATE CIRCLE</span>
-                        </button>
-                    </form>
-
-                    <div class="social-links-glass">
-                        <a href="#" aria-label="Instagram" target="_blank" class="glass-social">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                                <rect x="2" y="2" width="20" height="20" rx="5" ry="5" />
-                                <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
-                                <line x="17.5" y="6.5" x2="17.51" y="6.5" />
-                            </svg>
-                        </a>
-                        <a href="#" aria-label="LinkedIn" target="_blank" class="glass-social">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                                <path
-                                    d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" />
-                                <rect x="2" y="9" width="4" height="12" />
-                                <circle cx="4" cy="4" r="2" />
-                            </svg>
-                        </a>
+                        <ul class="footer-links"
+                            style="list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 12px;">
+                            <li><a href="#" style="color: #fff; text-decoration: none; font-size: 0.9rem;">Conditions
+                                    d'utilisation</a></li>
+                            <li><a href="#" style="color: #fff; text-decoration: none; font-size: 0.9rem;">Politique de
+                                    confidentialité</a></li>
+                        </ul>
                     </div>
+
+                    <!-- Entreprise Col -->
+                    <div class="footer-col enterprise-col">
+                        <h5 class="footer-heading"
+                            style="color: var(--luxury-gold); font-size: 1.2rem; letter-spacing: 0.1em; margin-bottom: 8px;">
+                            ENTREPRISE</h5>
+                        <div style="display: flex; flex-direction: column; gap: 8px; margin-bottom: 30px;">
+                            <div style="height: 1px; width: 30px; background-color: var(--luxury-gold);"></div>
+                            <div style="height: 1px; width: 50px; background-color: var(--luxury-gold);"></div>
+                        </div>
+                        <ul class="footer-links"
+                            style="list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 12px;">
+                            <li><a href="#" style="color: #fff; text-decoration: none; font-size: 0.9rem;">Notre
+                                    vision</a></li>
+                            <li><a href="#" style="color: #fff; text-decoration: none; font-size: 0.9rem;">Emploi</a>
+                            </li>
+                            <li><a href="#"
+                                    style="color: #fff; text-decoration: none; font-size: 0.9rem;">Investisseurs</a>
+                            </li>
+                            <li><a href="#contact"
+                                    style="color: #fff; text-decoration: none; font-size: 0.9rem;">Contact</a></li>
+                        </ul>
+                    </div>
+
                 </div>
 
             </div>
 
-            <!-- Gold Divider -->
-            <div class="footer-gold-divider fade-in-up"></div>
-
-            <!-- Footer Lower -->
-            <div class="footer-lower fade-in-up">
-                <div class="footer-lower-left">
-                    <p class="copyright">&copy; 2026 7SENS. All rights reserved.</p>
-                </div>
-                <div class="footer-lower-center">
-                    <p class="footer-crafted-by">Designed in Switzerland for Exceptional Experiences</p>
-                </div>
-                <div class="footer-lower-right">
-                    <button id="cinematic-back-to-top" class="cinematic-btt">
-                        <span>Back to Top</span>
-                        <svg viewBox="0 0 24 24" fill="none" stroke="#D6A84F" stroke-width="1.5">
-                            <path d="M12 19V5M12 5L5 12M12 5L19 12" stroke-linecap="round" stroke-linejoin="round" />
-                        </svg>
-                    </button>
-                </div>
+            <!-- Concept Made Text below the main row -->
+            <div class="footer-lower-left fade-in-up" style="margin-top: 60px; padding-top: 24px; border-top: 1px solid rgba(216, 164, 49, 0.2); display: flex; justify-content: flex-start;">
+                <p style="font-size: 0.85rem; color: rgba(255,255,255,0.9); font-weight: 500;">
+                    ♦ Concept made with <span style="color: #ff3333;">&hearts;</span> in Switzerland
+                </p>
             </div>
         </div>
     </footer>

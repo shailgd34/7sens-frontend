@@ -1,0 +1,914 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Les Événements — 7Sens Premium Social Club</title>
+    <meta name="description" content="Découvrez et inscrivez-vous à nos prochaines expériences exclusives.">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Instrument+Sans:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style-v2.css">
+    <link rel="stylesheet" href="events-page.css">
+
+    <link rel="stylesheet" href="dashboard-shared.css">
+</head>
+
+<body>
+
+    <!-- Canvas Noise Overlay -->
+    <div class="noise-overlay"></div>
+
+    <!-- Header moved to content column -->
+
+    <!-- MAIN MEMBER DASHBOARD CONTENT (Now With Header) -->
+    <main class="db-main">
+        <div class="db-container">
+
+            <div class="db-grid">
+
+                <!-- SIDEBAR: Summary & Navigation -->
+                                <aside class="db-sidebar-card">
+                    <!-- Profile Avatar upload trigger -->
+                    <div class="db-avatar-wrapper" id="db-avatar">
+                        </div>
+                    <input type="file" id="profile-avatar-input" accept="image/*" style="display: none;">
+
+                    <h4 class="db-user-name" id="db-profile-name">Jean Dupont</h4>
+
+                    <nav class="db-nav-list">
+                        <button class="db-nav-item" onclick="location.href='profile.html?tab=home'" id="btn-tab-home">
+                            <svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" fill="none">
+                                <rect x="3" y="3" width="7" height="9" />
+                                <rect x="14" y="3" width="7" height="5" />
+                                <rect x="14" y="12" width="7" height="9" />
+                                <rect x="3" y="16" width="7" height="5" />
+                            </svg>
+                            <span>Tableau de bord</span>
+                        </button>
+                        <button class="db-nav-item" onclick="location.href='profile.html?tab=profile'" id="btn-tab-profile">
+                            <svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" fill="none">
+                                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
+                                <circle cx="12" cy="7" r="4" />
+                            </svg>
+                            <span>Mon profil</span>
+                        </button>
+                        <button class="db-nav-item" onclick="location.href='questionnaire.html'" id="btn-tab-questionnaire">
+                            <svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" fill="none">
+                                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                                <polyline points="14 2 14 8 20 8"></polyline>
+                                <line x1="16" y1="13" x2="8" y2="13"></line>
+                                <line x1="16" y1="17" x2="8" y2="17"></line>
+                                <polyline points="10 9 9 9 8 9"></polyline>
+                            </svg>
+                            <span>Mon profil relationnel</span>
+                        </button>
+                        <button class="db-nav-item" onclick="location.href='mesCompatibilités.html'" id="btn-tab-matches">
+                            <svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" fill="none">
+                                <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+                            </svg>
+                            <span>Mes compatibilités</span>
+                        </button>
+                        <button class="db-nav-item" onclick="location.href='mesRéservations.html'" id="btn-tab-bookings">
+                            <svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" fill="none">
+                                <rect x="3" y="4" width="18" height="18" rx="2" ry="2" />
+                                <line x1="16" y1="2" x2="16" y2="6" />
+                                <line x1="8" y1="2" x2="8" y2="6" />
+                                <line x1="3" y1="10" x2="21" y2="10" />
+                            </svg>
+                            <span>Mes réservations</span>
+                        </button>
+                        <button onclick="location.href='mesEvenements.html'" id="btn-tab-events" class="db-nav-item active">
+                            <svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                                <line x1="16" y1="2" x2="16" y2="6"></line>
+                                <line x1="8" y1="2" x2="8" y2="6"></line>
+                                <line x1="3" y1="10" x2="21" y2="10"></line>
+                                <path d="M8 14h.01"></path>
+                                <path d="M12 14h.01"></path>
+                                <path d="M16 14h.01"></path>
+                                <path d="M8 18h.01"></path>
+                                <path d="M12 18h.01"></path>
+                                <path d="M16 18h.01"></path>
+                            </svg>
+                            <span>Les événements</span>
+                        </button>
+                        <button class="db-nav-item" onclick="location.href='mesPaiements.html'" id="btn-tab-billing">
+                            <svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" fill="none">
+                                <rect x="1" y="4" width="22" height="16" rx="2" ry="2" />
+                                <line x1="1" y1="10" x2="23" y2="10" />
+                            </svg>
+                            <span>Mes paiements</span>
+                        </button>
+                        <button class="db-nav-item" onclick="location.href='settings.html'" id="btn-tab-settings">
+                            <svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" fill="none">
+                                <path d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1-1-1.74v-.5a2 2 0 0 1 1-1.74l.15-.1a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z"/>
+                                <circle cx="12" cy="12" r="3"/>
+                            </svg>
+                            <span>Sécurité & notifications</span>
+                        </button>
+                        
+                        <!-- Back Link -->
+                        <button class="db-nav-item" onclick="location.href='events.html'" style="margin-top: 15px; border-top: 1px solid rgba(20,43,99,0.05); padding-top: 20px; color: var(--text-muted);">
+                            <svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" fill="none">
+                                <line x1="19" y1="12" x2="5" y2="12"></line>
+                                <polyline points="12 19 5 12 12 5"></polyline>
+                            </svg>
+                            <span>Retour au site</span>
+                        </button>
+                    </nav>
+</aside>
+
+                <!-- RIGHT BLOCK: Active Tab Panel -->
+                <div class="db-right-column" style="display: flex; flex-direction: column; width: 100%;">
+                    <!-- Logged In Header (Moved inside right column) -->
+                    <header class="db-top-header" id="main-header"
+                        style="position: sticky; top: 0; z-index: 1000; background: var(--warm-ivory); display: flex; justify-content: space-between; align-items: center; padding: 15px 40px; border-bottom: 1px solid rgba(20,43,99,0.05);">
+                        <a href="index.html" class="logo-link" id="header-logo">
+                            <img src="assets/7sens.webp" alt="7Sens Logo" class="logo-img"
+                                style="height: 35px; width: auto;">
+                        </a>
+
+                        <!-- Header Right Section -->
+                        <div style="display: flex; align-items: center; gap: 20px;">
+                            <!-- Language Dropdown -->
+                            <div class="lang-dropdown">
+                                <button class="lang-btn" aria-haspopup="true" aria-expanded="false"
+                                    style="color: var(--primary-navy); border-color: rgba(20,43,99,0.2);">
+                                    <img src="https://flagcdn.com/w20/fr.png" width="16" alt="FR"
+                                        style="border-radius: 2px;"> FR
+                                    <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor"
+                                        stroke-width="2">
+                                        <path d="M6 9l6 6 6-6" />
+                                    </svg>
+                                </button>
+                                <ul class="lang-menu">
+                                    <li><a href="#" class="active"><img src="https://flagcdn.com/w20/fr.png" width="16"
+                                                alt="FR" style="border-radius: 2px;"> FR</a></li>
+                                    <li><a href="#"><img src="https://flagcdn.com/w20/gb.png" width="16" alt="EN"
+                                                style="border-radius: 2px;"> EN</a></li>
+                                </ul>
+                            </div>
+
+                            <!-- User Profile Dropdown (Logged In State) -->
+                            <div class="user-profile-dropdown">
+                                <button class="user-profile-btn" aria-haspopup="true" aria-expanded="false">
+                                    <img src="assets/pexels-maorattias-5152572.jpg" alt="User Avatar"
+                                        class="user-avatar" id="top-header-avatar"
+                                        style="width: 38px; height: 38px; border-radius: 50%; object-fit: cover; border: 2px solid var(--luxury-gold);">
+                                    <span class="user-name" id="top-header-name"
+                                        style="font-family: 'Instrument Sans', sans-serif; font-weight: 500; font-size: 0.95rem; color: var(--primary-navy);">Jean
+                                        D.</span>
+                                    <svg class="dropdown-chevron" viewBox="0 0 24 24" width="14" height="14" fill="none"
+                                        stroke="currentColor" stroke-width="2" style="color: var(--primary-navy);">
+                                        <path d="M6 9l6 6 6-6" />
+                                    </svg>
+                                </button>
+                                <div class="user-dropdown-menu">
+                                    <div class="dropdown-header">
+                                        <span class="dropdown-status"></span>
+                                    </div>
+                                    <ul class="dropdown-links">
+                                        <li>
+                                            <a href="profile.html?tab=profile">
+                                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                                    stroke-width="1.5">
+                                                    <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                                                    <circle cx="12" cy="7" r="4"></circle>
+                                                </svg>
+                                                Mon Profil
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="events.html">
+                                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                                    stroke-width="1.5">
+                                                    <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                                                    <line x1="16" y1="2" x2="16" y2="6"></line>
+                                                    <line x1="8" y1="2" x2="8" y2="6"></line>
+                                                    <line x1="3" y1="10" x2="21" y2="10"></line>
+                                                </svg>
+                                                Mes Réservations
+                                            </a>
+                                        </li>
+                                        <li class="dropdown-divider"></li>
+                                        <li>
+                                            <a href="index.html" class="logout-link">
+                                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                                    stroke-width="1.5">
+                                                    <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path>
+                                                    <polyline points="16 17 21 12 16 7"></polyline>
+                                                    <line x1="21" y1="12" x2="9" y2="12"></line>
+                                                </svg>
+                                                Déconnexion
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                    </header>
+
+                    
+                    <section class="db-content-card" style="padding-top: 30px;">
+                        <div class="db-section-header" style="margin-bottom: 25px;">
+                            <h2 class="db-section-title" style="font-family: 'Cormorant Garamond', serif; font-size: 2.2rem; color: var(--primary-navy); font-weight: 300; margin: 0 0 8px 0;">Les événements</h2>
+                            <p class="db-section-subtitle" style="font-size: 0.95rem; color: var(--text-muted); margin: 0; font-family: 'Instrument Sans', sans-serif;">Découvrez et inscrivez-vous à nos prochaines expériences exclusives.</p>
+                        </div>
+                        <section class="filters-section">
+            <div class="filters-container">
+                <div class="filter-bar">
+                    <div class="filter-item custom-dropdown-container">
+                        <label>Ville</label>
+                        <div class="custom-dropdown" id="dropdown-city" data-value="all">
+                            <div class="dropdown-trigger filter-select">
+                                <span class="selected-text">Toutes les villes</span>
+                                <svg class="select-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2">
+                                    <path d="M6 9l6 6 6-6" />
+                                </svg>
+                            </div>
+                            <ul class="dropdown-options">
+                                <li class="dropdown-option selected" data-value="all">Toutes les villes</li>
+                                <li class="dropdown-option" data-value="GENÈVE">Genève</li>
+                                <li class="dropdown-option" data-value="LAUSANNE">Lausanne</li>
+                                <li class="dropdown-option" data-value="ZURICH">Zurich</li>
+                                <li class="dropdown-option" data-value="MONTREUX">Montreux</li>
+                                <li class="dropdown-option" data-value="NEUCHÂTEL">Neuchâtel</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="filter-item custom-dropdown-container">
+                        <label>Disponibilité</label>
+                        <div class="custom-dropdown" id="dropdown-status" data-value="all">
+                            <div class="dropdown-trigger filter-select">
+                                <span class="selected-text">Toutes disponibilités</span>
+                                <svg class="select-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2">
+                                    <path d="M6 9l6 6 6-6" />
+                                </svg>
+                            </div>
+                            <ul class="dropdown-options">
+                                <li class="dropdown-option selected" data-value="all">Toutes disponibilités</li>
+                                <li class="dropdown-option" data-value="available">Disponible</li>
+                                <li class="dropdown-option" data-value="full">Complet / Liste d'attente</li>
+                                <li class="dropdown-option" data-value="pre-registration">Pré-inscription</li>
+                                <li class="dropdown-option" data-value="tba">Date à venir</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="filter-item">
+                        <label for="filter-age">Âge</label>
+                        <input type="number" id="filter-age" class="filter-input" placeholder="Ex: 38" min="18"
+                            max="99">
+                    </div>
+                    <div class="filter-item custom-dropdown-container">
+                        <label>Trier par</label>
+                        <div class="custom-dropdown" id="dropdown-sort" data-value="date-asc">
+                            <div class="dropdown-trigger filter-select">
+                                <span class="selected-text">Date (Plus proche)</span>
+                                <svg class="select-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2">
+                                    <path d="M6 9l6 6 6-6" />
+                                </svg>
+                            </div>
+                            <ul class="dropdown-options">
+                                <li class="dropdown-option selected" data-value="date-asc">Date (Plus proche)</li>
+                                <li class="dropdown-option" data-value="date-desc">Date (Plus lointaine)</li>
+                                <li class="dropdown-option" data-value="price-asc">Prix (Croissant)</li>
+                                <li class="dropdown-option" data-value="price-desc">Prix (Décroissant)</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+                        <section class="events-grid-section">
+            <div class="events-grid-container">
+                <div class="events-cards-grid" id="events-grid-container">
+                    <!-- Events will be dynamically injected here by events.js -->
+                </div>
+                <!-- Pagination Controls -->
+                <div class="pagination-container" id="events-pagination"></div>
+            </div>
+        </section>
+                    </section>
+
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Fixed Bottom-Left Language Selector -->
+    <div class="lang-dropdown fixed-lang-selector">
+        <button class="lang-btn" aria-haspopup="true" aria-expanded="false">
+            <img src="https://flagcdn.com/w20/fr.png" width="16" alt="FR" style="border-radius: 2px;"> FR
+            <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M18 15l-6-6-6 6" />
+            </svg>
+        </button>
+        <ul class="lang-menu">
+            <li><a href="#" class="active"><img src="https://flagcdn.com/w20/fr.png" width="16" alt="FR"
+                        style="border-radius: 2px;"> FR</a></li>
+            <li><a href="#"><img src="https://flagcdn.com/w20/gb.png" width="16" alt="EN" style="border-radius: 2px;">
+                    EN</a></li>
+        </ul>
+    </div>
+
+    <!-- JS Libraries (GSAP) -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            // Load current user from session
+            let user = null;
+            try {
+                const storedUser = localStorage.getItem("currentUser");
+                if (storedUser) {
+                    user = JSON.parse(storedUser);
+                }
+            } catch (e) {
+                console.error("Error loading user", e);
+            }
+
+            // Defaults if no session exists
+            if (!user) {
+                user = {
+                    firstName: "Jean",
+                    lastName: "Dupont",
+                    email: "jean.dupont@example.ch",
+                    phone: "+41 79 123 45 67",
+                    dob: "1988-05-14",
+                    gender: "homme",
+                    isEmailVerified: true,
+                    isPhoneVerified: true
+                };
+            }
+
+            // Prefill edit form
+            const firstnameInput = document.getElementById("profile-firstname");
+            const lastnameInput = document.getElementById("profile-lastname");
+            const emailInput = document.getElementById("profile-email");
+            const phoneInput = document.getElementById("profile-phone");
+            const dobInput = document.getElementById("profile-dob");
+            const genderInput = document.getElementById("profile-gender");
+            const descInput = document.getElementById("profile-description");
+            const hobbiesInput = document.getElementById("profile-hobbies");
+            const lookingForInput = document.getElementById("profile-looking-for");
+            const profileNameHeader = document.getElementById("db-profile-name");
+            const initialsSpan = document.getElementById("db-avatar-initials");
+
+            if (firstnameInput) firstnameInput.value = user.firstName || "";
+            if (lastnameInput) lastnameInput.value = user.lastName || "";
+            if (emailInput) emailInput.value = user.email || "";
+            if (phoneInput) phoneInput.value = user.phone || "";
+            if (dobInput) dobInput.value = user.dob || "";
+            if (genderInput) genderInput.value = user.gender || "homme";
+            if (descInput) descInput.value = user.description || "";
+            if (hobbiesInput) hobbiesInput.value = user.hobbies || "";
+            if (lookingForInput) lookingForInput.value = user.lookingFor || "";
+
+            const updateHeaderInfo = (fName, lName) => {
+                const first = fName || "Jean";
+                const last = lName || "Dupont";
+
+                if (profileNameHeader) profileNameHeader.textContent = `${first} ${last}`;
+
+                const welcomeBannerName = document.getElementById("welcome-banner-name");
+                if (welcomeBannerName) welcomeBannerName.textContent = `${first} ${last}`;
+
+                const topHeaderName = document.getElementById("top-header-name");
+                if (topHeaderName) {
+                    const lastInit = last.charAt(0).toUpperCase();
+                    topHeaderName.textContent = `${first} ${lastInit}.`;
+                }
+
+                if (initialsSpan) {
+                    const firstInit = first.charAt(0).toUpperCase();
+                    const lastInit = last.charAt(0).toUpperCase();
+                    initialsSpan.textContent = `${firstInit}${lastInit}`;
+                }
+            };
+
+            updateHeaderInfo(user.firstName, user.lastName);
+
+            // Profile Avatar upload simulation
+            const avatarInput = document.getElementById("profile-avatar-input");
+            const dbAvatar = document.getElementById("db-avatar");
+            const formAvatarCircle = document.getElementById("form-avatar-circle");
+
+            // Set high-end placeholder portrait image if none exists
+            if (user && !user.avatarDataUrl) {
+                user.avatarDataUrl = "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=facearea&facepad=2.2&w=256&h=256&q=80";
+                try {
+                    localStorage.setItem("currentUser", JSON.stringify(user));
+                } catch (e) { console.error(e); }
+            }
+
+            const loadAvatarImage = () => {
+                if (user && user.avatarDataUrl) {
+                    if (dbAvatar) {
+                        dbAvatar.style.backgroundImage = `url(${user.avatarDataUrl})`;
+                        if (initialsSpan) initialsSpan.style.display = "none";
+                    }
+                    if (formAvatarCircle) {
+                        formAvatarCircle.style.backgroundImage = `url(${user.avatarDataUrl})`;
+                    }
+                    const topHeaderAvatar = document.getElementById("top-header-avatar");
+                    if (topHeaderAvatar) {
+                        topHeaderAvatar.src = user.avatarDataUrl;
+                    }
+                }
+            };
+            loadAvatarImage();
+
+            if (avatarInput && dbAvatar) {
+                avatarInput.addEventListener("change", (e) => {
+                    const file = e.target.files[0];
+                    if (file) {
+                        const fileNameSpan = document.getElementById("profile-file-name");
+                        if (fileNameSpan) fileNameSpan.textContent = file.name;
+                        const reader = new FileReader();
+                        reader.onload = (event) => {
+                            const dataUrl = event.target.result;
+                            dbAvatar.style.backgroundImage = `url(${dataUrl})`;
+                            if (formAvatarCircle) {
+                                formAvatarCircle.style.backgroundImage = `url(${dataUrl})`;
+                            }
+                            const topHeaderAvatar = document.getElementById("top-header-avatar");
+                            if (topHeaderAvatar) {
+                                topHeaderAvatar.src = dataUrl;
+                            }
+                            if (initialsSpan) initialsSpan.style.display = "none";
+                            user.avatarDataUrl = dataUrl;
+                            try {
+                                localStorage.setItem("currentUser", JSON.stringify(user));
+                            } catch (err) { console.error(err); }
+                        };
+                        reader.readAsDataURL(file);
+                    }
+                });
+            }
+
+            // Enforce live security verification badges on home page
+            const emailBadge = document.getElementById("home-email-badge");
+            const phoneBadge = document.getElementById("home-phone-badge");
+            if (emailBadge) {
+                if (user.isEmailVerified) {
+                    emailBadge.textContent = "E-MAIL VÉRIFIÉ";
+                    emailBadge.style.backgroundColor = "rgba(43, 138, 62, 0.1)";
+                    emailBadge.style.color = "#2b8a3e";
+                    emailBadge.style.borderColor = "rgba(43, 138, 62, 0.25)";
+                } else {
+                    emailBadge.textContent = "NON VÉRIFIÉ";
+                    emailBadge.style.backgroundColor = "rgba(201, 42, 42, 0.1)";
+                    emailBadge.style.color = "#c92a2a";
+                    emailBadge.style.borderColor = "rgba(201, 42, 42, 0.25)";
+                }
+            }
+            if (phoneBadge) {
+                if (user.isPhoneVerified) {
+                    phoneBadge.textContent = "MOBILE VÉRIFIÉ";
+                    phoneBadge.style.backgroundColor = "rgba(43, 138, 62, 0.1)";
+                    phoneBadge.style.color = "#2b8a3e";
+                    phoneBadge.style.borderColor = "rgba(43, 138, 62, 0.25)";
+                } else {
+                    phoneBadge.textContent = "NON VÉRIFIÉ";
+                    phoneBadge.style.backgroundColor = "rgba(201, 42, 42, 0.1)";
+                    phoneBadge.style.color = "#c92a2a";
+                    phoneBadge.style.borderColor = "rgba(201, 42, 42, 0.25)";
+                }
+            }
+
+            // Edit Profile Form Submission Simulation
+            const editForm = document.getElementById("profile-edit-form");
+            if (editForm) {
+                editForm.addEventListener("submit", (e) => {
+                    e.preventDefault();
+                    user.firstName = firstnameInput.value;
+                    user.lastName = lastnameInput.value;
+                    user.email = emailInput.value;
+                    user.phone = phoneInput.value;
+                    user.dob = dobInput.value;
+                    user.gender = genderInput.value;
+                    if (descInput) user.description = descInput.value;
+                    if (hobbiesInput) user.hobbies = hobbiesInput.value;
+                    if (lookingForInput) user.lookingFor = lookingForInput.value;
+
+                    // Update headers
+                    updateHeaderInfo(user.firstName, user.lastName);
+
+                    // Save session
+                    localStorage.setItem("currentUser", JSON.stringify(user));
+                    alert("Vos modifications de profil et préférences ont été enregistrées avec succès.");
+                });
+            }
+
+            // --- CHECKOUT SIMULATOR LOGIC ---
+            const btnStartCheckout = document.getElementById("btn-start-checkout");
+            const btnCancelCheckout = document.getElementById("btn-cancel-checkout");
+            const btnSubmitCheckout = document.getElementById("btn-submit-checkout");
+            const btnRetryCheckout = document.getElementById("btn-retry-checkout");
+            const simPaymentMethod = document.getElementById("sim-payment-method");
+
+            const pInvitationContainer = document.getElementById("payment-invitation-container");
+            const simCheckoutForm = document.getElementById("simulated-checkout-form");
+            const simPaymentLoader = document.getElementById("simulated-payment-loader");
+            const simPaymentSuccess = document.getElementById("simulated-payment-success");
+            const simPaymentFailed = document.getElementById("simulated-payment-failed");
+
+            const simStripeDetails = document.getElementById("sim-stripe-details");
+            const simTwintDetails = document.getElementById("sim-twint-details");
+
+            // Payment method selector switcher
+            if (simPaymentMethod) {
+                simPaymentMethod.addEventListener("change", () => {
+                    if (simPaymentMethod.value === "stripe") {
+                        if (simStripeDetails) simStripeDetails.style.display = "block";
+                        if (simTwintDetails) simTwintDetails.style.display = "none";
+                    } else {
+                        if (simStripeDetails) simStripeDetails.style.display = "none";
+                        if (simTwintDetails) simTwintDetails.style.display = "block";
+                    }
+                });
+            }
+
+            // Start Checkout button
+            if (btnStartCheckout) {
+                btnStartCheckout.addEventListener("click", () => {
+                    if (pInvitationContainer) pInvitationContainer.style.display = "none";
+                    if (simCheckoutForm) simCheckoutForm.style.display = "block";
+                });
+            }
+
+            // Cancel Checkout button
+            if (btnCancelCheckout) {
+                btnCancelCheckout.addEventListener("click", () => {
+                    if (simCheckoutForm) simCheckoutForm.style.display = "none";
+                    if (pInvitationContainer) pInvitationContainer.style.display = "block";
+                });
+            }
+
+            // Retry Checkout button
+            if (btnRetryCheckout) {
+                btnRetryCheckout.addEventListener("click", () => {
+                    if (simPaymentFailed) simPaymentFailed.style.display = "none";
+                    if (simCheckoutForm) simCheckoutForm.style.display = "block";
+                });
+            }
+
+            // Submit Payment button
+            if (btnSubmitCheckout) {
+                btnSubmitCheckout.addEventListener("click", () => {
+                    if (simCheckoutForm) simCheckoutForm.style.display = "none";
+                    if (simPaymentLoader) simPaymentLoader.style.display = "block";
+
+                    // 2 Seconds simulated validation
+                    setTimeout(() => {
+                        if (simPaymentLoader) simPaymentLoader.style.display = "none";
+
+                        const result = document.getElementById("sim-payment-result").value;
+                        if (result === "success") {
+                            if (simPaymentSuccess) simPaymentSuccess.style.display = "block";
+                        } else {
+                            if (simPaymentFailed) simPaymentFailed.style.display = "block";
+                        }
+                    }, 2000);
+                });
+            }
+
+            // --- QUESTIONNAIRE RESULTS RENDERING ---
+            if (user && user.questionnaireCompleted) {
+                const qResultsContainer = document.getElementById("questionnaire-results-container");
+                const qEmptyState = document.getElementById("questionnaire-empty-state");
+                const btnEdit = document.getElementById("btn-edit-questionnaire");
+
+                if (qResultsContainer && qEmptyState && btnEdit) {
+                    qEmptyState.style.display = "none";
+                    btnEdit.style.display = "inline-flex";
+                    qResultsContainer.style.display = "flex";
+
+                    try {
+                        const resultsStr = localStorage.getItem("s7_questionnaire_results");
+                        if (resultsStr) {
+                            const results = JSON.parse(resultsStr);
+                            let html = "";
+                            const titles = {
+                                q1: "Que recherchez-vous aujourd’hui ?",
+                                q2: "Vos principaux défauts",
+                                q3: "Expression des émotions",
+                                q4: "Souhait d’avoir des enfants",
+                                q5: "Besoins relationnels",
+                                q6: "Valeurs essentielles",
+                                q7: "Expression de l’affection",
+                                q8: "Importance de la famille",
+                                q9: "Vision de la relation",
+                                q10: "Description personnelle",
+                                q11: "Qualités attirantes",
+                                q12: "Gestion des conflits",
+                                q13: "Rapport à l’argent",
+                                q14: "Crainte en amour",
+                                q15: "Passions et centres d’intérêt",
+                                q16: "Critères incompatibles",
+                                q17: "Mode de vie",
+                                q18: "Type de vacances",
+                                q19: "Aspect à améliorer",
+                                q20: "Personne recherchée",
+                                q21: "Rêves et aspirations",
+                                q22: "Prise de décision",
+                                q23: "Spontanéité",
+                                q24: "Type d’humour"
+                            };
+                            const folders = {
+                                q6: "valeurs",
+                                q11: "craquer",
+                                q16: "Fuir",
+                                q2: "Default",
+                                q21: "dream",
+                                q7: "Besoin"
+                            };
+
+                            for (const key in results) {
+                                if (results[key] && results[key].length > 0) {
+                                    const folder = folders[key] || "placeholder";
+                                    const itemsArray = Array.isArray(results[key]) ? results[key] : [results[key]];
+                                    const cardsHtml = itemsArray.map(item => {
+                                        if (folder === "placeholder") {
+                                            return `<div style="background: rgba(214,164,55,0.05); padding: 15px; border-radius: 4px; font-family: 'Instrument Sans', sans-serif; font-size: 0.8rem; font-weight: 600; color: var(--primary-navy); border: 1px solid rgba(214,164,55,0.2); text-align: center; display: flex; align-items: center; justify-content: center;">${item}</div>`;
+                                        } else {
+                                            return `<div style="border-radius: 4px; overflow: hidden; border: 1px solid rgba(214,164,55,0.4); box-shadow: 0 4px 10px rgba(0,0,0,0.05); aspect-ratio: 2/3;"><img src="../cards7sens/${folder}/${item}" style="width: 100%; height: 100%; object-fit: cover;" alt="${item}"></div>`;
+                                        }
+                                    }).join("");
+
+                                    html += `
+                                        <div>
+                                            <h4 style="font-family: 'Cormorant Garamond', serif; font-size: 1.3rem; color: var(--primary-navy); margin: 0 0 15px 0; padding-bottom: 8px; border-bottom: 1px solid rgba(20,43,99,0.06);">${titles[key] || key}</h4>
+                                            <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(110px, 1fr)); gap: 15px;">
+                                                ${cardsHtml}
+                                            </div>
+                                        </div>
+                                    `;
+                                }
+                            }
+                            qResultsContainer.innerHTML = html;
+                        }
+                    } catch (e) {
+                        console.error("Error rendering questionnaire results", e);
+                    }
+                }
+            }
+
+            // Handle URL parameter for initial tab
+            const urlParams = new URLSearchParams(window.location.search);
+            const initialTab = urlParams.get('tab');
+            if (initialTab) {
+                if (initialTab === 'bookings' || initialTab === 'waitlists') {
+                    window.location.href = 'mesRéservations.html';
+                } else {
+                    switchDbTabInstant(initialTab);
+                }
+            }
+        });
+
+        // Tab switches logic using GSAP transition fades
+        function switchDbTab(tabName) {
+            const targetSection = document.getElementById(`section-${tabName}`);
+            if (!targetSection || targetSection.classList.contains('active')) return;
+
+            // Update URL search parameter
+            const newUrl = window.location.protocol + "//" + window.location.host + window.location.pathname + "?tab=" + tabName;
+            window.history.replaceState({ path: newUrl }, '', newUrl);
+
+            // Remove active tags on aside buttons
+            document.querySelectorAll('.db-nav-item').forEach(btn => btn.classList.remove('active'));
+
+            // Set active tag on clicked button
+            const activeBtn = document.getElementById(`btn-tab-${tabName}`);
+            if (activeBtn) activeBtn.classList.add('active');
+
+            // Fade out current section and fade in new section
+            const sections = document.querySelectorAll('.db-section');
+
+            sections.forEach(sec => {
+                if (sec.classList.contains('active')) {
+                    if (window.gsap) {
+                        gsap.to(sec, {
+                            opacity: 0,
+                            y: 10,
+                            duration: 0.25,
+                            onComplete: () => {
+                                sec.classList.remove('active');
+
+                                // Initialize new active section style and fade in
+                                targetSection.classList.add('active');
+                                gsap.fromTo(targetSection,
+                                    { opacity: 0, y: 10 },
+                                    { opacity: 1, y: 0, duration: 0.35, ease: "power2.out" }
+                                );
+                            }
+                        });
+                    } else {
+                        sec.classList.remove('active');
+                        targetSection.classList.add('active');
+                        targetSection.style.opacity = '1';
+                        targetSection.style.transform = 'translateY(0px)';
+                    }
+                }
+            });
+        }
+
+        // Instant tab switch on load without visual transition delays
+        function switchDbTabInstant(tabName) {
+            const targetSection = document.getElementById(`section-${tabName}`);
+            if (!targetSection) return;
+
+            // Remove active tags on aside buttons
+            document.querySelectorAll('.db-nav-item').forEach(btn => btn.classList.remove('active'));
+
+            // Set active tag on clicked button
+            const activeBtn = document.getElementById(`btn-tab-${tabName}`);
+            if (activeBtn) activeBtn.classList.add('active');
+
+            // Set active classes immediately
+            const sections = document.querySelectorAll('.db-section');
+            sections.forEach(sec => {
+                sec.classList.remove('active');
+                if (window.gsap) {
+                    gsap.set(sec, { opacity: 0, y: 10 });
+                } else {
+                    sec.style.opacity = '0';
+                    sec.style.transform = 'translateY(10px)';
+                }
+            });
+
+            targetSection.classList.add('active');
+            if (window.gsap) {
+                gsap.set(targetSection, { opacity: 1, y: 0 });
+            } else {
+                targetSection.style.opacity = '1';
+                targetSection.style.transform = 'translateY(0px)';
+            }
+        }
+
+        // Action when payment success is completed to update UI states dynamically
+        function addNewBookingAndReturn() {
+            // 1. Hide the success card, restore checkout tab starting screen
+            document.getElementById("simulated-payment-success").style.display = "none";
+            document.getElementById("payment-invitation-container").style.display = "block";
+
+            // 2. Remove the Montreux event from waitlists
+            const waitlistSunset = document.getElementById("waitlist-card-sunset");
+            if (waitlistSunset) waitlistSunset.remove();
+
+            // 3. Update waitlist count on home dashboard
+            const homeWlTitle = document.getElementById("home-waitlist-title");
+            const homeWlDesc = document.getElementById("home-waitlist-desc");
+            if (homeWlTitle) homeWlTitle.textContent = "1 Expérience en Attente";
+            if (homeWlDesc) homeWlDesc.textContent = "Vous êtes positionné en liste d'attente.";
+
+            // 4. Remove waitlist invitation message
+            const wlInvitation = document.getElementById("notification-card-invitation");
+            if (wlInvitation) wlInvitation.remove();
+            const wlHomeNotif = document.getElementById("home-notification-text");
+            if (wlHomeNotif) wlHomeNotif.textContent = "\"Votre règlement de CHF 120.00 pour la Soirée Dégustation a été validé...\"";
+
+            // 5. Append new booking card to the list of bookings
+            const bookingsList = document.getElementById("my-bookings-list");
+            if (bookingsList) {
+                const newCard = document.createElement("div");
+                newCard.className = "booking-item-card";
+                newCard.style.borderColor = "rgba(43, 138, 62, 0.4)";
+                newCard.style.animation = "fadeIn 0.5s ease forwards";
+                newCard.innerHTML = `
+                    <div class="booking-item-info">
+                        <div class="booking-item-thumb" style="background-image: url('assets/pexels-seemihaozkan-21413075.jpg');"></div>
+                        <div class="booking-item-details">
+                            <span class="booking-item-ref">REF: #7S-5529 &nbsp;⬢&nbsp; PAIEMENT: STRIPE/TWINT</span>
+                            <h4 class="booking-item-name">Sunset & Conversations</h4>
+                            <div class="booking-item-meta">
+                                <span>Montreux</span>
+                                <span class="separator">⬢</span>
+                                <span>7 Juin 2026 à 18:30</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="booking-item-status">
+                        <span class="status-badge confirmed" style="background-color: rgba(43, 138, 62, 0.1); color: #2b8a3e; border-color: rgba(43,138,62,0.25);">Payé</span>
+                        <a href="#" class="booking-action-link" onclick="alert('Simulation : Téléchargement de votre billet...')">Billet PDF</a>
+                    </div>
+                `;
+                bookingsList.insertBefore(newCard, bookingsList.firstChild);
+            }
+
+            // 5B. Append new transaction to the payment history list
+            const historyList = document.getElementById("payment-history-list");
+            if (historyList) {
+                const newTx = document.createElement("div");
+                newTx.className = "booking-item-card";
+                newTx.style.padding = "18px 24px";
+                newTx.style.borderColor = "rgba(43, 138, 62, 0.4)";
+                newTx.style.animation = "fadeIn 0.5s ease forwards";
+                newTx.innerHTML = `
+                    <div style="display: flex; justify-content: space-between; align-items: center; width: 100%; gap: 20px;" class="db-form-row">
+                        <div>
+                            <span style="font-size: 0.65rem; font-weight: 700; color: var(--luxury-gold); letter-spacing: 0.1em; text-transform: uppercase;">REF: #7S-5529-INV</span>
+                            <h4 class="booking-item-name" style="font-size: 1.15rem; margin-top: 4px;">Sunset & Conversations</h4>
+                            <div style="font-size: 0.72rem; color: var(--text-muted); margin-top: 4px;">
+                                Date : Aujourd'hui &nbsp;⬢&nbsp; Méthode : STRIPE/TWINT
+                            </div>
+                        </div>
+                        <div style="text-align: right; display: flex; flex-direction: column; align-items: flex-end; gap: 8px;">
+                            <span style="font-family: 'Instrument Sans', sans-serif; font-size: 1rem; font-weight: 700; color: #2b8a3e;">CHF 140.00</span>
+                            <button class="showroom-btn secondary" onclick="alert('Simulation : Téléchargement du reçu / facture PDF...')" style="padding: 6px 12px; font-size: 0.8rem; margin:0; border-radius:2px;">Reçu PDF</button>
+                        </div>
+                    </div>
+                `;
+                historyList.insertBefore(newTx, historyList.firstChild);
+            }
+
+            // 6. Update home dashboard next event card to show the Montreux event as next confirmed!
+            const dashboardNextEventCard = document.getElementById("dashboard-next-event-card");
+            if (dashboardNextEventCard) {
+                dashboardNextEventCard.innerHTML = `
+                    <div style="font-size: 0.65rem; font-weight: 700; color: var(--luxury-gold); letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 8px;">Prochain Cercle Privé</div>
+                    <h4 style="font-family: 'Cormorant Garamond', serif; font-size: 1.3rem; margin: 0 0 4px; color: var(--primary-navy);">Sunset & Conversations</h4>
+                    <div style="font-size: 0.75rem; color: var(--text-muted); margin-bottom: 12px;">Montreux &nbsp;⬢&nbsp; 7 Juin 2026 à 18:30</div>
+                    <button type="button" class="showroom-btn" onclick="switchDbTab('bookings')" style="padding: 6px 12px; font-size: 0.8rem;">Gérer ma place</button>
+                `;
+            }
+
+            // 7. Finally switch to the bookings tab to show the update!
+            switchDbTab("bookings");
+        }
+    </script>
+    <!-- Password Change Modal -->
+    <div id="password-modal" class="db-modal-overlay">
+        <div class="db-modal-content">
+            <button class="db-modal-close" onclick="closePasswordModal()">—</button>
+            <h3
+                style="font-family: 'Cormorant Garamond', serif; font-size: 1.5rem; color: var(--primary-navy); margin-bottom: 20px;">
+                Modifier le mot de passe</h3>
+
+            <div class="db-form-group" style="margin-bottom: 15px;">
+                <label for="modal-profile-password"
+                    style="font-size: 0.65rem; font-weight: 700; letter-spacing: 0.12em; color: var(--primary-navy); text-transform: uppercase; margin-bottom: 8px; display: inline-block;">Nouveau
+                    mot de passe</label>
+                <input type="password" id="modal-profile-password" placeholder="Nouveau mot de passe"
+                    style="background-color: rgba(255, 255, 255, 0.6); border: 1px solid rgba(20, 43, 99, 0.15); padding: 14px 18px; font-family: 'Instrument Sans', sans-serif; font-size: 0.88rem; border-radius: 8px; color: var(--primary-navy); transition: all 0.3s; width: 100%; box-shadow: inset 0 2px 4px rgba(0,0,0,0.02);">
+            </div>
+            <div class="db-form-group" style="margin-bottom: 25px;">
+                <label for="modal-profile-confirm-password"
+                    style="font-size: 0.65rem; font-weight: 700; letter-spacing: 0.12em; color: var(--primary-navy); text-transform: uppercase; margin-bottom: 8px; display: inline-block;">Confirmer
+                    le mot de passe</label>
+                <input type="password" id="modal-profile-confirm-password" placeholder="Confirmer le mot de passe"
+                    style="background-color: rgba(255, 255, 255, 0.6); border: 1px solid rgba(20, 43, 99, 0.15); padding: 14px 18px; font-family: 'Instrument Sans', sans-serif; font-size: 0.88rem; border-radius: 8px; color: var(--primary-navy); transition: all 0.3s; width: 100%; box-shadow: inset 0 2px 4px rgba(0,0,0,0.02);">
+            </div>
+            <button onclick="savePasswordModal()" class="db-banner-btn"
+                style="background-color: var(--primary-navy); border-color: var(--primary-navy); width: 100%; padding: 14px; font-size: 0.85rem;">SAUVEGARDER</button>
+        </div>
+    </div>
+
+    <script>
+        function openPasswordModal() {
+            const modal = document.getElementById('password-modal');
+            modal.style.display = 'flex';
+            // Slight delay for animation
+            setTimeout(() => {
+                modal.classList.add('active');
+            }, 10);
+        }
+
+        function closePasswordModal() {
+            const modal = document.getElementById('password-modal');
+            modal.classList.remove('active');
+            setTimeout(() => {
+                modal.style.display = 'none';
+            }, 300);
+        }
+
+        function savePasswordModal() {
+            // Note: In a real app this would save the password.
+            // For now, just close it with a tiny delay to simulate save
+            const btn = document.querySelector('#password-modal .db-banner-btn');
+            const originalText = btn.textContent;
+            btn.textContent = 'Enregistré—S';
+            setTimeout(() => {
+                closePasswordModal();
+                btn.textContent = originalText;
+                document.getElementById('modal-profile-password').value = '';
+                document.getElementById('modal-profile-confirm-password').value = '';
+            }, 800);
+        }
+    </script>
+    <!-- Unified Events Logic -->
+    <script src="events-data.js"></script>
+    <script src="events.js"></script>
+</body>
+
+</html>

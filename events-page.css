@@ -241,7 +241,7 @@
 
 /* 3. Event Cards Grid */
 .events-grid-section {
-    padding: 60px 0 100px;
+    padding: 30px 0 50px;
     background-color: var(--warm-ivory);
     min-height: 400px;
 }
@@ -254,8 +254,8 @@
 
 .events-cards-grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 40px 30px;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
     transition: opacity 0.4s ease;
 }
 

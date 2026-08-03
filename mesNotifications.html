@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mes Réservations — 7Sens Premium Social Club</title>
+    <title>Mes Notifications — 7Sens Premium Social Club</title>
     <meta name="description"
         content="Retrouvez vos prochaines expériences, suivez vos réservations et accédez à toutes les informations pratiques.">
 
@@ -684,7 +684,7 @@
                             </svg>
                             <span>MES COMPATIBILITÉS</span>
                         </button>
-                        <button class="db-nav-item" onclick="location.href='mesRéservations.html'" id="btn-tab-bookings" class="db-nav-item active">
+                        <button class="db-nav-item" onclick="location.href='mesRéservations.html'" id="btn-tab-bookings">
                             <svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" fill="none">
                                 <rect x="3" y="4" width="18" height="18" rx="2" ry="2" />
                                 <line x1="16" y1="2" x2="16" y2="6" />
@@ -693,7 +693,7 @@
                             </svg>
                             <span>MES RÉSERVATIONS</span>
                         </button>
-                        <button class="db-nav-item" onclick="location.href='mesNotifications.html'" id="btn-tab-notifications">
+                        <button class="db-nav-item" onclick="location.href='mesNotifications.html'" id="btn-tab-notifications" class="db-nav-item active">
                             <svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" fill="none">
                                 <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path>
                                 <path d="M13.73 21a2 2 0 0 1-3.46 0"></path>
@@ -815,136 +815,59 @@
                     </header>
 
                     <!-- Reservations Main Section -->
-                    <div id="section-reservations" style="padding: 40px 50px; box-sizing: border-box;">
-                        <div class="db-section-header"
-                            style="margin-bottom: 30px; border-bottom: 1px solid rgba(20, 43, 99, 0.05); padding-bottom: 20px;">
-                            <h3 class="db-section-title"
-                                style="font-family: 'Cormorant Garamond', serif; font-size: 2.2rem; color: var(--primary-navy); font-weight: 300; margin: 0 0 8px 0;">
-                                Mes réservations</h3>
-                            <p class="db-section-subtitle"
-                                style="font-size: 0.95rem; color: var(--text-muted); margin: 0; font-family: 'Instrument Sans', sans-serif;">
-                                Retrouvez vos prochaines expériences, suivez vos réservations et accédez à toutes les
-                                informations pratiques.
-                            </p>
+                                        <div id="section-notifications" style="padding: 40px 50px; box-sizing: border-box;">
+                        <div class="db-section-header" style="margin-bottom: 30px; border-bottom: 1px solid rgba(20, 43, 99, 0.05); padding-bottom: 20px;">
+                            <h3 class="db-section-title" style="font-family: 'Cormorant Garamond', serif; font-size: 2.2rem; color: var(--primary-navy); font-weight: 300; margin: 0 0 8px 0;">Mes notifications</h3>
+                            <p class="db-section-subtitle" style="font-size: 0.95rem; color: var(--text-muted); margin: 0; font-family: 'Instrument Sans', sans-serif;">Tenez-vous informé(e) des dernières mises à jour et de l'activité de votre profil.</p>
                         </div>
-
-                        <!-- FILTER TABS -->
-                        <div class="res-tab-container">
-                            <button class="res-tab-btn active" id="tab-btn-upcoming"
-                                onclick="switchResTab('upcoming')">À VENIR (<span id="count-upcoming">0</span>)</button>
-                            <button class="res-tab-btn" id="tab-btn-pending" onclick="switchResTab('pending')">EN
-                                ATTENTE (<span id="count-pending">0</span>)</button>
-                            <button class="res-tab-btn" id="tab-btn-past" onclick="switchResTab('past')">PASSÉES (<span
-                                    id="count-past">0</span>)</button>
-                            <button class="res-tab-btn" id="tab-btn-cancelled"
-                                onclick="switchResTab('cancelled')">ANNULÉES</button>
-                        </div>
-
-                        <!-- TAB CONTENT AREA -->
-                        <div id="tab-content-upcoming" class="res-tab-pane" style="display: block;">
-                            <!-- Featured Upcoming Event -->
-                            <div id="upcoming-featured-area">
-                                <!-- Rendered dynamically -->
-                            </div>
-
-                            <!-- Other Upcoming Events -->
-                            <div id="upcoming-others-area" style="margin-top: 35px;">
-                                <div class="section-title-icon-row">
-                                    <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" style="color: #6c757d; vertical-align: middle; margin-right: 4px; display: inline-block;">
-                                        <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
-                                        <circle cx="9" cy="7" r="4" />
-                                        <path d="M23 21v-2a4 4 0 0 0-3-3.87" />
-                                        <path d="M16 3.13a4 4 0 0 1 0 7.75" />
-                                    </svg>
-                                    <span>Autres réservations</span>
+                        
+                        <div class="db-widget" style="padding: 0;">
+                            <!-- Notification Item 1 -->
+                            <div class="db-premium-item no-justify" style="align-items: flex-start;">
+                                <div style="width: 48px; height: 48px; border-radius: 50%; background: #fcf4e3; display: flex; align-items: center; justify-content: center; flex-shrink: 0; color: var(--luxury-gold); margin-right: 20px;">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width: 24px; height: 24px;"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path><path d="M13.73 21a2 2 0 0 1-3.46 0"></path></svg>
                                 </div>
-                                <div class="card-grid-row" id="upcoming-others-list">
-                                    <!-- Rendered dynamically -->
+                                <div style="flex: 1;">
+                                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 4px;">
+                                        <h4 style="margin: 0; font-family: 'Instrument Sans', sans-serif; font-size: 1rem; color: var(--primary-navy);">Place disponible pour Sunset & Conversations</h4>
+                                        <span style="font-size: 0.75rem; color: var(--text-muted);">Aujourd'hui, 10:45</span>
+                                    </div>
+                                    <p style="margin: 0; font-size: 0.85rem; color: var(--text-muted);">Une place s'est libérée pour l'expérience Sunset & Conversations. Veuillez finaliser votre règlement pour confirmer votre présence.</p>
                                 </div>
                             </div>
-                        </div>
-
-                        <div id="tab-content-pending" class="res-tab-pane" style="display: none;">
-                            <div id="pending-featured-area">
-                                <!-- Rendered dynamically -->
-                            </div>
-                            <div id="pending-others-area" style="margin-top: 35px;">
-                                <div class="section-title-icon-row" id="pending-others-title">
-                                    <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" style="color: #6c757d; vertical-align: middle; margin-right: 4px; display: inline-block;">
-                                        <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
-                                        <circle cx="9" cy="7" r="4" />
-                                        <path d="M23 21v-2a4 4 0 0 0-3-3.87" />
-                                        <path d="M16 3.13a4 4 0 0 1 0 7.75" />
-                                    </svg>
-                                    <span>Autres demandes</span>
+                            
+                            <!-- Notification Item 2 -->
+                            <div class="db-premium-item no-justify" style="align-items: flex-start;">
+                                <div style="width: 48px; height: 48px; border-radius: 50%; background: #e1effe; display: flex; align-items: center; justify-content: center; flex-shrink: 0; color: #1a56db; margin-right: 20px;">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width: 24px; height: 24px;"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
                                 </div>
-                                <div class="card-grid-row" id="pending-others-list">
-                                    <!-- Rendered dynamically -->
+                                <div style="flex: 1;">
+                                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 4px;">
+                                        <h4 style="margin: 0; font-family: 'Instrument Sans', sans-serif; font-size: 1rem; color: var(--primary-navy);">Profil validé avec succès</h4>
+                                        <span style="font-size: 0.75rem; color: var(--text-muted);">Hier, 14:30</span>
+                                    </div>
+                                    <p style="margin: 0; font-size: 0.85rem; color: var(--text-muted);">Votre profil relationnel a été vérifié et approuvé par notre équipe. Vous pouvez maintenant accéder aux expériences exclusives.</p>
                                 </div>
                             </div>
-                        </div>
 
-                        <div id="tab-content-past" class="res-tab-pane" style="display: none;">
-                            <div class="card-grid-row" id="past-list">
-                                <!-- Rendered dynamically -->
-                            </div>
-                        </div>
-
-                        <div id="tab-content-cancelled" class="res-tab-pane" style="display: none;">
-                            <div class="card-grid-row" id="cancelled-list">
-                                <!-- Rendered dynamically -->
-                            </div>
-                        </div>
-
-                        <!-- Empty State container (fallback) -->
-                        <div id="empty-state-container" style="display: none; margin-top: 20px;">
-                            <div class="empty-state-card">
-                                <div
-                                    style="width: 60px; height: 60px; border-radius: 50%; background-color: rgba(20,43,99,0.03); display: flex; align-items: center; justify-content: center; color: var(--primary-navy); border: 1px solid rgba(20,43,99,0.06);">
-                                    <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor"
-                                        stroke-width="1.5">
-                                        <rect x="3" y="4" width="18" height="18" rx="2" ry="2" />
-                                        <line x1="16" y1="2" x2="16" y2="6" />
-                                        <line x1="8" y1="2" x2="8" y2="6" />
-                                        <line x1="3" y1="10" x2="21" y2="10" />
-                                    </svg>
+                            <!-- Notification Item 3 -->
+                            <div class="db-premium-item no-justify" style="align-items: flex-start;">
+                                <div style="width: 48px; height: 48px; border-radius: 50%; background: #f8f9fa; display: flex; align-items: center; justify-content: center; flex-shrink: 0; color: var(--primary-navy); margin-right: 20px;">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width: 24px; height: 24px;"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
                                 </div>
-                                <h4 class="empty-state-title" id="empty-state-title">Votre prochaine expérience commence
-                                    ici.</h4>
-                                <p class="empty-state-desc" id="empty-state-desc">Découvrez les événements 7Sens
-                                    organisés près de chez vous.</p>
-                                <button class="btn-luxury-gold" onclick="location.href='events.html'">DÉCOUVRIR LES
-                                    ÉVÉNEMENTS</button>
-                            </div>
-                        </div>
-
-                        <!-- FINAL DISCOVERY SECTION -->
-                        <div class="discovery-banner" id="discovery-footer">
-                            <div style="display: flex; align-items: center; gap: 15px;">
-                                <div
-                                    style="width: 42px; height: 42px; border-radius: 50%; background-color: rgba(20, 43, 99, 0.04); display: flex; align-items: center; justify-content: center; color: var(--primary-navy); border: 1px solid rgba(20, 43, 99, 0.06);">
-                                    <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor"
-                                        stroke-width="2">
-                                        <circle cx="12" cy="12" r="10" />
-                                        <polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76" />
-                                    </svg>
+                                <div style="flex: 1;">
+                                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 4px;">
+                                        <h4 style="margin: 0; font-family: 'Instrument Sans', sans-serif; font-size: 1rem; color: var(--primary-navy);">Nouvel événement publié</h4>
+                                        <span style="font-size: 0.75rem; color: var(--text-muted);">12 avr. 2026</span>
+                                    </div>
+                                    <p style="margin: 0; font-size: 0.85rem; color: var(--text-muted);">Découvrez notre prochain atelier créatif à Lausanne. Les inscriptions sont désormais ouvertes.</p>
                                 </div>
-                                <span
-                                    style="font-family: 'Instrument Sans', sans-serif; font-size: 1rem; font-weight: 500; color: var(--primary-navy);">Envie
-                                    de vivre une nouvelle expérience ?</span>
                             </div>
-                            <button class="btn-luxury" onclick="location.href='events.html'">
-                                <span>DÉCOUVRIR LES ÉVÉNEMENTS</span>
-                                <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5">
-                                    <path d="M9 5l7 7-7 7"/>
-                                </svg>
-                            </button>
                         </div>
                     </div>
                 </div>
-            </div>
-        </div>
-    </main>
+            </main>
+
 
     <!-- MODAL: EVENT DETAILS VIEW -->
     <div class="res-modal" id="modal-details">

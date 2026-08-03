@@ -11,7 +11,9 @@
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Instrument+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Instrument+Sans:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
 
     <!-- Stylesheets -->
     <link rel="stylesheet" href="style.css">
@@ -47,22 +49,30 @@
                 <div class="lang-dropdown">
                     <button class="lang-btn" aria-haspopup="true" aria-expanded="false">
                         <img src="https://flagcdn.com/w20/fr.png" width="16" alt="FR" style="border-radius: 2px;"> FR
-                        <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2">
+                        <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor"
+                            stroke-width="2">
                             <path d="M6 9l6 6 6-6" />
                         </svg>
                     </button>
                     <ul class="lang-menu">
-                        <li><a href="#" class="active"><img src="https://flagcdn.com/w20/fr.png" width="16" alt="FR" style="border-radius: 2px;"> FR</a></li>
-                        <li><a href="#"><img src="https://flagcdn.com/w20/gb.png" width="16" alt="EN" style="border-radius: 2px;"> EN</a></li>
+                        <li><a href="#" class="active"><img src="https://flagcdn.com/w20/fr.png" width="16" alt="FR"
+                                    style="border-radius: 2px;"> FR</a></li>
+                        <li><a href="#"><img src="https://flagcdn.com/w20/gb.png" width="16" alt="EN"
+                                    style="border-radius: 2px;"> EN</a></li>
                     </ul>
                 </div>
 
                 <!-- User Profile Dropdown (Logged In State) -->
                 <div class="user-profile-dropdown">
                     <button class="user-profile-btn" aria-haspopup="true" aria-expanded="false">
-                        <img src="assets/pexels-maorattias-5152572.jpg" alt="User Avatar" class="user-avatar" id="top-header-avatar" style="width: 38px; height: 38px; border-radius: 50%; object-fit: cover; border: 2px solid var(--luxury-gold);">
-                        <span class="user-name" id="top-header-name" style="font-family: 'Instrument Sans', sans-serif; font-weight: 500; font-size: 0.95rem; color: var(--primary-navy);">Jean D.</span>
-                        <svg class="dropdown-chevron" viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" style="color: var(--primary-navy);">
+                        <img src="assets/pexels-maorattias-5152572.jpg" alt="User Avatar" class="user-avatar"
+                            id="top-header-avatar"
+                            style="width: 38px; height: 38px; border-radius: 50%; object-fit: cover; border: 2px solid var(--luxury-gold);">
+                        <span class="user-name" id="top-header-name"
+                            style="font-family: 'Instrument Sans', sans-serif; font-weight: 500; font-size: 0.95rem; color: var(--primary-navy);">Jean
+                            D.</span>
+                        <svg class="dropdown-chevron" viewBox="0 0 24 24" width="14" height="14" fill="none"
+                            stroke="currentColor" stroke-width="2" style="color: var(--primary-navy);">
                             <path d="M6 9l6 6 6-6" />
                         </svg>
                     </button>
@@ -123,7 +133,7 @@
                 <div class="breadcrumb">
                     <a href="events.html" class="breadcrumb-link">Calendrier</a>
                     <svg class="breadcrumb-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                        <path d="M9 5l7 7-7 7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M9 5l7 7-7 7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
                     </svg>
                     <span id="breadcrumb-current-action">Réservation</span>
                 </div>
@@ -133,14 +143,15 @@
                     <div class="booking-form-area">
                         <h1 class="booking-main-title">Finaliser votre Réservation</h1>
                         <p class="booking-main-desc">
-                            Veuillez remplir vos informations personnelles et procéder au règlement de votre place pour garantir votre participation.
+                            Veuillez remplir vos informations personnelles et procéder au règlement de votre place pour
+                            garantir votre participation.
                         </p>
 
                         <form id="checkout-form" class="checkout-form-container">
                             <!-- Fieldset 1: Profil -->
                             <div class="form-step-section">
                                 <h3 class="step-title">1. Informations Personnelles</h3>
-                                
+
                                 <div class="form-row grid-2">
                                     <div class="form-group">
                                         <label for="booking-lastname" class="input-label">NOM *</label>
@@ -164,38 +175,52 @@
                                     <div class="form-group">
                                         <label for="booking-dob" class="input-label">DATE DE NAISSANCE *</label>
                                         <input type="date" id="booking-dob" required class="form-input">
-                                        <span id="dob-error-msg" style="color: #c92a2a; font-size: 0.75rem; display: none; margin-top: 6px; font-weight: 500; line-height: 1.3;"></span>
+                                        <span id="dob-error-msg"
+                                            style="color: #c92a2a; font-size: 0.75rem; display: none; margin-top: 6px; font-weight: 500; line-height: 1.3;"></span>
                                     </div>
                                 </div>
 
                                 <div class="form-row grid-2">
                                     <div class="form-group">
-                                        <label for="booking-email" class="input-label" style="display: flex; justify-content: space-between; align-items: center; width: 100%;">
+                                        <label for="booking-email" class="input-label"
+                                            style="display: flex; justify-content: space-between; align-items: center; width: 100%;">
                                             <span>ADRESSE EMAIL *</span>
-                                            <span id="email-verify-badge" style="font-size: 0.8rem; letter-spacing: 0.05em; font-weight: 700; color: #c92a2a;">NON VÉRIFIÉ</span>
+                                            <span id="email-verify-badge"
+                                                style="font-size: 0.8rem; letter-spacing: 0.05em; font-weight: 700; color: #c92a2a;">NON
+                                                VÉRIFIÉ</span>
                                         </label>
                                         <input type="email" id="booking-email" required class="form-input">
                                     </div>
                                     <div class="form-group">
-                                        <label for="booking-phone" class="input-label" style="display: flex; justify-content: space-between; align-items: center; width: 100%;">
+                                        <label for="booking-phone" class="input-label"
+                                            style="display: flex; justify-content: space-between; align-items: center; width: 100%;">
                                             <span>TÉLÉPHONE MOBILE *</span>
-                                            <span id="phone-verify-badge" style="font-size: 0.8rem; letter-spacing: 0.05em; font-weight: 700; color: #c92a2a;">NON VÉRIFIÉ</span>
+                                            <span id="phone-verify-badge"
+                                                style="font-size: 0.8rem; letter-spacing: 0.05em; font-weight: 700; color: #c92a2a;">NON
+                                                VÉRIFIÉ</span>
                                         </label>
-                                        <input type="tel" id="booking-phone" required class="form-input" placeholder="+41 79 000 00 00">
+                                        <input type="tel" id="booking-phone" required class="form-input"
+                                            placeholder="+41 79 000 00 00">
                                     </div>
                                 </div>
 
                                 <div class="form-row" style="margin-bottom: 15px;">
                                     <div class="form-group" style="flex-direction: row; align-items: center; gap: 8px;">
-                                        <input type="checkbox" id="whatsapp-sms-notifications" checked style="width: auto; margin: 0; accent-color: var(--primary-navy); cursor: pointer;">
-                                        <label for="whatsapp-sms-notifications" style="font-size: 0.65rem; font-weight: 600; letter-spacing: 0.15em; color: var(--primary-navy); text-transform: uppercase; cursor: pointer; margin-top: 1px;">Je souhaite recevoir mes invitations par WhatsApp & SMS (mobile vérifié requis)</label>
+                                        <input type="checkbox" id="whatsapp-sms-notifications" checked
+                                            style="width: auto; margin: 0; accent-color: var(--primary-navy); cursor: pointer;">
+                                        <label for="whatsapp-sms-notifications"
+                                            style="font-size: 0.65rem; font-weight: 600; letter-spacing: 0.15em; color: var(--primary-navy); text-transform: uppercase; cursor: pointer; margin-top: 1px;">Je
+                                            souhaite recevoir mes invitations par WhatsApp & SMS (mobile vérifié
+                                            requis)</label>
                                     </div>
                                 </div>
 
                                 <div class="form-row">
                                     <div class="form-group">
-                                        <label for="booking-message" class="input-label">VOTRE MOTIVATION & ATTENTES (OPTIONNEL)</label>
-                                        <textarea id="booking-message" rows="3" class="form-input" placeholder="Parlez-nous de vos motivations pour cette expérience..."></textarea>
+                                        <label for="booking-message" class="input-label">VOTRE MOTIVATION & ATTENTES
+                                            (OPTIONNEL)</label>
+                                        <textarea id="booking-message" rows="3" class="form-input"
+                                            placeholder="Parlez-nous de vos motivations pour cette expérience..."></textarea>
                                     </div>
                                 </div>
                             </div>
@@ -203,11 +228,12 @@
                             <!-- Fieldset 2: Payment Details -->
                             <div class="form-step-section" id="payment-fields-wrapper">
                                 <h3 class="step-title">2. Règlement Sécurisé</h3>
-                                
+
                                 <div class="form-row">
                                     <div class="form-group">
                                         <label for="card-name" class="input-label">NOM SUR LA CARTE *</label>
-                                        <input type="text" id="card-name" required class="form-input" placeholder="M. Jean Dupont">
+                                        <input type="text" id="card-name" required class="form-input"
+                                            placeholder="M. Jean Dupont">
                                     </div>
                                 </div>
 
@@ -215,8 +241,10 @@
                                     <div class="form-group">
                                         <label for="card-number" class="input-label">NUMÉRO DE CARTE DE CRÉDIT *</label>
                                         <div class="card-input-wrapper">
-                                            <input type="text" id="card-number" required class="form-input" placeholder="0000 0000 0000 0000" maxlength="19">
-                                            <svg class="card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                            <input type="text" id="card-number" required class="form-input"
+                                                placeholder="0000 0000 0000 0000" maxlength="19">
+                                            <svg class="card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                                stroke-width="2">
                                                 <rect x="1" y="4" width="22" height="16" rx="2" ry="2"></rect>
                                                 <line x1="1" y1="10" x2="23" y2="10"></line>
                                             </svg>
@@ -227,32 +255,41 @@
                                 <div class="form-row grid-2">
                                     <div class="form-group">
                                         <label for="card-expiry" class="input-label">DATE D'EXPIRATION *</label>
-                                        <input type="text" id="card-expiry" required class="form-input" placeholder="MM / AA" maxlength="7">
+                                        <input type="text" id="card-expiry" required class="form-input"
+                                            placeholder="MM / AA" maxlength="7">
                                     </div>
                                     <div class="form-group">
                                         <label for="card-cvc" class="input-label">CODE CVC *</label>
-                                        <input type="text" id="card-cvc" required class="form-input" placeholder="123" maxlength="4">
+                                        <input type="text" id="card-cvc" required class="form-input" placeholder="123"
+                                            maxlength="4">
                                     </div>
                                 </div>
 
                                 <div style="display: flex; align-items: center; gap: 8px; margin-top: 15px;">
-                                    <svg viewBox="0 0 24 24" fill="none" stroke="var(--luxury-gold)" stroke-width="2" style="width: 14px; height: 14px; flex-shrink: 0;">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="var(--luxury-gold)" stroke-width="2"
+                                        style="width: 14px; height: 14px; flex-shrink: 0;">
                                         <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
                                         <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
                                     </svg>
-                                    <span style="font-size: 0.65rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.05em;">Chiffrement SSL 256 bits — Connexion sécurisée</span>
+                                    <span
+                                        style="font-size: 0.65rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.05em;">Chiffrement
+                                        SSL 256 bits — Connexion sécurisée</span>
                                 </div>
                             </div>
 
-                            <button type="submit" class="booking-action-btn" id="pay-submit-btn" style="margin-top: 20px;">
+                            <button type="submit" class="booking-action-btn" id="pay-submit-btn"
+                                style="margin-top: 20px;">
                                 <span>PAYER & CONFIRMER MA PLACE (<span id="btn-price-display">CHF 0.00</span>)</span>
                                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                    <path d="M5 12H19M19 12L13 6M19 12L13 18" stroke-linecap="round" stroke-linejoin="round" />
+                                    <path d="M5 12H19M19 12L13 6M19 12L13 18" stroke-linecap="round"
+                                        stroke-linejoin="round" />
                                 </svg>
                             </button>
 
                             <p class="booking-note-text" style="margin-top: 15px;">
-                                * En confirmant, vous acceptez nos conditions d'adhésion. Si votre profil n'est pas retenu pour préserver la parité de l'expérience, vous serez remboursé intégralement sous 24 heures.
+                                * En confirmant, vous acceptez nos conditions d'adhésion. Si votre profil n'est pas
+                                retenu pour préserver la parité de l'expérience, vous serez remboursé intégralement sous
+                                24 heures.
                             </p>
                         </form>
                     </div>
@@ -279,7 +316,8 @@
                             <div class="summary-info-block">
                                 <span class="summary-city" id="summary-city">VILLAGE</span>
                                 <h4 class="summary-event-title" id="summary-title">Titre de l'expérience</h4>
-                                <div class="summary-meta" style="font-size: 0.75rem; color: var(--text-muted); margin-top: 5px;">
+                                <div class="summary-meta"
+                                    style="font-size: 0.75rem; color: var(--text-muted); margin-top: 5px;">
                                     <span id="summary-date">DATE</span>
                                     <span>&nbsp;•&nbsp;</span>
                                     <span id="summary-age">ÂGE</span>
@@ -365,7 +403,7 @@
                             <div style="height: 1px; width: 50px; background-color: var(--luxury-gold);"></div>
                         </div>
                         <ul class="footer-links"
-                            style="list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 12px;">
+                            style="list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 0px;">
                             <li><a href="#accueil"
                                     style="color: #fff; text-decoration: none; font-size: 0.9rem;">Accueil</a></li>
                             <li><a href="events.html"
@@ -388,7 +426,7 @@
                             <div style="height: 1px; width: 50px; background-color: var(--luxury-gold);"></div>
                         </div>
                         <ul class="footer-links"
-                            style="list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 12px;">
+                            style="list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 0px;">
                             <li><a href="#" style="color: #fff; text-decoration: none; font-size: 0.9rem;">Conditions
                                     d'utilisation</a></li>
                             <li><a href="#" style="color: #fff; text-decoration: none; font-size: 0.9rem;">Politique de
@@ -406,7 +444,7 @@
                             <div style="height: 1px; width: 50px; background-color: var(--luxury-gold);"></div>
                         </div>
                         <ul class="footer-links"
-                            style="list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 12px;">
+                            style="list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 0px;">
                             <li><a href="#" style="color: #fff; text-decoration: none; font-size: 0.9rem;">Notre
                                     vision</a></li>
                             <li><a href="#" style="color: #fff; text-decoration: none; font-size: 0.9rem;">Emploi</a>
@@ -424,7 +462,8 @@
             </div>
 
             <!-- Concept Made Text below the main row -->
-            <div class="footer-lower-left fade-in-up" style="margin-top: 60px; padding-top: 24px; border-top: 1px solid rgba(216, 164, 49, 0.2); display: flex; justify-content: flex-start;">
+            <div class="footer-lower-left fade-in-up"
+                style="margin-top: 60px; padding-top: 24px; border-top: 1px solid rgba(216, 164, 49, 0.2); display: flex; justify-content: flex-start;">
                 <p style="font-size: 0.85rem; color: rgba(255,255,255,0.9); font-weight: 500;">
                     ♦ Concept made with <span style="color: #ff3333;">&hearts;</span> in Switzerland
                 </p>
@@ -458,7 +497,7 @@
     <!-- JS Libraries (GSAP, Unified Events Database) -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script src="events-data.js"></script>
-    
+
     <!-- Script Logic for Booking -->
     <script>
         document.addEventListener("DOMContentLoaded", () => {
@@ -502,16 +541,16 @@
             const notificationsCheckbox = document.getElementById("whatsapp-sms-notifications");
             const bookingEmail = document.getElementById("booking-email");
             const bookingPhone = document.getElementById("booking-phone");
-            
+
             const stageEmailVerify = document.getElementById("stage-email-verify");
             const stagePhoneVerify = document.getElementById("stage-phone-verify");
-            
+
             const verifyEmailText = document.getElementById("verify-email-text");
             const verifyPhoneText = document.getElementById("verify-phone-text");
-            
+
             const bookingEmailError = document.getElementById("booking-email-error");
             const bookingPhoneError = document.getElementById("booking-phone-error");
-            
+
             const btnConfirmEmailOtp = document.getElementById("btn-confirm-email-otp");
             const btnConfirmPhoneOtp = document.getElementById("btn-confirm-phone-otp");
 
@@ -596,7 +635,7 @@
                     stagePhoneVerify.style.display = "none";
                     stageEmailVerify.style.display = "block";
                     gsap.to(checkoutOverlay, { opacity: 1, duration: 0.4 });
-                    
+
                     document.querySelector("#booking-email-otp-wrapper input[data-index='1']").focus();
                     return;
                 }
@@ -627,7 +666,7 @@
                 stageSuccess.style.display = "none";
                 stageEmailVerify.style.display = "none";
                 stagePhoneVerify.style.display = "none";
-                
+
                 // Customize title depending on whether it's a booking or waitlist
                 const isWaitlist = activeEvent && activeEvent.status === "waiting-list";
                 const headlineElement = document.querySelector("#stage-success .success-headline");
@@ -842,7 +881,7 @@
                     if (mainDesc) mainDesc.textContent = "Saisissez vos coordonnées pour rejoindre la liste d'attente de cette expérience privée. Aucun règlement ne vous sera demandé pour l'instant.";
                     if (paymentWrapper) paymentWrapper.style.display = "none";
                     if (payBtnSpan) payBtnSpan.textContent = "REJOINDRE LA LISTE D'ATTENTE";
-                    
+
                     // Disable payment inputs required fields
                     document.querySelectorAll("#payment-fields-wrapper input").forEach(inp => {
                         inp.removeAttribute("required");
@@ -853,7 +892,7 @@
                     if (mainDesc) mainDesc.textContent = "Veuillez remplir vos informations personnelles et procéder au règlement de votre place pour garantir votre participation.";
                     if (paymentWrapper) paymentWrapper.style.display = "block";
                     if (payBtnSpan) payBtnSpan.textContent = `PAYER & CONFIRMER MA PLACE (CHF ${(originalPriceVal - activeDiscount).toFixed(2)})`;
-                    
+
                     // Enable payment inputs required fields
                     document.querySelectorAll("#payment-fields-wrapper input").forEach(inp => {
                         inp.setAttribute("required", "");
@@ -868,7 +907,7 @@
                 priceOriginal.textContent = `CHF ${originalPriceVal.toFixed(2)}`;
                 priceDiscount.textContent = `-CHF ${activeDiscount.toFixed(2)}`;
                 priceTotal.textContent = `CHF ${total.toFixed(2)}`;
-                
+
                 // Only update button price text if NOT on waitlist
                 if (activeEvent && activeEvent.status !== "waiting-list") {
                     btnPriceDisplay.textContent = `CHF ${total.toFixed(2)}`;
@@ -966,8 +1005,10 @@
             </svg>
         </button>
         <ul class="lang-menu">
-            <li><a href="#" class="active"><img src="https://flagcdn.com/w20/fr.png" width="16" alt="FR" style="border-radius: 2px;"> FR</a></li>
-            <li><a href="#"><img src="https://flagcdn.com/w20/gb.png" width="16" alt="EN" style="border-radius: 2px;"> EN</a></li>
+            <li><a href="#" class="active"><img src="https://flagcdn.com/w20/fr.png" width="16" alt="FR"
+                        style="border-radius: 2px;"> FR</a></li>
+            <li><a href="#"><img src="https://flagcdn.com/w20/gb.png" width="16" alt="EN" style="border-radius: 2px;">
+                    EN</a></li>
         </ul>
     </div>
 </body>

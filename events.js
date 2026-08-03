@@ -107,7 +107,7 @@ function initListingPage() {
     let activeAge = null;
     let activeSort = "date-asc";
     let currentPage = 1;
-    const pageSize = 3;
+    const pageSize = 12;
 
     // Initial render
     renderCards();

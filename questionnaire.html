@@ -346,7 +346,7 @@
 
         .q-main {
             flex-grow: 1;
-            max-width: 900px;
+            max-width: 1040px;
             margin: 0 auto;
             padding: 24px 20px 0 20px;
             text-align: center;
@@ -358,9 +358,9 @@
             overflow-y: hidden;
         }
 
-        .q-title {
+        .q-main .q-title {
             font-family: 'Cormorant Garamond', serif;
-            font-size: 2rem;
+            font-size: 3rem !important;
             color: var(--primary-navy);
             font-weight: 400;
             margin: 0 0 6px 0;
@@ -376,7 +376,6 @@
 
         .q-grid-wrapper {
             width: 100%;
-            overflow-y: auto;
             flex-grow: 1;
             padding: 4px 8px 30px 8px;
             box-sizing: border-box;
@@ -461,40 +460,35 @@
             justify-content: center;
             border-radius: 50%;
             position: relative;
-            background: radial-gradient(circle at center, rgba(214, 164, 55, 0.15) 0%, transparent 65%);
-        }
-
-        .cinematic-icon-ring {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            border-radius: 50%;
-            border: 1px solid rgba(214, 164, 55, 0.2);
-            border-top: 1px solid var(--luxury-gold);
-            border-bottom: 1px solid var(--luxury-gold);
-            animation: spin 8s linear infinite;
-        }
-
-        .cinematic-icon-ring-inner {
-            position: absolute;
-            top: 5px;
-            left: 5px;
-            width: calc(100% - 10px);
-            height: calc(100% - 10px);
-            border-radius: 50%;
-            border: 1px dashed rgba(214, 164, 55, 0.3);
-            animation: spin-reverse 12s linear infinite;
+            background: none;
+            border: 1.5px solid rgba(214, 164, 55, 0.4);
         }
 
         .step-icon-img {
-            width: 42px;
-            height: 42px;
+            width: 48px;
+            height: 48px;
             object-fit: contain;
             display: inline-block;
             position: relative;
             z-index: 10;
+        }
+
+        .step-icon-img path,
+        .step-icon-img circle,
+        .step-icon-img rect,
+        .step-icon-img line,
+        .step-icon-img polyline,
+        .step-icon-img polygon {
+            stroke: #C99632 !important;
+            stroke-width: 1.6 !important;
+            fill: none !important;
+        }
+
+        @media (max-width: 640px) {
+            .step-icon-img {
+                width: 40px;
+                height: 40px;
+            }
         }
 
         .q-footer {
@@ -1064,7 +1058,7 @@
                             <div style="height: 1px; width: 50px; background-color: var(--luxury-gold);"></div>
                         </div>
                         <ul class="footer-links"
-                            style="list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 12px;">
+                            style="list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 0px;">
                             <li><a href="#accueil"
                                     style="color: #fff; text-decoration: none; font-size: 0.9rem;">Accueil</a></li>
                             <li><a href="events.html"
@@ -1087,7 +1081,7 @@
                             <div style="height: 1px; width: 50px; background-color: var(--luxury-gold);"></div>
                         </div>
                         <ul class="footer-links"
-                            style="list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 12px;">
+                            style="list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 0px;">
                             <li><a href="#" style="color: #fff; text-decoration: none; font-size: 0.9rem;">Conditions
                                     d'utilisation</a></li>
                             <li><a href="#" style="color: #fff; text-decoration: none; font-size: 0.9rem;">Politique de
@@ -1105,7 +1099,7 @@
                             <div style="height: 1px; width: 50px; background-color: var(--luxury-gold);"></div>
                         </div>
                         <ul class="footer-links"
-                            style="list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 12px;">
+                            style="list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 0px;">
                             <li><a href="#" style="color: #fff; text-decoration: none; font-size: 0.9rem;">Notre
                                     vision</a></li>
                             <li><a href="#" style="color: #fff; text-decoration: none; font-size: 0.9rem;">Emploi</a>
@@ -1157,30 +1151,30 @@
 
     <script>
         const categories = [
-            { id: 'q1', title: 'Que recherchez-vous aujourd’hui ?', desc: "Ce qui décrit le mieux ce que vous recherchez en ce moment.", limit: 1, exact: true, options: ["L'amour de ma vie", "Une relation sérieuse", "Ouvert(e) à voir où cela mène", "Rencontrer de nouvelles personnes", "Rencontres éphémères", "Je ne sais pas encore"] },
-            { id: 'q2', title: 'Quels défauts reconnaissez-vous le plus chez vous ?', desc: "Sélectionnez jusqu'à 2 défauts qui vous caractérisent.", limit: 2, exact: false, options: ["Têtu(e)", "Impatient(e)", "Trop sensible", "Pense trop (overthinker)", "Perfectionniste", "Trop indépendant(e)", "Trop direct(e)", "Timide", "Distrait(e)", "Jaloux(se)", "Accro au travail", "Réservé(e)", "Impulsif(ve)", "Désorganisé(e)", "Trop confiant(e)"] },
-            { id: 'q3', title: 'Avec quelle facilité exprimez-vous vos émotions ?', desc: "Choisissez l'affirmation qui vous correspond le mieux.", limit: 1, exact: true, options: ["Très facilement", "Plutôt facilement", "Uniquement avec les personnes de confiance", "Avec difficulté", "Je les garde généralement pour moi"] },
-            { id: 'q4', title: 'Souhaitez-vous avoir des enfants ?', desc: "Quelle est votre vision concernant la parentalité ?", limit: 1, exact: true, options: ["Oui", "Non", "Peut-être", "J'ai déjà des enfants et n'en veux plus", "J'ai déjà des enfants et j'en aimerais d'autres"] },
-            { id: 'q5', title: 'De quoi avez-vous besoin dans une relation ?', desc: "Sélectionnez exactement 3 besoins essentiels pour être heureux(se).", limit: 3, exact: true, options: ["Me sentir aimé(e)", "Me sentir respecté(e)", "Me sentir en sécurité", "Être accepté(e) tel(le) que je suis", "Grandir ensemble", "Construire une famille", "Rire tous les jours", "Voyager ensemble", "Me sentir soutenu(e)", "Avoir une excellente communication", "Partager une complicité amicale", "Vivre de la passion", "Avoir de la stabilité", "Avoir de la liberté", "Partager une connexion intellectuelle", "Partager une connexion émotionnelle", "Partager une connexion spirituelle", "Avoir un(e) partenaire ambitieux(se)", "Recevoir de l'affection et de la tendresse", "Admirer et être admiré(e)"] },
-            { id: 'q6', title: 'Choisissez vos trois valeurs essentielles', desc: "Sélectionnez exactement 3 valeurs fondamentales qui vous définissent.", limit: 3, exact: true, options: ["Honnêteté", "Respect", "Famille", "Liberté", "Bienveillance", "Loyauté", "Authenticité", "Aventure", "Stabilité", "Sens de l'humour", "Spiritualité", "Développement personnel", "Créativité", "Ambition", "Indépendance"] },
-            { id: 'q7', title: 'Comment exprimez-vous votre affection ?', desc: "Choisissez votre langage de l'amour principal.", limit: 1, exact: true, options: ["Moments de qualité", "Le toucher physique", "Paroles valorisantes", "Recevoir des cadeaux", "Services rendus"] },
-            { id: 'q8', title: 'Quelle importance la famille a-t-elle pour vous ?', desc: "Quel rôle joue la famille dans votre vie ?", limit: 1, exact: true, options: ["Ma priorité absolue", "Très importante", "Importante", "Pas très importante", "Pas importante du tout"] },
-            { id: 'q9', title: 'Quelle est votre vision d’une relation ?', desc: "Comment concevez-vous l'équilibre dans un couple ?", limit: 1, exact: true, options: ["Tout partager ensemble", "Préserver notre indépendance", "Un équilibre sain entre vie commune et indépendance"] },
-            { id: 'q10', title: 'Décrivez-vous avec vos propres mots', desc: "Partagez un peu de votre personnalité en quelques phrases.", type: 'textarea' },
-            { id: 'q11', title: 'Quelles qualités vous attirent le plus ?', desc: "Sélectionnez jusqu'à 2 qualités qui vous séduisent.", limit: 2, exact: false, options: ["Honnêteté", "Bienveillance", "Intelligence", "Sens de l'humour", "Confiance en soi", "Authenticité", "Maturité émotionnelle", "Ambition", "Passion", "Loyauté", "Calme", "Ouverture d'esprit", "Générosité", "Esprit d'aventure", "Bonne communication"] },
-            { id: 'q12', title: 'Comment gérez-vous les conflits ?', desc: "Quelle est votre réaction face aux désaccords ?", limit: 1, exact: true, options: ["Je préfère en discuter immédiatement", "J'ai besoin de temps avant d'en parler", "J'essaie d'éviter le conflit", "Je cherche toujours le compromis", "J'ai parfois du mal à communiquer"] },
-            { id: 'q13', title: 'Quel est votre rapport à l’argent ?', desc: "Comment gérez-vous vos finances au quotidien ?", limit: 1, exact: true, options: ["Je préfère épargner", "J'aime dépenser et profiter du moment présent", "Je suis équilibré(e)", "Je préfère investir", "Je vis au jour le jour"] },
-            { id: 'q14', title: 'Quelle est votre plus grande crainte en amour ?', desc: "Qu'est-ce qui vous inquiète le plus dans un couple ?", limit: 1, exact: true, options: ["La trahison / infidélité", "L'abandon", "Le manque de compréhension", "Perdre ma liberté", "L'engagement", "Souffrir"] },
-            { id: 'q15', title: 'Quels sont vos centres d’intérêt ?', desc: "Que préférez-vous faire durant votre temps libre ?", type: 'textarea' },
-            { id: 'q16', title: 'Quels sont vos critères incompatibles ?', desc: "Sélectionnez jusqu'à 2 comportements rédhibitoires.", limit: 2, exact: false, options: ["Le mensonge", "L'infidélité", "Le manque de respect", "La manipulation", "La jalousie", "La violence ou agressivité", "Le manque de communication", "L'égoïsme", "Les addictions", "L'immaturité émotionnelle", "Le manque d'ambition", "La malhonnêteté", "Le contrôle excessif", "La négativité", "Le manque d'engagement"] },
-            { id: 'q17', title: 'Quel mode de vie vous correspond ?', desc: "Quel est votre rythme de vie au quotidien ?", limit: 1, exact: true, options: ["Très calme", "Plutôt calme", "Équilibré", "Actif", "Toujours en mouvement"] },
-            { id: 'q18', title: 'Quel type de vacances appréciez-vous ?', desc: "Quel style de voyage préférez-vous ?", limit: 1, exact: true, options: ["Plage / Farniente", "Montagne", "Road Trip", "Séjour en ville (City break)", "Complexe hôtelier de luxe", "Voyage d'aventure", "Tout me convient"] },
-            { id: 'q19', title: 'Quel aspect aimeriez-vous améliorer ?', desc: "Sur quel trait de caractère aimeriez-vous travailler ?", limit: 1, exact: true, options: ["La patience", "La confiance en soi", "La communication", "Le courage", "L'organisation", "L'empathie"] },
-            { id: 'q20', title: 'Quelle personne recherchez-vous ?', desc: "Décrivez la personne ou la connexion que vous espérez trouver.", type: 'textarea' },
-            { id: 'q21', title: 'Quels sont vos plus grands rêves ?', desc: "Sélectionnez jusqu'à 2 aspirations majeures.", limit: 2, exact: false, options: ["Vieillir ensemble", "Bâtir une famille heureuse", "Parcourir le monde", "Atteindre la liberté financière", "Créer mon entreprise", "Acheter la maison de mes rêves", "Changer de pays / commencer une nouvelle vie", "Aider les autres / faire une différence", "Trouver mon âme sœur", "Vivre une vie paisible", "Laisser un héritage positif", "Créer quelque chose de significatif", "Avoir des enfants", "Vivre proche de la nature", "Me réveiller heureux(se) chaque jour"] },
-            { id: 'q22', title: 'Comment prenez-vous vos décisions importantes ?', desc: "Sur quoi vous basez-vous en priorité ?", limit: 1, exact: true, options: ["La logique", "L'intuition", "Un équilibre des deux"] },
-            { id: 'q23', title: 'À quel point êtes-vous spontané(e) ?', desc: "Quel est votre rapport à l'imprévu ?", limit: 1, exact: true, options: ["Je planifie tout", "J'aime planifier à l'avance", "Un équilibre des deux", "Très spontané(e)"] },
-            { id: 'q24', title: 'Quel type d’humour vous fait rire ?', desc: "Quel genre d'humour appréciez-vous le plus ?", limit: 1, exact: true, options: ["Humour noir", "Jeux de mots", "Situations absurdes", "Autodérision", "Humour spontané"] }
+            { id: 'q1', title: 'What are you looking for today?', desc: "What best describes what you're looking for right now?", limit: 1, exact: true, options: ["The love of my life", "A serious relationship", "Open to seeing where things go", "Meeting new people", "Casual dating", "I'm not sure yet"] },
+            { id: 'q6', title: 'Choose Your 3 Core Values', desc: "What are the three values that define you the most?", limit: 3, exact: true, options: ["Honesty", "Respect", "Family", "Freedom", "Kindness", "Loyalty", "Authenticity", "Adventure", "Stability", "Sense of Humor", "Spirituality", "Personal Growth", "Creativity", "Ambition", "Independence"] },
+            { id: 'q11', title: 'Which qualities attract you the most?', desc: "What qualities make you fall for someone?", limit: 2, exact: false, options: ["Honesty", "Kindness", "Intelligence", "Sense of Humor", "Confidence", "Authenticity", "Emotional Maturity", "Ambition", "Passion", "Loyalty", "Calmness", "Open-mindedness", "Generosity", "Adventurous Spirit", "Good Communication"] },
+            { id: 'q16', title: 'Your Biggest Deal Breakers', desc: "What would immediately make a relationship impossible for you?", limit: 2, exact: false, options: ["Lies", "Infidelity", "Lack of Respect", "Manipulation", "Jealousy", "Violence or Aggression", "Lack of Communication", "Selfishness", "Addiction", "Emotional Immaturity", "Lack of Ambition", "Dishonesty", "Excessive Control", "Negativity", "Lack of Commitment"] },
+            { id: 'q21', title: 'Your Biggest Dreams', desc: "If everything were possible, what would you most like to build in your life?", limit: 2, exact: false, options: ["Grow Old Together", "Build a Happy Family", "Travel the World", "Achieve Financial Freedom", "Start My Own Business", "Buy My Dream Home", "Change Country and Start a New Life", "Help Others Make a Difference", "Find My Soulmate", "Live a Peaceful Life", "Leave a Positive Legacy", "Create Something Meaningful", "Have Children", "Live Close to Nature", "Wake Up Every Day Happy"] },
+            { id: 'q2', title: 'Your Biggest Flaws', desc: "Which flaws best describe you?", limit: 2, exact: false, options: ["Stubborn", "Impatient", "Too Sensitive", "Overthinker", "Perfectionist", "Too Independent", "Too Direct", "Shy", "Distracted", "Jealous", "Workaholic", "Reserved", "Impulsive", "Disorganized", "Too Trusting"] },
+            { id: 'q7', title: 'How do you express love?', desc: "How do you naturally express love and affection?", limit: 1, exact: true, options: ["Quality Time", "Physical Touch", "Words of Affirmation", "Receiving Gifts", "Acts of Service"] },
+            { id: 'q12', title: 'How do you usually handle conflict?', desc: "When disagreements happen, how do you usually react?", limit: 1, exact: true, options: ["I prefer discussing things immediately.", "I need time before talking.", "I try to avoid conflict.", "I always look for compromise.", "I sometimes struggle to communicate."] },
+            { id: 'q17', title: 'Which lifestyle describes you best?', desc: "Which lifestyle best represents you?", limit: 1, exact: true, options: ["Very calm", "Mostly calm", "Balanced", "Active", "Always on the go"] },
+            { id: 'q22', title: 'How do you usually make important decisions?', desc: "When making important decisions, what do you rely on the most?", limit: 1, exact: true, options: ["Logic", "Intuition", "A balance of both"] },
+            { id: 'q3', title: 'How easily do you express your emotions?', desc: "How comfortable are you expressing your emotions?", limit: 1, exact: true, options: ["Very easily", "Fairly easily", "Only with people I trust", "With difficulty", "I usually keep them to myself"] },
+            { id: 'q8', title: 'How important is family to you?', desc: "What role does family play in your life?", limit: 1, exact: true, options: ["My highest priority", "Very important", "Important", "Not very important", "Not important at all"] },
+            { id: 'q13', title: 'Which statement best describes your financial mindset?', desc: "Which statement best describes your relationship with money?", limit: 1, exact: true, options: ["I prefer saving money.", "I enjoy spending and living in the moment.", "I'm balanced.", "I prefer investing.", "I take life one day at a time."] },
+            { id: 'q18', title: 'What type of vacation do you enjoy most?', desc: "What type of holiday would you choose?", limit: 1, exact: true, options: ["Beach", "Mountains", "Road Trip", "City Break", "Luxury Resort", "Adventure Travel", "I'm happy with anything"] },
+            { id: 'q23', title: 'How spontaneous are you?', desc: "How spontaneous are you in everyday life?", limit: 1, exact: true, options: ["I plan everything.", "I like planning ahead.", "A balance of both.", "Very spontaneous."] },
+            { id: 'q4', title: 'Do you want children?', desc: "What best describes your wishes regarding children?", limit: 1, exact: true, options: ["Yes", "No", "Maybe", "I already have children and don't want more.", "I already have children and would like more."] },
+            { id: 'q9', title: 'What is your vision of a relationship?', desc: "Which statement best represents your ideal relationship?", limit: 1, exact: true, options: ["Sharing everything together.", "Maintaining our independence.", "A healthy balance between togetherness and independence."] },
+            { id: 'q14', title: 'What is your biggest fear in love?', desc: "What worries you the most in a relationship?", limit: 1, exact: true, options: ["Being cheated on.", "Being abandoned.", "Not being understood.", "Losing my freedom.", "Commitment.", "Getting hurt."] },
+            { id: 'q19', title: 'Which personal quality would you most like to improve?', desc: "If you could improve one aspect of yourself, what would it be?", limit: 1, exact: true, options: ["Patience", "Self-confidence", "Communication", "Courage", "Organization", "Empathy"] },
+            { id: 'q24', title: 'What kind of humor makes you laugh the most?', desc: "What type of humor do you enjoy the most?", limit: 1, exact: true, options: ["Dark Humor", "Wordplay", "Absurd Situations", "Self-deprecating Humor", "Spontaneous People"] },
+            { id: 'q5', title: 'In a relationship, what do you need most to feel truly happy?', desc: "What are the three things you need most to feel fulfilled in a relationship?", limit: 3, exact: true, options: ["To feel loved", "To feel respected", "To feel safe and secure", "To be accepted for who I am", "To grow together", "To build a family", "To laugh every day", "To travel together", "To feel supported", "To have excellent communication", "To share a strong friendship", "To experience passion", "To have stability", "To have freedom", "To share an intellectual connection", "To share an emotional connection", "To share a spiritual connection", "To have an ambitious partner", "To receive affection and tenderness", "To admire and be admired by my partner"] },
+            { id: 'q10', title: 'Personal Description', desc: "Share a little about yourself in a few sentences.", type: 'textarea' },
+            { id: 'q15', title: 'Hobbies & Interests', desc: "What do you prefer doing in your free time?", type: 'textarea' },
+            { id: 'q20', title: 'What I\'m looking for', desc: "Describe the person or connection you hope to find.", type: 'textarea' }
         ];
 
         let currentStep = 0;

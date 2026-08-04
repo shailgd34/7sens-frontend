@@ -332,6 +332,16 @@ function initListingPage() {
                                 <span class="v2-card-price">${event.price}</span>
                             </div>
                             <h3 class="v2-card-title">${event.title}</h3>
+                            <div style="display: flex; gap: 8px; margin-bottom: 16px; flex-wrap: wrap;">
+                                <div style="color: var(--luxury-gold); padding: 4px 12px; font-size: 0.65rem; text-transform: uppercase; letter-spacing: 0.1em; font-weight: 500; display: inline-flex; align-items: center; gap: 5px; background: rgba(216,164,49,0.03); backdrop-filter: blur(4px);">
+                                    <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                                    ${event.eventType || 'ORGANIZED MEETINGS'}
+                                </div>
+                                <div style="color: var(--primary-navy); padding: 4px 12px; font-size: 0.65rem; text-transform: uppercase; letter-spacing: 0.1em; font-weight: 500; display: inline-flex; align-items: center; gap: 5px; background: rgba(20,43,99,0.02); backdrop-filter: blur(4px);">
+                                    <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg>
+                                    ${event.category || 'Dating'}
+                                </div>
+                            </div>
                     
                     <div class="v2-card-info-grid">
                         <div class="v2-info-item">
@@ -370,12 +380,12 @@ function initListingPage() {
                             <div class="capacity-bar-men" style="width: ${menPercentage}%" title="Hommes: ${event.preRegistered.men}"></div>
                             <div class="capacity-bar-women" style="width: ${womenPercentage}%" title="Femmes: ${event.preRegistered.women}"></div>
                         </div>
-                        <div class="capacity-label-row" style="margin-top: 2px; font-size: 0.6rem;">
-                            <span class="gender-split-text">
-                                <span class="men-text">♂ ${event.preRegistered.men} H</span>
-                                <span class="women-text">♀ ${event.preRegistered.women} F</span>
+                        <div class="capacity-label-row" style="margin-top: 2px;">
+                            <span class="gender-split-text" style="display: flex; gap: 8px; align-items: center; font-size: 0.85rem;">
+                                <span class="men-text" style="font-weight: 700; color: var(--primary-navy);"><span style="font-size: 1.1rem;">♂</span> ${event.preRegistered.men} H</span>
+                                <span class="women-text" style="font-weight: 700; color: var(--luxury-gold);"><span style="font-size: 1.1rem;">♀</span> ${event.preRegistered.women} F</span>
                             </span>
-                            <span>Équilibre des genres</span>
+                            <span style="font-size: 0.75rem; color: var(--text-muted);">Équilibre des genres</span>
                         </div>
                     </div>
 
@@ -436,18 +446,35 @@ function initDetailPage() {
 
     // Populate text details
     document.title = `${event.title} — 7Sens Experience`;
-    document.getElementById("breadcrumb-event-name").textContent = event.title;
-    document.getElementById("detail-event-title").textContent = event.title;
-    document.getElementById("detail-event-city").textContent = event.city;
-    document.getElementById("detail-event-date").textContent = event.date;
-    document.getElementById("detail-event-age").textContent = event.ageGroup;
-    document.getElementById("detail-event-price").textContent = event.price;
-    document.getElementById("detail-event-desc").textContent = event.description;
-    document.getElementById("detail-event-venue").textContent = event.venue;
+    const breadcrumbName = document.getElementById("breadcrumb-event-name");
+    if (breadcrumbName) breadcrumbName.textContent = event.title;
+
+    const titleEl = document.getElementById("detail-event-title");
+    if (titleEl) titleEl.textContent = event.title;
+
+    const cityEl = document.getElementById("detail-event-city");
+    if (cityEl) cityEl.textContent = event.city;
+
+    const dateEl = document.getElementById("detail-event-date");
+    if (dateEl) dateEl.textContent = event.date;
+
+    const ageEl = document.getElementById("detail-event-age");
+    if (ageEl) ageEl.textContent = event.ageGroup;
+
+    const priceEl = document.getElementById("detail-event-price");
+    if (priceEl) priceEl.textContent = event.price;
+
+    const descEl = document.getElementById("detail-event-desc");
+    if (descEl) descEl.textContent = event.description;
+
+    const venueEl = document.getElementById("detail-event-venue");
+    if (venueEl) venueEl.textContent = event.venue;
     
     const imgEl = document.getElementById("detail-event-image");
-    imgEl.src = event.image;
-    imgEl.alt = event.title;
+    if (imgEl) {
+        imgEl.src = event.image;
+        imgEl.alt = event.title;
+    }
 
     // Set hidden event ID in the registration form
     const hiddenIdInput = document.getElementById("form-event-id");
@@ -484,84 +511,82 @@ function initDetailPage() {
         inclusionsContainer.appendChild(item);
     });
 
-    // Calculate capacity ratios
-    const totalPreRegistered = event.preRegistered.men + event.preRegistered.women;
-    const menPrePercent = (event.preRegistered.men / event.capacity) * 100;
-    const womenPrePercent = (event.preRegistered.women / event.capacity) * 100;
+    // Calculate status badge text for left column
+    let statusText = "Pré-inscription ouverte";
+    if (event.status === "limited") statusText = "Places limitées";
+    else if (event.status === "fully-booked" || event.status === "waiting-list") statusText = "Complet";
+    
+    const statusBadge = document.getElementById("detail-event-status-badge");
+    if (statusBadge) statusBadge.textContent = statusText;
 
-    // Populate Capacity elements
-    document.getElementById("detail-capacity-ratio").textContent = `${totalPreRegistered} / ${event.capacity}`;
-    document.getElementById("detail-men-count").textContent = event.preRegistered.men;
-    document.getElementById("detail-women-count").textContent = event.preRegistered.women;
+    // Set Dynamic Panel State
+    const pTitle = document.getElementById("reg-panel-title");
+    const pDesc = document.getElementById("reg-panel-desc");
+    const sBadge = document.getElementById("reg-status-badge");
+    const pText = document.getElementById("reg-progress-text");
+    const cMen = document.getElementById("reg-count-men");
+    const cWomen = document.getElementById("reg-count-women");
+    const bMen = document.getElementById("reg-bar-men");
+    const bWomen = document.getElementById("reg-bar-women");
+    const notifText = document.getElementById("reg-notification-text");
+    const submitBtn = document.getElementById("reg-submit-btn");
+    const bottomNote = document.getElementById("reg-bottom-note");
+    const priceDisplay = document.getElementById("reg-price");
+    
+    if (pTitle && submitBtn) {
+        const totalPre = event.preRegistered.men + event.preRegistered.women;
+        const totalConf = event.confirmedPaid.men + event.confirmedPaid.women;
 
-    // Update Gender Progress Bar
-    const genderBar = document.getElementById("detail-gender-bar");
-    if (genderBar) {
-        genderBar.innerHTML = `
-            <div class="capacity-bar-men" style="width: ${menPrePercent}%" title="Hommes: ${event.preRegistered.men}"></div>
-            <div class="capacity-bar-women" style="width: ${womenPrePercent}%" title="Femmes: ${event.preRegistered.women}"></div>
-        `;
-    }
+        if (priceDisplay) priceDisplay.textContent = event.price;
 
-    // Calculate Payments Confirmation ratios
-    const totalConfirmed = event.confirmedPaid.men + event.confirmedPaid.women;
-    const confirmedPercent = (totalConfirmed / event.capacity) * 100;
-
-    // Populate confirmed payment elements
-    document.getElementById("detail-confirmed-ratio").textContent = `${totalConfirmed} / ${event.capacity}`;
-    const paymentBar = document.getElementById("detail-payment-bar");
-    if (paymentBar) {
-        paymentBar.style.width = `${confirmedPercent}%`;
-    }
-
-    const breakdownText = document.getElementById("detail-payment-breakdown");
-    if (breakdownText) {
-        breakdownText.innerHTML = `
-            <strong>${totalConfirmed} participants confirmés</strong> après règlement.<br>
-            <span style="font-size: 0.68rem; color: var(--text-muted);">Répartition : ${event.confirmedPaid.men} Hommes, ${event.confirmedPaid.women} Femmes.</span>
-        `;
-    }
-
-    // Button states
-    const actionBtn = document.getElementById("booking-action-btn");
-    if (actionBtn) {
-        if (event.status === "waiting-list") {
-            actionBtn.querySelector("span").textContent = "REJOINDRE LA LISTE D'ATTENTE";
-        } else if (event.status === "fully-booked") {
-            actionBtn.querySelector("span").textContent = "COMPLET / FERMÉ";
-            actionBtn.classList.add("disabled");
-            actionBtn.disabled = true;
-        } else if (event.status === "limited") {
-            actionBtn.querySelector("span").textContent = "PLACES LIMITÉES - DEVENIR MEMBRE";
+        if (event.status === "waiting-list" || event.status === "fully-booked") {
+            // STATE 3: Waiting List
+            pTitle.textContent = "Join the Waiting List";
+            pDesc.textContent = "This event is currently full. Join the waiting list and we'll notify you as soon as a place becomes available.";
+            sBadge.textContent = "Event Full";
+            pText.textContent = `${totalConf} / ${event.capacity} Registered`;
+            cMen.textContent = event.confirmedPaid.men;
+            cWomen.textContent = event.confirmedPaid.women;
+            bMen.style.width = `${(event.confirmedPaid.men / event.capacity) * 100}%`;
+            bWomen.style.width = `${(event.confirmedPaid.women / event.capacity) * 100}%`;
+            notifText.textContent = "Notify me by WhatsApp & SMS when a place becomes available.";
+            submitBtn.textContent = "Join Waiting List";
+            bottomNote.textContent = "Joining the waiting list requires no payment.";
+        } else if (event.status === "limited" || event.status === "open") {
+            // STATE 2: Reservation
+            pTitle.textContent = "Confirm your Registration";
+            pDesc.textContent = "Great news! Your pre-registration has been accepted. Reserve your place to confirm your participation.";
+            sBadge.textContent = "Almost Full";
+            pText.textContent = `${totalConf} / ${event.capacity} Registered`;
+            cMen.textContent = event.confirmedPaid.men;
+            cWomen.textContent = event.confirmedPaid.women;
+            bMen.style.width = `${(event.confirmedPaid.men / event.capacity) * 100}%`;
+            bWomen.style.width = `${(event.confirmedPaid.women / event.capacity) * 100}%`;
+            notifText.textContent = "Receive reservation confirmation and event updates by WhatsApp & SMS.";
+            submitBtn.textContent = "Reserve My Place";
+            bottomNote.textContent = `Secure payment of ${event.price} will begin after clicking the button.`;
+        } else {
+            // STATE 1: Pre-registration (Default)
+            pTitle.textContent = "Finalize your Pre-registration";
+            pDesc.textContent = "No payment is required now. Submit your information to express interest. You'll receive an invitation once your place can be confirmed.";
+            sBadge.textContent = `${totalPre} pre-registered`;
+            pText.textContent = `${totalPre} / ${event.capacity} Pre-registrations`;
+            cMen.textContent = event.preRegistered.men;
+            cWomen.textContent = event.preRegistered.women;
+            bMen.style.width = `${(event.preRegistered.men / event.capacity) * 100}%`;
+            bWomen.style.width = `${(event.preRegistered.women / event.capacity) * 100}%`;
+            notifText.textContent = "Receive WhatsApp & SMS notifications.";
+            submitBtn.textContent = "Confirm My Pre-registration";
+            bottomNote.textContent = "No payment is required at this stage.";
         }
 
-        // Redirect to booking page on click
-        actionBtn.addEventListener("click", () => {
-            if (!actionBtn.classList.contains("disabled")) {
-                window.location.href = `booking.html?id=${event.id}`;
+        // CTA Logic
+        submitBtn.addEventListener("click", () => {
+            if (event.status === "limited" || event.status === "open") {
+                window.location.href = "mesPaiements.html";
+            } else {
+                alert("Your request has been successfully submitted!");
             }
-        });
-    }
-
-    // Coupon Code Copy Handler
-    const copyPromoBtn = document.getElementById("copy-promo-btn");
-    const promoCodeVal = document.getElementById("promo-code-val");
-    const copyStatus = document.getElementById("copy-status");
-
-    if (copyPromoBtn && promoCodeVal && copyStatus) {
-        copyPromoBtn.addEventListener("click", () => {
-            const codeText = promoCodeVal.textContent.trim();
-            navigator.clipboard.writeText(codeText).then(() => {
-                copyStatus.style.opacity = "1";
-                copyPromoBtn.textContent = "COPIÉ !";
-                
-                setTimeout(() => {
-                    copyStatus.style.opacity = "0";
-                    copyPromoBtn.textContent = "COPIER";
-                }, 2500);
-            }).catch(err => {
-                console.error("Impossible de copier le code: ", err);
-            });
         });
     }
 

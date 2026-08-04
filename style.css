@@ -228,7 +228,7 @@ a {
 .btn-gold-outline {
     background-color: transparent;
     color: var(--luxury-gold);
-    border: 1px solid rgba(216, 164, 49, 0.4);
+    border: 1px solid rgba(216, 164, 49, 0.4) !important;
 }
 
 .btn-gold-outline:hover {
@@ -2607,7 +2607,7 @@ a {
 /* --- Language Dropdown --- */
 .lang-dropdown {
     position: relative;
-    display: inline-block;
+    display: none;
 }
 
 .lang-btn {
@@ -3048,7 +3048,7 @@ a {
 /* Language Dropdown Styles */
 .lang-dropdown {
     position: relative;
-    display: inline-block;
+    display: none;
     z-index: 1000;
 }
 
@@ -3129,6 +3129,7 @@ header.scrolled .lang-btn,
     bottom: 30px;
     left: 30px;
     z-index: 999;
+
 }
 
 .fixed-lang-selector .lang-btn {
@@ -3136,6 +3137,25 @@ header.scrolled .lang-btn,
     border-color: var(--luxury-gold);
     color: var(--warm-ivory);
     box-shadow: 0 4px 15px rgba(16, 42, 94, 0.2);
+}
+
+/* --- USER OVERRIDE: SHARP & BORDERLESS DESIGN --- */
+/* Remove borders and radius from all buttons */
+button,
+a.btn,
+.btn,
+.btn-primary,
+.db-widget-btn,
+[class*="btn-outline"],
+[class*="db-btn"],
+[class*="btn-"] {
+    border: none !important;
+    border-radius: 0 !important;
+}
+
+/* Provide a subtle background for outline buttons so they don't disappear when border is removed */
+[class*="btn-outline"] {
+    background: rgba(20, 43, 99, 0.05) !important;
 }
 
 .fixed-lang-selector .lang-menu {

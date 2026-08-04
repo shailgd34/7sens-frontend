@@ -1189,6 +1189,33 @@
                                     </div>
                                 </div>
                             </div>
+
+                            <!-- Card 5: Gestion du compte -->
+                            <div class="settings-card">
+                                <div class="settings-card-title" style="color: #c92a2a;">Gestion du compte</div>
+                                <div class="settings-card-subtitle">Gérez la désactivation ou la suppression définitive de votre compte.</div>
+
+                                <div class="settings-list" style="display: flex; flex-direction: column;">
+                                    <div class="settings-item-row" style="border-bottom: none;">
+                                        <div class="settings-item-left">
+                                            <div class="settings-item-icon" style="color: #c92a2a; background-color: rgba(201, 42, 42, 0.08);">
+                                                <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2">
+                                                    <path d="M18.36 6.64a9 9 0 1 1-12.73 0"></path>
+                                                    <line x1="12" y1="2" x2="12" y2="12"></line>
+                                                </svg>
+                                            </div>
+                                            <div class="settings-item-info">
+                                                <div class="settings-item-title" style="color: #c92a2a;">Désactiver le compte</div>
+                                                <div class="settings-item-value">Mettez votre compte en pause ou supprimez vos données.</div>
+                                            </div>
+                                        </div>
+                                        <div class="settings-item-right">
+                                            <button class="btn-settings-action" style="border-color: #c92a2a; color: #c92a2a;" onclick="openDeactivateModal()">Gérer</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
                         </div>
 
                         <!-- Footer Actions Row -->
@@ -1203,6 +1230,37 @@
             </div>
         </div>
     </main>
+
+    <!-- DEACTIVATE MODAL -->
+    <div id="deactivate-modal" class="db-modal-overlay"
+        style="display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.5); backdrop-filter: blur(4px); z-index: 2000; align-items: center; justify-content: center;">
+        <div class="db-modal-content"
+            style="background: white; padding: 30px; border-radius: 8px; max-width: 450px; width: 100%; position: relative; box-shadow: 0 10px 30px rgba(0,0,0,0.15);">
+            <button class="db-modal-close" onclick="closeDeactivateModal()"
+                style="position: absolute; top: 15px; right: 15px; border: none; background: none; font-size: 1.2rem; cursor: pointer; color: var(--primary-navy);">✕</button>
+            <h3
+                style="font-family: 'Cormorant Garamond', serif; font-size: 1.6rem; color: #c92a2a; margin-top: 0; margin-bottom: 20px; font-weight: 500;">
+                Gérer votre compte</h3>
+            
+            <p style="font-family: 'Instrument Sans', sans-serif; font-size: 0.9rem; color: var(--text-muted); margin-bottom: 25px; line-height: 1.5;">
+                Vous pouvez <strong>désactiver</strong> votre compte temporairement ou le <strong>supprimer</strong> définitivement.
+            </p>
+
+            <div style="display: flex; flex-direction: column; gap: 15px; margin-bottom: 10px;">
+                <div style="padding: 15px; border: 1px solid rgba(20,43,99,0.1); border-radius: 6px; background-color: rgba(20,43,99,0.02);">
+                    <h4 style="margin: 0 0 5px 0; font-family: 'Instrument Sans', sans-serif; font-size: 0.95rem; color: var(--primary-navy);">Désactiver le compte</h4>
+                    <p style="margin: 0 0 12px 0; font-size: 0.8rem; color: var(--text-muted);">Vos données et votre profil seront masqués, mais conservés en sécurité. Vous pourrez les récupérer lors de votre prochaine connexion.</p>
+                    <button class="btn-settings-save" style="width: 100%; background-color: var(--primary-navy);" onclick="alert('Compte désactivé. Vos données sont sauvegardées en sécurité.')">Désactiver temporairement</button>
+                </div>
+
+                <div style="padding: 15px; border: 1px solid rgba(201,42,42,0.2); border-radius: 6px; background-color: rgba(201,42,42,0.03);">
+                    <h4 style="margin: 0 0 5px 0; font-family: 'Instrument Sans', sans-serif; font-size: 0.95rem; color: #c92a2a;">Supprimer le compte</h4>
+                    <p style="margin: 0 0 12px 0; font-size: 0.8rem; color: var(--text-muted);">Attention, cette action est irréversible. <strong>Toutes vos données seront définitivement effacées</strong> de nos serveurs.</p>
+                    <button class="btn-settings-save" style="width: 100%; background-color: #c92a2a;" onclick="alert('Compte et données définitivement supprimés.')">Supprimer définitivement</button>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <!-- PASSWORD MODAL -->
     <div id="password-modal" class="db-modal-overlay"
@@ -1238,6 +1296,25 @@
 
     <!-- Scripts -->
     <script>
+        function openDeactivateModal() {
+            console.log("Opening deactivate modal");
+            const modal = document.getElementById('deactivate-modal');
+            if (modal) {
+                modal.style.display = 'flex';
+                // Use a slight delay for opacity to simulate fade if needed, or just keep it simple
+                modal.style.opacity = '1';
+            } else {
+                console.error("Deactivate modal not found in DOM");
+            }
+        }
+
+        function closeDeactivateModal() {
+            const modal = document.getElementById('deactivate-modal');
+            if (modal) {
+                modal.style.display = 'none';
+            }
+        }
+
         document.addEventListener("DOMContentLoaded", () => {
             // Load current user from session
             let user = null;

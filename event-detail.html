@@ -144,7 +144,10 @@
                     <!-- Left Column: Content -->
                     <div class="detail-main-content">
                         <div class="detail-header">
-                            <span class="detail-city-badge" id="detail-event-city">GENÈVE</span>
+                            <div style="display: flex; gap: 10px; align-items: center; margin-bottom: 12px;">
+                                <span class="detail-city-badge" id="detail-event-city">GENÈVE</span>
+                                <span id="detail-event-status-badge" style="font-size: 0.7rem; padding: 4px 10px; background: rgba(20,43,99,0.05); color: var(--primary-navy); border-radius: 4px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em;">Statut</span>
+                            </div>
                             <h1 class="detail-title" id="detail-event-title">Chargement de l'événement...</h1>
                         </div>
 
@@ -208,113 +211,85 @@
                         </div>
                     </div>
 
-                    <!-- Right Column: Sidebar Widget -->
-                    <aside class="booking-sidebar">
-                        <div class="sidebar-price-row">
-                            <span class="sidebar-price-label">Tarif unique</span>
-                            <span class="sidebar-price" id="detail-event-price">CHF 00</span>
+                    <!-- Right Column: Registration Widget -->
+                    <aside class="booking-sidebar registration-panel">
+                        <!-- Top Header & Desc -->
+                        <div class="reg-panel-header">
+                            <h3 class="reg-panel-title" id="reg-panel-title">Finalize your Pre-registration</h3>
+                            <p class="reg-panel-desc" id="reg-panel-desc">No payment is required now. Submit your information to express interest. You'll receive an invitation once your place can be confirmed.</p>
                         </div>
-
-                        <!-- Coupon Info Container -->
-                        <div class="coupon-info-box"
-                            style="border-bottom: 1px solid var(--border-color); padding-bottom: 25px; margin-top: -5px; margin-bottom: 20px;">
-                            <span
-                                style="font-size: 0.68rem; font-weight: 600; letter-spacing: 0.12em; color: var(--primary-navy); text-transform: uppercase; display: block; margin-bottom: 10px;">Offre
-                                de bienvenue</span>
-                            <div
-                                style="display: flex; justify-content: space-between; align-items: center; background: rgba(214,164,55,0.06); border: 1px dashed var(--luxury-gold); padding: 12px 16px;">
-                                <div>
-                                    <strong id="promo-code-val"
-                                        style="font-family: 'Instrument Sans', sans-serif; font-size: 0.95rem; color: var(--primary-navy); letter-spacing: 0.05em;">WELCOME10</strong>
-                                    <span
-                                        style="display: block; font-size: 0.68rem; color: var(--text-muted); margin-top: 2px;">-CHF
-                                        10 sur votre réservation</span>
+                        
+                        <!-- Statistics Card -->
+                        <div class="reg-stats-card">
+                            <div class="reg-stats-header">
+                                <span class="reg-price" id="reg-price">CHF 55</span>
+                                <span class="reg-status-badge" id="reg-status-badge">8 pre-registered</span>
+                            </div>
+                            
+                            <div class="reg-progress-section">
+                                <div class="reg-progress-labels">
+                                    <span id="reg-progress-text">14 / 40 Pre-registrations</span>
                                 </div>
-                                <button type="button" id="copy-promo-btn" class="filter-btn"
-                                    style="padding: 6px 12px; margin: 0; font-size: 0.62rem; font-weight: 700; height: auto; border-color: var(--luxury-gold); color: var(--luxury-gold);">COPIER</button>
-                            </div>
-                            <div id="copy-status"
-                                style="font-size: 0.65rem; color: var(--luxury-gold); font-weight: 500; margin-top: 6px; min-height: 12px; transition: opacity 0.3s; opacity: 0; padding-left: 2px;">
-                                Code copié dans le presse-papiers !</div>
-                        </div>
-
-                        <!-- PRE-REGISTRATION CAPACITY TRACKER -->
-                        <div class="gender-capacity-tracker">
-                            <div class="tracker-section-title">
-                                <span>Pré-inscriptions</span>
-                                <span class="tracker-capacity-fraction" id="detail-capacity-ratio">0 / 0</span>
-                            </div>
-
-                            <div class="gender-ratio-bar-container" id="detail-gender-bar">
-                                <div class="capacity-bar-men" style="width: 50%"></div>
-                                <div class="capacity-bar-women" style="width: 50%"></div>
-                            </div>
-
-                            <div class="gender-metric-row">
-                                <div class="gender-metric-box">
-                                    <span class="gender-icon-label">
-                                        <svg width="10" height="10" viewBox="0 0 24 24" fill="none"
-                                            stroke="var(--primary-navy)" stroke-width="3">
-                                            <circle cx="10" cy="14" r="6" />
-                                            <path d="M14 10l6-6M20 4h-5M20 4v5" />
-                                        </svg>
-                                        Hommes / Men
-                                    </span>
-                                    <span class="gender-value men" id="detail-men-count">0</span>
-                                </div>
-                                <div class="gender-metric-box">
-                                    <span class="gender-icon-label">
-                                        <svg width="10" height="10" viewBox="0 0 24 24" fill="none"
-                                            stroke="var(--luxury-gold)" stroke-width="3">
-                                            <circle cx="12" cy="8" r="6" />
-                                            <path d="M12 14v6M9 17h6" />
-                                        </svg>
-                                        Femmes / Women
-                                    </span>
-                                    <span class="gender-value women" id="detail-women-count">0</span>
+                                <div class="capacity-progress-bar">
+                                    <div class="capacity-bar-men" id="reg-bar-men" style="width: 0%"></div>
+                                    <div class="capacity-bar-women" id="reg-bar-women" style="width: 0%"></div>
                                 </div>
                             </div>
-                            <p class="booking-note-text" style="margin-top: 5px;">Aperçu en temps réel pour garantir la
-                                parité hommes-femmes.</p>
-                        </div>
 
-                        <!-- CONFIRMED AFTER PAYMENT TRACKER -->
-                        <div class="confirmed-payment-tracker" id="payment-tracker">
-                            <div class="payment-confirmed-header">
-                                <div class="payment-title-group">
-                                    <svg class="payment-secure-icon" viewBox="0 0 24 24" fill="none"
-                                        stroke="currentColor" stroke-width="2">
-                                        <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
-                                        <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
-                                    </svg>
-                                    <span class="payment-title">Places confirmées</span>
+                            <div class="reg-gender-stats">
+                                <div class="reg-gender-item">
+                                    <span class="men-text" style="color: var(--primary-navy); font-weight: 600;"><span style="font-size: 1.1rem;">♂</span> <span id="reg-count-men">0</span> <span id="reg-label-men">Men</span></span>
                                 </div>
-                                <span class="payment-count-badge" id="detail-confirmed-ratio">0 / 0</span>
-                            </div>
-
-                            <div class="payment-progress-container">
-                                <div class="payment-progress-bar" id="detail-payment-bar" style="width: 0%"></div>
-                            </div>
-
-                            <div class="payment-breakdown-text" id="detail-payment-breakdown">
-                                0 Hommes et 0 Femmes confirmés après paiement.
+                                <div class="reg-gender-item">
+                                    <span class="women-text" style="color: var(--luxury-gold); font-weight: 600;"><span style="font-size: 1.1rem;">♀</span> <span id="reg-count-women">0</span> <span id="reg-label-women">Women</span></span>
+                                </div>
                             </div>
                         </div>
 
-                        <!-- Action Button -->
-                        <button class="booking-action-btn" id="booking-action-btn">
-                            <span>S'INSCRIRE À L'EXPÉRIENCE</span>
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <path d="M5 12H19M19 12L13 6M19 12L13 18" stroke-linecap="round"
-                                    stroke-linejoin="round" />
-                            </svg>
-                        </button>
+                        <div class="reg-divider"></div>
 
-                        <p class="booking-note-text">
-                            * Après envoi de votre candidature, notre conciergerie validera votre profil sous 48h. Une
-                            fois validé, vous recevrez un lien de paiement sécurisé pour confirmer définitivement votre
-                            place.
-                        </p>
+                        <!-- Registration Form -->
+                        <div class="reg-form-section">
+                            <h4 class="reg-form-title">Personal Information</h4>
+                            <div class="reg-form-grid">
+                                <div class="reg-input-group">
+                                    <label>First Name</label>
+                                    <input type="text" value="Jean" readonly>
+                                </div>
+                                <div class="reg-input-group">
+                                    <label>Last Name</label>
+                                    <input type="text" value="Dupont" readonly>
+                                </div>
+                                <div class="reg-input-group">
+                                    <label>Gender</label>
+                                    <input type="text" value="Homme" readonly>
+                                </div>
+                                <div class="reg-input-group">
+                                    <label>Date of Birth</label>
+                                    <input type="text" value="15/04/1988" readonly>
+                                </div>
+                                <div class="reg-input-group full-width">
+                                    <label>Email <span class="verified-badge"><svg viewBox="0 0 24 24" width="10" height="10" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg></span></label>
+                                    <input type="email" value="jean.dupont@email.com" readonly>
+                                </div>
+                                <div class="reg-input-group full-width">
+                                    <label>Mobile Number <span class="verified-badge"><svg viewBox="0 0 24 24" width="10" height="10" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg></span></label>
+                                    <input type="tel" value="+41 79 000 00 00" readonly>
+                                </div>
+                            </div>
+
+                            <label class="reg-checkbox-label">
+                                <input type="checkbox" checked>
+                                <span class="custom-checkbox">
+                                    <svg viewBox="0 0 24 24" width="10" height="10" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                                </span>
+                                <span id="reg-notification-text">Receive WhatsApp & SMS notifications.</span>
+                            </label>
+                        </div>
+
+                        <button class="reg-submit-btn" id="reg-submit-btn">Confirm My Pre-registration</button>
+                        <p class="reg-bottom-note" id="reg-bottom-note">No payment is required at this stage.</p>
+
                     </aside>
                 </div>
             </div>

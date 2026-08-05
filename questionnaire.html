@@ -392,7 +392,7 @@
             gap: 12px;
             justify-content: center;
             width: 100%;
-            max-width: 760px;
+
             margin: 0 auto;
         }
 
@@ -1368,9 +1368,10 @@
 
                 const hobbiesGrid = document.createElement('div');
                 hobbiesGrid.className = 'hobbies-grid';
-                hobbiesGrid.style.display = 'grid';
-                hobbiesGrid.style.gridTemplateColumns = 'repeat(auto-fit, minmax(180px, 1fr))';
-                hobbiesGrid.style.gap = '10px';
+                hobbiesGrid.style.display = 'flex';
+                hobbiesGrid.style.flexDirection = 'column';
+                hobbiesGrid.style.width = '100%';
+                hobbiesGrid.style.gap = '15px';
                 hobbiesGrid.style.padding = '5px';
 
                 // Add hobbies here based on taxonomy
@@ -1488,20 +1489,78 @@
                     { key: 'community.civic', label: 'Civic engagement' }
                 ];
 
+                const categoriesMap = {
+                    'arts': 'Arts & Culture',
+                    'music': 'Music & Dance',
+                    'dance': 'Music & Dance',
+                    'food': 'Food & Drink',
+                    'sport': 'Sports & Fitness',
+                    'nature': 'Nature & Outdoors',
+                    'travel': 'Travel & Discovery',
+                    'social': 'Social Life & Entertainment',
+                    'craft': 'Creative Activities & Crafts',
+                    'tech': 'Technology, Games & Media',
+                    'learning': 'Learning & Personal Growth',
+                    'wellbeing': 'Wellbeing & Spirituality',
+                    'home': 'Home, Family & Everyday Life',
+                    'community': 'Community & Causes'
+                };
+
                 function renderHobbies(filter = '') {
                     hobbiesGrid.innerHTML = '';
                     const filtered = hobbiesTaxonomy.filter(h => h.label.toLowerCase().includes(filter.toLowerCase()));
+
+                    const grouped = {};
                     filtered.forEach(item => {
-                        const card = document.createElement('div');
-                        card.className = 'q-text-btn';
-                        card.style.padding = '10px';
-                        card.style.minHeight = '40px';
-                        if (currentSelections.includes(item.key)) {
-                            card.classList.add('selected');
+                        const prefix = item.key.split('.')[0];
+                        const catName = categoriesMap[prefix] || 'Other';
+                        if (!grouped[catName]) {
+                            grouped[catName] = [];
                         }
-                        card.innerHTML = `<span>${item.label}</span>`;
-                        card.onclick = () => toggleCard(card, item.key, category);
-                        hobbiesGrid.appendChild(card);
+                        grouped[catName].push(item);
+                    });
+
+                    Object.keys(grouped).forEach(catName => {
+                        const groupContainer = document.createElement('div');
+                        groupContainer.style.marginBottom = '20px';
+                        groupContainer.style.width = '100%';
+
+                        const title = document.createElement('h3');
+                        title.textContent = catName;
+                        title.style.fontFamily = "'Cormorant Garamond', serif";
+                        title.style.fontSize = '1.6rem';
+                        title.style.color = 'var(--primary-navy)';
+                        title.style.textAlign = 'center';
+                        title.style.marginBottom = '15px';
+                        title.style.fontWeight = '500';
+                        groupContainer.appendChild(title);
+
+                        const grid = document.createElement('div');
+                        grid.className = 'hobbies-group-grid';
+                        grid.style.display = 'flex';
+                        grid.style.flexWrap = 'wrap';
+                        grid.style.justifyContent = 'center';
+                        grid.style.gap = '10px';
+
+                        grouped[catName].forEach(item => {
+                            const card = document.createElement('div');
+                            card.className = 'q-text-btn';
+                            card.style.padding = '10px 15px';
+                            card.style.minHeight = '40px';
+                            card.style.flex = '0 1 auto';
+                            card.style.display = 'flex';
+                            card.style.alignItems = 'center';
+                            card.style.justifyContent = 'center';
+                            if (currentSelections.includes(item.key)) {
+                                card.classList.add('selected');
+                            }
+                            card.innerHTML = `<span>${item.label}</span>`;
+                            card.onclick = () => toggleCard(card, item.key, category);
+                            grid.appendChild(card);
+                        });
+
+                        groupContainer.appendChild(grid);
+                        hobbiesGrid.appendChild(groupContainer);
                     });
                 }
 
